@@ -148,7 +148,31 @@ a:visited { color: #205caa; }
 
 .posts { list-style-type: none; }
 
-.posts li { margin-bottom: 30px; }
+.posts li { 
+  margin-bottom: 30px; 
+}
+.posts li:after {
+  content: "";
+  clear: left;
+  display: block;
+}
+
+.posts .thumbnail {
+  float: left;
+}
+.posts .thumbnail img {
+  height: 240px;
+  width: 240px;
+  box-shadow: black 0px 10px 25px -12px;
+  border-radius: 50px;
+  border: solid #ccc 1px;
+  padding: 10px;
+  background: #eee;
+}
+
+.posts .post-description {
+  margin-left: 280px;
+}
 
 .posts .post-link {
   font-size: 24px;
