@@ -2,6 +2,7 @@
 layout: post
 title: "Circumventing XSS filters"
 thumbnail: water-pipe-240.jpg
+date: 2016-01-29
 ---
 
 XSS or cross site scripting is an attack where an hacker injects Javascript in a page that is then run by another visitor. To prevent this, some software tries to remove any Javascript from the input. This is pretty hard to implement correctly.  In this article I will show some code that tries to remove Javascript code from the input, and show several ways to circumvent this.
