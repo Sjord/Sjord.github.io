@@ -5,6 +5,7 @@ description: "Web application security"
 baseurl: ""
 url: "http://www.sjoerdlangkemper.nl/"
 github_username:  Sjord
+future: false
 
 # Build settings
 markdown: kramdown
