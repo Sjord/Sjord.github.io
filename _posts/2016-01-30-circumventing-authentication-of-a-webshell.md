@@ -2,7 +2,7 @@
 layout: post
 title: "Circumventing authentication of a webshell"
 thumbnail: transparent-padlock-240.jpg
-date: 2016-02-05
+date: 2016-02-04
 ---
 
 When a website is hacked, the attacker often leaves a backdoor or webshell to be able to easily access the website in the future. These are often obfuscated to avoid detection, and need authentication so only the attacker can gain access to the site. In this post I am going to deobfuscate a webshell and show how the authentication can be bypassed when you have the source code but not the password.
