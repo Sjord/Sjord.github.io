@@ -11,7 +11,7 @@ Webapps occasionaly need to create tokens that are hard to guess. For example fo
 
 In PHP, the function [`rand()`](https://secure.php.net/rand) creates pseudorandom numbers. The initial state of the random number generator (the seed) is set with [`srand`](https://secure.php.net/srand). If you don't call `srand` yourself, PHP seeds the random number generator with some hard to guess number when you call `rand`. The seed passed to `srand` totally determines the string of numbers that `rand` will generate.
 
-The random number generator keeps a state that is initially set by `srand` and then changed every time you call `rand`. This state is specific to the process, so two processes typically return different numbers for `rand`.
+The random number generator keeps a state that is initially set by `srand` and then changed every time you call `rand`. This state is specific to the process, so two processes typically return different numbers for `rand`. On Windows this state has a size of 32 bits and can be directly set using `srand`. On Linux the state is 1024 bits.
 
 ## Our example program
 
@@ -38,7 +38,7 @@ Every time we request the index.php page we get a new CSRF token, so we can requ
 
 ## Seed cracking
 
-As we said the random number series is totally defined by the seed, so we can simply try every possible number as argument for `srand` to get the random number generator in the right state. Note that this will only work if the server process is fresh. If the server process has already seen a lot of `rand` calls, we need to do the same amount in our cracking program to get the same state.
+As we said the random number series is totally defined by the seed, so we can simply try every possible number as argument for `srand` to get the random number generator in the right state. Note that on Linux this will only work if the server process is fresh. If the server process has already seen a lot of `rand` calls, we need to do the same amount in our cracking program to get the same state. On Windows, the state of the random number generator is the same as the argument to `srand`, so you don't need a fresh process.
 
 If we got a token from a fresh process, the following PHP script can be used to crack it:
 
@@ -49,9 +49,25 @@ If we got a token from a fresh process, the following PHP script can be used to 
         }
     }
 
-To search the 4294967295 possible arguments to `srand`, this will take approximately 12 hours. However, since PHP just calls the glibc `rand` function, we can reimplement the PHP code as C and speed things up.
+To search the 4294967295 possible arguments to `srand`, this will take approximately 12 hours. However, since PHP just calls the glibc `rand` function, we can reimplement the PHP code as C and speed things up. I have made two versions, one that calls the [glibc rand](https://github.com/Sjord/crack-ezchatter-token/blob/master/crackseed.c) and one that mimics the [Windows rand](https://github.com/Sjord/crack-ezchatter-token/blob/master/wincrackstate.c). It is basically the PHP code from `token.php`, a copy paste of some macro's from PHP's `ext/standard/rand.c`, and a loop to go through every possible seed.
+
+## State cracking on Linux
+
+On Windows, cracking the argument to `srand` and cracking the state of the random number generator turn out to be the same thing, but on Linux they are different. The glibc `rand()` keeps a series of numbers, and determines the next state like this:
+
+    state[i] = state[i-3] + state[i-31]
+    return state[i] >> 1
+
+So every output is approximately the summed output from 3 and 31 calls ago. Consider the following series of tokens:
+
+* 6ZF5kNgonV
+* 9h3byovpGR
+* gGt0A94U92
+
+Now, the next rand will be determining whether it will be an uppercase letter, lowercase letter or number. This is determined by the outcomes of `rand` 3 and 31 calls ago, so that's the last 9 in `gGt0A94U92` and the y in `9h3byovpGR`. So we expect the next output of `rand(0, 2)` to be ⎩10/10 + 25/26 × 3⎭ = 2 mod 3, so that means we get a number. Let's see if we can predict that number. The next calls to `rand` that determines the number is determined by the `rand` from 3 calls ago, a number, and the rand of 31 calls ago, a lowercase letter. So we expect the number to be 2/2 + 1/2 × 10 = 5 mod 10. It turns out to be 4:
+
+* 43J2d2ew31
 
 
-## State cracking
 
 On some servers, an attacker can get a new process by opening a lot of connections. If all web server handlers are busy, the server will spawn some new processes to handle incoming connections. These new processes then will have a fresh state and can be used to request a range of random strings. Since we are interested in multiple strings of one process, we need to do requests to the same process every time. This can be done by using a keep alive connection, where you can do multiple requests over one TCP connection.
