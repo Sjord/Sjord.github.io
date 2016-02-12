@@ -51,6 +51,8 @@ If we got a token from a fresh process, the following PHP script can be used to 
 
 To search the 4294967295 possible arguments to `srand`, this will take approximately 12 hours. However, since PHP just calls the glibc `rand` function, we can reimplement the PHP code as C and speed things up. I have made two versions, one that calls the [glibc rand](https://github.com/Sjord/crack-ezchatter-token/blob/master/crackseed.c) and one that mimics the [Windows rand](https://github.com/Sjord/crack-ezchatter-token/blob/master/wincrackstate.c). It is basically the PHP code from `token.php`, a copy paste of some macro's from PHP's `ext/standard/rand.c`, and a loop to go through every possible seed. This will take about 10 minutes for the Windows version and a couple of hours for the Linux version.
 
+Once completed, you have the random number generator in the same state and you can keep generating the same tokens as on the server. By comparing your own generated tokens with the tokens the server returns you know which tokens have been handed out to other users, and you can start your attack.
+
 ## State cracking on Linux
 
 On Windows, cracking the argument to `srand` and cracking the state of the random number generator turn out to be the same thing, but on Linux they are different. The glibc `rand()` keeps a series of numbers, and determines the next state like this:
@@ -64,7 +66,7 @@ So every output is approximately the summed output from 3 and 31 calls ago. Cons
 * 9h3byovpGR
 * gGt0A94U92
 
-Now, the next rand will be determining whether it will be an uppercase letter, lowercase letter or number. This is determined by the outcomes of `rand` 3 and 31 calls ago, so that's the last 9 in `gGt0A94U92` and the y in `9h3byovpGR`. So we expect the next output of `rand(0, 2)` to be approximately ⌊10/10 + 25/26 × 3⌋ = 2 mod 3, so that means we get a number. Let's see if we can predict that number. The next calls to `rand` that determines the number is determined by the `rand` from 3 calls ago, a number, and the rand of 31 calls ago, a lowercase letter. The number will thus be between ⌊2/3 + 1/3 × 10⌋ = 0 mod 10 and ⌊3/3 + 2/3 × 10⌋ = 6 mod 10. We thus expect the number to be between 0 and 6. It turns out to be 4:
+Now, the next rand will be determining whether it will be an uppercase letter, lowercase letter or number. This is determined by the outcomes of `rand` 3 and 31 calls ago. That's the last 9 in `gGt0A94U92` and the y in `9h3byovpGR`. So we expect the next output of `rand(0, 2)` to be approximately ⌊10/10 + 25/26 × 3⌋ = 2 mod 3, so that means we get a number. Let's see if we can predict that number. The next calls to `rand` that determines the number is determined by the `rand` from 3 calls ago, a number, and the rand of 31 calls ago, a lowercase letter. The number will thus be between ⌊2/3 + 1/3 × 10⌋ = 0 mod 10 and ⌊3/3 + 2/3 × 10⌋ = 6 mod 10. We thus expect the number to be between 0 and 6. It turns out to be 4:
 
 * 43J2d2ew31
 
