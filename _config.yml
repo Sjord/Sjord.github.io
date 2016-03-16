@@ -6,6 +6,7 @@ baseurl: ""
 url: "http://www.sjoerdlangkemper.nl"
 github_username:  Sjord
 future: false
+email: sjoerd-2016&#064;&#108;inuxonl&#121;&#046;&#110;l
 
 # Build settings
 markdown: kramdown
