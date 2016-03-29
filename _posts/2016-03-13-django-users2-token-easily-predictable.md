@@ -1,15 +1,17 @@
 ---
 layout: post
-title: "Django-user2 verification token easily predictable"
+title: "Django's reset password mechanism"
 thumbnail: snowflake-240.jpg
 date: 2016-03-13
 ---
 
-Django-users2 is a custom user model for Django that replaces the default user model. One feature is email verification, where the user receives an email with a verification link after registering. The code used in this link should be only known to the recipient of the email, but turns out to be easily guessable.
+Django enables users to reset their password a token that is emailed to the user. This mechanism contains some smart features. so let's look at how it works.
 
 ## Django's token generator
 
-Django's default authentication implementation already uses tokens in the forgotten password functionality. A user may request a reset email that contains a token to access a page with which he can reset his password. The token consists of a hash of user properties. When the user visits the link in the email, the hash is recalculated and compared to the token in the link.
+Django comes with password reset functionality, but it is disabled by default. To use it you just have to make [an URL pattern to the view](https://docs.djangoproject.com/en/1.9/topics/auth/default/#using-the-views) so that the correct views become accessible.
+
+A user may request a reset email that contains a token to access a page with which he can reset his password. The token consists of a hash of user properties. It is not kept in the database. Instead, when the user visits the link in the email, the hash is recalculated and compared to the token in the link.
 The implementation for creating the token looks like this:
 
 
@@ -39,7 +41,7 @@ The implementation for creating the token looks like this:
             six.text_type(login_timestamp) + six.text_type(timestamp)
         )
 
-As you can see the token used in the password reset URL contains a hash of the user ID, user password, the login timestamp and the current date. This is pretty clever. It makes the link invalid as soon as the user logs in, because then the `login_timestamp` field changes. It also invalidates the link as soon as the password changes, presumably after the user has used the link. It also creates a unique and hard to predict token, because the user's password is used in the hash. This last point is why this algorithm is a good choice for a password reset, but not for a verification link.
+As you can see the token used in the password reset URL contains a hash of the user ID, user password, the login timestamp and the current date. This is pretty clever. It makes the link invalid as soon as the user logs in, because then the `login_timestamp` field changes. It also invalidates the link as soon as the password changes, presumably after the user has used the link.
 
 ## Django-users2 verification link
 
