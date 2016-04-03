@@ -5,7 +5,7 @@ thumbnail: hieroglyph-240.jpg
 date: 2016-03-17
 ---
 
-Say you want to encode some things in Python3 using pycrypto, and you want full control over what is encrypted or decrypted. In that case you should use the `bytes` and `bytearray` types, not strings.
+Say you want to encode some things in Python 3 using pycrypto, and you want full control over what is encrypted or decrypted. In that case you should use the `bytes` and `bytearray` types, not strings.
 
 ## Don't use strings
 
