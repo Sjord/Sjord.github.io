@@ -121,7 +121,7 @@ Our filter removes any `<script>` tags. However, it only does so once, so we can
 
     <scr<script>ipt>alert("XSS")</scr<script>ipt>
 
-The filter removes the two occurences of `<script>`, and we end up with exactly the code that we want. In fact, this method of nesting tags can be used to circumvent any of filter expressions.
+The filter removes the two occurrences of `<script>`, and we end up with exactly the code that we want. In fact, this method of nesting tags can be used to circumvent any of filter expressions.
 
 ## Conclusion
 

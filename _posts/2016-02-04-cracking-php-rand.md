@@ -5,7 +5,7 @@ thumbnail: roulette-240.jpg
 date: 2016-02-11
 ---
 
-Webapps occasionaly need to create tokens that are hard to guess. For example for session tokens or CSRF tokens, or in forgot password functionality where you get a token mailed to reset your password. These tokens should be cryptographically secure, but are often made by calling `rand()` multiple times and transforming the output to a string. This post will explore how hard it is to predict a token made with `rand()`.
+Webapps occasionally need to create tokens that are hard to guess. For example for session tokens or CSRF tokens, or in forgot password functionality where you get a token mailed to reset your password. These tokens should be cryptographically secure, but are often made by calling `rand()` multiple times and transforming the output to a string. This post will explore how hard it is to predict a token made with `rand()`.
 
 ## How rand works
 
