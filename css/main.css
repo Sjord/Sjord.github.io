@@ -28,10 +28,25 @@ a:visited { color: #205caa; }
 .wrap:after { content:""; display:table; }
 .wrap:after { clear: both; }
 .wrap {
-  max-width: 800px;
+  max-width: 1000px;
   padding: 0 30px;
   margin: 0 auto;
   zoom: 1;
+}
+
+.left-col, .sidebar {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  padding: 26px;
+}
+.left-col {
+  max-width: 724px;
+  border-right: solid #e8e8e8 1px;
+  padding-left: 0;
+}
+.sidebar {
+  max-width: 276px;
 }
 
 
@@ -146,7 +161,6 @@ a:visited { color: #205caa; }
 /* ----------------------------------------------------------*/
 
 .page-content {
-  padding: 30px 0;
   background-color: #fff;
 }
 
