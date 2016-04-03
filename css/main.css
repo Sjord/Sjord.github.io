@@ -41,12 +41,17 @@ a:visited { color: #205caa; }
   padding: 26px;
 }
 .left-col {
-  max-width: 724px;
+  max-width: 708px;
   border-right: solid #e8e8e8 1px;
   padding-left: 0;
 }
 .sidebar {
-  max-width: 276px;
+  max-width: 292px;
+}
+
+.sidebar .icons img {
+  width: 36px;
+  margin: 6px;
 }
 
 
