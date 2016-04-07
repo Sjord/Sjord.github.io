@@ -5,7 +5,7 @@ thumbnail: snowflake-240.jpg
 date: 2016-03-13
 ---
 
-Django enables users to reset their password a token that is emailed to the user. This mechanism contains some smart features. so let's look at how it works.
+Django enables users to reset their password with a token that is emailed to the user. This mechanism contains some smart features. so let's look at how it works.
 
 ## Django's token generator
 
@@ -41,7 +41,7 @@ The [implementation](https://github.com/django/django/blob/master/django/contrib
             six.text_type(login_timestamp) + six.text_type(timestamp)
         )
 
-As you can see it uses the following items for the hash:
+As you can see it uses the following items for the HMAC:
 
 * user ID
 * password
@@ -52,6 +52,37 @@ The variable `key_salt` contains some hard-coded string. The function `salted_hm
 
 ## Pretty smart
 
-This is pretty clever. It makes the link invalid as soon as the user logs in, because then the `login_timestamp` field changes. It also invalidates the link as soon as the password changes, presumably after the user has used the link.
+For the reset password functionality the application needs to create a token and later check whether the same token is used to access the reset password page. There are basically two ways to do this:
+
+* Generate a random token and store it in the database. When the user returns, check the token against the database.
+* Generate a token in a deterministic way. When the user returns, recreate the token and check both tokens against each other.
+
+Django uses the second method. The token needs to have some properties for it to be secure:
+
+* It should not be possible for users to create their own token.
+* Tokens should expire, so that they are not valid forever.
+* Tokens should be invalidated once used.
+
+Let's see how the Django code implements these properties.
+
+### It should not be possible for users to create their own token
+
+The function to make the token uses the `salted_hmac` function, which uses a secret as key. Every installation should have its own secret, so that the token created for one site can't be used on another.
+
+The `salted_hmac` function is also used in other places, such as when storing [notification messages in cookies](https://github.com/django/django/blob/master/django/contrib/messages/storage/cookie.py#L128). Now, consider what happens when you trick the application in creating a notification message that looks like a password reset token. If you can trick it in signing a notification message that looks like `user_id +  password + date`, you got yourself a valid password reset token. To prevent this, every call to `salted_hmac` has a fixed string with the purpose of the hash. That is what the `key_salt` parameter is for. For password reset tokens it contains "django.contrib.auth.tokens.PasswordResetTokenGenerator", and for notification messages it contains "django.contrib.messages". This makes it impossible to use hashes for another purpose.
+
+### Tokens should expire, so that they are not valid forever
+
+Reset tokens are typically used as soon as the user receives the email. If you request a reset token and then forget about it, it should not remain valid forever. Django implements this by hashing the current day into the token. This makes sure the token is only valid today.
+
+This is unfortunate for users that want to use this functionality around midnight. Some other implementations put the timestamp both in the hash and also plaintext as part of the token, e.g. `2016-04-05-Cbx7WLDtHIL0ZRXu`. Because the timestamp is part of the hash the user can not modify it, but the server can use the plaintext timestamp to check whether the request is expired.
+
+### Tokens should be invalidated once used
+
+When storing tokens in a database, you can simply delete them or mark them as used. For signed tokens, however, you can't really see whether they already have been used. Django solves this in a smart way, by hashing the login time and password into the token. This means that if you either log in or change your password, the password reset token is no longer valid. So if you use the token and reset your password, the token is invalidated. If you remembered your password after all and log in, the token is also no longer valid.
 
 ## Conclusion
+
+We've looked at Django's reset password tokens. These are not stored in the database and are made with a HMAC of user properties. The HMAC's properties makes the reset tokens have the correct behavior. It makes the link invalid as soon as the user logs in, because then the `login_timestamp` field changes. It also invalidates the link as soon as the password changes, presumably after the user has used the link.
+
+As you can see this method is elegant, but also pretty complex compared to storing a random token in the database. I would not recommend anyone to implement this scheme themselves. That said, Django's solution seems secure and elegant.
