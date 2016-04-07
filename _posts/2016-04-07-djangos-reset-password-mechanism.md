@@ -5,11 +5,11 @@ thumbnail: snowflake-240.jpg
 date: 2016-04-07
 ---
 
-Django enables users to reset their password with a token that is emailed to the user. This mechanism contains some smart features. so let's look at how it works.
+Django enables users to reset their password with a token that is emailed to the user. This mechanism contains some smart features, so let's look at how it works.
 
 ## Django's token generator
 
-Django comes with password reset functionality, but it is disabled by default. To use it you just have to make [an URL pattern to the view](https://docs.djangoproject.com/en/1.9/topics/auth/default/#using-the-views) so that the correct views become accessible.
+Django comes with password reset functionality, but it is disabled by default. To use it you have to make [an URL pattern to the view](https://docs.djangoproject.com/en/1.9/topics/auth/default/#using-the-views) so that the correct views become accessible.
 
 A user may request a reset email that contains a token to access a page with which he can reset his password. This page needs to check whether the token presented by the user is the same token that was sent out in the email. There are basically two ways to do this:
 
