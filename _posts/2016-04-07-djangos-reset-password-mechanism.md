@@ -2,7 +2,7 @@
 layout: post
 title: "Django's reset password mechanism"
 thumbnail: snowflake-240.jpg
-date: 2016-03-13
+date: 2016-04-07
 ---
 
 Django enables users to reset their password with a token that is emailed to the user. This mechanism contains some smart features. so let's look at how it works.
