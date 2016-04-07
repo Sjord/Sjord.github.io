@@ -11,9 +11,12 @@ Django enables users to reset their password with a token that is emailed to the
 
 Django comes with password reset functionality, but it is disabled by default. To use it you just have to make [an URL pattern to the view](https://docs.djangoproject.com/en/1.9/topics/auth/default/#using-the-views) so that the correct views become accessible.
 
-A user may request a reset email that contains a token to access a page with which he can reset his password. The token consists of a hash of user properties. It is not kept in the database. Instead, when the user visits the link in the email, the hash is recalculated and compared to the token in the link.
-The [implementation](https://github.com/django/django/blob/master/django/contrib/auth/tokens.py) for creating the token looks like this:
+A user may request a reset email that contains a token to access a page with which he can reset his password. This page needs to check whether the token presented by the user is the same token that was sent out in the email. There are basically two ways to do this:
 
+* Generate a random token and store it in the database. When the user returns, check the token against the database.
+* Generate a token in a deterministic way. When the user returns, recreate the token and check both tokens against each other.
+
+Django uses the second method. It creates a token that consists of a hash of user properties. It is not kept in the database. Instead, when the user visits the link in the email, the hash is recalculated and compared to the token in the link. The [implementation](https://github.com/django/django/blob/master/django/contrib/auth/tokens.py) for creating the token looks like this:
 
     def _make_token_with_timestamp(self, user, timestamp):
         # timestamp is number of days since 2001-1-1.  Converted to
@@ -41,7 +44,7 @@ The [implementation](https://github.com/django/django/blob/master/django/contrib
             six.text_type(login_timestamp) + six.text_type(timestamp)
         )
 
-As you can see it uses the following items for the HMAC:
+As you can see the token consist of a timestamp and a HMAC with the following items:
 
 * user ID
 * password
@@ -50,14 +53,9 @@ As you can see it uses the following items for the HMAC:
 
 The variable `key_salt` contains some hard-coded string. The function `salted_hmac` uses a secret from the settings (`SECRET_KEY`), so its output is not predictable for anyone who does not have the site configuration.
 
-## Pretty smart
+## Pretty clever
 
-For the reset password functionality the application needs to create a token and later check whether the same token is used to access the reset password page. There are basically two ways to do this:
-
-* Generate a random token and store it in the database. When the user returns, check the token against the database.
-* Generate a token in a deterministic way. When the user returns, recreate the token and check both tokens against each other.
-
-Django uses the second method. The token needs to have some properties for it to be secure:
+The token needs to have some properties for it to be secure:
 
 * It should not be possible for users to create their own token.
 * Tokens should expire, so that they are not valid forever.
@@ -73,9 +71,9 @@ The `salted_hmac` function is also used in other places, such as when storing [n
 
 ### Tokens should expire, so that they are not valid forever
 
-Reset tokens are typically used as soon as the user receives the email. If you request a reset token and then forget about it, it should not remain valid forever. Django implements this by hashing the current day into the token. This makes sure the token is only valid today.
+Reset tokens are typically used as soon as the user receives the email. If you request a reset token and then forget about it, it should not remain valid forever. Django implements this by using the day number both in the token and in the hash.
 
-This is unfortunate for users that want to use this functionality around midnight. Some other implementations put the timestamp both in the hash and also plaintext as part of the token, e.g. `2016-04-05-Cbx7WLDtHIL0ZRXu`. Because the timestamp is part of the hash the user can not modify it, but the server can use the plaintext timestamp to check whether the request is expired.
+Putting the day number (`timestamp` in the code above) in the hash we make sure that the user can not change it to make the token valid any longer. But putting it just in the hash would make the token valid only today, while the day number is the same as when the token was created. This would be inconvenient for anyone using the functionality around midnight. That is why the day number is also in the token. First, the day number in the token is checked against the hash. Then, the `check_token` function checks whether the day number is not too long ago. This makes sure tokens are only valid for a limited time, by default three days.
 
 ### Tokens should be invalidated once used
 
