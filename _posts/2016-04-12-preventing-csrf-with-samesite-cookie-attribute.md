@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Preventing CSRF with the Same-site cookie attribute"
+title: "Preventing CSRF with the same-site cookie attribute"
 thumbnail: castle-240.jpg
 date: 2016-04-12
 ---
@@ -11,7 +11,7 @@ Cookies are typically sent to third parties in cross origin requests. This can b
 
 When requesting a web page, the web page may load images, scripts and other resources from another web site. Many pages load fonts and scripts from Google, and share buttons from Facebook and Twitter. These requests are called cross-origin requests, because one "origin" or web site requests data from another one.
 
-When requesting data from another site, any cookies that you had from that site are also sent with the request. If you are logged in to Facebook, your session cookie is sent to Facebook whenever you visit a page that contains a Facebook share button. This can be used by Facebook to track which pages you are visiting.
+When requesting data from another site, any cookies that you had on that site are also sent with the request. If you are logged in to Facebook, your session cookie is sent to Facebook whenever you visit a page that contains a Facebook share button. This can be used by Facebook to track which pages you are visiting.
 
 In this scenario, the cookies sent to Facebook are called third-party cookies. The user and the web page are the first and second party. Any other site is a third party.
 
@@ -31,7 +31,7 @@ Until now it was only possible for end-users to allow or disable all third-party
 
 ## Same-site cookie attribute
 
-The [same-site cookie attribute](https://tools.ietf.org/html/draft-west-first-party-cookies-07) can be used to disable third-party usage for a specific cookie. It is set by the server when setting the cookie, and requests the browser to only send the cookie in a first-party context, i.e. when you are using the web application directly. When another site tries to request something from the web application, the cookie is not sent. This effectively makes CSRF impossible, because an attacker can not use a users session from his site anymore.
+The [same-site cookie attribute](https://tools.ietf.org/html/draft-west-first-party-cookies-07) can be used to disable third-party usage for a specific cookie. It is set by the server when setting the cookie, and requests the browser to only send the cookie in a first-party context, i.e. when you are using the web application directly. When another site tries to request something from the web application, the cookie is not sent. This effectively makes CSRF impossible, because an attacker can not use a user's session from his site anymore.
 
 The server can set a same-site cookie by adding the `SameSite=…` attribute to the `Set-Cookie` header:
 
@@ -48,15 +48,15 @@ In lax mode, some cross-site usage is allowed. Specifically if the request is a 
 
 This table shows what cookies are sent with cross-origin requests. As you can see cookies without a same-site attribute (indicated by 'normal') are always sent. Strict cookies are never sent. Lax cookies are only send with a top-level get request.
 
-| request type,  | cookies sent |
+| request type,  | example code, | cookies sent |
 |-----------|-----------|
-| link      | normal, lax |
-| prerender | normal, lax |
-| form get  | normal, lax |
-| form post | normal      |
-| iframe    | normal      |
-| ajax      | normal      |
-| image     | normal      |
+| link      | `<a href="…">` | normal, lax |
+| prerender | `<link rel="prerender" href="…">` | normal, lax |
+| form get  | `<form method="get" action="…">` | normal, lax |
+| form post | `<form method="post" action="…">` | normal      |
+| iframe    | `<iframe src="…">` | normal      |
+| ajax      | `$.get('…')` | normal      |
+| image     | `<img src="…">` | normal      |
 
 As you would expect strict mode gives better security, but breaks some functionality. Links to protected resources (e.g. https://github.com/Sjord/privateProject) won't work from other sites. Even if you are logged in to GitHub and would have access to this private project, your strict cookies won't be sent to GitHub when coming from another site. With lax mode this still works, while providing decent security by blocking cross site post requests.
 
