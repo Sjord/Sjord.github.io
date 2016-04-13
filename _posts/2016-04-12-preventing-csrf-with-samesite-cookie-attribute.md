@@ -25,9 +25,9 @@ In the previous example, a random web site caused a request to Facebook. The sam
 
 In this scenario, the session cookie for the web application is a third-party cookie, and for this attack it is crucial that it is sent to the banking application. We can prevent CSRF attacks by withholding third-party cookies: if we don't send the cookie to our bank, the bank thinks we are not logged in and the attacker won't be able to transfer money to his account.
 
-It was already possible to disable third-party cookies in the browser settings ([Chrome](https://support.google.com/chrome/answer/95647?hl=en), [Firefox](https://support.mozilla.org/en-US/kb/disable-third-party-cookies)). This is mainly advertised as preventing tracking by Facebook, but it is also useful in preventing CSRF attacks.
+It was already possible to disable third-party cookies in the browser settings ([Chrome](https://support.google.com/chrome/answer/95647?hl=en), [Firefox](https://support.mozilla.org/en-US/kb/disable-third-party-cookies)). This is mainly advertised as preventing tracking by Facebook, but it is also useful in preventing CSRF attacks. 
 
-Until now it was only possible for end-users to allow or disable all third-party cookies. The new same-site cookie attribute changes this, giving websites fine-grained control over how to handle their cookies.
+This browser setting lets the end-user disable all third-party cookies. The same-site cookie attribute, on the contrary, gives web sites fine-grained control over how to handle their cookies.
 
 ## Same-site cookie attribute
 
