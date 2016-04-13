@@ -7,7 +7,7 @@ date: 2016-03-28
 
 ## Limits of CSRF
 
-CSRF uses the fact that a user is logged in on one site to do requests on behalf of that user from another site. This way the attacker can trigger actions on the site the user is logged in, even though the attacker has no access to the site.
+CSRF uses the fact that a user is logged in on one site to do requests on behalf of that user on another site. This way the attacker can trigger actions on the site the user is logged in, even though the attacker has no access to the site.
 
 Normally, this method cannot be used to get information from the other site. It is possible to include another site in an iframe, but it is not possible to read the contents of that iframe with Javascript
 
@@ -60,7 +60,7 @@ The attacker can create a page that measures the time of some URLs on the wiki:
 
 The JSPWiki search page is slower when it has any results, so the attacker can deduce which wiki page exists and thus which company Monsters is going to merge with.
 
-On my test setup with JSPWiki the search page is about 30ms slower when it has any results. This makes it necessary to measure multiple times to get an accurate result, but it is also enough to make this attack work over the internet.
+On my test setup with JSPWiki the search page is about 30ms slower when it has any results. This makes it necessary to measure multiple times to get an accurate result, but it is also enough to make this attack work over the Internet.
 
 The chart shows times in milliseconds for 10 samples for each suspected company. Contoso has a higher average time to load. It is likely that Monster is going to merge with Contoso.
 
@@ -72,4 +72,4 @@ It is possible to detect timing differences using forged requests. There are sev
 
 * The request needs to be predictable. Just like any other CSRF attacks, this one can be protected against by requiring a secret token when submitting the request.
 * The server must allow cross origin requests. If the server checks the referrer header, request forgeries are not going to work.
-* The response must have a noticable timing difference. There has to be at least some milliseconds difference between responses, otherwise the difference is too small to measure using iframes and Javascript.
+* The response must have a noticeable timing difference. There has to be at least some milliseconds difference between responses, otherwise the difference is too small to measure using iframes and Javascript.
