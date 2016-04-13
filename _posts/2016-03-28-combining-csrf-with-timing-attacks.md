@@ -5,6 +5,8 @@ thumbnail: clock-240.jpg
 date: 2016-03-28
 ---
 
+In a CSRF attack it is typically not possible for the attacker to retrieve the result of the forged requests. In this post we show that by measuring the time that a forged requests take we can extract some information, for example whether a specific resource exists.
+
 ## Limits of CSRF
 
 CSRF uses the fact that a user is logged in on one site to do requests on behalf of that user on another site. This way the attacker can trigger actions on the site the user is logged in, even though the attacker has no access to the site.
