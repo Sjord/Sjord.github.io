@@ -2,7 +2,7 @@
 layout: post
 title: "Combining CSRF and timing attacks"
 thumbnail: clock-240.jpg
-date: 2016-03-28
+date: 2016-04-21
 ---
 
 In a CSRF attack it is typically not possible for the attacker to retrieve the result of the forged requests. In this post we show that by measuring the time that a forged requests take we can extract some information, for example whether a specific resource exists.
