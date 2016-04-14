@@ -24,6 +24,8 @@ Normally, this method cannot be used to get information from the other site. It 
 
 However, there is a little bit of data that can be extracted cross site by measuring how long it takes to load the page in the iframe.
 
+![Can an attacker retrieve a result from another site with CSRF?](/images/csrf-timing.png)
+
 ## Timing iframe loads
 
 When an iframe is finished loading it triggers the `load` event. This also happens when the iframe contains cross site content, and even when the `X-Frame-Options` header denies the content from loading in an iframe. By putting an iframe on the page and measuring the time until the `load` event, we can determine how long it took to load the page.
