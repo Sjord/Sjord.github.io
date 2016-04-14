@@ -2,7 +2,7 @@
 layout: post
 title: "Preventing CSRF with the same-site cookie attribute"
 thumbnail: castle-240.jpg
-date: 2016-04-12
+date: 2016-04-14
 ---
 
 Cookies are typically sent to third parties in cross origin requests. This can be abused to do CSRF attacks. Recently a new cookie attribute was proposed to disable third-party usage for some cookies, to prevent CSRF attacks. This post will describe the same-site cookie attribute and how it helps against CSRF.
