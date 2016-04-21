@@ -70,6 +70,8 @@ The chart shows times in milliseconds for 10 samples for each suspected company.
 
 ![Searching for Contoso shows a higher average time to load](/images/merger-timing-graph.png)
 
+Since the time difference is so small and depends on the specific JSPWiki configuration, this attack would be hard to reproduce in a real-world scenario. Furthermore, JSPWiki's security model is to protect the page contents, not the page titles. The developers of JSPWiki decided that they would not consider this timing attack a security vulnerability.
+
 ## Conclusion
 
 It is possible to detect timing differences using forged requests. There are several requirements for an application to be vulnerable:
