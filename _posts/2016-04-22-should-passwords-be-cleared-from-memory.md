@@ -2,14 +2,14 @@
 layout: post
 title: "Clearing secrets from memory"
 thumbnail: memory-240.jpg
-date: 2016-04-21
+date: 2016-05-22
 ---
 
 When handling a secret such as an encryption key or a password, it is important not to leak it in any way. If the secret ends up in a log file, core dump or error message this could result in showing the secret to people who are not meant to see it. It may even be a good idea to remove the secret from memory after it is has been used. This blog post will look into whether that is good practice and how you can clear things from memory.
 
 ## Java's recommendation
 
-In the Java world it is pretty common to clear memory with secret contents. Because the Java String type is immutable and can't be cleared, a `char[]` should be used for secrets. The [JPasswordField](https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html) for example, returns a `char[]` instead of a `String` for the `getPassword` method. The [example code](https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html) also shows how the `char[]` can be cleared, "for security".
+In the Java world it is pretty common to clear memory with secret contents after use. Because the Java String type is immutable and can't be cleared, a `char[]` should be used for secrets. The [JPasswordField](https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html), for example, returns a `char[]` instead of a `String` for the `getPassword` method. The [example code](https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html) also shows how the `char[]` can be cleared, "for security".
 
 The [Java Cryptography Architecture Guide](http://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html) formalizes this practice in a guideline:
 
@@ -32,7 +32,7 @@ There are also ways that memory is persisted on the hard drive, making it possib
 * When a system is low on memory some memory pages are written to disk (paging or swapping).
 * The program crashes and a core dump is written to disk.
 
-Up until Heartbleed, memory reading attacks were something for high value targets and specialized attackers carrying a tank of liquid nitrogen past security. Heartbleed showed that there can be widespread memory reading bugs that can be used to access secrets remotely, in particular the private key of SSL certificates.
+Up until Heartbleed, memory reading attacks were something for high value targets and specialized attackers. Heartbleed showed that there can be widespread memory reading bugs that can be used to access secrets remotely, in particular the private key of SSL certificates.
 
 ## Shortening the time a secret is in memory
 
@@ -42,7 +42,7 @@ Clearing secrets from memory reduces the time they are readable from memory. It 
 
 If an attacker can read your memory you are definitely screwed, but clearing secrets may limit the damage a bit.
 
-## Should everybody clear secrets from memory?
+## It is not easy to clear memory
 
 Now that we have identified attacks and argued that it limits attack impact, it may seem like it is always a good idea to clear secrets from memory. That is not the case. Clearing memory is very difficult in some environments, and is often more of a hassle than it is worth.
 
@@ -50,7 +50,7 @@ Consider C for example. It is a fairly low-level language that allows direct con
 
 In many other environments, the way memory is handled depends on the implementation of the runtime environment. This is even the case for Java, where the guideline advices to use a `char[]`. The guideline assumes that a `char[]` is directly mapped to memory, that there is only one instance in memory and that clearing the array also clears the memory. This is all not strictly specified in the Java specification, so another JVM may implement it in a entirely different way and leave the contents in memory.
 
-For normal web applications, don't bother with clearing memory. If you are building a nuclear missile launch silo, make sure to clear memory contents. This also means choosing a language or implementations that explicitly allows that. If you do implement clearing memory contents, make sure you thorougly test it by actually searching the memory for your secret.
+For normal web applications, don't bother with clearing memory. If you are building a nuclear missile launch silo, make sure to clear memory contents. This also means choosing a language or implementations that explicitly allows that. If you do implement clearing memory contents, make sure you thoroughly test it by actually searching the memory for your secret.
 
 ## Conclusion
 
