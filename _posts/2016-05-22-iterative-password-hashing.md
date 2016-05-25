@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Iterative password hashing"
+title: "Requirements for iterative password hashing"
 thumbnail: fingerprint-240.jpg
-date: 2016-05-23
+date: 2016-05-25
 ---
 
 To securely store passwords they should be hashed with a slow hashing function, such as [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2). PBKDF2 is slow because it calls a fast hash function many times. This blog post explores some properties that the iterations must have to be secure.
