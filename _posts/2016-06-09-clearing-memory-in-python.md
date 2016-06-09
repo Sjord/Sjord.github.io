@@ -132,12 +132,12 @@ What would normally be two instances of a string with the same content are store
 By clearing the string with `SecureString.clearmem`, we break the immutability of the string, which is a requirements for string interning to correctly work. If we call `clearmem` on a string, any other string with the same content may also be cleared:
 
     secret = "5"
-    secret2 = str(5)
+    other_string = str(5)
 
     SecureString.clearmem(secret)
-    print(secret2)
+    print(other_string)
 
-We would expect this to print "5", but it actually prints nothing. This is because `secret` and `secret2` point to the same memory location, which is cleared by our `clearmem` call. This means that if you have users entering passwords, they may be able to clear variables in your program if they know the contents.
+We would expect this to print "5", but it actually prints nothing. This is because `secret` and `other_string` point to the same memory location, which is cleared by our `clearmem` call. This means that if you have users entering passwords, they may be able to clear variables in your program if they know the contents.
 
 
 ## Conclusion
