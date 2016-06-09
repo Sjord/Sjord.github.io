@@ -5,7 +5,7 @@ thumbnail: shredded-paper-240.jpg
 date: 2016-06-09
 ---
 
-[Part 1](/2016/05/22/should-passwords-be-cleared-from-memory/) discussed that it might be beneficial to clear secrets from memory after using them. This post discusses how to do this in Python.
+The post ["Clearing secrets from memory"](/2016/05/22/should-passwords-be-cleared-from-memory/) discussed that it might be beneficial to clear secrets from memory after using them. This post discusses how to do this in Python.
 
 ## Our test setup
 
