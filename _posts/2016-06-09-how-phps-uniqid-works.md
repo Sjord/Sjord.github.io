@@ -1,0 +1,43 @@
+---
+layout: post
+title: "How PHP's uniqid works"
+thumbnail: watch-gears-240.jpg
+date: 2016-06-09
+---
+
+PHP has a `uniqid` function, that creates a unique identifier. This function is sometimes used in a security context, such as for creating tokens for [sessions](https://github.com/panique/huge/blob/master/application/core/Csrf.php#L41) or [CSRF protection](https://github.com/panique/huge/blob/master/application/core/Csrf.php#L41). This makes it interesting to know how it works exactly and whether we can predict its output.
+
+## Uniqid returns the current time
+
+The source can be found in [uniqid.c](https://github.com/php/php-src/blob/master/ext/standard/uniqid.c) and is basically this:
+
+    PHP_FUNCTION(uniqid)
+    {
+        struct timeval tv;
+        gettimeofday(&tv, NULL);
+        return strpprintf(0, "%08x%05x", tv.tv_sec, tv.tv_usec);
+    }
+
+It retrieves the current time consisting of seconds and microseconds, and returns them in hexadecimal form. The output of `uniqid` consists only of the current time.
+
+## Sleep a microsecond to avoid doubles
+
+You may have noticed that the current time in microseconds may give the same result twice if we call the function within the same microsecond. To avoid this, `uniqid` has a call to `usleep` in it:
+
+    PHP_FUNCTION(uniqid)
+    {
+        struct timeval tv;
+        usleep(1);
+        gettimeofday(&tv, NULL);
+        return strpprintf(0, "%08x%05x", tv.tv_sec, tv.tv_usec);
+    }
+
+This delays execution for one microsecond, causing the result of `uniqid` to be truly unique. 
+
+Except when calling it in parallel. If two processes call `uniqid` at the same time, they will both sleep for a microsecond and still return the same value.
+
+On Windows, there is no `usleep` function, and PHP does not implement any alternative. It simply skips the call to `usleep`, causing `uniqid` to return the same value every time it is called within the same microsecond. Except on Cygwin, where it raises an error.
+
+## Conclusion
+
+As we have seen the result of `uniqid` is not always unique and can be fairly easily predicted.
