@@ -55,3 +55,5 @@ For normal web applications, don't bother with clearing memory. If you are build
 ## Conclusion
 
 Clearing memory mitigates the impact of a memory-reading attack. It is pretty hard to implement correctly and should only be used when the secrets are particularly secret.
+
+There is another post that goes into [clearing memory in Python](/2016/06/09/clearing-memory-in-python/).

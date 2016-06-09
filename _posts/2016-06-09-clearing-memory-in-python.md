@@ -7,7 +7,7 @@ date: 2016-06-09
 
 [Part 1](/2016/05/22/should-passwords-be-cleared-from-memory/) discussed that it might be beneficial to clear secrets from memory after using them. This post discusses how to do this in Python.
 
-### Our test setup
+## Our test setup
 
 We are going to create a Python script that stores a secret key in a variable, and then we read the memory of this process to see whether the secret is present in memory.
 
@@ -39,6 +39,10 @@ After running this, a core file is generated and we use grep to check whether th
 
     $ grep supersecretstring 5858.python.core 
     Binary file 5858.python.core matches
+
+## Methods to clear memory
+
+Now that we can check the process memory for our secret string, we can try several ways to try to clear that secret from memory.
 
 ### Clearing variables
 
@@ -116,7 +120,7 @@ Let's try SecureString with our example program:
 
 Grep finds nothing, indicating that the secret is indeed cleared from memory. So this works, but read on for the major pitfall.
 
-## String interning
+## String interning breaks when clearing strings
 
 Normally, strings in Python are immutable. Python takes advantage of this fact by storing multiple strings with the same value once. This is called string interning.
 
@@ -138,4 +142,4 @@ We would expect this to print "5", but it actually prints nothing. This is becau
 
 ## Conclusion
 
-There is no good way to read, use and clear a string in Python. Using bytearray works, but makes it hard to use. Using `SecureString` works, but may also clear other strings within the program.
+There is no good way to read, use and clear a string in Python. Using bytearray works, but it is hard to use a bytearray for anything without converting it to a string. Using `SecureString` works, but may also clear other strings within the program because of string interning.
