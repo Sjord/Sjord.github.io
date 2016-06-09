@@ -1,46 +1,22 @@
-## Notes
+---
+layout: post
+title: "Clearing memory in Python"
+thumbnail: shredded-paper-240.jpg
+date: 2016-06-09
+---
 
-Java raadt char[] aan in plaats van string, en die overschrijven als je klaar bent.
-Beschermt tegen aanvallers die je geheugen kunnen lezen.
-Wat zijn de situaties waarin dat kan?
-Hoe kan je een string veilig wissen?
-    test programma in python
-    string laten garbage collecten
-    string overschrijven
-    string interning
-    Geheugen is geabstraheerd, zelfs in C door de optimizer, dus het is niet mogelijk om de contents van het geheugen te bepalen
-
-## Bla
-
-The [Java Cryptography Architecture Guide](http://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html) says you should use a char array instead of a String, so that you can clear secrets from memory:
-
-> It would seem logical to collect and store the password in an object of type java.lang.String. However, here's the caveat: Objects of type String are immutable, i.e., there are no methods defined that allow you to change (overwrite) or zero out the contents of a String after usage. This feature makes String objects unsuitable for storing security sensitive information such as user passwords. You should always collect and store security sensitive information in a char array instead.
-
-This implies that if you have a secret, you should clear it from memory when you are done with it, so it does not stay in memory for an attacker to read.
-
-## Possible ways to read memory
-
-There several ways an attacker can read memory:
-
-* [Heartbleed](http://heartbleed.com/), the buffer over-read bug in OpenSSL, allows for reading memory remotely.
-* [Cold boot attack](https://en.wikipedia.org/wiki/Cold_boot_attack), where the attacker reboots a computer with his own software to read the memory.
-* [DMA attack](https://en.wikipedia.org/wiki/DMA_attack), where an attacker reads memory from the Firewire or Thunderbolt port, for example.
-* An attacker can read files and uses /proc/self/mem to read memory. This is not as simple as it sounds, because you need to read at a specific position in this file.
-* Memory is written to disk because of paging or hibernation, and an attacker gets access to the disk.
-* The program crashes and a core dump is written to disk.
-
-## Clearing a secret from memory in Python
+[Part 1](/2016/05/22/should-passwords-be-cleared-from-memory/) discussed that it might be beneficial to clear secrets from memory after using them. This post discusses how to do this in Python.
 
 ### Our test setup
 
 We are going to create a Python script that stores a secret key in a variable, and then we read the memory of this process to see whether the secret is present in memory.
 
 There are a couple of ways to read the memory of a process:
-* Read /proc/self/mem or /proc/$pid/mem.
-* Use gdb to dump a process' memory.
+* Read `/proc/self/mem` or `/proc/$pid/mem`.
+* Use [gdb](https://www.gnu.org/software/gdb/) to dump a process' memory.
 * Create a core file using either gcore or by aborting the program.
 
-Any process can read its own /proc/self/mem memory file, but only at specific offsets. The contents of the file correspond with the address space of the memory, and not all addresses have memory mapped to them. The file /proc/self/maps shows which address contains what. You can then seek to that position and read a blob of memory. Reading memory of other processes is not allowed unless you attach a process using ptrace. This is what debuggers use. Instead of doing this, it may be easier to use a real debugger like gdb to dump the memory to a file.
+Any process can read its own `/proc/self/mem` memory file, but only at specific offsets. The contents of the file correspond with the address space of the memory, and not all addresses have memory mapped to them. The file `/proc/self/maps` shows which address contains what. You can then seek to that position and read a blob of memory. Reading memory of other processes is not allowed unless you attach a process using [ptrace](https://en.wikipedia.org/wiki/Ptrace). This is what debuggers use. Instead of doing this, it may be easier to use a real debugger like gdb to dump the memory to a file.
 
 Another way is to create a core file. This can be done with the command `gcore` (after installing gdb), or by aborting the process and letting the operating system create a core file.
 
@@ -50,7 +26,7 @@ There are several settings that influence whether a core file is created when a 
 
 After configuring that we want core files, we can call `os.abort()` in Python to exit our program and dump the memory.
 
-We want to test having a secret variable in memory. However, we can't put it in the source code because the whole source code will be read in memory. We will read the secret from another file. Here is our test code:
+We want to test having a secret variable in memory. However, we can't put it in the source code because the whole source code will be read in memory. We'll read the secret from another file. Here is our test code:
 
     import os
 
@@ -78,9 +54,50 @@ When we run grep again, we see that the secret is still present in memory. Obvio
 
 Our secret is still present in memory. The garbage collector has freed the memory and will use it again in the future, but it has not cleared the contents. We can run some memory-intensive code to try and overwrite the just-freed memory, but there is no guarantee that the secret will be overwritten. If we want to overwrite it, we have do so explicitly.
 
+### Bytearray
+
+Java suggests using a `byte[]`, because it is mutable and can be cleared after use. In Python 3 we have something similar, the `bytearray`. It is possible to read a secret into a bytearray and clear it afterwards, like this:
+
+    secret = bytearray(20)
+    with open('key.txt', 'rb') as fp:
+        fp.readinto(secret)
+
+    # Use `secret`
+
+    for i in range(len(secret)):
+        secret[i] = 0
+
+The problem is that when using secret, it should never be converted to a string. Presumably you want to use the secret for something. You can't use it with pycrypto, and the [pull request](https://github.com/dlitz/pycrypto/pull/81) to change that simply converts the bytearray to a string. The [requests](http://docs.python-requests.org/en/master/) library sends numbers instead of text when given a bytearray. If we want to sent text we have to convert the bytearray to a string, which again puts it in memory without the possibility to remove it.
+
+### Memset
+
+We can use [ctypes](https://docs.python.org/2/library/ctypes.html) to call memset, a function to write memory. One [StackOverflow answer](http://stackoverflow.com/questions/982682/mark-data-as-sensitive-in-python/983525#983525) has an example:
+
+    import sys
+    import ctypes
+
+    def zerome(string):
+        location = id(string) + 20
+        size     = sys.getsizeof(string) - 20
+
+        memset =  ctypes.cdll.msvcrt.memset
+        # For Linux, use the following. Change the 6 to whatever it is on your computer.
+        # memset =  ctypes.CDLL("libc.so.6").memset
+
+        print "Clearing 0x%08x size %i bytes" % (location, size)
+
+        memset(location, 0, size)
+
+This makes a lot of assumptions about the implementation of strings, which may change with different Python versions and different environments. In fact, when I run the code, it gave a segfault:
+
+    Clearing 0x7fcf8c1bc38c size 35 bytes
+    Segmentation fault (core dumped)
+
+Even worse, the core dump contains the secret string. The code that was supposed to keep the secret secret exposed it while crashing.
+
 ### SecureString
 
-[SecureString](https://github.com/dnet/pysecstr) is a module for Python 2 that adds a `clearmem` function that overwrites the contents of a string. The C implementation looks like this:
+[SecureString](https://github.com/dnet/pysecstr) is a module for Python 2 that has a `clearmem` function that overwrites the contents of a string. The C implementation looks like this:
 
     static PyObject* SecureString_clearmem(PyObject *self, PyObject *str) {
         char *buffer;
@@ -97,68 +114,28 @@ Let's try SecureString with our example program:
     import SecureString
     SecureString.clearmem(secret)
 
-Grep finds nothing, indicating that the secret is indeed cleared from memory.
+Grep finds nothing, indicating that the secret is indeed cleared from memory. So this works, but read on for the major pitfall.
 
-### Memset
+## String interning
 
+Normally, strings in Python are immutable. Python takes advantage of this fact by storing multiple strings with the same value once. This is called string interning.
 
-/proc/self/mem lezen werkt niet http://unix.stackexchange.com/questions/6301/how-do-i-read-from-proc-pid-mem-under-linux
-os.abort() is makkelijkst
-/proc/sys/kernel/core_pattern
-    |/usr/share/apport/apport %p %s %c %P
-    stopt crash in /var/crash/
-    bae64 encoded, dus niet zo handig
+    >>> "5" is str(5)
+    True
 
+What would normally be two instances of a string with the same content are stored only once, to save space and make operations more efficient. This is only done for short strings.
 
+By clearing the string with `SecureString.clearmem`, we break the immutability of the string, which is a requirements for string interning to correctly work. If we call `clearmem` on a string, any other string with the same content may also be cleared:
 
-sjoerd@ubuntu:~/dev/safestrings$ sudo bash
-root@ubuntu:~/dev/safestrings# echo '%p.%e.core' > /proc/sys/kernel/core_pattern
-root@ubuntu:~/dev/safestrings# exit
-sjoerd@ubuntu:~/dev/safestrings$ ls
-normal.py
-sjoerd@ubuntu:~/dev/safestrings$ python normal.py 
-Aborted
+    secret = "5"
+    secret2 = str(5)
 
-Geen core dumped?
+    SecureString.clearmem(secret)
+    print(secret2)
 
-ulimit -c unlimited
-
-sjoerd@ubuntu:~/dev/safestrings$ grep helloworld 3720.python.core 
-Binary file 3720.python.core matches
+We would expect this to print "5", but it actually prints nothing. This is because `secret` and `secret2` point to the same memory location, which is cleared by our `clearmem` call. This means that if you have users entering passwords, they may be able to clear variables in your program if they know the contents.
 
 
-secret = 'helloworld'
-secret = None
+## Conclusion
 
-nog steeds er in
-
-met gc.collect() nog steeds
-
-Blijkt dat source code in de core zit. Lees key uit extern bestand
-
-met secret = None nog steeds in geheugen
-met gc.collect() nog steeds
-
-libssl-dev, python-dev
-pip install SecureString
-
-SecureString.clearmem(secret)  # niet in geheugen!!! :)
-
-Niet compatible met Python 3
-
-Python string is niet meer immutable
-
-memset werkt tegen: segfault bij clearen, met key nog in geheugen
-
-Python heeft een string literal pool. Dus mutaten gaat kapot! String interning
-
-Je wist één string, andere string gaat ook stuk
-
-
-
-http://security.stackexchange.com/questions/74718/is-it-more-secure-to-overwrite-the-value-char-in-a-string
-.NET heeft SecureString
-
-http://security.stackexchange.com/questions/29019/are-passwords-stored-in-memory-safe
-http://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords-in-java/8889285#8889285
-http://security.stackexchange.com/questions/122189/can-secrets-be-made-safe-in-memory
+There is no good way to read, use and clear a string in Python. Using bytearray works, but makes it hard to use. Using `SecureString` works, but may also clear other strings within the program.
