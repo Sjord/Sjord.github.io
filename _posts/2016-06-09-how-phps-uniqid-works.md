@@ -5,7 +5,7 @@ thumbnail: watch-gears-240.jpg
 date: 2016-06-09
 ---
 
-PHP has a `uniqid` function, that creates a unique identifier. This function is sometimes used in a security context, such as for creating tokens for [sessions](https://github.com/panique/huge/blob/master/application/core/Csrf.php#L41) or [CSRF protection](https://github.com/panique/huge/blob/master/application/core/Csrf.php#L41). This makes it interesting to know how it works exactly and whether we can predict its output.
+PHP has a `uniqid` function, that creates a unique identifier. This function is sometimes used in a security context, such as for creating tokens for [sessions](https://github.com/laravel/framework/blob/master/src/Illuminate/Session/Store.php#L197) or [CSRF protection](https://github.com/panique/huge/blob/master/application/core/Csrf.php#L41). This makes it interesting to know how it works exactly and whether we can predict its output.
 
 ## Uniqid returns the current time
 
