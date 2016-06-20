@@ -64,3 +64,7 @@ The `-n` here is to prevent a newline to end up in the MD5.
     5ababd603b22780302dd8d83498e5172 -
 
 Then, set a cookie with key `5ababd603b22780302dd8d83498e5172 ` and value `64a113a4ccc22cffb9d2f75b8c19e333`, the contents of `$auth_pass`. I used the Chrome plugin [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg) for this. Now, you are logged in in the webshell without knowing the password.
+
+## Update
+
+I also cracked the password in the meantime. The password for the hash `64a113a4ccc22cffb9d2f75b8c19e333` is `cmonqwe123#@!`.
