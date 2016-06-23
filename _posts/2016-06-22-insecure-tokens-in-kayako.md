@@ -1,0 +1,89 @@
+---
+layout: post
+title: "Insecure tokens in Kayako"
+thumbnail: roulette-240.jpg
+date: 2016-02-11
+---
+
+
+## BuildHash
+
+Kayako has a `BuildHash` function, that is used to create 32 character tokens. This function is used on multiple places, wherever a token is needed:
+
+* Session tokens
+* CSRF protection tokens
+* Reset password token
+* Captcha generation
+* Password generation
+
+The function looks like this: 
+
+    function BuildHash()
+    {
+        return BuildHashBlock() . BuildHashBlock() . BuildHashBlock() . BuildHashBlock();
+    }
+
+    function BuildHashBlock()
+    {
+        $Ch1to3 = mt_rand(0, 36 * 36 * 36) - 1;
+        $Ch4to5 = mt_rand(0, 36 * 36) - 1;
+        $Ch6to8 = hexdec(substr(uniqid(), -6)) % (36 * 36 * 36);
+
+        return str_pad(base_convert($Ch1to3, 10, 36), 3, '0', STR_PAD_LEFT) . str_pad(base_convert($Ch4to5, 10, 36), 2, '0', STR_PAD_LEFT) . str_pad(base_convert($Ch6to8, 10, 36), 3, '0', STR_PAD_LEFT);
+    }
+
+It does some complicated things to convert numbers to strings and back, but basically it calls `mt_rand` twice and `uniqid` once for each block, and concatenates four of such blocks. This makes a 32 character token.
+
+As we have previously seen, the `uniqid` function [simply returns the current time](/2016/06/09/how-phps-uniqid-works/), and the output of random number generators [can not be regarded as secure](/2016/02/11/cracking-php-rand/).
+
+Just looking at this it is not a very secure token, but it gets even worse.
+
+## Reseeding the random number generator
+
+Kayako contains another function to create a random number:
+
+    function BuildRandom($_min, $_max)
+    {
+        list($_usec, $_sec) = explode(' ', microtime());
+
+        // Seed
+        mt_srand((float) $_sec + ((float) $_usec * 100000));
+
+        return mt_rand($_min, $_max);
+    }
+
+As you see it seeds the random number generator by calling `mt_srand` with the current time. We can call this function by requesting some URL, which means that we can seed the random number generator with the current time whenever we want. This makes it even easier to crack the state of `mt_rand`.
+
+## Attack
+
+An attack would work as follows:
+
+* Call `BuildRandom` by requesting an URL, and remember when we did this. This seeds the random number generator with the current time, which we know approximately.
+* Request a token. A good candidate is a CSRF token or session token, which are both returned on a request to the home page.
+* In our local cracking program, loop through many seeds corresponding to the time of the first request, until we generate the same token as in the second request.
+
+We can now predict any future `mt_rand` output, so we know a great part of each hash generated on the server. The only parts left unknown are the `uniqid` parts.
+
+The above process takes less than a second. I made a [proof of concept](https://github.com/Sjord/crack-kayako-token/blob/master/resetpassword_simple.php) that cracks the hash used for the password reset. When it requests a password reset, a validation link with a token is mailed to the user. This token is made with `BuildHash`, so if we crack the random number generator and reset the password, we know a big part of this token.
+
+    $ php -f resetpassword_simple.php 
+    Working from 1466675441.546206 to 1466675441.502969
+    The hash looks like this: rk29o...v56qb...a0eut...17eyn...
+
+This indeed corresponds to the token in the e-mail:
+
+    To reset your password, click the link below or copy and paste the link into your browser location bar:
+
+    http://localhost/index.php?/Base/UserLostPassword/Validate/rk29oxb1v56qbxdya0eutxgn17eynxjb
+
+## Cracking the rest of the token
+
+We have now cracked the `mt_rand` parts of the token, but the `uniqid` parts are still unknown. To determine the `uniqid` values we need to know the precise time on the server. There is one method we already know: we can seed the random number generator with the current time and crack it. If we know the seed, we also know when exactly the call to `mt_srand` was done. In my setup, this time varied with approximately 10ms.
+
+Then there are the multiple calls to `uniqid`. Because these end up in any hash we request, we can determine how much time there is between each `uniqid` call. For my setup this was between 95 and 120 µS.
+
+This means we have to try at most 10,000 × 25 × 25 × 25 = 156,250,000 requests to brute-force the remaining part of the hash. That is a bit much.
+
+## Conclusion
+
+The tokens Kayako uses for everything are not very random.
