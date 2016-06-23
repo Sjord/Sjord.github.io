@@ -53,7 +53,7 @@ Kayako contains another function to create a random number:
         return mt_rand($_min, $_max);
     }
 
-As you see it seeds the random number generator by calling `mt_srand` with the current time. We can call this function by requesting some URL, which means that we can seed the random number generator with the current time whenever we want. This makes it even easier to crack the state of `mt_rand`.
+As you see it seeds the random number generator by calling `mt_srand` with the current time. We can call this function by requesting a specific URL, which means that we can seed the random number generator with the current time whenever we want. This makes it even easier to crack the state of `mt_rand`.
 
 ## Attack
 
