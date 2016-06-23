@@ -77,7 +77,7 @@ This indeed corresponds to the token in the e-mail:
 
     .../UserLostPassword/Validate/rk29oxb1v56qbxdya0eutxgn17eynxjb
 
-Although we did not retrieve the whole token, we reduced the search space from 32 characters to 12 characters. By measuring the time taken for requests we could further narrow down the return value for `uniqid`, after which a brute-force attack on the token could be feasible.
+Although we did not retrieve the whole token, we reduced the search space from 32 characters to 12 characters. By measuring the time taken for requests we could further narrow down the return value for `uniqid`, after which a brute-force attack on the token could be feasible. Once we have the token we can reset the password of the user.
 
 ## Kayako's fix
 
