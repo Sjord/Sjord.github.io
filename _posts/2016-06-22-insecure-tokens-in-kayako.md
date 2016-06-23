@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Insecure tokens in Kayako"
+title: "Insecure token generation in Kayako"
 thumbnail: dice-240.jpg
 date: 2016-06-23
 ---
