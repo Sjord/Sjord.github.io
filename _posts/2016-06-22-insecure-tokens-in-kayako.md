@@ -9,7 +9,7 @@ The helpdesk software [Kayako](http://www.kayako.com/) uses an insecure method o
 
 ## BuildHash
 
-Kayako has a `BuildHash` function, that is used to create 32 character tokens. This function is used on multiple places, wherever a token is needed:
+Kayako has a `BuildHash` function, that is used to create 32 character tokens. This function is used on multiple places, wherever a token or random string is needed:
 
 * Session tokens
 * CSRF protection tokens
