@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Uploading webshells using .NET MoxieManager"
-thumbnail: roulette-240.jpg
+thumbnail: pandora-240.jpg
 date: 2016-07-07
 ---
 
