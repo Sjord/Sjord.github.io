@@ -17,7 +17,7 @@ Upload a zip file and extract it:
 
 ![Unzip webshell.zip](/images/moxiemanager-unzip-mywebshell.png)
 
-And open the webshell to take over the server:
+And open the webshell to run anything on the server:
 
 ![Resulting webshell](/images/moxiemanager-run-mywebshell.png)
 
