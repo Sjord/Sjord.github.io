@@ -5,7 +5,7 @@ thumbnail: frames-240.jpg
 date: 2016-07-15
 ---
 
-A typical clickjacking attack loads a site in a transparent iframe and asks the user to click an underlying element. The user thinks it is interacting with the attacker's page, while the input actually goes to the transparent iframe. To avoid this, the `X-Frame-Options` and `frame-ancestors` option in the content security policy are available to instruct browsers to not load the site in an iframe. This post explains more about these headers.
+A typical clickjacking attack loads a site in a transparent iframe and asks the user to click an underlying element. The user thinks it is interacting with the attacker's page, while the input actually goes to the transparent iframe. To avoid this, the `X-Frame-Options` header and `frame-ancestors` option in the content security policy are available to instruct browsers to not load the site in an iframe. This post explains more about these headers.
 
 ## Clickjacking with iframes
 
@@ -15,7 +15,7 @@ This is typically done using iframes, because iframes make it possible for input
 
 This is a bit of a hack, because iframes are actually useful sometimes and they are not the cause of the problem. A better solution would to establish display integrity, for example by requiring elements to be fully visible to receive input. Dan Kaminsky [presented a solution](http://www.slideshare.net/dakami/i-want-these-bugs-off-my-internet-51423044) on Defcon 23, and the W3C is [working on a standard](https://dvcs.w3.org/hg/user-interface-safety/raw-file/tip/user-interface-safety.html) to ensure display integrity.
 
-Refusing to load in an iframe is still an effective way to avoid clickjacking, because many sites have no legitimate use to be loaded in an iframe. Therefore we will look further into the headers that control this behaviour.
+Refusing to load in an iframe is still an effective way to avoid clickjacking, because many sites have no legitimate use to be loaded in an iframe. Therefore we will look further into the headers that control this behavior.
 
 ## Headers to block iframe loading
 
@@ -23,6 +23,8 @@ There are two headers that control iframe loading:
 
     X-Frame-Options: DENY
     Content-Security-Policy: frame-ancestors 'none'
+
+Both headers have parameters that makes it possible to block framing altogether, allow it only from within the same site, or allow it from another site.
 
 The `X-Frame-Options` header was never standardized and is deprecated, but it is currently supported in more browsers than the `frame-ancestors` directive. `X-Frame-Options` is supported from Internet Explorer 8 on.
 
@@ -45,7 +47,7 @@ In this example, `good.internal` has the header `X-Frame-Options: SAMEORIGIN`. I
 
 This works because the origin of the inner frame, `good.internal`, is checked against the origin of the top-level frame, which is also `good.internal`. The fact that `evil.internal` is in between is ignored.
 
-In contract, `frame-ancestors` checks all intermediate frames, and when this header is enabled the inner frame is no longer displayed:
+In contrast, `frame-ancestors` checks all intermediate frames, and when this header is enabled the inner frame is no longer displayed:
 
 ![Good.internal is not loaded in the iframe](/images/chromium-iframe-in-iframe-blocked.png)
 
@@ -64,9 +66,9 @@ Normally you can fake headers in HTML using a meta tag:
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-This does not work for the `X-Frame-Options` header or the `frame-ancestors` directive.
+This does not work for the `X-Frame-Options` header or the `frame-ancestors` directive. In contrast to the headers, the meta tag is embedded in the page. It is handled during the rendering of the page, something which the headers are supposed to block when it is done in an iframe. To correctly block iframe loading, the frame options should be known *before* rendering the page, and that is why the options should be in a header.
 
-TODO: Why?
+Chrome tried to correctly handle the `meta` tag for `X-Frame-Options`, but subsequently [removed it](https://www.chromestatus.com/feature/6450843930853376) because it does not provide a reliable protection.
 
 ## Browser support
 
