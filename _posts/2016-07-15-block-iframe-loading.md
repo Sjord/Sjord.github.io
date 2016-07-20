@@ -5,13 +5,13 @@ thumbnail: frames-240.jpg
 date: 2016-07-15
 ---
 
-A typical clickjacking attack loads a site in a transparent iframe and asks the user to click an underlying element. The user thinks it is interacting with the attacker's page, while the input actually goes to the transparent iframe. To avoid this, the `X-Frame-Options` header and `frame-ancestors` option in the content security policy are available to instruct browsers to not load the site in an iframe. This post explains more about these headers.
+A typical clickjacking attack loads a site in a transparent iframe and asks the user to click an underlying element. The user thinks it is interacting with the attacker's page, while the input actually goes to the transparent iframe. To avoid this, the `X-Frame-Options` header and `frame-ancestors` option in the [content security policy](https://developer.mozilla.org/en-US/docs/Web/Security/CSP) are available to instruct browsers to not load the site in an iframe. This post explains more about these headers.
 
-## Clickjacking with iframes
+## Clickjacking using transparent iframes
 
 Clickjacking occurs due to a lack of display integrity: there is an element on the page that can be clicked, but it is not displayed. This means that the user can not determine the consequences of clicking on the page.
 
-This is typically done using iframes, because iframes make it possible for input actions to perform something that the attacker's site can not: perform actions using the user's current session on another site. Although iframes are not the cause of clickjacking, they are a useful tool and a typical solution to protect against clickjacking is to refuse the page to load in an iframe.
+This is typically done using iframes, because iframes make it possible for input actions to perform something that the attacker's site can not: do cross-origin requests with the user's cookies. Although iframes are not the cause of clickjacking, they are a useful tool and a typical solution to protect against clickjacking is to refuse the page to load in an iframe.
 
 This is a bit of a hack, because iframes are actually useful sometimes and they are not the cause of the problem. A better solution would to establish display integrity, for example by requiring elements to be fully visible to receive input. Dan Kaminsky [presented a solution](http://www.slideshare.net/dakami/i-want-these-bugs-off-my-internet-51423044) on Defcon 23, and the W3C is [working on a standard](https://dvcs.w3.org/hg/user-interface-safety/raw-file/tip/user-interface-safety.html) to ensure display integrity.
 
@@ -26,7 +26,7 @@ There are two headers that control iframe loading:
 
 Both headers have parameters that makes it possible to block framing altogether, allow it only from within the same site, or allow it from another site.
 
-The `X-Frame-Options` header was never standardized and is deprecated, but it is currently supported in more browsers than the `frame-ancestors` directive. `X-Frame-Options` is supported from Internet Explorer 8 on.
+The `X-Frame-Options` header was never standardized, but it is currently supported in more browsers than the `frame-ancestors` directive. `X-Frame-Options` is supported from Internet Explorer 8 on, whereas `frame-ancestors` is [currently not supported](http://caniuse.com/#feat=contentsecuritypolicy2) in any Microsoft browser.
 
 These headers kindly request the browser to not display the page in an iframe. The HTTP request is still done, but the resulting web page is not displayed in the iframe, and the browser typically gives an error message in the console:
 
@@ -58,9 +58,13 @@ With both headers you can specify another web site that is allowed to load the c
     X-Frame-Options: ALLOW-FROM https://example.com/
     Content-Security-Policy: frame-ancestors https://example.com/
 
-There are some limitations: `allow-from` is not supported in Chrome, Safari or Opera, and you can specify just one URL. With `frame-ancestors` you can specify as many locations as you want.
+Here, only pages on example.com may include the page in an iframe.
 
-## Meta tag
+Unfortunately, this is poorly supported by the different browsers. The `allow-from` directive is not supported in Chrome, Safari or Opera. Since Internet Explorer and Edge do not support `frame-ancestors`, you have to combine both headers if you want to use this functionality.
+
+With the `frame-ancestors` directive you can use wildcards and specify as many URLs as you want, but with `X-Frame-Options` you can specify just one exact URL. If you want to allow framing from multiple URLs, there are some workarounds you can implement. First, you can create a different page for every site that you want your iframe in, and vary your `allow-from` depending on which page is included. Secondly, you can check the `Referer` header to check which site has included your page in an iframe.
+
+## Meta tag won't work
 
 Normally you can fake headers in HTML using a meta tag:
 
@@ -72,6 +76,12 @@ Chrome tried to correctly handle the `meta` tag for `X-Frame-Options`, but subse
 
 ## Browser support
 
-X-Frame-Options IE8
-    ALLOW-FROM Firefox 18, IE9
-frame-ancestors Chrome 45, Safari 10, Firefox 36, Opera 38
+|                 | IE / Edge | Firefox | Chrome | Safari | Opera |
+|----------------:|:---------:|:-------:|:------:|:------:|:-----:|
+| X-Frame-Options |    8.0    |  1.9.2  |   4.0  |   4.0  | 10.50 |
+|      ALLOW-FROM |    9.0    |    18   |        |        |       |
+| frame-ancestors |           |         |   45   |   10   |   38  |
+
+## Conclusion
+
+There are differences in behavior and support between both headers. Using both headers gives the best protection against iframe-based clickjacking.
