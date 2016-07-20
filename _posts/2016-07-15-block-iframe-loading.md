@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Using headers to avoid loading in iframe"
+title: "Headers to block iframe loading"
 thumbnail: frames-240.jpg
 date: 2016-07-15
 ---
