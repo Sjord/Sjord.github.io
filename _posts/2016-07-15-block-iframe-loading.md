@@ -2,7 +2,7 @@
 layout: post
 title: "Headers to block iframe loading"
 thumbnail: frames-240.jpg
-date: 2016-07-15
+date: 2016-07-20
 ---
 
 A typical clickjacking attack loads a site in a transparent iframe and asks the user to click an underlying element. The user thinks it is interacting with the attacker's page, while the input actually goes to the transparent iframe. To avoid this, the `X-Frame-Options` header and `frame-ancestors` option in the [content security policy](https://developer.mozilla.org/en-US/docs/Web/Security/CSP) are available to instruct browsers to not load the site in an iframe. This post explains more about these headers.
