@@ -2,12 +2,12 @@
 layout: post
 title: "Fuzzing SAML with SAMLReQuest"
 thumbnail: door-240.jpg
-date: 2016-07-21
+date: 2016-07-28
 ---
 
-SAML is a single sign-on solution. It uses XML, but this is sometimes encoded in such a way to it hard to deal with in Burp. Luckily, there are some extensions that can decode these request.
+SAML is a single sign-on solution. It uses XML, but this is sometimes encoded in such a way to it hard to deal with in Burp Suite. Luckily, there are some extensions that can decode these request.
 
-## HTTP Redirect binding
+## HTTP redirect binding
 
 SAML allows you to authenticate at one site by logging in on another site. The service provider redirects you to the identity provider. You log in there and the identity provider sends you back to the service provider with a SAML response. You have now authenticated to the service provider without giving it your credentials.
 
@@ -15,7 +15,7 @@ In the first step the service provider gives you a SAML request to sent to the i
 
     https://idp.example.org/SAML2/SSO/Redirect?SAMLRequest=request
 
-Here, the SAMLRequest get parameter contains some XML that is encoded in several ways:
+Here, the SAMLRequest GET parameter contains some XML that is encoded in several ways:
 
 * The XML is compressed using the [deflate](https://en.wikipedia.org/wiki/DEFLATE) algorithm.
 * The result is base64-encoded.
