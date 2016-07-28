@@ -467,4 +467,19 @@ a:visited { color: #205caa; }
     width: auto;
     margin: 0 0 15px; }
 
+
+  .posts .thumbnail img {
+    height: 120px;
+    width: 120px;
+    border-radius: 25px;
+    margin-right: 10px;
+  }
+
+  .posts .post-description {
+    margin-left: 0;
+  }
+
+  .left-col, .sidebar {
+    padding: 10px;
+  }
 }
