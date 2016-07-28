@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{SERVER_PORT} !^443$
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 day"
+    ExpiresByType image/* "access plus 1 month"
+</IfModule>
