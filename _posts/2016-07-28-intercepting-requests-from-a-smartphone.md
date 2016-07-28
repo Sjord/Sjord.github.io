@@ -1,10 +1,9 @@
 ---
 layout: post
-title: "Intercepting requests from a smartphone"
+title: "Intercepting smartphone HTTP requests on MacOS"
 thumbnail: traffic-officer-240.jpg
 date: 2016-08-04
 ---
-
 
 If you are testing a mobile app on a smartphone, you want to intercept all HTTP requests with Burp Suite. However, not all mobile apps respect the proxy settings, making it necessary to have another way to intercept all traffic. This post describes a solution using Internet Sharing on MacOS, and using PF to forward all traffic to Burp.
 
