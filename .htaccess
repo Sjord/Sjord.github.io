@@ -9,3 +9,5 @@
     ExpiresDefault "access plus 1 day"
     ExpiresByType image/* "access plus 1 month"
 </IfModule>
+
+AddEncoding gzip svgz
