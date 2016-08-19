@@ -10,7 +10,7 @@ date: 2016-08-18
 
 15 May 2016, [article](https://boris.in/blog/2016/the-bank-job/)
 
-The Indian/Swedish security researcher Sathya "Boris" Prakash tested a mobile banking application of an Indian bank. He found several vulnerabilities. First, many of the validation and other application behavior is implemented client-side, in the phone app. Of course this can be circumvented with a debugger or by changing the requests to the server. Another vulnerability was caused by a missing authorization check: when transferring money, the application checked whether the customer supplied a valid PIN, but not whether the customer is the owner of the bank account. This makes it possible to transfer money from any account.
+The Indian/Swedish security researcher Sathya "Boris" Prakash found several vulnerabilities in a mobile banking application of an Indian bank. First, many of the validation and other application behavior is implemented client-side, in the phone app. Of course this can be circumvented with a debugger or by changing the requests to the server. Another vulnerability was caused by a missing authorization check: when transferring money, the application checked whether the customer supplied a valid PIN, but not whether the customer is the owner of the bank account. This makes it possible to transfer money from any account.
 
 A serious bug that makes it possible to steal everybody's money. Boris got a thank-you email.
 
