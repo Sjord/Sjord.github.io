@@ -69,3 +69,4 @@ Some more information:
 
 * [OSx PF Manual](http://murusfirewall.com/Documentation/OS%20X%20PF%20Manual.pdf)
 * [Parsia Hakimian's Thick Client Proxying blog posts](https://parsiya.net/categories/thick-client-proxying/)
+* Kuba Gretzky [used a VPN](https://breakdev.org/how-i-hacked-an-android-app-to-get-free-beer/) to intercept mobile traffic.
