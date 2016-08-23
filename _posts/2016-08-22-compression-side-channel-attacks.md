@@ -56,7 +56,9 @@ Try your hacking skills on the [compression side-channel attack demonstration pa
 
 Of course in this demonstration you can simply see the secret, but the point is that you could also determine it by just looking at the page size alone.
 
-Try searching for "Your secret code is: a", "Your secret code is: b", etc. Note that the size decreases by one byte if you guessed a character correctly.
+Try searching for "Your secret code is: a", "Your secret code is: b", etc. Note that the size decreases by one byte if you guessed a character correctly. Because the same text occurs twice, it is more efficiently compressed.
+
+![Part of the reflected input and the secret are the same](/images/compression-demo-page.png)
 
 ## Practical applications on HTTPS: CRIME, BREACH
 

@@ -4,6 +4,7 @@
 <html>
     <head>
         <title>Compression side-channel attack demonstration</title>
+        <link rel="stylesheet" href="main.css" />
     </head>
     <body>
         <p>
