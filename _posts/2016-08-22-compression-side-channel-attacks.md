@@ -67,7 +67,7 @@ We learned that an attacker can read some data if:
 * he can read the size of the compressed page,
 * and he has control over some of the data on that page.
 
-This may be the case for a man-in-the-middle attacker. Suppose this attacker wants to obtain the CSRF token of a web site that is served over HTTPS. We assume the attacker can make requests to the web site, for example by injecting HTML tags or Javascript into other (non-HTTPS) web sites. He can not read the result because it is encrypted, but he can read the size. If the web page also reflects some of his input, he can attack the web site using a compression side-channel attack.
+This may be the case for a man-in-the-middle attacker. Suppose this attacker wants to obtain the CSRF token of a web site that is served over HTTPS. We assume the attacker can make requests to the web site, for example by injecting HTML tags or Javascript into other (non-HTTPS) web sites. He cannot read the result because it is encrypted, but he can read the size. If the web page also reflects some of his input, he can attack the web site using a compression side-channel attack.
 
 This is the basis for the [CRIME](https://en.wikipedia.org/wiki/CRIME) and [BREACH](https://en.wikipedia.org/wiki/BREACH_(security_exploit)) vulnerabilities, where CRIME depends on compression on the transport layer and BREACH depends on HTTP compression.
 
