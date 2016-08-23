@@ -2,7 +2,7 @@
 layout: post
 title: "Compression side channel attacks"
 thumbnail: vice-240.jpg
-date: 2016-08-22
+date: 2016-08-23
 ---
 
 Compression side-channel attacks can be used to read some data by knowing only the size of the compressed data. Recently compression side-channel attacks have been published on compressed HTTPS connections: the CRIME, TIME, BREACH and HEIST vulnerabilities. This post describes how compression side-channel attacks work in general and what these attacks do in particular.
