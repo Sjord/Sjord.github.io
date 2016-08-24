@@ -35,13 +35,21 @@ The first two add a tab to the request editor, showing the plaintext SAML reques
 
 With both "SAML ReQuest" and "SAML Editor", editing the XML in the SAML tab also changes the request. This makes it possible to change the SAML request when intercepting or in the repeater.
 
-![The request has an extra "SAML ReQuest" tab](/images/saml-proxy-samlrequest-tab.png)
+*Update Aug 24:* With version 1.2.0 of the powerful [SAML Raider](https://github.com/SAMLRaider/SAMLRaider) plugin it is now also possible to view and modify SAML requests from within the repeater and the intercept tab:
+
+![The request has an extra "SAML Raider" tab](/images/saml-proxy-samlraider-tab.png)
 
 ## Fuzzing SAML request using the intruder
 
-The "SAML ReQuest" is the only plugin that also has support for the intruder, although it's a little bit hacky. Below a SAML request is a button to "Send Decoded Request to Intruder". This will insert the XML right into the request. This only works because SAML ReQuest quietly encodes every SAML request encountered in an intruder request. This means that the request the intruder *shows* is not the actual request the intruder *sends*, which is pretty confusing.
+The "SAML ReQuest" is the only plugin that also has support for the intruder, although it's a little bit hacky. Below a SAML request is a button to "Send Decoded Request to Intruder". 
+
+![A button on the bottom of the "SAML ReQuest" tab sends the request to the intruder](/images/saml-proxy-samlrequest-tab.png)
+
+This will insert the XML right into the request as a GET parameter, where the encoded request used to be. This only works because SAML ReQuest quietly encodes every SAML request encountered in an intruder request. This means that the request the intruder *shows* is not the actual request the intruder *sends*, which is pretty confusing.
 
 ![The SAML request from the intruder is automatically encoded](/images/saml-encoded-request.png)
+
+As you can see the Burp intruder window has plaintext XML in the `SAMLRequest` parameter, whereas netcat shows that the actual request contains the encoded XML.
 
 ## Correctly format your request
 
