@@ -5,7 +5,7 @@ thumbnail: broken-phone-box-240.jpg
 date: 2016-08-29
 ---
 
-In the Kayako helpdesk software, customers can submit tickets which staff can then view and answer. In this feature there is XSS possible in the ticket title. This post describes how I found that vulnerability.
+In the Kayako helpdesk software, customers can submit tickets which staff can then view and answer. In this feature there is  a XSS vulnerability in the ticket title. This post describes how I found that vulnerability.
 
 ## Checking escape functionality
 
@@ -67,7 +67,7 @@ So `</script`, possible whitespace, `>` is removed.
 
 ## Performing the attack
 
-As we have seen `</script>` tags are removed, as long as they contain nothing else but whitespace. This means that we can bypass this sanitation code by putting something that is not whitespace in the tag:
+As we have seen `</script>` tags are removed, as long as they contain nothing else but whitespace. This means that we can bypass this sanitization code by putting something that is not whitespace in the tag:
 
     </script a><iframe src=javascript:alert(`XSS`) />
 
@@ -77,7 +77,7 @@ Note that we have added an `a` to the closing script tag, which prevents `StripS
 
 ## Conclusion
 
-This vulnerability makes it possible for an anonymous user to inject scripts that are executed by staff. It was easily found using a combination of hands-on testing and code review: first use testing to find an interesting location where input is not correctly escaped, then read the code to learn what escaping is done exactly.
+This vulnerability makes it possible for an anonymous user to inject scripts that are executed by staff. It was easily found using a combination of hands-on testing and code review: first test to find an interesting location where input is not correctly escaped, then read the code to learn what escaping is done exactly.
 
 ## Timeline
 
