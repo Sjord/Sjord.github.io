@@ -79,3 +79,7 @@ It is possible to detect timing differences using forged requests. There are sev
 * The request needs to be predictable. Just like any other CSRF attacks, this one can be protected against by requiring a secret token when submitting the request.
 * The server must allow cross origin requests. If the server checks the referrer header, request forgeries are not going to work.
 * The response must have a noticeable timing difference. There has to be at least some milliseconds difference between responses, otherwise the difference is too small to measure using iframes and Javascript.
+
+## Update
+
+[Hemi Leibowitz](https://www.owasp.org/index.php/AppSec_Israel_2015_Presentations#Cross-Site_Search_Attacks) and [Nathanel Gelernter](https://www.blackhat.com/us-16/briefings.html#timing-attacks-have-never-been-so-practical-advanced-cross-site-search-attacks) call this style of attack a **cross-site search attack**, or XS-search. They use reflected input to inflate the response size, increasing the time difference between positive and negative responses.
