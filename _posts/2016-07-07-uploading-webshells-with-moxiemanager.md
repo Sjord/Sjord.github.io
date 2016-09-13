@@ -2,7 +2,7 @@
 layout: post
 title: "Uploading webshells using .NET MoxieManager"
 thumbnail: pandora-240.jpg
-date: 2016-07-07
+date: 2016-09-15
 ---
 
 MoxieManager is a file manager for web applications. By using the built-in unzip functionality we can bypass the file extension filter in the .NET version of MoxieManager.
@@ -61,3 +61,17 @@ To protect against this vulnerability, you may think that blocking zip-files fro
 ## Conclusion
 
 Because different components make different assumptions on files, it is possible to upload web shells using MoxieManager.
+
+## Timeline
+
+* 15 June 2016, Sjoerd → Ephox: found this vulnerability.
+* 15 June 2016, Ephox → Sjoerd: when can we contact you about your editor requirements?
+* 20 June 2016, Ephox → Sjoerd: you can configure MoxieManager to upload ASPX files
+* 23 June 2016, Ephox → Sjoerd: how many servers are you planning on deploying TinyMCE on?
+* 23 June 2016, Sjoerd → Ephox: no, I have found a vulnerability.
+* 23 June 2016, Ephox → Sjoerd: thanks, we'll look into it.
+* 07 July 2016, Sjoerd → Ephox: any update?
+* 07 July 2016, Ephox → Sjoerd: we're working on it. Which version did you use?
+* 08 July 2016, Sjoerd → Ephox: this version.
+* 30 August 2016, Sjoerd → Ephox: any update?
+* 13 September 2016, Sjoerd → Ephox: any update?
