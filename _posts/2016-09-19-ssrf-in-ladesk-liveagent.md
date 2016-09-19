@@ -5,17 +5,17 @@ thumbnail: periscope-240.jpg
 date: 2016-10-05
 ---
 
-The helpdesk software LiveAgent makes it possible to configure a SMTP server. Since it does not validate the SMTP server parameter and returns the response of the TCP connection, it is vulnerable to server side request forgery.
+The helpdesk software [LiveAgent](https://www.ladesk.com/) makes it possible to configure a SMTP server. Since it does not validate the SMTP server parameter and returns the response of the TCP connection, it is vulnerable to server side request forgery.
 
 ## Configuring the SMTP server
 
-With LiveAgent it is possible to use your own SMTP server as outgoing mail server. To configure this, you need to enter a host name, port, username, and password. LiveAgent helps the user with debugging any issues by connecting to the server and showing the communication log:
+With LiveAgent it is possible to use any SMTP server as outgoing mail server. To configure this, you need to enter a host name, port, user name, and password. LiveAgent helps the user with debugging any issues by connecting to the server and showing the communication log:
 
 ![](/images/ladesk-communication-log-functionality.png)
 
 ## Server side request forgery
 
-It is possible to connect to any host on any port and view the resulting communication. This introduces a security vulnerability if there are any hosts that the server can connect to, but the client cannot. For example, other hosts within the same network as the server may be accessible internally, but not from the Internet. Let's try it out by configuring a host on the internal network as SMTP server:
+It is possible to connect to any host on any port and view the resulting communication. This introduces a security vulnerability if there are any hosts that the server can connect to, but the client cannot. For example, other hosts within the same network as the server may be accessible internally, but not from the Internet. Let's try it out by configuring a host on the internal network as SMTP server running on that port:
 
     D={
         "C": "La_Mail_MailAccountSettingsForm",
@@ -32,7 +32,7 @@ It is possible to connect to any host on any port and view the resulting communi
         "S": "4916cf1dffaf5641xxxxx5b01c878b8"
     }
 
-This request configures host 192.168.101.1 and port 22 as the SMTP server. The response shows information about the SSH server:
+This request configures host 192.168.101.1 and port 22 as the SMTP server. The response shows information about the SSH server running on that port:
 
     {
         "F": [
@@ -53,12 +53,19 @@ This request configures host 192.168.101.1 and port 22 as the SMTP server. The r
         "M": "Connecting to server failed"
     }
 
-As you can see the server connected to 192.168.101.1 on port 22, and reveals that this host is running OpenSSH 6.7 on Debian.
+As you can see the application connected to 192.168.101.1 on port 22, and reveals that this host is running OpenSSH 6.7 on Debian.
 
 ## Information leakage only
 
-This vulnerability makes it possible to read the response from every port, but we have no control over the data sent. We can use it to obtain information on the network, but we can not send any attacker-controlled data over the network. Nevertheless, this would be a powerful vulnerability if combined for example with a blind SSRF that can only be used to send data.
+This vulnerability makes it possible to read the response from any port, but we have no control over the data sent. We can use it to obtain information on the network, but we can not send any attacker-controlled data over the network. Nevertheless, this would be a powerful vulnerability if combined for example with a blind SSRF that can only be used to send data.
 
 ## Conclusion
 
 Missing validation of the SMTP server parameter makes it possible to connect to hosts on the internal network and read their response on TCP connections.
+
+## Timeline
+
+* 5 July 2016, Sjoerd → LiveAgent: I found this vulnerability.
+* 7 July 2016, Sjoerd → LiveAgent: Did you get my e-mail? Yes.
+* 30 August 2016, Sjoerd → LiveAgent: Any update? We are working on it.
+* 12 September 2016, LiveAgent → Sjoerd: Thank you. We will fix it. Provide your PayPal details to get a $50 bounty.
