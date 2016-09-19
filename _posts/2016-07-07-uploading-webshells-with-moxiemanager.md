@@ -75,3 +75,4 @@ Because different components make different assumptions on files, it is possible
 * 08 July 2016, Sjoerd → Ephox: this version.
 * 30 August 2016, Sjoerd → Ephox: any update?
 * 13 September 2016, Sjoerd → Ephox: any update?
+* 16 September 2016, Ephox → Sjoerd: sorry it took so long. The issue will be fixed in the next release.
