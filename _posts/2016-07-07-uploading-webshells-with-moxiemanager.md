@@ -60,7 +60,7 @@ To protect against this vulnerability, you may think that blocking zip-files fro
 
 ## Conclusion
 
-Because different components make different assumptions on files, it is possible to upload web shells using MoxieManager.
+Because different components make different assumptions on files, it is possible to upload web shells using MoxieManager. According to Ephox this issue will be fixed in version 2.1.4, to be released in October 2016.
 
 ## Timeline
 
