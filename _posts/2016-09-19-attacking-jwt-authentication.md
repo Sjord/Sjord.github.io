@@ -72,9 +72,10 @@ If the JWT uses asymetric RS256, this correctly verifies the signature on the to
 As previously stated, the HS256 algorithm uses a secret key so sign and verify messages. If we know this key, we can create our own signed messages. If the key is not sufficiently strong it may be possible to break it using a brute-force or dictionary attack. By trying a lot of keys on a JWT and checking whether the signature is valid we can discover the secret key. This can be done offline, without any requests to the server, once we have obtained a JWT.
 
 There are several tools that can brute force the HS256 signature on a JWT:
+
 * [jwtbrute](https://github.com/jmaxxz/jwtbrute), a .NET implementation.
 * [This Python script](https://github.com/Sjord/jwtcrack/blob/master/crackjwt.py) I wrote that uses [PyJWT](https://github.com/jpadilla/pyjwt) to do the decoding.
-* It is possible to [convert the JWT](https://github.com/Sjord/jwtcrack/blob/master/jwt2john.py) to a format that [John the Ripper](https://github.com/magnumripper/JohnTheRipper) supports.
+* [Convert the JWT](https://github.com/Sjord/jwtcrack/blob/master/jwt2john.py) to a format that [John the Ripper](https://github.com/magnumripper/JohnTheRipper) supports.
 
 **Try it:** Obtain a JWT from the [HS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/hs256.php). Use one of the above tools to crack the secret. Then, create your own token and sign it with the discovered secret key.
 
