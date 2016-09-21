@@ -2,7 +2,7 @@
 layout: post
 title: "SSRF in LiveAgent"
 thumbnail: periscope-240.jpg
-date: 2016-10-05
+date: 2016-10-11
 ---
 
 The helpdesk software [LiveAgent](https://www.ladesk.com/) makes it possible to configure a SMTP server. Since it does not validate the SMTP server parameter and returns the response of the TCP connection, it is vulnerable to server side request forgery.
@@ -69,3 +69,4 @@ Missing validation of the SMTP server parameter makes it possible to connect to 
 * 7 July 2016, Sjoerd → LiveAgent: Did you get my e-mail? Yes.
 * 30 August 2016, Sjoerd → LiveAgent: Any update? We are working on it.
 * 12 September 2016, LiveAgent → Sjoerd: Thank you. We will fix it. Provide your PayPal details to get a $50 bounty.
+* 20 September 2016: Received $50 bounty.
