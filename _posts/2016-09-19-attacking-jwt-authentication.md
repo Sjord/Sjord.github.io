@@ -2,7 +2,7 @@
 layout: post
 title: "Attacking JWT authentication"
 thumbnail: wax-seal-240.jpg
-date: 2016-09-25
+date: 2016-09-28
 ---
 
 JSON Web Tokens or JWTs are used by some web applications instead of traditional session cookies. Because of their statelessness and the signature implementation there are some security issues that are specific to JWTs. This post describes some ways you can verify that a JWT implementation is secure.
@@ -63,7 +63,7 @@ Consider the following example code, which could be present at the server:
 
     jwt = JWT.decode(token, public_key)
 
-If the JWT uses asymetric RS256, this correctly verifies the signature on the token. If the JWT uses symetric HS256, however, the signature is compared to a HMAC of the token, where the `public_key` is used as key. We can thus exploit this vulnerability by signing our own token using HS256 with the public key of the RS256 algorithm.
+If the JWT uses asymmetric RS256, this correctly verifies the signature on the token. If the JWT uses symmetric HS256, however, the signature is compared to a HMAC of the token, where the `public_key` is used as key. We can thus exploit this vulnerability by signing our own token using HS256 with the public key of the RS256 algorithm.
 
 **Try it:** Go to [this RS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/rs256.php). You get a RS256 signed token. Create a new token, set the algorithm to HS256 and sign it with the [public key](http://demo.sjoerdlangkemper.nl/jwtdemo/public.pem). Verify that the key is accepted.
 
