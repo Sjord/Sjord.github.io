@@ -1,4 +1,45 @@
 
+Abstract
+    In the 1970 OS Tenex it was possible to guess passwords one character at a time by using a side-channel attack on the paging mechanism.
+
+Tenex introduction
+    1970s
+    Operating system with paging.
+    Developed at BBN.
+    JSYS system calls.
+
+Bug summary
+    Alan Bell introduction
+    Possible to guess characters one character at a time by checking page access.
+
+Paging introduction
+    Paging hardware
+    Much user control
+
+Password checking introduction
+    Password checking JSYS
+    Checks one character at a time
+    3 second delay
+
+Bug explanation
+
+Alternative exploits
+    Timing attack would be possible
+
+Fix
+    Fix workings
+    Robert Clements introduction
+    Release procedure
+
+Proper fix
+    Encrypted passwords
+
+Conclusion
+
+
+
+
+
 http://css.csail.mit.edu/6.858/2015/lec/l16-timing-attacks.txt
 Famous password timing attack
     Time page-faults for password guessing [Tenex system]
