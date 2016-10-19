@@ -45,6 +45,8 @@ tending to have more memory that you really
 had was viewed skeptically in many quarters
 within DEC.
 
+The OS kept a number of access bits associated with each virtual page. One of these was "trap to user" which caused a user program interrupt when that virtual page was accessed. This "trap to user" bit didn't have much utility.
+
 ## Password checking introduction
 
 Like many modern systems, Tenex supported multiple users that could authenticate themselves with passwords. Unlike modern systems, there was a system call available to check other users passwords. 
@@ -55,45 +57,48 @@ Like many modern systems, Tenex supported multiple users that could authenticate
 
 ## Bug explanation
 
+To exploit the vulnerability, Alan's program would place the first character it didn't know at the end of the page, with the rest of the string on the next page. The next page would have the "trap to user" bit set to detect any access to the page. If the character was wrong, the OS would never access the characters on the next page and would return false after a three second delay. If the character was correct, the OS would check the next character, which would access the next page and cause a trap to the user.
+
+By changing the character each time and continuing with the next character after one was guessed, it was possible to guess a password one character at a time. 
+
 >  My program placed the first character it didn't know at the end of a page and would place the rest of the string on the next page. This meant that if that character was wrong, the OS would never access the characters on the next page. It would step through all possible characters for the first character until it matched, would type that character on the console, and then move on to the next character. So the password would slowly be typed on the terminal with each character coming out after an average of 30-40 seconds. This would continue until the password was complete.
 The OS kept a number of access bits associated with each virtual page. One of these was "trap to user" which caused a user program interrupt when that virtual page was accessed. I set this bit on for the page with the additional characters. This caused an interrupt if the previous character was good. Because it couldn't perform the interrupt while in the OS, it waited until right after the return from the password JSYS.
-Computer security research was basically non-existent in 1974. So I simply saw this as a bug in the OS as opposed to something more important. The "trap to user" bit was the simplest way to validate the flaw. This "trap to user" bit didn't have much utility. But more common mechanisms like turning off read access or not mapping a page would have also worked.
+
+The "trap to user" bit was the simplest way to validate the flaw. This "trap to user" bit didn't have much utility. But more common mechanisms like turning off read access or not mapping a page would have also worked.
 
 ## Alternative exploits
 
-But more common mechanisms like turning off read access or not mapping a page would have also worked.
+Alan used the "trap to user" bit to detect whether a page was accessed, but more common mechanisms like turning off read access or not mapping a page would have also worked.
 
-I am also convinced that detecting page faults would have worked as well. The amount of physical memory was in the range of 64kwords and the virtual address space was much larger so it would have been easy to force pages out of physical memory by accessing other pages. One could then time the access.
+It would also be possible to exploit this bug using a timing attack. The amount of physical memory was in the range of 64.000 words and the virtual address space was much larger so it would have been easy to force pages out of physical memory by accessing other pages. One could then time the access.
 
 ## Fix
 
- Yes, I put the patch in, and made it as trivial as possible to get it out in the
-field.  Test the eighth WORD before doing anything.  That would give you a bad memory reference immediately if you were playing against the page
-boundary.  Otherwise, drop into the 39 character loops.
+After finding the bug and proving that it was exploitable, Alan told Ray Tomlinson (famous for inventing email) over lunch. Later that day, Bob Clements created a patch to fix the issue. The solution he came up with was to reference the first and last character before doing anything, so that page access no longer depended on the password:
 
- They fixed the code by always traversing the entire string as it did the comparison and setting a flag if there was a failure. Then it returned the flag. This meant that the same pages were accessed independent of success or failure.
-After proving it worked, I went to the senior system developers specifically Ray Tomlinson (who is famous for invented the @ sign in internet addresses), and told him about it over lunch. He asked one question - Did it work and I said yes. Later in the day a patch was created, I believe by Bob Clements. They sent an email to all the sites running Tenex saying that an important security patch was forthcoming at a particular time. They didn't want people exploiting it by getting the actual patch before others. The only problem was that when they sent it out, it was wrong and they had to quickly redo it.
+> I put the patch in, and made it as trivial as possible to get it out in the
+field.  Test the eighth WORD before doing anything.  That would give you a bad memory reference immediately if you were playing against the page boundary.  Otherwise, drop into the 39 character loops.
+
+## Release procedure
+
+In 1974 there was no responsible disclosure yet and not many companies had experience with fixing security bugs. "Computer security research was basically non-existent in 1974. So I simply saw this as a bug in the OS as opposed to something more important.", writes Alan. Even so, BBN took care that all sites running Tenex would receive the patch at approximately the same time. "They sent an email to all the sites running Tenex saying that an important security patch was forthcoming at a particular time. They didn't want people exploiting it by getting the actual patch before others." At that time there would be between a dozen and two dozen sites with Tenex machines.
 
 ## Proper fix
 
- a day or so later, someone realized that relying on keeping plaintext copies of
-passwords in the system files was not a smart thing to do.  So we created
-encrypted passwords.  (Dunno if we were the first.)
+The behavior of the password check could no longer be determined from the page accesses with the fix Bob Clements put in. However, developers at BBN soon became aware that storing passwords in plaintext was not very secure to begin with. Bob writes, "A day or so later, someone realized that relying on keeping plaintext copies of passwords in the system files was not a smart thing to do.  So we created encrypted passwords."
 
-
-We encrypted the passwords so you had to compare the encrypted form
+"We encrypted the passwords so you had to compare the encrypted form
 of the password with the pre-stored version of the encrypted password.
 At no point was the un-encrypted password in memory except briefly
 when you first created the password and then briefly when you threw the
-plaintext up against the encrypted version.  This was a lot like modern Unix.
+plaintext up against the encrypted version.  This was a lot like modern Unix."
 
-Bob Thomas did the encryption code.  I did the coding to allow either the
+"Bob Thomas did the encryption code.  I did the coding to allow either the
 plaintext or the crypto to be checked, stored in the same 8-word system
 form of the text.  I distinguished the two forms by checking to see whether
 a 7-bit character pointer (plaintext) was being tried or a 36-bit pointer
 (crypto) version was in the official file.  This allowed people some time to
-switch over.  Or not, if the 7-bit was OK and nobody had to change
-all at once.
+switch over.  Or not, if the 7-bit was OK and nobody had to change all at once."
 
 ## Conclusion
 
