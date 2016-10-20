@@ -56,18 +56,17 @@ The two passwords, the one in the system and the one supplied by the user, were 
 
 ## Bug explanation
 
-To exploit the vulnerability, Alan's program would place the first character it didn't know at the end of the page, with the rest of the string on the next page. The next page would have the "trap to user" bit set to detect any access to the page. If the character was wrong, the OS would never access the characters on the next page and would return false after a three second delay. If the character was correct, the OS would check the next character, which would access the next page and cause a trap to the user.
+To exploit the vulnerability, Alan wrote a program that would place the first character it didn't know at the end of the page, with the rest of the string on the next page. The next page would have the "trap to user" bit set to detect any access to the page. If the character was wrong, the OS would never access the characters on the next page and would return false after a three second delay. If the character was correct, the OS would check the next character, which would access the next page and cause a trap to the user.
 
-By changing the character each time and continuing with the next character after one was guessed, it was possible to guess a password one character at a time. 
+The trick was to put the password to be checked on the edge of two consecutive pages. The second page would have the "trap to user" bit set, so that any access to the page would trigger an interrupt. If the character on the first page was incorrect, the system would delay for three seconds and report that the password is incorrect:
 
->  My program placed the first character it didn't know at the end of a page and would place the rest of the string on the next page. This meant that if that character was wrong, the OS would never access the characters on the next page. It would step through all possible characters for the first character until it matched, would type that character on the console, and then move on to the next character. So the password would slowly be typed on the terminal with each character coming out after an average of 30-40 seconds. This would continue until the password was complete.
-The OS kept a number of access bits associated with each virtual page. One of these was "trap to user" which caused a user program interrupt when that virtual page was accessed. I set this bit on for the page with the additional characters. This caused an interrupt if the previous character was good. Because it couldn't perform the interrupt while in the OS, it waited until right after the return from the password JSYS.
+![If the first character is incorrect, the next page is never accessed.](/images/tenex-password-guess-bug-incorrect.png "If the first character is incorrect, the next page is never accessed.")
 
-The "trap to user" bit was the simplest way to validate the flaw. This "trap to user" bit didn't have much utility. But more common mechanisms like turning off read access or not mapping a page would have also worked.
-
-![If the first character is correct, the next page is accessed and a interrupt is sent to the user.](/images/tenex-password-guess-bug-incorrect.png "If the first character is correct, the next page is accessed and a interrupt is sent to the user.")
+If the first character is correct, however, the checking procedure tries to access the second page. Because we set the "trap to user" bit on this page, an interrupt is caused when trying to check the second character.
 
 ![If the first character is correct, the next page is accessed and a interrupt is sent to the user.](/images/tenex-password-guess-bug-correct.png "If the first character is correct, the next page is accessed and a interrupt is sent to the user.")
+
+These different behaviors are distinguishable from the user program. This means we can carefully align the password and try different letters until we receive an interrupt. At that point we know that the character is correct, and move on to the next character. Alan's program did just that, and guessed the program one character at a time. "So the password would slowly be typed on the terminal with each character coming out after an average of 30-40 seconds. This would continue until the password was complete."
 
 ## Alternative exploits
 
