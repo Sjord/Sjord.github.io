@@ -5,11 +5,15 @@ thumbnail: pdp10-240.jpg
 date: 2016-10-24
 ---
 
-In the 1970 operating system Tenex it was possible to guess user passwords one character at a time, by looking at which memory pages were accessed during the checking of the password.
+In 1974, BBN computer scientist Alan Bell discovered a security flaw in the operating system Tenex. The password checking procedure would access certain memory pages during checking. By looking at which pages were accessed during checking of the password, user passwords could be guessed one character at a time.
 
 ## Tenex introduction
 
-Bolt, Beranek and Newman (BBN) was a company initially specialized in acoustics. Because the acoustic models required a lot of computation, BBN got interested in computing. The company was one of the first to use a PDP-1. Because they wanted to run memory-intensive LISP programs they wanted a system with paging (TODO explain paging). First they implemented this in software, but later they added a paging hardware module to the PDP-10 and wrote their own operating system to support it: Tenex.
+Bolt, Beranek and Newman (BBN) was a company initially specialized in acoustics. Because acoustic models required a lot of computation, BBN got interested in computing. The company was the first to purchase a PDP-1. The scientists at BBN had specific requirements for computers. First, they specifically wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory so that programs were not limited by the 4096 words of memory the PDP-1 had. For the PDP-1, they implemented both in software.
+
+Later, BBN tried to get DEC to change the PDP-6 to conform to their wishes, to no avail. Then in 1970 BBN decided to modify a PDP-10 to fit their needs. BBN added a paging hardware module to the PDP-10 to implement virtual memory in hardware. This also needed support in software, and BBN decided to implement its own operating system: Tenex.
+
+![PDP-10 console](/images/pdp10-console.jpg "PDP-10 console")
 
 ## Bug summary
 
@@ -19,41 +23,36 @@ The bug was discovered in 1974 by a young computer scientist, Alan Bell. Alan jo
 
 ## Paging introduction
 
-Paging makes it possible to address more memory than the machine actually has. This "virtual memory" is simulated by storing less used memory on disk and keeping only the most often used parts, or pages, in memory. If a memory page is referenced that is not currently in memory, execution is paused, the page is loaded from disk and put in memory, and execution continues. At BBN they implemented paging for the PDP-1 in software. Although it worked well, it was pretty slow. According to Dan Murphy (TODO intro):
+The scientists at BBN wanted to run memory-intensive LISP programs, but the PDP-1 came with only 4096 words of memory. A solution to this was to implement virtual memory: memory could be made to look bigger by storing parts on disk and putting it in memory just as it was needed. 
+Blocks of memory would be swapped between disk and memory to seemingly have a lot of memory. These blocks are called pages and the process of exchaning pages between disk and memory is called paging.
 
-> However, the actual number of references
+Paging makes it possible to address more memory than the machine actually has. This "virtual memory" is simulated by storing rarely used memory on disk and keeping only the most often used pages in memory. If a memory page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues. 
+
+BBN was one of the first to see the advantage of paging, but the advantages weren't obvious to everyone. According to Dan Murphy, who worked at BBN from 1965 until 1972: "Then too, paging and "virtual memory" were still rather new concepts at that time.  Significant commercial systems had yet to adopt these techniques, and the idea of pretending to have more memory that you really had was viewed skeptically in many quarters within DEC."
+
+At BBN they implemented paging for the PDP-1 in software. Although it worked well, it was pretty slow.  "However, the actual number of references
 was sufficiently high that a great deal of time
 was spent in the software address translation
 sequence, and we realized that, ultimately,
 this translation must be done in hardware if a
 truly effective paged virtual memory system
-were to be built.
+were to be built."
 
-BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producing PDP-6 models without there ever having been paging support. After a couple of years, BBN decided to build their own virtual memory support using the PDP-10. Because the PDP-10 had insufficient support for this, a hardware module was added between the processor and the memory, that handled the paging. Software support was also required, and BBN decided to develop Tenex.
+BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producing PDP-6 models without there ever having been paging support. After a couple of years, BBN decided to build their own virtual memory support using the PDP-10. Because the PDP-10 had insufficient support for this, a hardware module was added between the processor and the memory, that handled the paging. 
 
-TODO Much user control
->  The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed. There was another JSYS that controlled this.
-TODO plaatje
+![BBN pager hardware](/images/bbn-pager.jpg "BBN pager hardware")
 
-> TODO insert another parts of IEEE annals?
+Besides the hardware there was also software support for paging in Tenex. Each program under Tenex could use the full address space for adressing memory. Furthermore, programs had a lot of control over the paging. Alan Bell writes: "The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed."
 
-> Then too, paging and "virtual memory"
-were still rather new concepts at that time.
-Significant commercial systems had yet to
-adopt these techniques, and the idea of pre-
-tending to have more memory that you really
-had was viewed skeptically in many quarters
-within DEC.
-
-The OS kept a number of access bits associated with each virtual page. One of these was "trap to user" which caused a user program interrupt when that virtual page was accessed. This "trap to user" bit didn't have much utility.
+One of the paging settings was the "trap to user" bit. This would cause an interrupt to the program whenever a page was accessed. This was generally not very useful, but was an easy way to exploit the character guessing bug.
 
 ## Password checking introduction
 
-Like many modern systems, Tenex supported multiple users that could authenticate themselves with passwords. Unlike modern systems, there was a system call available to check other users passwords. 
+Like many modern systems, Tenex supported multiple users that could authenticate themselves with passwords. The operating system provided a system call system call available to check other users passwords. "This password checking JSYS was given a user name string and a password string. It would return success or failure. To prevent quickly trying many passwords, it delayed returning to the user code for 3 seconds on failure."
 
-> This password checking JSYS was given a user name string and a password string. It would return success or failure. To prevent quickly trying many passwords, it delayed returning to the user code for 3 seconds on failure.
+The two passwords, the one in the system and the one supplied by the user, were compared using a standard string comparison algorithm: one character at a time. "The algorithm would step down each character in the strings, making the comparison. It would indicate failure as soon it saw a disagreement. If it got too the end of both strings, it would indicate success."
 
->  The password checking routine in the OS was implemented as standard string comparison algorithm. While I don't remember if the strings were prepended with their length or if they were terminated with a null, the algorithm would step down each character in the strings, making the comparison. It would indicate failure as soon it saw a disagreement. If it got too the end of both strings, it would indicate success. On failure, it would delay 3 seconds.
+![String comparison is done one character at a time](/images/tenex-serial-string-compare.png "String comparison is done one character at a time")
 
 ## Bug explanation
 
@@ -66,18 +65,20 @@ The OS kept a number of access bits associated with each virtual page. One of th
 
 The "trap to user" bit was the simplest way to validate the flaw. This "trap to user" bit didn't have much utility. But more common mechanisms like turning off read access or not mapping a page would have also worked.
 
+![If the first character is correct, the next page is accessed and a interrupt is sent to the user.](/images/tenex-password-guess-bug-incorrect.png "If the first character is correct, the next page is accessed and a interrupt is sent to the user.")
+
+![If the first character is correct, the next page is accessed and a interrupt is sent to the user.](/images/tenex-password-guess-bug-correct.png "If the first character is correct, the next page is accessed and a interrupt is sent to the user.")
+
 ## Alternative exploits
 
 Alan used the "trap to user" bit to detect whether a page was accessed, but more common mechanisms like turning off read access or not mapping a page would have also worked.
 
-It would also be possible to exploit this bug using a timing attack. The amount of physical memory was in the range of 64.000 words and the virtual address space was much larger so it would have been easy to force pages out of physical memory by accessing other pages. One could then time the access.
+It would also be possible to exploit this bug using a timing attack. The amount of physical memory was in the range of 64K words and the virtual address space was much larger so it would have been easy to force pages out of physical memory by accessing other pages. One could then time the access.
 
 ## Fix
 
-After finding the bug and proving that it was exploitable, Alan told Ray Tomlinson (famous for inventing email) over lunch. Later that day, Bob Clements created a patch to fix the issue. The solution he came up with was to reference the first and last character before doing anything, so that page access no longer depended on the password:
-
-> I put the patch in, and made it as trivial as possible to get it out in the
-field.  Test the eighth WORD before doing anything.  That would give you a bad memory reference immediately if you were playing against the page boundary.  Otherwise, drop into the 39 character loops.
+After finding the bug and proving that it was exploitable, Alan told Ray Tomlinson (famous for inventing email) over lunch. Later that day, Bob Clements created a patch to fix the issue. The solution he came up with was to reference the first and last character before doing anything, so that page access no longer depended on the password: "I put the patch in, and made it as trivial as possible to get it out in the
+field.  Test the eighth WORD before doing anything.  That would give you a bad memory reference immediately if you were playing against the page boundary.  Otherwise, drop into the 39 character loops."
 
 ## Release procedure
 
@@ -93,100 +94,12 @@ At no point was the un-encrypted password in memory except briefly
 when you first created the password and then briefly when you threw the
 plaintext up against the encrypted version.  This was a lot like modern Unix."
 
-"Bob Thomas did the encryption code.  I did the coding to allow either the
-plaintext or the crypto to be checked, stored in the same 8-word system
-form of the text.  I distinguished the two forms by checking to see whether
-a 7-bit character pointer (plaintext) was being tried or a 36-bit pointer
-(crypto) version was in the official file.  This allowed people some time to
-switch over.  Or not, if the 7-bit was OK and nobody had to change all at once."
-
 ## Conclusion
 
+In Tenex, it was possible to configure the paging system to notify the user when a specific page was accessed. This could be used to guess the password of a user in a couple of minutes. This is a typical example of a side-channel attack, where the behavior of a program is determined without communicating directly with the program. Although at the time there was little known about security research, BBN handled the bug admirably by distributing a patch within days of the bug being found.
 
+## Read more
 
-Tenex introduction
-    1970s
-    Operating system with paging.
-    Developed at BBN.
-    JSYS system calls.
-
-Bug summary
-    Alan Bell introduction
-    Possible to guess characters one character at a time by checking page access.
-
-Paging introduction
-    Paging hardware
-
-Password checking introduction
-    Password checking JSYS
-    Checks one character at a time
-    3 second delay
-
-Bug explanation
-
-Alternative exploits
-    Timing attack would be possible
-
-Fix
-    Fix workings
-    Robert Clements introduction
-    Release procedure
-
-Proper fix
-    Encrypted passwords
-
-Conclusion
-
-
-
-
-
-http://css.csail.mit.edu/6.858/2015/lec/l16-timing-attacks.txt
-Famous password timing attack
-    Time page-faults for password guessing [Tenex system]
-    Suppose the kernel provides a system call to check user's password.
-      Checks the password one byte at a time, returns error when finds mismatch.
-    Adversary aligns password, so that first byte is at the end of a page,
-      rest of password is on next page.
-    Somehow arrange for the second page to be swapped out to disk.
-      Or just unmap the next page entirely (using equivalent of mmap).
-    Measure time to return an error when guessing password.
-      If it took a long time, kernel had to read in the second page from disk.
-      [ Or, if unmapped, if crashed, then kernel tried to read second page. ]
-      Means first character was right!
-    Can guess an N-character password in 256*N tries, rather than 256^N.
-
-
-
-Was it even a timing attack?
-
-https://groups.google.com/forum/#!msg/alt.folklore.computers/v9KnB8BIXGY/aZ-qDLtD0gAJ
-Mark Crispin:
-The bug was that you could align the given password string so that it
-was at the end of a page boundary, and have the next page in the
-address space mapped to a non-existant page of a write-protected file.
-Normally, Tenex would create a page when you tried to access a
-non-existant page, but in this case it couldn't (since the file was
-write-protected).
-
-So, you did a password-checking system call (e.g. the system call
-which tried to obtain owner access to another directory) set up in
-this way and you would get one of two failures: Incorrect Password
-meant that your prefix was wrong, Page Fault meant that your prefix
-was right but that you need more characters.
-
-Larry Campbell:
-But if the first byte matched, the page containing the second byte will no
-longer be marked "nonexistent", since the kernel has just created a page
-full of zeroes.
-
-Bob Clements:
-(The quick fix was to always reference the first and eighth word
-of the test password block, so the page would always be created.
-For those who don't know, the number "eight" comes from the
-fact that all user names, passwords, filenames, filename extensions
-and the like are up to 39 characters long on TENEX, or 40 characters
-with the terminating NULL, and there are of course five ASCII [7-bit]
-characters in a 36-bit word.)
-
-1 TENEX and TOPS-20, Dan Murphy, http://tenex.opost.com/ahc_20150101_jan_2015.pdf
+1. [TENEX and TOPS-20](http://tenex.opost.com/ahc_20150101_jan_2015.pdf), [Dan Murphy](http://www.opost.com/dlm/) 
+1. ["Tenex hackery" in alt.folklore.computers](https://groups.google.com/d/msg/alt.folklore.computers/v9KnB8BIXGY/aZ-qDLtD0gAJ)
+1. [TENEX, a paged time sharing system for the PDP-10](http://www.dtic.mil/cgi-bin/GetTRDoc?AD=AD0729261), Daniel Bobrow, Jerry Burchfiel, Dan Murphy, Ray Tomlinson
