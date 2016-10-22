@@ -7,28 +7,28 @@ date: 2016-10-24
 
 In 1974, BBN computer scientist Alan Bell discovered a security flaw in the operating system Tenex. The password checking procedure would access certain memory pages during checking. By looking at which pages were accessed during checking of the password, user passwords could be guessed one character at a time.
 
-## Tenex introduction
+## The Tenex operating system
 
-Bolt, Beranek and Newman (BBN) was a company initially specialized in acoustics. Because acoustic models required a lot of computation, BBN got interested in computing. The company was the first to purchase a PDP-1. The scientists at BBN had specific requirements for computers. First, they specifically wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory so that programs were not limited by the 4096 words of memory the PDP-1 had. For the PDP-1, they implemented both in software.
+Bolt, Beranek and Newman (BBN) was a company initially specialized in acoustics. Because acoustic models required a lot of computation, BBN got interested in computing. In 1961 the company was the first to purchase a [PDP-1](https://en.wikipedia.org/wiki/PDP-1) from the Digital Equipment Corporation (DEC). The PDP-1 did not fully meet the requirements of BBN. The scientists at BBN wanted multiple users to be able to run memory-intensive LISP programs, and this required two features the PDP-1 did not have. First, they wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory so that programs were not limited by the 4096 words of memory the PDP-1 had. For the PDP-1, they implemented both in software.
 
-Later, BBN tried to get DEC to change the PDP-6 to conform to their wishes, to no avail. Then in 1970 BBN decided to modify a PDP-10 to fit their needs. BBN added a paging hardware module to the PDP-10 to implement virtual memory in hardware. This also needed support in software, and BBN decided to implement its own operating system: Tenex.
+BBN had specific requirements and views on how they wanted computers to work. The world of computers was in its infancy and it was not yet very clear which features a computer should have. BBN thought it should at least have time sharing and virtual memory. BBN tried to get DEC to change the PDP-6 to conform to their wishes, to no avail. Then in 1970 BBN decided to modify a PDP-10 to fit their needs. BBN added a paging hardware module to the PDP-10 to implement virtual memory in hardware. This also needed support in software, and BBN decided to implement its own operating system: Tenex.
 
 ![PDP-10 console](/images/pdp10-console.jpg "PDP-10 console")
 
-## Bug summary
+## Discovery of the bug
 
 Tenex had several several system calls in the operating system, which could be called using the JSYS instruction. One of these system calls was a procedure to check the password of another user. This procedure would check the password one character at a time. By putting the password to be checked on a page boundary, and checking whether the second page is accessed, it was possible to guess passwords one character at a time.
 
-The bug was discovered in 1974 by a young computer scientist, Alan Bell. Alan joined BBN just a year before and was interested in the operating system, which was the most complicated piece of software that he encountered so far. He read the source code of Tenex in his own time to figure out how it worked, and this is how he discovered the flaw.
+The bug was discovered in 1974 by a young computer scientist, Alan Bell. Alan joined BBN just a year before and was interested in the operating system, which was the most complicated piece of software that he encountered so far. He read the source code of Tenex in his own time to figure out how it worked, and this is how he discovered the flaw.  "At one point, I looked at the password checking routine and saw the flaw. I implemented code to exploit this flaw, proved that it successfully worked, and ran it on a few system accounts to verify that."
 
-## Paging introduction
+## The Tenex paging system
 
 The scientists at BBN wanted to run memory-intensive LISP programs, but the PDP-1 came with only 4096 words of memory. A solution to this was to implement virtual memory: memory could be made to look bigger by storing parts on disk and putting it in memory just as it was needed. 
-Blocks of memory would be swapped between disk and memory to seemingly have a lot of memory. These blocks are called pages and the process of exchaning pages between disk and memory is called paging.
+Blocks of memory would be swapped between disk and memory to seemingly have a lot of memory. These blocks are called pages and the process of exchanging pages between disk and memory is called paging.
 
 Paging makes it possible to address more memory than the machine actually has. This "virtual memory" is simulated by storing rarely used memory on disk and keeping only the most often used pages in memory. If a memory page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues. 
 
-BBN was one of the first to see the advantage of paging, but the advantages weren't obvious to everyone. According to Dan Murphy, who worked at BBN from 1965 until 1972: "Then too, paging and "virtual memory" were still rather new concepts at that time.  Significant commercial systems had yet to adopt these techniques, and the idea of pretending to have more memory that you really had was viewed skeptically in many quarters within DEC."
+BBN was one of the first to see the advantage of paging, but the advantages weren't obvious to everyone. According to [Dan Murphy](http://www.opost.com/dlm/), who worked at BBN from 1965 until 1972: "Then too, paging and "virtual memory" were still rather new concepts at that time.  Significant commercial systems had yet to adopt these techniques, and the idea of pretending to have more memory that you really had was viewed skeptically in many quarters within DEC."
 
 At BBN they implemented paging for the PDP-1 in software. Although it worked well, it was pretty slow.  "However, the actual number of references
 was sufficiently high that a great deal of time
@@ -38,23 +38,23 @@ this translation must be done in hardware if a
 truly effective paged virtual memory system
 were to be built."
 
-BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producing PDP-6 models without there ever having been paging support. After a couple of years, BBN decided to build their own virtual memory support using the PDP-10. Because the PDP-10 had insufficient support for this, a hardware module was added between the processor and the memory, that handled the paging. 
+BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producing PDP-6 models without there ever having been paging support. After a couple of years, BBN decided to build their own virtual memory support using the PDP-10. Because the PDP-10 had insufficient support for this, a hardware module was added between the processor and the memory, that handled the paging. This photo by Dan Murphy shows the BBN pager, as the hardware module was called:
 
-![BBN pager hardware](/images/bbn-pager.jpg "BBN pager hardware")
+![BBN pager hardware. Photo by Dan Murphy.  All rights reserved.](/images/bbn-pager.jpg "BBN pager hardware. Photo by Dan Murphy.  All rights reserved.")
 
-Besides the hardware there was also software support for paging in Tenex. Each program under Tenex could use the full address space for adressing memory. Furthermore, programs had a lot of control over the paging. Alan Bell writes: "The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed."
+Besides the hardware there was also software support for paging in Tenex. Each program under Tenex could use the full address space for addressing memory. Furthermore, programs had a lot of control over the paging. Alan Bell writes: "The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed."
 
 One of the paging settings was the "trap to user" bit. This would cause an interrupt to the program whenever a page was accessed. This was generally not very useful, but was an easy way to exploit the character guessing bug.
 
-## Password checking introduction
+## Checking the password
 
-Like many modern systems, Tenex supported multiple users that could authenticate themselves with passwords. The operating system provided a system call system call available to check other users passwords. "This password checking JSYS was given a user name string and a password string. It would return success or failure. To prevent quickly trying many passwords, it delayed returning to the user code for 3 seconds on failure."
+Like many modern systems, Tenex supported multiple users that could authenticate themselves with passwords. The operating system provided a system call to check user passwords. "This password checking JSYS was given a user name string and a password string. It would return success or failure. To prevent quickly trying many passwords, it delayed returning to the user code for 3 seconds on failure."
 
 The two passwords, the one in the system and the one supplied by the user, were compared using a standard string comparison algorithm: one character at a time. "The algorithm would step down each character in the strings, making the comparison. It would indicate failure as soon it saw a disagreement. If it got too the end of both strings, it would indicate success."
 
 ![String comparison is done one character at a time](/images/tenex-serial-string-compare.png "String comparison is done one character at a time")
 
-## Bug explanation
+## Exploiting the bug
 
 To exploit the vulnerability, Alan wrote a program that would place the first character it didn't know at the end of the page, with the rest of the string on the next page. The next page would have the "trap to user" bit set to detect any access to the page. If the character was wrong, the OS would never access the characters on the next page and would return false after a three second delay. If the character was correct, the OS would check the next character, which would access the next page and cause a trap to the user.
 
@@ -70,9 +70,9 @@ These different behaviors are distinguishable from the user program. This means 
 
 ## Alternative exploits
 
-Alan used the "trap to user" bit to detect whether a page was accessed, but more common mechanisms like turning off read access or not mapping a page would have also worked.
+Alan used the "trap to user" bit to detect whether a page was accessed, but this was only one of the ways it was possible to detect page access. It would also be possible to turn of read access on a page, so that an error occurred as soon as the password checking procedure would try to read from the page. Another possibility was to not map the page at all, and checking whether it was created after checking the password.
 
-It would also be possible to exploit this bug using a timing attack. The amount of physical memory was in the range of 64K words and the virtual address space was much larger so it would have been easy to force pages out of physical memory by accessing other pages. One could then time the access.
+It would also be possible to exploit this bug using a timing attack. "The amount of physical memory was in the range of 64K words and the virtual address space was much larger so it would have been easy to force pages out of physical memory by accessing other pages. One could then time the access."
 
 ## Fix
 
@@ -83,9 +83,9 @@ field.  Test the eighth WORD before doing anything.  That would give you a bad m
 
 In 1974 there was no responsible disclosure yet and not many companies had experience with fixing security bugs. "Computer security research was basically non-existent in 1974. So I simply saw this as a bug in the OS as opposed to something more important.", writes Alan. Even so, BBN took care that all sites running Tenex would receive the patch at approximately the same time. "They sent an email to all the sites running Tenex saying that an important security patch was forthcoming at a particular time. They didn't want people exploiting it by getting the actual patch before others." At that time there would be between a dozen and two dozen sites with Tenex machines.
 
-## Proper fix
+## Encrypted passwords
 
-The behavior of the password check could no longer be determined from the page accesses with the fix Bob Clements put in. However, developers at BBN soon became aware that storing passwords in plaintext was not very secure to begin with. Bob writes, "A day or so later, someone realized that relying on keeping plaintext copies of passwords in the system files was not a smart thing to do.  So we created encrypted passwords."
+With the fix Bob Clements put it, the behavior of the password check could no longer be determined from the page access. However, developers at BBN soon became aware that storing passwords in plaintext was not very secure to begin with. Bob writes, "A day or so later, someone realized that relying on keeping plaintext copies of passwords in the system files was not a smart thing to do.  So we created encrypted passwords."
 
 "We encrypted the passwords so you had to compare the encrypted form
 of the password with the pre-stored version of the encrypted password.
@@ -95,7 +95,7 @@ plaintext up against the encrypted version.  This was a lot like modern Unix."
 
 ## Conclusion
 
-In Tenex, it was possible to configure the paging system to notify the user when a specific page was accessed. This could be used to guess the password of a user in a couple of minutes. This is a typical example of a side-channel attack, where the behavior of a program is determined without communicating directly with the program. Although at the time there was little known about security research, BBN handled the bug admirably by distributing a patch within days of the bug being found.
+BBN was a pioneer at start of the computing era, and successfully implemented and promoted virtual memory, a feature that is now in almost every computer and operating system. Alan Bell used this feature to determine memory access and exploit a security flaw by guessing passwords. This is a typical example of a side-channel attack, where the behavior of a program is determined without communicating directly with the program. Such side-channel attacks are still relevant today, for example the [cache timing attack on AES](https://cr.yp.to/antiforgery/cachetiming-20050414.pdf). BBN handled the vulnerability admirably by distributing a patch within days of the being being found.
 
 ## Read more
 
