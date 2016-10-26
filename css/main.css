@@ -34,19 +34,21 @@ a:visited { color: #205caa; }
   zoom: 1;
 }
 
-.left-col, .sidebar {
-  display: inline-block;
-  vertical-align: top;
-  box-sizing: border-box;
-  padding: 26px;
-}
-.left-col {
-  max-width: 708px;
-  border-right: solid #e8e8e8 1px;
-  padding-left: 0;
-}
-.sidebar {
-  max-width: 292px;
+@media screen {
+  .left-col, .sidebar {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 26px;
+  }
+  .left-col {
+    max-width: 708px;
+    border-right: solid #e8e8e8 1px;
+    padding-left: 0;
+  }
+  .sidebar {
+    max-width: 292px;
+  }
 }
 
 .sidebar .icons img {
