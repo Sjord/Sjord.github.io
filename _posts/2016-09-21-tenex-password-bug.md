@@ -9,17 +9,11 @@ In 1974, BBN computer scientist Alan Bell discovered a security flaw in the oper
 
 ## The Tenex operating system
 
-Bolt, Beranek and Newman (BBN) was a company initially specialized in acoustics. Because acoustic models required a lot of computation, BBN got interested in computing. In 1961 the company was the first to purchase a [PDP-1](https://en.wikipedia.org/wiki/PDP-1) from the Digital Equipment Corporation (DEC). The PDP-1 did not fully meet the requirements of BBN. The scientists at BBN wanted multiple users to be able to run memory-intensive LISP programs, and this required two features the PDP-1 did not have. First, they wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory so that programs were not limited by the 4096 words of memory the PDP-1 had. For the PDP-1, they implemented both in software.
+Bolt, Beranek and Newman (BBN) was a company that initially specialized in acoustics. Because acoustic models required a lot of computation, BBN got interested in computing. In 1961 the company was the first to purchase a [PDP-1](https://en.wikipedia.org/wiki/PDP-1) from the Digital Equipment Corporation (DEC). The PDP-1 did not fully meet the requirements of BBN. The scientists at BBN wanted multiple users to be able to run memory-intensive LISP programs, and this required two features the PDP-1 did not have. First, they wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory so that programs were not limited by the 4096 words of memory the PDP-1 had. For the PDP-1, they implemented both in software.
 
 BBN had specific requirements and views on how they wanted computers to work. The world of computers was in its infancy and it was not yet very clear which features a computer should have. BBN thought it should at least have time sharing and virtual memory. BBN tried to get DEC to change the PDP-6 to conform to their wishes, to no avail. Then in 1970 BBN decided to modify a PDP-10 to fit their needs. BBN added a paging hardware module to the PDP-10 to implement virtual memory in hardware. This also needed support in software, and BBN decided to implement its own operating system: Tenex.
 
 ![PDP-10 console](/images/pdp10-console.jpg "PDP-10 console")
-
-## Discovery of the bug
-
-Tenex had several several system calls in the operating system, which could be called using the JSYS instruction. One of these system calls was a procedure to check the password of another user. This procedure would check the password one character at a time. By putting the password to be checked on a page boundary, and checking whether the second page is accessed, it was possible to guess passwords one character at a time.
-
-The bug was discovered in 1974 by a young computer scientist, Alan Bell. Alan joined BBN just a year before and was interested in the operating system, which was the most complicated piece of software that he encountered so far. He read the source code of Tenex in his own time to figure out how it worked, and this is how he discovered the flaw.  "At one point, I looked at the password checking routine and saw the flaw. I implemented code to exploit this flaw, proved that it successfully worked, and ran it on a few system accounts to verify that."
 
 ## The Tenex paging system
 
@@ -54,6 +48,12 @@ The two passwords, the one in the system and the one supplied by the user, were 
 
 ![String comparison is done one character at a time](/images/tenex-serial-string-compare.png "String comparison is done one character at a time")
 
+## Discovery of the bug
+
+Because of how the password checking was done it accessed certain memory locations depending on what part of the password was correct. Which memory locations it accessed could be determined by using the paging system. This made it possible to guess user passwords one character at a time, which was a serious security flaw.
+
+The bug was discovered in 1974 by a young computer scientist, Alan Bell. Alan joined BBN just a year before and was interested in the operating system, which was the most complicated piece of software that he encountered so far. He read the source code of Tenex in his own time to figure out how it worked, and this is how he discovered the flaw.  "At one point, I looked at the password checking routine and saw the flaw. I implemented code to exploit this flaw, proved that it successfully worked, and ran it on a few system accounts to verify that."
+
 ## Exploiting the bug
 
 To exploit the vulnerability, Alan wrote a program that would place the first character it didn't know at the end of the page, with the rest of the string on the next page. The next page would have the "trap to user" bit set to detect any access to the page. If the character was wrong, the OS would never access the characters on the next page and would return false after a three second delay. If the character was correct, the OS would check the next character, which would access the next page and cause a trap to the user.
@@ -70,7 +70,7 @@ These different behaviors are distinguishable from the user program. This means 
 
 ## Alternative exploits
 
-Alan used the "trap to user" bit to detect whether a page was accessed, but this was only one of the ways it was possible to detect page access. It would also be possible to turn of read access on a page, so that an error occurred as soon as the password checking procedure would try to read from the page. Another possibility was to not map the page at all, and checking whether it was created after checking the password.
+Alan used the "trap to user" bit to detect whether a page was accessed, but this was only one of the ways it was possible to detect page access. It would also be possible to turn off read access on a page, so that an error occurred as soon as the password checking procedure would try to read from the page. Another possibility was to not map the page at all, and checking whether it was created after checking the password.
 
 It would also be possible to exploit this bug using a timing attack. "The amount of physical memory was in the range of 64K words and the virtual address space was much larger so it would have been easy to force pages out of physical memory by accessing other pages. One could then time the access."
 
@@ -85,7 +85,7 @@ In 1974 there was no responsible disclosure yet and not many companies had exper
 
 ## Encrypted passwords
 
-With the fix Bob Clements put it, the behavior of the password check could no longer be determined from the page access. However, developers at BBN soon became aware that storing passwords in plaintext was not very secure to begin with. Bob writes, "A day or so later, someone realized that relying on keeping plaintext copies of passwords in the system files was not a smart thing to do.  So we created encrypted passwords."
+With the fix Bob Clements put in, the behavior of the password check could no longer be determined from the page access. However, developers at BBN soon became aware that storing passwords in plaintext was not very secure to begin with. Bob writes, "A day or so later, someone realized that relying on keeping plaintext copies of passwords in the system files was not a smart thing to do.  So we created encrypted passwords." Bob Thomas wrote the encryption code, and Bob Clements changed the password checking mechanism.
 
 "We encrypted the passwords so you had to compare the encrypted form
 of the password with the pre-stored version of the encrypted password.
@@ -95,7 +95,7 @@ plaintext up against the encrypted version.  This was a lot like modern Unix."
 
 ## Conclusion
 
-BBN was a pioneer at start of the computing era, and successfully implemented and promoted virtual memory, a feature that is now in almost every computer and operating system. Alan Bell used this feature to determine memory access and exploit a security flaw by guessing passwords. This is a typical example of a side-channel attack, where the behavior of a program is determined without communicating directly with the program. Such side-channel attacks are still relevant today, for example the [cache timing attack on AES](https://cr.yp.to/antiforgery/cachetiming-20050414.pdf). BBN handled the vulnerability admirably by distributing a patch within days of the being being found.
+BBN was a pioneer at start of the computing era, and successfully implemented and promoted virtual memory, a feature that is now in almost every computer and operating system. Alan Bell used this feature to determine memory access and exploit a security flaw by guessing passwords. This is a typical example of a side-channel attack, where the behavior of a program is determined without communicating directly with the program. Such side-channel attacks are still relevant today, for example the [cache timing attack on AES](https://cr.yp.to/antiforgery/cachetiming-20050414.pdf). BBN handled the vulnerability admirably by distributing a patch within days of finding the bug.
 
 ## Read more
 
