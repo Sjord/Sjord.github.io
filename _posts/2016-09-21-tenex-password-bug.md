@@ -35,7 +35,7 @@ BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producin
 
 Besides the hardware there was also software support for paging in Tenex. Each program under Tenex could use the full address space for addressing memory. Furthermore, programs had a lot of control over the paging. Alan Bell writes: "The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed."
 
-One of the paging settings was the "trap to user" bit. This would cause an interrupt to the program whenever a page was accessed. This was generally not very useful, but was an easy way to exploit the character guessing bug.
+One of the paging settings was the "trap to user" bit. This would cause an interrupt to the program whenever a specific page was accessed. This was generally not very useful, but proved an easy way to exploit the password guessing bug described later.
 
 ## Checking the password
 
@@ -49,7 +49,7 @@ The two passwords, the one in the system and the one supplied by the user, were 
 
 Because of how the password checking was done it accessed certain memory locations depending on what part of the password was correct. Which memory locations it accessed could be determined by using the paging system. This made it possible to guess user passwords one character at a time, which was a serious security flaw.
 
-The bug was discovered in 1974 by a young computer scientist, Alan Bell. Alan joined BBN just a year before and was interested in the operating system, which was the most complicated piece of software that he encountered so far. He read the source code of Tenex in his own time to figure out how it worked, and this is how he discovered the flaw.  "At one point, I looked at the password checking routine and saw the flaw. I implemented code to exploit this flaw, proved that it successfully worked, and ran it on a few system accounts to verify that."
+This bug was discovered in 1974 by a young computer scientist, Alan Bell. Alan joined BBN just a year before and was interested in Tenex, which was the most complicated piece of software that he encountered so far. He read the source code of the operating system in his own time to figure out how it worked, and this is how he discovered the flaw.  "At one point, I looked at the password checking routine and saw the flaw. I implemented code to exploit this flaw, proved that it successfully worked, and ran it on a few system accounts to verify that."
 
 ## Exploiting the bug
 
@@ -74,7 +74,7 @@ It would also be possible to exploit this bug using a timing attack. "The amount
 ## Fix
 
 After finding the bug and proving that it was exploitable, Alan told Ray Tomlinson (famous for inventing email) over lunch. Later that day, Bob Clements created a patch to fix the issue. The solution he came up with was to reference the first and last character before doing anything, so that page access no longer depended on the password: "I put the patch in, and made it as trivial as possible to get it out in the
-field.  Test the eighth WORD before doing anything.  That would give you a bad memory reference immediately if you were playing against the page boundary.  Otherwise, drop into the 39 character loops."
+field.  Test the eighth word before doing anything.  That would give you a bad memory reference immediately if you were playing against the page boundary.  Otherwise, drop into the 39 character loops."
 
 ## Release procedure
 
