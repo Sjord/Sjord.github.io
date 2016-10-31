@@ -11,7 +11,7 @@ In 1974, BBN computer scientist Alan Bell discovered a security flaw in the oper
 
 Bolt, Beranek and Newman (BBN) was a company that initially specialized in acoustics. Because acoustic models required a lot of computation, BBN got interested in computing. In 1961 the company was the first to purchase a [PDP-1](https://en.wikipedia.org/wiki/PDP-1) from the Digital Equipment Corporation (DEC). 
 
-The PDP-1 did not fully meet the requirements of BBN.  The scientists at BBN wanted multiple users to be able to run memory-intensive LISP programs, and this required two features the PDP-1 did not have. First, they wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory. 
+The PDP-1 did not fully meet the requirements of BBN.  The scientists at BBN wanted multiple users to be able to run memory-intensive LISP programs, and this required two features the PDP-1 did not have. First, they wanted time sharing functionality, so that multiple programs could be run in parallel. Second, they wanted virtual memory. 
 
 Virtual memory is a method of simulating more memory than a computer actually has. The memory space is divided in little memory blocks called "pages". To make more actual memory available, some of these pages can be stored on disk when not in use. When a page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues.
 
@@ -21,7 +21,7 @@ BBN was one of the first to see the advantage of paging, but the advantages were
 
 At BBN they implemented paging for the PDP-1 in software. Although it worked well, it was pretty slow.  "However, the actual number of references was sufficiently high that a great deal of time was spent in the software address translation sequence, and we realized that, ultimately, this translation must be done in hardware if a truly effective paged virtual memory system were to be built."
 
-BBN had specific requirements and views on how they wanted computers to work. The world of computers was in its infancy and it was not yet very clear which features a computer should have. BBN thought it should at least have time sharing and virtual memory.  BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producing PDP-6 models without there ever having been paging support. 
+At this time the world of computers was in its infancy and it was not yet very clear which features a computer should have. BBN thought it should at least have time sharing and virtual memory, and it tried to convince computer manufacturer DEC to provide such a system.  BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producing PDP-6 models without there ever having been paging support. 
 
 ## Creating a paging computer
 
