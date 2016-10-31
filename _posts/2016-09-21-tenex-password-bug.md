@@ -2,7 +2,7 @@
 layout: post
 title: "Tenex password guessing bug"
 thumbnail: pdp10-240.jpg
-date: 2016-10-24
+date: 2016-11-01
 ---
 
 In 1974, BBN computer scientist Alan Bell discovered a security flaw in the operating system Tenex. The password checking procedure would access certain memory pages during checking. By looking at which pages were accessed during checking of the password, user passwords could be guessed one character at a time.
@@ -17,7 +17,7 @@ BBN had specific requirements and views on how they wanted computers to work. Th
 
 ## The Tenex paging system
 
-The scientists at BBN wanted to run memory-intensive LISP programs, but the PDP-1 came with only 4096 words of memory. A solution to this was to implement paging: the memory is cut up in blocks called "pages" and these pages can be stored temporarily on disk to make more memory space available. Paging makes it possible to address more memory than the machine actually has. This "virtual memory" is simulated by storing rarely used memory on disk and keeping only the most often used pages in memory. If a memory page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues. 
+With Tenex and the corresponding hardware module BBN finally had a system that supported paging well. This wish for virtual memory started early at BBN, with the first computer they bought. The scientists at BBN wanted to run memory-intensive LISP programs, but the PDP-1 came with only 4096 words of memory. A solution to this was to implement paging: the memory is cut up in blocks called "pages" and these pages can be stored temporarily on disk to make more memory space available. Paging makes it possible to address more memory than the machine actually has. This "virtual memory" is simulated by storing rarely used memory on disk and keeping only the most often used pages in memory. If a memory page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues. 
 
 BBN was one of the first to see the advantage of paging, but the advantages weren't obvious to everyone. According to [Dan Murphy](http://www.opost.com/dlm/), who worked at BBN from 1965 until 1972: "Then too, paging and "virtual memory" were still rather new concepts at that time.  Significant commercial systems had yet to adopt these techniques, and the idea of pretending to have more memory that you really had was viewed skeptically in many quarters within DEC."
 
