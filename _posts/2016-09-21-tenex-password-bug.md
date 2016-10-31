@@ -1,47 +1,49 @@
 ---
 layout: post
-title: "Tenex password guessing bug"
+title: "The password guessing bug in Tenex"
 thumbnail: pdp10-240.jpg
 date: 2016-11-01
 ---
 
 In 1974, BBN computer scientist Alan Bell discovered a security flaw in the operating system Tenex. The password checking procedure would access certain memory pages during checking. By looking at which pages were accessed during checking of the password, user passwords could be guessed one character at a time.
 
-## The Tenex operating system
+## The desire for virtual memory
 
-Bolt, Beranek and Newman (BBN) was a company that initially specialized in acoustics. Because acoustic models required a lot of computation, BBN got interested in computing. In 1961 the company was the first to purchase a [PDP-1](https://en.wikipedia.org/wiki/PDP-1) from the Digital Equipment Corporation (DEC). The PDP-1 did not fully meet the requirements of BBN. The scientists at BBN wanted multiple users to be able to run memory-intensive LISP programs, and this required two features the PDP-1 did not have. First, they wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory so that programs were not limited by the small amount of memory the PDP-1 had. For the PDP-1, they implemented both in software.
+Bolt, Beranek and Newman (BBN) was a company that initially specialized in acoustics. Because acoustic models required a lot of computation, BBN got interested in computing. In 1961 the company was the first to purchase a [PDP-1](https://en.wikipedia.org/wiki/PDP-1) from the Digital Equipment Corporation (DEC). 
 
-BBN had specific requirements and views on how they wanted computers to work. The world of computers was in its infancy and it was not yet very clear which features a computer should have. BBN thought it should at least have time sharing and virtual memory. BBN tried to get DEC to change the PDP-6 to conform to their wishes, to no avail. Then in 1970 BBN decided to modify a PDP-10 to fit their needs. BBN added a paging hardware module to the PDP-10 to implement virtual memory in hardware. This also needed support in software, and BBN decided to implement its own operating system: Tenex.
+The PDP-1 did not fully meet the requirements of BBN.  The scientists at BBN wanted multiple users to be able to run memory-intensive LISP programs, and this required two features the PDP-1 did not have. First, they wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory. 
 
-![PDP-10 console](/images/pdp10-console.jpg "PDP-10 console")
+Virtual memory is a feature that simulates more memory than a computer actually has by storing some data on disk instead of in memory. This would be very useful to the scientists at BBN, who wanted to run multiple memory-intensive LISP programs on the PDP-1.
 
-## The Tenex paging system
-
-With Tenex and the corresponding hardware module BBN finally had a system that supported paging well. This wish for virtual memory started early at BBN, with the first computer they bought. The scientists at BBN wanted to run memory-intensive LISP programs, but the PDP-1 came with only 4096 words of memory. A solution to this was to implement paging: the memory is cut up in blocks called "pages" and these pages can be stored temporarily on disk to make more memory space available. Paging makes it possible to address more memory than the machine actually has. This "virtual memory" is simulated by storing rarely used memory on disk and keeping only the most often used pages in memory. If a memory page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues. 
+A typical way to implement virtual memory is to use paging: the memory is cut up in blocks called "pages" and these pages can be stored temporarily on disk to make more memory space available. Paging makes it possible to address more memory than the machine actually has. This "virtual memory" is simulated by storing rarely used memory on disk and keeping only the most often used pages in memory. If a memory page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues. 
 
 BBN was one of the first to see the advantage of paging, but the advantages weren't obvious to everyone. According to [Dan Murphy](http://www.opost.com/dlm/), who worked at BBN from 1965 until 1972: "Then too, paging and "virtual memory" were still rather new concepts at that time.  Significant commercial systems had yet to adopt these techniques, and the idea of pretending to have more memory that you really had was viewed skeptically in many quarters within DEC."
 
-At BBN they implemented paging for the PDP-1 in software. Although it worked well, it was pretty slow.  "However, the actual number of references
-was sufficiently high that a great deal of time
-was spent in the software address translation
-sequence, and we realized that, ultimately,
-this translation must be done in hardware if a
-truly effective paged virtual memory system
-were to be built."
+At BBN they implemented paging for the PDP-1 in software. Although it worked well, it was pretty slow.  "However, the actual number of references was sufficiently high that a great deal of time was spent in the software address translation sequence, and we realized that, ultimately, this translation must be done in hardware if a truly effective paged virtual memory system were to be built."
 
-BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producing PDP-6 models without there ever having been paging support. After a couple of years, BBN decided to build their own virtual memory support using the PDP-10. Because the PDP-10 had insufficient support for this, a hardware module was added between the processor and the memory, that handled the paging. This photo by Dan Murphy shows the BBN pager, as the hardware module was called:
+BBN had specific requirements and views on how they wanted computers to work. The world of computers was in its infancy and it was not yet very clear which features a computer should have. BBN thought it should at least have time sharing and virtual memory.  BBN asked DEC to design a PDP-6 with paging, but eventually DEC stopped producing PDP-6 models without there ever having been paging support. 
+
+## Creating a paging computer
+
+BBN could not convince a computer manufacturer to create a paging computer that conforms to their wishes. In 1969 they decided to build a system themselves that implements paging in hardware.
+
+BBN purchased a PDP-10 to modify it to fit their needs. The PDP-10 had insufficient hardware support for paging. However, it was built in a modular way that made it possible to add a hardware module between the processor and the memory, that handled the paging. This photo by Dan Murphy shows the BBN pager, as the hardware module was called:
 
 ![BBN pager hardware. Photo by Dan Murphy.  All rights reserved.](/images/bbn-pager.jpg "BBN pager hardware. Photo by Dan Murphy.  All rights reserved.")
 
-Besides the hardware there was also software support for paging in Tenex. Each program under Tenex could use the full address space for addressing memory. Furthermore, programs had a lot of control over the paging. Alan Bell writes: "The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed."
+To support this hardware module in software, and to implement some other wishes they had, BBN decided to implement their own operating system: Tenex. In approximately six months a small team of computer scientists created a new operating system that finally conformed to the wishes of BBN.
+
+This included virtual memory support. Each program under Tenex could use the full address space for addressing memory. Furthermore, programs had a lot of control over the paging. Alan Bell writes: "The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed."
 
 One of the paging settings was the "trap to user" bit. This would cause an interrupt to the program whenever a specific page was accessed. This was generally not very useful, but proved an easy way to exploit the password guessing bug described later.
+
+![PDP-10 console](/images/pdp10-console.jpg "PDP-10 console")
 
 ## Checking the password
 
 Like many modern systems, Tenex supported multiple users that could authenticate themselves with passwords. The operating system provided a system call to check user passwords. "This password checking JSYS was given a user name string and a password string. It would return success or failure. To prevent quickly trying many passwords, it delayed returning to the user code for 3 seconds on failure."
 
-The two passwords, the one in the system and the one supplied by the user, were compared using a standard string comparison algorithm: one character at a time. "The algorithm would step down each character in the strings, making the comparison. It would indicate failure as soon it saw a disagreement. If it got too the end of both strings, it would indicate success."
+The two passwords, the correct one in the system and the one supplied by the user, were compared using a standard string comparison algorithm: one character at a time. "The algorithm would step down each character in the strings, making the comparison. It would indicate failure as soon it saw a disagreement. If it got too the end of both strings, it would indicate success."
 
 ![String comparison is done one character at a time](/images/tenex-serial-string-compare.png "String comparison is done one character at a time")
 
