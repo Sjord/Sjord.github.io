@@ -13,9 +13,9 @@ Bolt, Beranek and Newman (BBN) was a company that initially specialized in acous
 
 The PDP-1 did not fully meet the requirements of BBN.  The scientists at BBN wanted multiple users to be able to run memory-intensive LISP programs, and this required two features the PDP-1 did not have. First, they wanted time sharing functionality, so that multiple programs could be run in parallel. Secondly, they wanted virtual memory. 
 
-Virtual memory is a feature that simulates more memory than a computer actually has by storing some data on disk instead of in memory. This would be very useful to the scientists at BBN, who wanted to run multiple memory-intensive LISP programs on the PDP-1.
+Virtual memory is a method of simulating more memory than a computer actually has. The memory space is divided in little memory blocks called "pages". To make more actual memory available, some of these pages can be stored on disk when not in use. When a page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues.
 
-A typical way to implement virtual memory is to use paging: the memory is cut up in blocks called "pages" and these pages can be stored temporarily on disk to make more memory space available. Paging makes it possible to address more memory than the machine actually has. This "virtual memory" is simulated by storing rarely used memory on disk and keeping only the most often used pages in memory. If a memory page is referenced that is not currently in memory, program execution is paused, the page is loaded from disk and put in memory, and execution continues. 
+The advantage of this "paging" system is that processes can use any memory address. They are no longer limited by the amount of physical memory, or the parts of memory that other processes use.
 
 BBN was one of the first to see the advantage of paging, but the advantages weren't obvious to everyone. According to [Dan Murphy](http://www.opost.com/dlm/), who worked at BBN from 1965 until 1972: "Then too, paging and "virtual memory" were still rather new concepts at that time.  Significant commercial systems had yet to adopt these techniques, and the idea of pretending to have more memory that you really had was viewed skeptically in many quarters within DEC."
 
@@ -25,15 +25,17 @@ BBN had specific requirements and views on how they wanted computers to work. Th
 
 ## Creating a paging computer
 
-BBN could not convince a computer manufacturer to create a paging computer that conforms to their wishes. In 1969 they decided to build a system themselves that implements paging in hardware.
+BBN could not convince a computer manufacturer to create a paging computer that conformed to their wishes. In 1969 they decided to build a system themselves that implemented paging in hardware.
 
-BBN purchased a PDP-10 to modify it to fit their needs. The PDP-10 had insufficient hardware support for paging. However, it was built in a modular way that made it possible to add a hardware module between the processor and the memory, that handled the paging. This photo by Dan Murphy shows the BBN pager, as the hardware module was called:
+BBN purchased a PDP-10 to modify it to fit their needs. The standard PDP-10 had insufficient hardware support for paging. However, it was built in a modular way that made it possible to change some components. BBN took advantage of this by designing their own hardware module to do the paging, and placed it between the processor and the memory. This photo by Dan Murphy shows the BBN pager, as the hardware module was called:
 
 ![BBN pager hardware. Photo by Dan Murphy.  All rights reserved.](/images/bbn-pager.jpg "BBN pager hardware. Photo by Dan Murphy.  All rights reserved.")
 
 To support this hardware module in software, and to implement some other wishes they had, BBN decided to implement their own operating system: Tenex. In approximately six months a small team of computer scientists created a new operating system that finally conformed to the wishes of BBN.
 
-This included virtual memory support. Each program under Tenex could use the full address space for addressing memory. Furthermore, programs had a lot of control over the paging. Alan Bell writes: "The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed."
+## Virtual memory under Tenex
+
+With Tenex, BBN finally had a system with full virtual memory support. Each program under Tenex could use the full address space for addressing memory. Furthermore, programs had a lot of control over the paging. Alan Bell writes: "The virtual memory system allowed the user a lot of control over what pages were placed in the address space. While usually a paging file was in the address space, it was also possible to map data files, etc. Therefore, the user was given control over what was mapped where and the type of access allowed."
 
 One of the paging settings was the "trap to user" bit. This would cause an interrupt to the program whenever a specific page was accessed. This was generally not very useful, but proved an easy way to exploit the password guessing bug described later.
 
