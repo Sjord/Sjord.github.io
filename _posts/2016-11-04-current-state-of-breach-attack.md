@@ -2,14 +2,14 @@
 layout: post
 title: "The current state of the BREACH attack"
 thumbnail: soldiers-240.jpg
-date: 2016-11-04
+date: 2016-11-07
 ---
 
-In August 2013 the BREACH attack was presented at the Black Hat conference. With this attack it was possible to read parts of HTTPS traffic in some cases. A serious attack, but to this day there is no good fix for it. How come?
+In August 2013 the BREACH attack was presented at the Black Hat conference in Las Vegas. With this attack it is possible in some cases to read parts of HTTPS traffic. A serious attack, but to this day there is no good fix for it. How come?
 
 ## Introduction
 
-BREACH is a [compression side-channel attack](/2016/08/23/compression-side-channel-attacks/) on traffic that is compressed using HTTP gzip compression and encrypted using TLS. It requires the attacker to be able to read traffic, perform CSRF requests at will, and the site under attack needs to reflect some input in the same response that contains the secret data the attacker wants to read. Normally an intercepting attacker could not read the data because it was encrypted, but with BREACH it is possible to read a little part of the page, such as a CSRF token.
+BREACH is a [compression side-channel attack](/2016/08/23/compression-side-channel-attacks/) on traffic that is compressed using HTTP gzip compression and encrypted using TLS. It requires the attacker to be able to read the size of encrypted traffic and perform CSRF requests at will. Furthermore, the site under attack needs to reflect some input in the same response that contains the secret data the attacker wants to read. Normally an intercepting attacker could not read the data because it was encrypted, but with BREACH it is possible to read a little part of the page, such as a CSRF token.
 
 BREACH is a complicated attack, in that it exploits several properties of a connection. HTTPS, gzip compression and reflecting user input are all perfectly safe, but combined they pose a security risk.
 
@@ -17,7 +17,7 @@ This is also the reason that there is no obvious fix. When a security flaw is fo
 
 ## Mitigations
 
-That does not mean that nobody did nothing. In fact, several fixes or mitigations have been developed to protect against BREACH. Most of these make only sense in specific cases, making it hard to provide one best practice to be protected against BREACH.
+That does not mean that nobody did anything. In fact, several fixes or mitigations have been developed to protect against BREACH. Most of these make only sense in specific cases, making it hard to provide one best practice to protect against BREACH.
 
 ### Disable compression
 
@@ -39,7 +39,7 @@ Padding responses is a little bit of a hack. Appending several KB of random data
 
 ### Randomize the secret
 
-A typical example for BREACH is that an attacker can guess a CSRF token. For this to work, the CSRF token needs to be the same for every request the attacker does. If the CSRF token is randomized for every request, it is no longer possible to guess it. Both [Django](https://code.djangoproject.com/ticket/20869) and [Rails](https://github.com/meldium/breach-mitigation-rails) have implemented this. By encoding the CSRF token with some salt, it is no longer the same on each request.
+A typical use case for BREACH is that an attacker can guess a CSRF token. For this to work, the CSRF token needs to be the same for every request the attacker does. If the CSRF token is randomized for every request, it is no longer possible to guess it. Both [Django](https://code.djangoproject.com/ticket/20869) and [Rails](https://github.com/meldium/breach-mitigation-rails) have implemented this. By encoding the CSRF token with some salt, it is no longer the same on each request.
 
 Note this only works for CSRF tokens. Any other secrets on the page need to be handled separately.
 
@@ -49,7 +49,7 @@ With the [same-site cookie flag](/2016/04/14/preventing-csrf-with-samesite-cooki
 
 One disadvantage of this is that it is currently only supported in Chrome and Opera.
 
-## Attacker improvements
+## Attacker's progress
 
 The attackers also have made some progress.
 
