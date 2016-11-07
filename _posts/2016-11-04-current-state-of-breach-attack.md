@@ -59,4 +59,4 @@ Another nice thing for the attackers is a new toolkit that helps with exploiting
 
 ## Conclusion
 
-There was on quick response to BREACH, because it is attack that combines several properties of encrypted traffic. There are several hacks that mitigate the situation, and some real solutions. Padding in TLS 1.3 needs some more time, and same-site cookies really need [support for Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=795346) to be the solution.
+There was no quick response to BREACH, because it is attack that combines several properties of encrypted traffic. There are several hacks that mitigate the situation, and some real solutions. Padding in TLS 1.3 needs some more time, and same-site cookies really need [support for Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=795346) to be the solution.
