@@ -67,4 +67,9 @@ Then, set a cookie with key `5ababd603b22780302dd8d83498e5172 ` and value `64a11
 
 ## Update
 
-I also cracked the password in the meantime. The password for the hash `64a113a4ccc22cffb9d2f75b8c19e333` is `cmonqwe123#@!`.
+I also cracked some passwords in the meantime:
+
+| Hash                             | Password      |
+|----------------------------------|---------------|
+| 64a113a4ccc22cffb9d2f75b8c19e333 | cmonqwe123#@! |
+| 9e4bf26d87b7e8b6b66b0a2305f67184 | lex1312       |
