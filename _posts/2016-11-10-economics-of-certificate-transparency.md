@@ -11,7 +11,7 @@ Traffic to any web site that uses HTTPS is encrypted, and the server's identity 
 
 The goal of the [certificate transparency project](https://www.certificate-transparency.org/) is to create a log book with issued certificates. This log can be used by domain owners to check that there are no certificates issued without their permission.
 
-Certificates are issued by certificate authorities (CA's). A typical browser trusts hundreds of certificate authorities and any of them can sign a certificate. Normally a certificate should only be signed with the permission of the domain owner. For example, only Google should be able to obtain a certificate for www.google.com. Unfortunately, because of mistakes or because of criminals, sometimes certificates are issued to other parties. This happens fairly often:
+Certificates are issued by certificate authorities (CA's). A typical browser trusts hundreds of certificate authorities and any of them can sign a certificate. Normally a certificate should only be signed with the permission of the domain owner. For example, only Google should be able to obtain a certificate for www.google.com. Unfortunately, sometimes certificates are issued to other parties, either by mistake or with malicious intent. This happens fairly often:
 
 * March 2011, a [Comodo affiliate is hacked](https://www.comodo.com/Comodo-Fraud-Incident-2011-03-23.html) and issues certificates for mail.google.com and www.google.com.
 * July 2011, [DigiNotar](https://en.wikipedia.org/wiki/DigiNotar) is totally compromised and attackers issue a \*.google.com certificate.
@@ -21,13 +21,13 @@ Certificates are issued by certificate authorities (CA's). A typical browser tru
 * March 2015, [CNNIC issues a certificate](https://security.googleblog.com/2015/03/maintaining-digital-certificate-security.html) for several Google domains for use in a man-in-the-middle proxy.
 * September 2015, [Symantec issues certificates](https://security.googleblog.com/2015/10/sustaining-digital-certificate-security.html) for google.com and www.google.com for testing purposes.
 
-Any such certificate poses a serious security risk, since it could be used to listen in on traffic between customers and Google. When an unauthorized certificate is issued, Google wants to act as soon as possible so that the certificate is no longer trusted by the major browsers. For this, they first have to know that the fake certificate exists, and that is where certificate transparency comes in.
+Any such certificate poses a serious security risk, since it could be used to listen in on traffic between clients and Google. When an unauthorized certificate is issued, Google wants to act as soon as possible so that the certificate is no longer trusted by the major browsers. For this, they first have to know that the fake certificate exists, and that is where certificate transparency comes in.
 
-Imagine that every certificate issued is also stored in a public log. Google can now keep an eye on that log, and check whether any certificates are issued for google.com. This would make detection of fake certificates much easier. This is certificate transparency: all certificates are publicly viewable and anyone can check whether certificates are issued without authorization of the domain owner.
+Imagine that every certificate issued is stored in a public log as well. Google can now keep an eye on that log, and check whether any certificates are issued for google.com. This would make detection of fake certificates much easier. This is certificate transparency: all certificates are publicly viewable and anyone can check whether certificates are issued without authorization of the domain owner.
 
 ## Creating incentives
 
-For certificate transparency to work, everybody who creates a certificate should put the certificate into the public log book for others to check. Maybe certificate authorities will do this out of the goodness of their heart, but criminal hackers certainly won't put their fake certificates up for public scrutiny. How can this system work if it requires the participation of certificate issuers?
+For certificate transparency to work, everybody who creates a certificate should put the certificate into the public log book for others to check. There is a slim chance certificate authorities will do this out of the goodness of their heart, but criminal hackers certainly won't put their fake certificates up for public scrutiny. How can this system work if it requires the participation of certificate issuers?
 
 There needs to be some incentive to put certificates in the public log. Google can create that incentive since they are also a browser vendor. Imagine Google Chrome only trusts certificates that have been added to the public log. Any certificate that has not been made public will give an error. This suddenly creates a good reason to put the certificates in the log book: if you don't, your website stops working. Any certificate that has not been made public in the log book won't work in Chrome.
 
