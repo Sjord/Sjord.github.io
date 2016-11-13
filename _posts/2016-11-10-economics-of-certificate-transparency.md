@@ -9,7 +9,7 @@ Traffic to any web site that uses HTTPS is encrypted, and the server's identity 
 
 ## What is certificate transparency
 
-The goal of the certificate transparency project is to create a log book with issued certificates. This log can be used by domain owners to check that there are no certificates issued without their permission.
+The goal of the [certificate transparency project](https://www.certificate-transparency.org/) is to create a log book with issued certificates. This log can be used by domain owners to check that there are no certificates issued without their permission.
 
 Certificates are issued by certificate authorities (CA's). A typical browser trusts hundreds of certificate authorities and any of them can sign a certificate. Normally a certificate should only be signed with the permission of the domain owner. For example, only Google should be able to obtain a certificate for www.google.com. Unfortunately, because of mistakes or because of criminals, sometimes certificates are issued to other parties. This happens fairly often:
 
@@ -37,7 +37,7 @@ Unlike other features, not all browsers have to implement certificate transparen
 
 Implementing this all of a sudden would cause major problems with hundreds of certificate authorities and millions of existing certificates, which is why Google wants to implement this incrementally. Currently, certificate transparency is mandatory for EV certificates. There are a limited number of companies that issue EV certificates, making it somewhat easy to make them cooperate on certificate transparency.
 
-In reaction to the Symantec problem in 2015, Google also required all Symantec certificates to be submitted to the public log book. Because they screwed up, Symantec was put under close scrutiny. All certificates Symantec issues can be viewed in a public log. Again, Google could pressure Symantec into implementing this because Google has control over which certificates Chrome trusts.
+In reaction to the [Symantec problem](http://arstechnica.com/security/2015/10/still-fuming-over-https-mishap-google-gives-symantec-an-offer-it-cant-refuse/) in 2015, Google also required all Symantec certificates to be submitted to the public log book. Because they screwed up, Symantec was put under close scrutiny. All certificates Symantec issues can be viewed in a public log. Again, Google could pressure Symantec into implementing this because Google has control over which certificates Chrome trusts.
 
 The next step is to have certificate transparency for all certificates. This is not easy, because there are so many companies that issue certificates, and there are many existing certificates used for all kinds of things.
 
@@ -48,3 +48,8 @@ Note that this is a trust-on-first-use mechanism. It only works if you have alre
 ## Conclusion
 
 Certificate transparency is cool from a technological standpoint, with Merkle hash trees that provide cryptographic proof that you have submitted your certificate. It is also cool from a political and economic standpoint. It can only work if domain owners have leverage over certificate issuers. Google has that leverage through their Chrome browser, and they also have an interest in keeping certificates for their services secure. If Google did not have a popular browser, it would be a lot harder for them to get certificate transparency off the ground.
+
+## Read more
+
+* [Certificate Transparency web site](https://www.certificate-transparency.org/)
+* The book [Bulletproof SSL and TLS](https://www.amazon.com/gp/product/1907117040/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=sjoerdlangkem-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=1907117040&linkId=3471bbb4e27a1556cfc083a8699545fd)
