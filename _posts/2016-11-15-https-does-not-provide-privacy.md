@@ -5,7 +5,7 @@ thumbnail: opening-letter-240.jpg
 date: 2016-11-21
 ---
 
-If you visit a web site over HTTPS, all traffic to and from the server is encrypted. This does not mean that somebody that intercepts the connection can't see which pages you are visiting. This post describes what is visible over an HTTPS connection and why.
+If you visit a web site over HTTPS, all traffic between the client and the server is encrypted. This does not mean that somebody that intercepts the connection can't see which pages you are visiting. This post describes what is visible over an HTTPS connection and why.
 
 ## Situation description
 
