@@ -17,6 +17,14 @@ In the shell, this can be done like this:
     cr=$'\r'
     nikto -host http://example.com/ -useragent "nikto${cr}${nl}Some: header"
 
+This results in a request like this:
+
+    HEAD / HTTP/1.1
+    User-Agent: nikto
+    Some: header
+    Host: example.com
+    Connection: Keep-Alive
+
 The user agent can be set in nikto.conf from Nikto version 2.1.5, and on the command line from Nikto 2.1.6.
 
 ## Pass requests through a proxy
@@ -35,3 +43,7 @@ Adding a header to the code is also pretty simple.
 ```
     $reqhash->{'Some-key'} = "header value";
 ```
+
+## Conclusion
+
+Even though Nikto does not have an option to pass custom headers, there are several methods to add HTTP headers to each request.
