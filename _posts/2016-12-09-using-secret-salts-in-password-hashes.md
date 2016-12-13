@@ -9,11 +9,11 @@ Password hashes should be slow to prevent offline brute-force attacks. One way t
 
 ## Adding entropy to the password
 
-One way to make password verification slow is to use a slow hash function. Another way is to strengthen passwords by appending some random data to the password. This means that if we want to verify whether the password is correct, we have to brute-force that random data. This will significantly slow down verification of the password, which was our goal.
+An attacker with access to the password hashes can do a brute-force attack on them, by guessing each password from a dictionary. To prevent this, verification of passwords should be relatively slow. This is typically done by a using a slow hash function, but an alternative is to make the password a little bit longer by adding some random data to it. This means that if we want to verify whether the password is correct, we have to brute-force that random data. This will significantly slow down verification of the password, which was our goal.
 
 This method is called "password strengthening", and the random data that is added to the password is called a "pepper". Both are unfortunate names because these terms are sometimes also used for other mechanisms.
 
-Password strengtening works by hashing a bit more than just the password. When a user chooses a password, the system will append some random data to the password. For example, we can pick a number between one and six. The password and the random number are concatenated and hashed, and that hash is stored. The random number is discarded.
+Password strengthening works by hashing a bit more than just the password. When a user chooses a password, the system will append some random data to the password. For example, we can pick a number between one and six. The password and the random number are concatenated and hashed, and that hash is stored. The random number is discarded.
 
 ![The password and random data are hashed](/images/secret-salt-save-password.png)
 
