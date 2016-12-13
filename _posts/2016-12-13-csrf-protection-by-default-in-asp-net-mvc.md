@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "CRSF protection by default in ASP.NET MVC"
-thumbnail: todo-240.jpg
+title: "Check CRSF token by default in ASP.NET MVC"
+thumbnail: barbed-wire-fence-240.jpg
 date: 2016-12-22
 ---
 
