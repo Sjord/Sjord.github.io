@@ -5,11 +5,11 @@ thumbnail: barbed-wire-fence-240.jpg
 date: 2016-12-22
 ---
 
-ASP.NET MVC protects against CSRF by using a secret token, and checking it if an attribute is present. In this post we will show how to check the CSRF token for all POST requests.
+ASP.NET MVC protects against [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) by using a secret token, and checking it if an attribute is present. In this post we will show how to check the CSRF token for all POST requests.
 
 ## Normal way of CSRF protection
 
-ASP.NET MVC has CSRF protection in the form of a secret token. Every form is provided with a token, that is checked on the server upon submit. Because the attacker that tries to exploit a cross site request does not have this token, he can not successfully submit the form. To use the standard MVC CSRF token, two things are necessary. First, you need to include the token in the form:
+ASP.NET MVC has [CSRF protection](https://www.asp.net/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) in the form of a secret token. Every form is provided with a token, that is checked on the server upon submit. Because the attacker that tries to exploit a cross site request does not have this token, he can not successfully submit the form. To use the standard MVC CSRF token, two things are necessary. First, you need to include the token in the form:
 
     @using (Html.BeginForm()) 
     {
@@ -36,9 +36,9 @@ In a new MVC project, the `Application_Start` method in `Global.asax.cs` calls `
 
     filters.Add(new ValidateAntiForgeryTokenAttribute());
 
-This works a little too well: no page can be requested anymore, since all GET requests now also require a token. We want just the POST requests to check for the token. For this, we need to create our own filter.
+This works a little too well: no page can be requested anymore, since all GET requests now also require a token. We want just the POST requests to check for the token. For this, we need to create our [own filter](https://github.com/Sjord/CheckTokenByDefault/blob/master/CheckTokenByDefault/ValidateAntiForgeryTokenOnPost.cs).
 
-    public class ValidateAntiForgeryTokenOnPostFilter : IAuthorizationFilter
+    public class ValidateAntiForgeryTokenOnPost : IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -49,12 +49,14 @@ This works a little too well: no page can be requested anymore, since all GET re
         }
     }
 
-As you can see, this filter only checks the CSRF token on anything else than a GET request. We can register this filter on all requests as we did before:
+As you can see, this filter only checks the CSRF token on anything else than a GET request. We can [register this filter](https://github.com/Sjord/CheckTokenByDefault/blob/master/CheckTokenByDefault/App_Start/FilterConfig.cs) on all requests as we did before:
 
-    FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+    filters.Add(new ValidateAntiForgeryTokenOnPost());
 
 Now, all our POST requests are protected against CSRF. It no longer matters whether we forget to add an attribute if we create a new controller method.
 
 ## Conclusion
 
 ASP.NET MVC has great CSRF protection built-in, but it can be made even better by checking the CSRF token by default, instead of relying on an attribute which may be missing.
+
+An example project using the code in this article is [available on GitHub](https://github.com/Sjord/CheckTokenByDefault).
