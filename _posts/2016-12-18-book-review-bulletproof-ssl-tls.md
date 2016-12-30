@@ -11,6 +11,8 @@ date: 2016-12-29
 
 ## About the book
 
+The book describes TLS, and specifically its usage in HTTPS. TLS can provide perfect transport level security. The book describes how you should use it to obtain that, and what the limitations are. Although it describes the theory of TLS, it does not leave behind the real world. In chapter 4, for example, several attacks on SSL certificates are described that happened in recent years. A startling number of breaches are laid out where attackers could issue their own certificates.
+
 The book is generally divided in two parts. The first ten chapters explain the theory of TLS. The last six chapters describe how to use OpenSSL, Apache, Tomcat, IIS, and Nginx.
 
 ## About the author
