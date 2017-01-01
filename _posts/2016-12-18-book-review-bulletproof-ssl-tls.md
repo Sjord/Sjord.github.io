@@ -5,7 +5,9 @@ thumbnail: bulletproofssl-240.jpg
 date: 2017-01-05
 ---
 
-Recently I read the book [Bulletproof SSL and TLS](https://www.amazon.com/gp/product/1907117040/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1907117040&linkCode=as2&tag=sjoerdlangkem-20&linkId=979c050291676d0d04a8e0e3a4c84399). In this post I share my opinion about this book.
+Recently I read the book [Bulletproof SSL and TLS](https://www.amazon.com/gp/product/1907117040/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1907117040&linkCode=as2&tag=sjoerdlangkem-20&linkId=979c050291676d0d04a8e0e3a4c84399). I think it is a great book and I would recommend reading it. In this post I describe what you can expect from this book.
+
+[![Bulletproof SSL and TLS](/images/bulletproofssl-book.png)](https://www.amazon.com/gp/product/1907117040/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1907117040&linkCode=as2&tag=sjoerdlangkem-20&linkId=979c050291676d0d04a8e0e3a4c84399)
 
 ## About the author
 
