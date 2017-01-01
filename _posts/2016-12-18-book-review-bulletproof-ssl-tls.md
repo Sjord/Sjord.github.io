@@ -2,18 +2,18 @@
 layout: post
 title: "Book review: Bulletproof SSL and TLS"
 thumbnail: bulletproofssl-240.jpg
-date: 2016-12-29
+date: 2017-01-05
 ---
 
-Recently I read the book [Bulletproof SSL and TLS](TODO). I liked it very much and in this post I describe what you could expect when you purchase this book.
+Recently I read the book [Bulletproof SSL and TLS](https://www.amazon.com/gp/product/1907117040/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1907117040&linkCode=as2&tag=sjoerdlangkem-20&linkId=979c050291676d0d04a8e0e3a4c84399). In this post I share my opinion about this book.
 
 ## About the author
 
-You may know Ivan Ristić from [SSL Labs](https://www.ssllabs.com/), where you can test the TLS configuration of your site. Ivan started working at [Qualys](https://www.qualys.com/) after it acquired SSL Labs from him. This year he founded [Hardenize](https://www.hardenize.com/), a tool to monitor the security of your web site.
+[Bulletproof SSL and TLS](https://www.amazon.com/gp/product/1907117040/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1907117040&linkCode=as2&tag=sjoerdlangkem-20&linkId=979c050291676d0d04a8e0e3a4c84399) is written by Ivan Ristić. You may know him from [SSL Labs](https://www.ssllabs.com/), where you can test the TLS configuration of your site. Ivan started working at [Qualys](https://www.qualys.com/) after it acquired SSL Labs from him. This year he founded [Hardenize](https://www.hardenize.com/), a tool to monitor the security of your web site.
 
 ## About the book
 
-[Bulletproof SSL and TLS](TODO) describes TLS, and specifically its usage in HTTPS. Under some conditions, TLS can provide perfect transport level security. The book describes how you should use it to obtain that, and what the limitations are. 
+[Bulletproof SSL and TLS](https://www.amazon.com/gp/product/1907117040/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1907117040&linkCode=as2&tag=sjoerdlangkem-20&linkId=979c050291676d0d04a8e0e3a4c84399) describes TLS, and specifically its usage in HTTPS. Under some conditions, TLS can provide perfect transport level security. The book describes how you should use it to obtain that, and what the limitations are. 
 
 Although it describes the theory of TLS, it does not leave behind the real world. In chapter 4, for example, several attacks on SSL certificates are described that happened in recent years. A startling number of breaches are laid out where attackers could issue their own certificates. Some of these were hacks, as in the case of DigiNotar. Others are the result of negligence. For example, TurkTrust accidentally marked two certificates as CA certificates, which were later used to sign fraudulent certificates.
 
