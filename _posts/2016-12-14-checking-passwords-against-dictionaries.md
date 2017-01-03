@@ -24,3 +24,8 @@ Minimum lengte 8 -> check niet kortere wachtwoorden
 accept passphrases (correct battery horse staple)
 
 Zoek ook op voornamen
+
+* https://github.com/cracklib/cracklib/tree/master/words
+* https://github.com/robsheldon/bad-passwords-index
+* https://alastairs-place.net/projects/pwtools/
+* https://github.com/dstufft/django-passwords/
