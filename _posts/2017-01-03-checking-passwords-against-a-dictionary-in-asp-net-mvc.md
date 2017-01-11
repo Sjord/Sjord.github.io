@@ -5,15 +5,15 @@ thumbnail: dictionary-240.jpg
 date: 2017-01-12
 ---
 
-One common problem when using passwords is that users choose passwords that are too obvious, such as "password" or "qwerty". A method to prevent this is to have a list of known passwords and deny any password that is present in the list. This post will describe how to implement this in ASP.NET MVC Core. When registering, the user will get an error if he tries to use a password that is present in the dictionary.
+When using passwords for authentication, users may choose passwords that are too easily guessed. A method to prevent this is to have a list of known passwords and deny any password that is present in the list. This post will describe how to implement this in ASP.NET MVC Core. When registering, the user will get an error if he tries to use a password that is present in the dictionary.
 
 ## Changing password requirements
 
-By default, an ASP.NET MVC project will have some limitations on passwords that users choose. First, there is a length requirement defined in the [RegisterViewModel](https://github.com/Sjord/CheckPasswordDictionary/blob/master/src/CheckPasswordDictionary/Models/AccountViewModels/RegisterViewModel.cs#L17). Furthermore, by default the password must also contain uppercase letters, digits and non-alphanumeric characters. These options can be set by changing the PasswordOptions in [Startup.cs](https://github.com/Sjord/CheckPasswordDictionary/blob/master/src/CheckPasswordDictionary/Startup.cs#L47). When creating a new project, there is already this line:
+By default, an ASP.NET MVC project will have some limitations on passwords that users choose. First, there is a length requirement defined in the [`RegisterViewModel`](https://github.com/Sjord/CheckPasswordDictionary/blob/master/src/CheckPasswordDictionary/Models/AccountViewModels/RegisterViewModel.cs#L17). Furthermore, by default the password must also contain uppercase letters, digits and non-alphanumeric characters. These options can be set by changing the `PasswordOptions` in [`Startup.cs`](https://github.com/Sjord/CheckPasswordDictionary/blob/master/src/CheckPasswordDictionary/Startup.cs#L47). When creating a new project, there is already this line:
 
     services.AddIdentity<ApplicationUser, IdentityRole>()
 
-Password options can be set with a callback as parameter. In this example, we disable all character class requirements:
+Password options can be set by passing a callback as parameter. In this example, we disable all character class requirements:
 
     services.AddIdentity<ApplicationUser, IdentityRole>(o => {
         o.Password.RequireNonAlphanumeric = false;
@@ -23,7 +23,8 @@ Password options can be set with a callback as parameter. In this example, we di
 
 ## Adding a password validator
 
-We create a new class [CheckPasswordDictionary](https://github.com/Sjord/CheckPasswordDictionary/blob/master/src/CheckPasswordDictionary/CheckPasswordDictionary.cs) that implements `IPasswordValidator<ApplicationUser>` and register it in [Startup.cs](https://github.com/Sjord/CheckPasswordDictionary/blob/master/src/CheckPasswordDictionary/Startup.cs#L55) like this:
+When a user chooses a password, we want to check it against the list and reject it if it is in there. To do this, we need some code that validates the password when the user registers.
+We create a new class [`CheckPasswordDictionary`](https://github.com/Sjord/CheckPasswordDictionary/blob/master/src/CheckPasswordDictionary/CheckPasswordDictionary.cs) that implements `IPasswordValidator<ApplicationUser>` and register it in [`Startup.cs`](https://github.com/Sjord/CheckPasswordDictionary/blob/master/src/CheckPasswordDictionary/Startup.cs#L55) like this:
 
     services.AddScoped<IPasswordValidator<ApplicationUser>, CheckPasswordDictionary>();
 
@@ -31,7 +32,7 @@ The `IPasswordValidator` interface has one method, `ValidateAsync`, that should 
 
 ## Checking the password against a list
 
-We have a simple text file with commonly used passwords. We read this into a [HashSet](https://msdn.microsoft.com/en-us/library/bb359438.aspx) using [File.ReadLines](https://msdn.microsoft.com/en-us/library/dd383503.aspx). The advantage of a HashSet is that lookups are fast, so we can check quickly whether our password is in the dictionary. To obtain the path to the dictionary, we use an IHostingEnvironment object that is provided to the password validator using dependency injection.
+We have a simple text file with commonly used passwords. We read this into a [`HashSet`](https://msdn.microsoft.com/en-us/library/bb359438.aspx) using [`File.ReadLines`](https://msdn.microsoft.com/en-us/library/dd383503.aspx). The advantage of a HashSet is that lookups are fast, so we can check quickly whether our password is in the dictionary. To obtain the path to the dictionary, we use an `IHostingEnvironment` object that is provided to the password validator using dependency injection.
 
     private HashSet<string> LoadDictionary()
     {
@@ -41,7 +42,7 @@ We have a simple text file with commonly used passwords. We read this into a [Ha
 
 ## Returning our verdict
 
-In the ValidateAsync function, we return a IdentityResult.Failed if the password is in the list, and a IdentityResult.Success otherwise:
+In the `ValidateAsync` function, we return a `IdentityResult.Failed` if the password is in the list, and a `IdentityResult.Success` otherwise:
 
     public async Task<IdentityResult> ValidateAsync(UserManager<ApplicationUser> manager, ApplicationUser user, string password)
     {
