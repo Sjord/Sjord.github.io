@@ -23,6 +23,8 @@ This even works for secure cookies. Insecure sites can overwrite secure cookies.
 
 It does not work if legitbank.com has strict transport security with includeSubdomains on. The includeSubdomains flag is important, as subdomains can also set cookies for the parent domain. The attacker can use any subdomain, like something.legitbank.com, to set a cookie for legitbank.com.
 
+This is undetectable by the server, because the cookie properties are not sent to the server. The server can only see the key and the value of the cookie, not whether is has the secure flag or which domain it originated from.
+
 ## Making cookies more secure
 
 There is [a proposal](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-alone-01) to disallow modification of secure cookies by insecure sites. However, will probably take some time and maybe break a few things.
