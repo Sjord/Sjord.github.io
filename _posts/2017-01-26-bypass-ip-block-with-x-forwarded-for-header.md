@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "Bypass IP block with X-Forwarded-For header"
+title: "Bypass IP blocks with the X-Forwarded-For header"
 thumbnail: road-block-240.jpg
 date: 2017-03-01
 ---
 
+Sometimes the IP address is used for access control or rate limiting. If the client is behind a proxy, the proxy forwards the IP address of the client to the server in a specific header, `X-Forwarded-For`. In some cases, a client can use this header to spoof his IP address.
 
 ## IP blocks
 
@@ -20,10 +21,20 @@ If the visitor is using a proxy, the `REMOTE_ADDR` field will contain the addres
 
 The `X-Forwarded-For` header is usually set by a proxy, but it can also be added by an attacker. By adding his own `X-Forwarded-For` header, the attacker can spoof his IP address. If the IP block is implemented incorrectly, it can be bypassed by putting an allowed IP address in the header, even if the connection actually originated from a blocked IP address.
 
-Some vulnerable projects:
+Below are some examples of projects that trust the `X-Forwarded-For` header. Note that this not always indicates a vulnerability. There are some configurations where the `X-Forwarded-For` header can be trusted, for example if it is set by a reverse proxy on the same host as the web application.
 
+* [Moodle](https://github.com/moodle/moodle/blob/master/lib/moodlelib.php#L8818)
+* [JSPWiki](https://github.com/apache/jspwiki/blob/master/jspwiki-war/src/main/java/org/apache/wiki/util/HttpUtil.java#L54)
 * [ultra-throttle](https://github.com/atsid/ultra-throttle/blob/master/src/getIpAddress.js#L5)
 * [linkto](https://github.com/nindalf/linkto/blob/master/middleware.go#L84)
-* [JSPWiki](https://github.com/apache/jspwiki/blob/master/jspwiki-war/src/main/java/org/apache/wiki/util/HttpUtil.java#L54)
 * [EpochTalk](https://github.com/epochtalk/epochtalk/blob/master/server/plugins/blacklist/index.js#L14)
-* [Moodle](https://github.com/moodle/moodle/blob/master/lib/moodlelib.php#L8818)
+
+## Solution
+
+When using an IP block, a good approach is to check *all* given IP addresses against the block. Deny access if either `REMOTE_ADDR` or `X-Forwarded-For` matches the IP block. This also makes it harder for somebody to circumvent the block by using a proxy.
+
+If this is not possible, the application should be configured to either trust or ignore the `X-Forwarded-For` header. For example, Etherpad [has an option](https://github.com/ether/etherpad-lite/blob/master/src/node/handler/SocketIORouter.js#L64) that enables usage of the header.
+
+## Conclusion
+
+When testing an application it is worth the try to pass an `X-Forwarded-For` header to block IP blocks or rate limiting. Applications should only trust this header in specific situations.
