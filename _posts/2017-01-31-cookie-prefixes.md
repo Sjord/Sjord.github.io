@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cookie prefixes"
+title: "Securing cookies with cookie prefixes"
 thumbnail: cookies-sprinkle-240.jpg
 date: 2017-02-02
 ---
@@ -19,11 +19,14 @@ This makes it possible for sites that share a domain to modify cookies belonging
 
 Since the scheme is not taken into account for cookie access, an insecure HTTP domain can overwrite cookies that are intended for the secure HTTPS part of that same domain.  This even works for secure cookies. Insecure sites can overwrite secure cookies on the same domain. This makes it possible for a man-in-the-middle attacker to overwrite cookies, even when the user visits a secure HTTPS site.
 
+![A man-in-the-middle attacker between the client and the bank](/images/man-in-the-middle.png)
+
 Suppose you are visiting legitbank.com over HTTPS. During your visit, you take a break to visit cutecatpictures.com over HTTP. A man-in-the-middle attacker may change the response from cutecatpicutres.com to include a request to legitbank.com over HTTP. The attacker can then change that response to overwrite a cookie for legitbank.com.
 
 It does not work if legitbank.com has strict transport security with includeSubdomains on. The includeSubdomains flag is important, as subdomains can also set cookies for the parent domain. The attacker can use any subdomain, like something.legitbank.com, to set a cookie for legitbank.com.
 
 This is undetectable by the server, because the cookie properties are not sent to the server. The server can only see the key and the value of the cookie, not whether is has the secure flag or which domain it originated from.
+
 
 ## Consequences
 
