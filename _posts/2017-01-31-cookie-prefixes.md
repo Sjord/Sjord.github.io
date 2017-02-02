@@ -11,19 +11,27 @@ Cookies can be overwritten by a man-in-the-middle attacker, even when using HTTP
 
 The same origin policy prevents sites from interacting with each other. For example, it would be a bad thing if evil.com could interact with legitbank.com using your current session. To prevent this, the same origin policy dictates that sites can only communicate with themselves.
 
-The same origin policy was thought up in the early days of the web, in 1995. Cookies were invented even earlier and although they have some form of same origin policy, it is not the same strict policy that is used for Javascript. For Javascript, the scheme, domain and port must match. For cookies, only the domain name is considered.
+The same origin policy was thought up in the early days of the web, around 1995. Cookies were invented even earlier and although they have some form of same origin policy, it is not the same strict policy that is used for Javascript. For Javascript, the scheme, domain and port must match. For cookies, only the domain name is considered.
 
 This makes it possible for sites that share a domain to modify cookies belonging to another web application. The implications for this are particularly interesting when considering a man-in-the-middle attacker.
 
 ## Cookie clobbering by a man in the middle attacker
 
-Suppose you are visiting legitbank.com over HTTPS. During your visit, you take a break to visit cutecatpictures.com over HTTP. A man-in-the-middle attacker may change the response from cutecatpicutres.com to include a request to legitbank.com over HTTP. The attacker can then change that response to overwrite a cookie for legitbank.com. This means that a man-in-the-middle attacker can overwrite cookies, even for HTTPS sites.
+Since the scheme is not taken into account for cookie access, an insecure HTTP domain can overwrite cookies that are intended for the secure HTTPS part of that same domain.  This even works for secure cookies. Insecure sites can overwrite secure cookies on the same domain. This makes it possible for a man-in-the-middle attacker to overwrite cookies, even when the user visits a secure HTTPS site.
 
-This even works for secure cookies. Insecure sites can overwrite secure cookies.
+Suppose you are visiting legitbank.com over HTTPS. During your visit, you take a break to visit cutecatpictures.com over HTTP. A man-in-the-middle attacker may change the response from cutecatpicutres.com to include a request to legitbank.com over HTTP. The attacker can then change that response to overwrite a cookie for legitbank.com.
 
 It does not work if legitbank.com has strict transport security with includeSubdomains on. The includeSubdomains flag is important, as subdomains can also set cookies for the parent domain. The attacker can use any subdomain, like something.legitbank.com, to set a cookie for legitbank.com.
 
 This is undetectable by the server, because the cookie properties are not sent to the server. The server can only see the key and the value of the cookie, not whether is has the secure flag or which domain it originated from.
+
+## Consequences
+
+So the attacker can not read the cookie, but he can overwrite it. This can be used in several ways:
+
+* The attacker can write a known value to the session ID. The client logs in and the attacker now has a working session. This works if the application is vulnerable to [session fixation](https://en.wikipedia.org/wiki/Session_fixation).
+* The attacker overwrites the session ID after log in. Alice thinks she is logged in as Alice, but she is actually logged in as the attacker.
+* The application checks the CSRF token in forms against a cookie. By overwriting that cookie, the attacker can perform CSRF requests.
 
 ## Making cookies more secure
 
