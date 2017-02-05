@@ -15,7 +15,7 @@ To implement this, the web application will check the `REMOTE_ADDR` value that t
 
 ## Proxies
 
-If the visitor is using a proxy, the `REMOTE_ADDR` field will contain the address of the proxy instead of the visitor. To be able to see the address of the visitor, many proxies add a header to the request with this address. This header is names `X-Forwarded-For` and contains the IP address of the client that connected to the proxy. The web application can now check the `X-Forwarded-For` header to determine the IP address of the client.
+If the visitor is using a proxy, the `REMOTE_ADDR` field will contain the address of the proxy instead of the visitor. To be able to see the address of the visitor, many proxies add a header to the request with this address. This header is named `X-Forwarded-For` and contains the IP address of the client that connected to the proxy. The web application can now check the `X-Forwarded-For` header to determine the IP address of the client.
 
 ## Bypassing the IP block
 
