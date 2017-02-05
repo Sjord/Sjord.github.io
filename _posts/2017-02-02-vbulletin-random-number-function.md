@@ -34,3 +34,23 @@ function vbrand($min = 0, $max = 0, $seed = -1)
 vbrand is used in fetch_random_password and in generateUserSecret
 
 
+On Cygwin:
+<?php
+include('functions.php');
+for ($i = 0; $i < 100; $i++) {
+    echo fetch_random_password(32) . "\n";
+    }
+    
+uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
+uuuuuuuuuuuuuujjjjjjjjjjjjjj6jjj
+jjjjjjjjjjjjjjjjjjjjjj6jjjjjjjjj
+jjjjjjjjjjjjjjjjjjjjjj6jjjjjjjjj
+jjjjjjjjjjjjjjjjjjjjjj6jjjjjjjjj
+jjjjjjjjjjjjjjjjjjjjjj6jjjjjjjjj
+jjjjjjjjjjjjjjjjjjjjjj6jjjjjjjjj
