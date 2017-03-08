@@ -43,19 +43,26 @@ There are a couple of function calls here:
 * [`microtime`](http://php.net/manual/en/function.microtime.php) returns the current time. The returned value has microsecond precision, but not microsecond accuracy. More on that later.
 * [`crc32`](http://php.net/manual/en/function.crc32.php) returns a 32-bit numeric hash of a string.
 
+## Using time as entropy is insecure
+
 So what this does it seed the random number generator with a checksum of the current time and then create a random number. The only input to this function is the current time, so the number totally depends on the time. This means that if we know the exact time, we can recreate the random number. 
 
 With web servers it is easy to know their approximate time, but it is a bit harder to know the precise time. There are many microseconds in a second and `vbrand` is called quite a few times to create a token. This means it is pretty hard to predict a whole token.
 
-On some platforms, `microtime()` does not have microsecond accuracy. On Cygwin, for example, it just has millisecond accuracy. This makes the random tokens vBulletin creates a lot less random.
+Still, if the attacker knows the approximate time he can brute-force this 32-byte token in something like 10<sup>15</sup> tries, where it would take 10<sup>77</sup> tries if the token were completely random. This is still unfeasible to do remotely, but clearly indicates that the security of the token is not what it is supposed to be.
+
+## Completely fails on Cygwin
+
+On some platforms, `microtime()` does not have microsecond accuracy. On Cygwin, for example, it just has millisecond accuracy. This makes the random tokens vBulletin creates a lot less random. Let's print 10 "random" passwords:
 
     <?php
     include('functions.php');
     for ($i = 0; $i < 10; $i++) {
         echo fetch_random_password(32) . "\n";
     }
+
+This outputs the following:
     
-    Outputs:
     uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
     uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
     uuuuuuuuuuuuuuuuuuuuuuuuuuuu8uuu
@@ -67,3 +74,8 @@ On some platforms, `microtime()` does not have microsecond accuracy. On Cygwin, 
     jjjjjjjjjjjjjjjjjjjjjj6jjjjjjjjj
     jjjjjjjjjjjjjjjjjjjjjj6jjjjjjjjj
 
+This doesn't look random at all. What happens is that `microtime` returns the same value every time it is called, and this results in the same character every time. That is, until a millisecond elapses and it switches to the next character. The reduced accuracy in `microtime` creates a reduced entropy in the password.
+
+## Conclusion
+
+Don't base your "randomness" on the output of microtime. Use [`random_int`](http://php.net/manual/en/function.random-int.php) and [`random_bytes`](http://php.net/manual/en/function.random-bytes.php), or [random_compat](https://github.com/paragonie/random_compat) if still on PHP 5.
