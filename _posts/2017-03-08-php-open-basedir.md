@@ -18,8 +18,8 @@ The files that PHP can access can be restricted with the `open_basedir` option. 
 
 This sets the `open_basedir` setting to the current directory and then tries to read the file `/etc/passwd`, which is outside of the `open_basedir`. This results in the following warnings:
 
-PHP Warning:  readfile(): open_basedir restriction in effect. File(/etc/passwd) is not within the allowed path(s): (/test) in test.php on line 3
-PHP Warning:  readfile(/etc/passwd): failed to open stream: Operation not permitted in test.php on line 3
+    Warning: readfile(): open_basedir restriction in effect. File(/etc/passwd) is not within the allowed path(s): (/test) in test.php on line 3
+    Warning: readfile(/etc/passwd): failed to open stream: Operation not permitted in test.php on line 3
 
 ## Checking files outside of the open_basedir
 
@@ -37,8 +37,16 @@ Almost all file access in PHP is checked against the `open_basedir` setting. One
 
 If the file passed as `local_cert` does not exist, the connection is set up and no warning is given. However, if the file does exist, the connection is aborted and the following warnings are emitted:
 
-PHP Warning:  fopen(): Unable to set local cert chain file `/etc/passwd'; Check that your cafile/capath settings include details of your certificate and its issuer in /home/sjoerd/dev/test/simplecheck.php on line 8
-PHP Warning:  fopen(): Failed to enable crypto in /home/sjoerd/dev/test/simplecheck.php on line 8
-PHP Warning:  fopen(https://www.google.com/): failed to open stream: operation failed in /home/sjoerd/dev/test/simplecheck.php on line 8
+    Warning: fopen(): Unable to set local cert chain file `/etc/passwd'; Check that your cafile/capath settings include details of your certificate and its issuer in check.php on line 8
+    Warning: fopen(): Failed to enable crypto in check.php on line 8
+    Warning: fopen(https://www.google.com/): failed to open stream: operation failed in check.php on line 8
 
-This difference in behavior makes it possible to check whether a file exists outside of the `open_basedir`.
+This difference in behavior makes it possible to check whether a file exists outside of the `open_basedir`. By checking the warnings or the HTTPS connection we can check whether the file exists.
+
+## Limited impact
+
+The `open_basedir` setting is not really meant for locking in users that can run arbitrary PHP code, but rather as an additional security measure for scripts that handle files. As such, bypassing it with the above example is not really a shocking security vulnerability.
+
+## Conclusion
+
+You can check whether files outside the `open_basedir` exist, but only if you can run arbitrary PHP code anyway.
