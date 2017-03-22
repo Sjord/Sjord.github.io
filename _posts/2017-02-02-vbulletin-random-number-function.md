@@ -5,7 +5,7 @@ thumbnail: bingo-wood-240.jpg
 date: 2017-03-29
 ---
 
-VBulletin is a web application where users can log in and post messages on message boards, written in PHP. Before PHP 7 came with [`random_int`](http://php.net/manual/en/function.random-int.php) and [`random_bytes`](http://php.net/manual/en/function.random-bytes.php) it was pretty hard to create a secure random number, and vBulletin uses a pretty bad way to solve that problem. In this post we look at the code and how it can fail to create a random number that is hard to guess.
+VBulletin is a message board web application written in PHP. Before PHP 7 came with [`random_int`](http://php.net/manual/en/function.random-int.php) and [`random_bytes`](http://php.net/manual/en/function.random-bytes.php) it was pretty hard to create a secure random number, and vBulletin uses a pretty bad way to solve that problem. In this post we look at the code and how it can fail to create a random number that is hard to guess.
 
 ## vBulletin's vbrand function
 
@@ -45,7 +45,7 @@ There are a couple of function calls here:
 
 ## Using time as entropy is insecure
 
-So what this does it seed the random number generator with a checksum of the current time and then create a random number. The only input to this function is the current time, so the number totally depends on the time. This means that if we know the exact time, we can recreate the random number. 
+What this does it seed the random number generator with a checksum of the current time and then create a random number. The only input to this function is the current time, so the number totally depends on the time. This means that if we know the exact time, we can recreate the random number. 
 
 With web servers it is easy to know their approximate time, but it is a bit harder to know the precise time. There are many microseconds in a second and `vbrand` is called quite a few times to create a token. This means it is pretty hard to predict a whole token.
 
