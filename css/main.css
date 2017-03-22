@@ -119,7 +119,8 @@ a:visited { color: #205caa; }
   margin-bottom: 15px;
 }
 
-.site-footer p {
+.site-footer p,
+.site-footer address {
   font-size: 15px;
   letter-spacing: -.3px;
   color: #828282;
