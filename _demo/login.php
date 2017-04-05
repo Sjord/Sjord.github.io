@@ -40,11 +40,30 @@
   </head>
   <body>
     <?php
+      function generate_crsf_token($time) {
+        $key = 'secret';
+        if (empty($time)) {
+          $time = time();
+        }
+        $mac = substr(hash_hmac("sha1", $time, $key), 0, 10);
+        return "$time:$mac";
+      }
+
+      function csrf_token_is_valid($token) {
+        list($time, $mac) = explode(':', $token);
+        return $time > (time() - 30) && $token === generate_crsf_token($time);
+      }
+
       if (isset($_POST['username']) && isset($_POST['password'])) {
-        echo '<aside role="alert">Invalid username or password</aside>';
+        if (csrf_token_is_valid($_POST['csrf_token'])) {
+          echo '<aside role="alert">Invalid username or password</aside>';
+        } else {
+          echo '<aside role="alert">Invalid CSRF token</aside>';
+        }
       }
     ?>
     <form method="POST">
+      <input type="hidden" name="csrf_token" value="<?php echo generate_crsf_token(); ?>">
       <label for="username">username</label>
       <input type="username" id="username" name="username" placeholder="username" required autocomplete="username" autofocus>
       <label for="password">password</label>
