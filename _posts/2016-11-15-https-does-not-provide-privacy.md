@@ -58,6 +58,7 @@ Even with HTTPS encrypted traffic, passive attackers can still determine which p
 
 ## Learn more
 
+* [Identifying HTTPS-Protected Netflix Videos in Real-Time](http://www.mjkranch.com/docs/CODASPY17_Kranch_Reed_IdentifyingHTTPSNetflix.pdf), 2017
 * [I Know Why You Went to the Clinic: Risks and Realization of HTTPS Traffic Analysis](https://arxiv.org/pdf/1403.0297v1.pdf), 2013
 * [Side-Channel Leaks in Web Applications: a Reality Today, a Challenge Tomorrow ](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/WebAppSideChannel-final.pdf), 2009
 * Video of the talk [Calm down, HTTPS is not a VPN](https://www.youtube.com/watch?v=6ZiJvlMeb-E) by Dirk Wetter.
