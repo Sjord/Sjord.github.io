@@ -44,7 +44,7 @@
   </head>
   <body>
     <?php
-      function generate_crsf_token($time) {
+      function generate_crsf_token($time=null) {
         $key = 'secret';
         if (empty($time)) {
           $time = time();
