@@ -51,6 +51,12 @@ a:visited { color: #205caa; }
   }
 }
 
+@media print {
+  .sidebar .icons {
+    display: none;
+  }
+}
+
 .sidebar .icons img {
   width: 36px;
   margin: 6px;
