@@ -46,3 +46,5 @@ GitHub has a search function that can search in code.
     LIMIT
       100
 
+
+* [Operation Rosehub](https://opensource.googleblog.com/2017/03/operation-rosehub.html)
