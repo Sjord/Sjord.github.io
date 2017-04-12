@@ -5,7 +5,7 @@ thumbnail: cipherdisk-240.jpg
 date: 2017-05-10
 ---
 
-When cracking passwords, sometimes you want to try passwords in a specific format. This post describes how you can generate a big list of passwords conforming to a specific pattern.
+When cracking passwords, it is sometimes useful to try specifically formatted passwords. This post describes how you can generate a big list of passwords conforming to a specific pattern.
 
 ## Cracking passwords with lists
 
@@ -15,12 +15,12 @@ Password cracking tools such as [hashcat](https://hashcat.net/hashcat/), [John t
 
 Hashcat has built-in support for [masks](https://hashcat.net/wiki/doku.php?id=mask_attack), but there is also a tool that converts a hashcat mask into a list: [maskprocessor](https://github.com/hashcat/maskprocessor). You can specify character sets, and use those character sets in a mask. You can specify up to four own your own character sets, and there are these built-in character sets:
 
-* ?l = abcdefghijklmnopqrstuvwxyz
-* ?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ
-* ?d = 0123456789
-* ?s =  !"#$%&'()*+,-./:;<=>?@[\]^_\`{\|}~
-* ?a = ?l?u?d?s
-* ?b = 0x00 - 0xff
+* `?l`, lowercase letters
+* `?u`, uppercase letters
+* `?d`, digits
+* `?s`, punctuation
+* `?a`, all printable ASCII characters
+* `?b`, all possible bytes
 
 It is possible to combine static text with masks. Consider the following command:
 
@@ -55,6 +55,12 @@ This outputs the following list:
     secret1
     secret2
     secret3
+
+Although regular expressions are actually meant for matching strings instead of generating strings, this method works great if you are already familiar with regular expressions. It allows you to quickly generate a list of passwords if you have some clue as to what they are. 
+
+For example, if you perform a pentest and get an account with the password `Spring2017`, you may want to use the following regex to create similar passwords:
+
+    (Spring|Winter|Autumn|Fall|Summer|Winter)(20)?1[4567]
 
 ## Conclusion
 
