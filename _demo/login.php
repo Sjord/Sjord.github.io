@@ -36,6 +36,10 @@
         padding: 1em;
         text-align: center;
       }
+      .loggedin, a {
+        color: white;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -54,9 +58,29 @@
         return $time > (time() - 30) && $token === generate_crsf_token($time);
       }
 
+      function credentials_are_valid($username, $password) {
+        $key = 'secret';
+        $check_length = 3;
+        if (empty($username) || empty($password)) {
+          return false;
+        }
+        if ($username === $password) {
+          return false;
+        }
+        $mac_u = substr(hash_hmac("sha1", $username, $key), 0, $check_length);
+        $mac_p = substr(hash_hmac("sha1", $password, $key), 0, $check_length);
+        return $mac_u === $mac_p;
+      }
+
       if (isset($_POST['username']) && isset($_POST['password'])) {
         if (csrf_token_is_valid($_POST['csrf_token'])) {
-          echo '<aside role="alert">Invalid username or password</aside>';
+          if (credentials_are_valid($_POST['username'], $_POST['password'])) {
+            printf('<div class="loggedin"><h1>Welcome, %s</h1>', $_POST['username']);
+            printf('<a href="%s">Logout</a></div>', basename(__FILE__));
+            echo "\n<!--\n";
+          } else {
+            echo '<aside role="alert">Invalid username or password</aside>';
+          }
         } else {
           echo '<aside role="alert">Invalid CSRF token</aside>';
         }
@@ -70,5 +94,6 @@
       <input type="password" id="password" name="password" placeholder="password" required autocomplete="current-password">
       <input type="submit" value="Log in">
     </form>
+    <!-- -->
   </body>
 </html>
