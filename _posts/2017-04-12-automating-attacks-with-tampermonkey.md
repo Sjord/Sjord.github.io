@@ -5,7 +5,7 @@ thumbnail: monkey-240.jpg
 date: 2017-05-24
 ---
 
-[Tampermonkey](https://tampermonkey.net/) and [Greasemonkey](http://www.greasespot.net/) are userscript managers that make it possible to add custom Javascript functionality to web pages. User scripts can be used to customize pages, or to automate web interactions. In this post we will try to use Tampermonkey to automate filling out a login form, to try to brute force credentials.
+[Tampermonkey](https://tampermonkey.net/) and [Greasemonkey](http://www.greasespot.net/) are userscript managers that make it possible to add custom Javascript functionality to web pages. User scripts can be used to customize pages, or to automate web interactions. In this post we will use Tampermonkey to automate filling out a login form, to try to brute force credentials.
 
 ## Submitting a form with Tampermonkey
 
