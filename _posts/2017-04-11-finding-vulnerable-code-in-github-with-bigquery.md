@@ -1,22 +1,29 @@
 ---
 layout: post
-title: "Finding vulnerable code in GitHub with Google BigQuery"
+title: "Finding vulnerable code on GitHub with Google BigQuery"
 thumbnail: chairs-240.jpg
 date: 2017-06-07
 ---
 
-Some vulnerabilities are easy to spot in code. Searching code of multiple projects can reveal vulnerabilities or help to understand vulnerabilities by providing examples. This post describes how to use Google BigQuery to search for vulnerabilities in GitHub.
-
-## Searching vulnerabilities
-
-
+Some vulnerabilities are easy to spot in code. Searching code of multiple projects can reveal vulnerabilities or help to understand them by providing examples. This post describes how to use Google BigQuery to search for vulnerabilities in GitHub.
 
 ## GitHub search
 
-GitHub has a search function that can search in code. 
+There are many web applications that publish their source code on the Internet, and many of them contain vulnerabilities. Some vulnerabilities are easier to find in the code than others, but even if you have a effective search string it may be hard to locate projects that contain that query. Furthermore, GitHub has a big number of example, discontinued or personal projects. We are interested in vulnerabilities in commonly used, well-known projects.
 
+The normal GitHub search is not sufficient for this. In [an earlier blog post](https://www.sjoerdlangkemper.nl/2017/03/15/dont-use-base-convert-on-random-tokens/) I described that using the PHP function `base_convert` on secret tokens reduces their security. Let's search for `base_convert` in PHP projects to find those vulnerabilities:
+
+![GitHub search results for base_convert](/images/github-search-results.png "GitHub search results for base_convert")
+
+These matches are obviously test scripts to demonstrate the usage of `base_convert`, not vulnerabilities in web applications. GitHub search gives too many useless results to find vulnerabilities like this.
+
+## GitHub API
+
+We can also use the GitHub API to do our own search. For example, we can loop through the search results and only select the repositories with more than 20 stars. I made [a script](https://github.com/Sjord/githubsearch) that does this. However, because it processes each search result it is pretty slow and often triggers GitHub's rate limits. This option does not work very well, but can be fully customized.
 
 ## Google BigQuery
+
+[Google BigQuery](https://cloud.google.com/bigquery/) lets you run SQL queries on big data sets. It has several public data sets, one of which is [GitHub data](https://cloud.google.com/bigquery/public-data/github). This means that we can perform SQL queries on GitHub data. For example, if we want to search for `base_convert` in PHP projects, and get the top 10 results on watch count, we can use the following query:
 
     SELECT
       repos.repo_name
@@ -38,13 +45,23 @@ GitHub has a search function that can search in code.
       languages.language.name = 'PHP'
       AND NOT contents.binary
       AND contents.content CONTAINS 'base_convert('
-      AND repos.watch_count > 10
     GROUP BY
       repos.repo_name, repos.watch_count
     ORDER BY
       repos.watch_count DESC
     LIMIT
-      100
+      10
+
+This query takes approximately 30 seconds to run and produces a list of repositories, of which at least one has incorrect use of `base_convert`: [WellCommerce](https://github.com/WellCommerce/WellCommerce) uses it in its password reset token:
+
+    public function resetPassword(Client $client)
+    {
+        $hash = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36) . $client->getId();
+        $client->getClientDetails()->setResetPasswordHash($hash);
+        $client->getClientDetails()->setHashedPassword($this->getSecurityHelper()->generateRandomPassword());
+        $this->updateResource($client);
+    }
+
 
 
 * [Operation Rosehub](https://opensource.googleblog.com/2017/03/operation-rosehub.html)
