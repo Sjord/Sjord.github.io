@@ -78,9 +78,9 @@ Chrome tried to correctly handle the `meta` tag for `X-Frame-Options`, but subse
 
 |                 | IE / Edge | Firefox | Chrome | Safari | Opera |
 |----------------:|:---------:|:-------:|:------:|:------:|:-----:|
-| X-Frame-Options |    8.0    |  1.9.2  |   4.0  |   4.0  | 10.50 |
-|      ALLOW-FROM |    9.0    |    18   |        |        |       |
-| frame-ancestors |           |         |   45   |   10   |   38  |
+| X-Frame-Options |    8.0    |  3.6.9  |   4.0  |   4.0  | 10.50 |
+|      ALLOW-FROM |    8.0    |    18   |        |        |       |
+| frame-ancestors |    15     |    36   |   40   |   10   |   27  |
 
 ## Conclusion
 
