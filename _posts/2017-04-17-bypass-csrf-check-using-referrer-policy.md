@@ -9,7 +9,7 @@ The referer header is sometimes used as CSRF protection. This post describes a m
 
 ## Checking for CSRF with the referer header
 
-The `Referer` HTTP header contains the URL of the previous page. If you click on a link on this page, a GET request is done with the URL of this page as the value for the referer header. This is useful to see where the traffic to your site comes from, but can also be used to prevent CSRF. Cross site requests forgery consists of requests that, by definition, come from another site. By blocking any request that has another domain in the referer header, you can block forged requests.
+The `Referer` HTTP header contains the URL of the previous page. If you click on a link on this page, a GET request is done with the URL of this page as the value for the referer header. This is useful to see where the traffic to your site comes from, but can also be used to prevent CSRF. Cross site request forgery consists of requests that, by definition, come from another site. By blocking any request that has another domain in the referer header, you can block forged requests.
 
 The advantage of this is that you don't need to keep state on the server, like with most CSRF tokens. The disadvantage is that the referer header is not exactly mandatory, so some clients may not send a referer header at all. This means that web applications that check the CSRF need to have a policy as to what to do with requests that have no referer header, block them or allow them?
 
@@ -25,7 +25,7 @@ All that is needed is the following HTML on the page:
 
 This will remove the referer header from any outgoing request. This is [supported](http://caniuse.com/#feat=referrer-policy) in all modern browsers.
 
-Referrer policy has no impact on the [`Origin` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin), that is similar to the referer header.
+Referrer policy has no impact on the [`Origin` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin), which is similar to the referer header.
 
 ## Conclusion
 
