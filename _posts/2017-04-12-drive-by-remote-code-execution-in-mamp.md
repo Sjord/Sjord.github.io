@@ -9,7 +9,8 @@ MAMP is an Apache, MySQL, and PHP stack for Mac OS X. It comes with SQLiteManage
 
 ## MAMP
 
-MAMP is a web stack that can be installed on Mac OS X. It installs the Apache web server that runs on port 8888 by default. Also included are some database management programs, such as phpMyAdmin and SQLiteManager.
+MAMP is a web stack that can be installed on Mac OS X. It is typically used by web developers to test the web applications they are working on.
+It installs the Apache web server, which runs on port 8888 by default. Also included are some database management programs, such as phpMyAdmin and SQLiteManager.
 
 ## SQLiteManager
 
@@ -29,7 +30,9 @@ We can also use this to get a file containing PHP code in the web root. By suppl
 
 ### CSRF
 
-SQLiteManager does not have any CSRF protection, so the steps mentioned above can also be executed using CSRF. We can issue POST requests using Javascript to create the database and add data to it, and then issue a request to the resulting file. This makes it possible to run code on a victim that has MAMP installed and enabled when the victim visits a malicious site.
+The SQLiteManager running on localhost cannot be accessed directly by an attacker. However, the attacker can "forge" requests if he can run Javascript in the browser. If you visit the attacker's web site he can perform the requests from within the browser, on the same computer that MAMP is installed on. These requests *can* access the SQLiteManager running on localhost. This method of bouncing requests through the victims browser is called cross site request forgery, or CSRF.
+
+SQLiteManager does not have any CSRF protection, so the directory traversal mentioned above can also be executed using CSRF. We can issue POST requests using Javascript to create the database and add data to it, and then issue a request to the resulting file. This makes it possible to run code on a victim that has MAMP installed and enabled when the victim visits a malicious site.
 
 For example, the following Javascript issues a request that creates a database:
 
@@ -69,6 +72,6 @@ When we trigger a request to the file, the execution of the `osascript` command 
 
 By combining CSRF and directory traversal we can trigger remote code execution, if the victim just visits a web site with malicious Javascript. 
 
-An immediate solution to this would be to disable SQLiteManager. MAMP users can do this themselves by editing `/Applications/MAMP/conf/apache/httpd.conf`. Unless someone takes over the maintenance for SQLiteManager, it is unlikely that the vulnerabilities get fixed.
+An immediate solution to this would be to disable SQLiteManager. MAMP users can do this themselves by editing `/Applications/MAMP/conf/apache/httpd.conf`. Unless someone takes over the maintenance for SQLiteManager, it is unlikely that the vulnerabilities get fixed. MAMP already has an alternative manager for SQLite available: [phpLiteAdmin](https://www.phpliteadmin.org/).
 
 A broader solution is to disallow requests from the public Internet to private RFC1918 IP addresses. There is currently [a proposal](https://wicg.github.io/cors-rfc1918/) to refuse such requests by default, and to create a new CORS headers to explicitly allow it.
