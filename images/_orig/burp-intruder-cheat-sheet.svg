@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="504.54499"
-     inkscape:cy="630.18739"
+     inkscape:zoom="1.4"
+     inkscape:cx="511.81224"
+     inkscape:cy="244.60791"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -67,13 +67,13 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="229.21541"
-       y="303.56635"
+       y="303.56631"
        id="text4140"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4142"
          x="229.21541"
-         y="303.56635">Battering ram</tspan></text>
+         y="303.56631">Battering ram</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -88,13 +88,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="221.6938"
+       x="230.26521"
        y="834.20709"
        id="text4148"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4150"
-         x="221.6938"
+         x="230.26521"
          y="834.20709">Cluster bomb</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -2141,70 +2141,93 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="229.47511"
+       x="230.44221"
        y="63.433636"
        id="text9879"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan9881"
-         x="229.47511"
+         x="230.44221"
          y="63.433636"
          style="font-size:12.5px">Replaces one position at a time</tspan><tspan
          sodipodi:role="line"
-         x="229.47511"
-         y="79.058632"
+         x="230.44221"
+         y="79.05864"
          style="font-size:12.5px"
          id="tspan9883" /></text>
     <text
        sodipodi:linespacing="125%"
        id="text9885"
-       y="341.2908"
-       x="229.47511"
+       y="328.69553"
+       x="230.44221"
        style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:12.5px"
-         y="341.2908"
-         x="229.47511"
+         y="328.69553"
+         x="230.44221"
          id="tspan9887"
-         sodipodi:role="line">Replaces one position at a time</tspan><tspan
+         sodipodi:role="line">Places one payload in all positions</tspan><tspan
          id="tspan9889"
          style="font-size:12.5px"
-         y="356.9158"
-         x="229.47511"
+         y="344.32053"
+         x="230.44221"
          sodipodi:role="line" /></text>
-    <text
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4547"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:25px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion4549"><rect
+           id="rect4551"
+           width="199.28571"
+           height="123.57143"
+           x="231.42857"
+           y="603.79077" /></flowRegion><flowPara
+         id="flowPara4553"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4555"
+       style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(-3.5714286,-26.428571)"><flowRegion
+         id="flowRegion4557"><rect
+           id="rect4559"
+           width="191.42857"
+           height="121.42859"
+           x="234.28571"
+           y="608.07648" /></flowRegion><flowPara
+         id="flowPara4561"
+         style="font-size:12.5px">Uses a value from each payload set for each corresponding position.</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4563"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:25px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion4565"><rect
+           id="rect4567"
+           width="192.85715"
+           height="72.14286"
+           x="232.85715"
+           y="878.07648" /></flowRegion><flowPara
+         id="flowPara4569"></flowPara></flowRoot>    <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="229.87794"
-       y="596.29077"
-       id="text9891"
+       x="377.14285"
+       y="923.07648"
+       id="text4571"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan9893"
-         x="229.87794"
-         y="596.29077"
-         style="font-size:12.5px">Syncs payload sets</tspan><tspan
-         sodipodi:role="line"
-         x="229.87794"
-         y="611.91577"
-         style="font-size:12.5px"
-         id="tspan9895" /></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text9901"
-       y="874.14789"
-       x="230.00002"
+         id="tspan4573"
+         x="377.14285"
+         y="923.07648"></tspan></text>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
+       id="flowRoot4577"
+       xml:space="preserve"
+       transform="translate(-2.8571429,238.57143)"><flowRegion
+         id="flowRegion4579"><rect
+           y="608.07648"
+           x="234.28571"
+           height="120.7143"
+           width="194.28572"
+           id="rect4581" /></flowRegion><flowPara
          style="font-size:12.5px"
-         y="874.14789"
-         x="230.00002"
-         id="tspan9903"
-         sodipodi:role="line">Combinates payload sets</tspan><tspan
-         id="tspan9905"
+         id="flowPara4583">Tries all possible combinations of payload values.</flowPara><flowPara
          style="font-size:12.5px"
-         y="889.77289"
-         x="230.00002"
-         sodipodi:role="line" /></text>
-  </g>
+         id="flowPara4593" /></flowRoot>  </g>
 </svg>
