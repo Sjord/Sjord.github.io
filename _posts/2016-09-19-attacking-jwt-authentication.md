@@ -77,6 +77,8 @@ There are several tools that can brute force the HS256 signature on a JWT:
 * [This Python script](https://github.com/Sjord/jwtcrack/blob/master/crackjwt.py) I wrote that uses [PyJWT](https://github.com/jpadilla/pyjwt) to do the decoding.
 * [Convert the JWT](https://github.com/Sjord/jwtcrack/blob/master/jwt2john.py) to a format that [John the Ripper](https://github.com/magnumripper/JohnTheRipper) supports.
 
+**Update:** [John the Ripper](https://github.com/magnumripper/JohnTheRipper) now supports the JWT format, so converting the token is no longer necessary. John has a size limit on the data it will take. If you run into this limit, consider changing [`SALT_LIMBS` in the source code](https://github.com/magnumripper/JohnTheRipper/blob/bleeding-jumbo/src/hmacSHA256_fmt_plug.c#L64).
+
 **Try it:** Obtain a JWT from the [HS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/hs256.php). Use one of the above tools to crack the secret. Then, create your own token and sign it with the discovered secret key.
 
 ## Conclusion
