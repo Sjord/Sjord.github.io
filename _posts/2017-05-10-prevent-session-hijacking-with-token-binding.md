@@ -5,46 +5,54 @@ thumbnail: coupling-240.jpg
 date: 2017-07-05
 ---
 
-## Session hijacking
+In web applications, anyone that has possession of the session token has access to the session. Token binding introduces a cryptographic token where this is no longer the case, thus making it harder to hijack sessions by obtaining the session identifier.
 
-Token binding makes it harder to take over a session by stealing the session identifier.
+## Session hijacking
 
 When you log in to a web application, you normally get a cookie with a session identifier. This random token identifies to the server that subsequent requests come from you. The server remembers you are logged in, and grants requests with that token access to your resources. Since this token is the only thing that distinguishes your requests from all other requests, anyone who has this token can impersonate you. If the session identifier is compromised, someone else can take over your session.
 
-The session identifier is known both in the browser and on the server, and is sent with every request. This is a big attack surface. Token binding aims to reduce this attack surface.
+The session identifier is known both in the browser and on the server, and is sent with every request. This is a big attack surface.
 
-## Token binding
+## Using a key pair as token
 
-Token binding makes session hijacking harder by basing the token of a private key. The client generates a public/private key pair for every site that it wants to use token binding on. When it connects to the server it signs something and sends this signature along with the public key to the server. The server verifies the signature against the public key. This way, the server knows that this client is is possession of the private key.
+Token binding makes session hijacking harder by basing the token on a private key. The client generates a public/private key pair for every site that it wants to use token binding on. When it connects to the server it signs something and sends this signature along with the public key to the server. The server verifies the signature against the public key. This way, the server knows that this client is in possession of the private key.
 
 After this verification step, the public key is passed to the application. This public key uniquely identifies the client, just as a session cookie would. However, it is no longer possible to simply steal the identifier and impersonate someone. The private key is kept secret and the identifier is checked against it, so without access to the private key it is not possible to hijack a session identifier.
 
+Even if an attacker intercepts the signature, he can't use this in another connection. The signature is over the public key and the keying material of the current TLS connection. When a new TLS connection is created, a new signature is needed. This means that if the attacker intercepts the signature, he can't reuse it in a new connection to the server.
+
 ## Using token binding
 
-To use token binding you need a supporting client and server. Currently Edge and [Chrome](https://www.chromestatus.com/feature/5097603234529280) support token binding. Both [Apache](https://github.com/zmartzone/mod_token_binding) and [Nginx](https://github.com/google/ngx_token_binding) have token binding modules. If the connection successfully negiotiated token binding, an extra header is sent with each request: Sec-Token-Binding. The value for this header contains a public key and a signature. The server module checks the signature and passes the public key to the application layer.
+To use token binding you need a supporting client and server. Currently Edge and [Chrome](https://www.chromestatus.com/feature/5097603234529280) support token binding. Both [Apache](https://github.com/zmartzone/mod_token_binding) and [Nginx](https://github.com/google/ngx_token_binding) have token binding modules. If the connection successfully negotiated token binding, an extra header is sent with each request: Sec-Token-Binding. The value for this header contains a public key and a signature. The server module checks the signature and passes the public key to the application layer.
 
-In the application, it is of no use to check the Sec-Token-Binding header, since any client can set this. Instead, check the value that has been passed by the server module. For example, the Apache module sets an environment variable Token-Binding-ID-Provided. This variable is only set if the signature is correct. It contains information on the public key, but that is not really important for the application. The application can handle it as being the opaque identifier for this client.
-
-## Cryptographic protection
-
-The Sec-Token-Binding header contains the public key and a signature of some data including the currently used TLS variables. By including the keying material of the TLS connection in the signature, a replay attack is prevented. The signature only works on the current TLS connection.
+In the application, it is of no use to check the Sec-Token-Binding header, since any client can set this. Instead, check the value that has been passed by the server module. For example, the Apache module sets an environment variable `Token-Binding-ID-Provided`. This variable is only set if the signature is correct. It contains information on the public key, but that is not really important for the application. The application can handle it as being the opaque identifier for this client.
 
 ## Offered protection
 
-* Token binding doesn't protect against a permanent MitM, and works poorly with an intermittent intentional MitM.
+If someone steals the private key, he can impersonate a user. The improved security is because the private key is easier to protect than a cookie, since it is not sent over the wire. It can not be obtained with an XSS attack or by impersonating the server.
+
+Token binding somewhat protects against a man-in-the-middle attack. If the user visited the application once without a man-in-the-middle on the connection, the application knows the user's token. This token changes or disappears as soon as there is a man-in-the-middle. However, it is generally not detected if the man-in-the-middle is present even on the first visit.
+
+If a company man-in-the-middles all their employees, as is sometimes done, it is still possible to use token binding. However, if an employee takes their laptop home to a network without a man-in-the-middle attacker, the token will change and the user will be logged out. Token binding doesn't work well with intermittent man-in-the-middle attacks.
 
 ## Privacy and DRM
 
-* Private keys stored in hardware makes DRM possible.
+Now we can cryptographically identify clients. This improves session security, but also makes it possible to track users and even implement DRM. It is possible to put the private key used in the token binding on a TPM, from where it can't be extracted. If a service then uses token binding based on that key, it is only possible to access the service using that device. This restricts the user to use the service with specific devices, which is viewed by some to be overly restrictive. To prevent this, Chrome only implements keys that can be copied to other devices:
+
+> Even though some implementors may wish to make Token Binding keys non-extractable by backing them with hardware, Chrome has chosen to only provide software-backed keys. This decision, along with the fact that the spec doesn’t provide any attestation mechanism, should lessen any concerns about using Token Binding for DRM.
 
 ## Federation support
 
+OpenId connect is an example of a federated login protocol: logging in on one application gives access to another application. 
 
 
-* Bearer tokens, possession
-* Token binding is an evolution of channel ID.
 
-Read more:
+
+* Binding sessions to tokens
+
+## Read more
+
 * [Update Fetch to support Token Binding](https://github.com/whatwg/fetch/pull/325)
 * [Token Binding over HTTP](https://datatracker.ietf.org/doc/draft-ietf-tokbind-https/)
 * [Introducing Token Binding](https://docs.microsoft.com/en-us/windows-server/security/token-binding/introducing-token-binding)
+* [Token Binding concerns and mitigations](https://docs.google.com/document/d/11lZGt584NbaJKGPVg080UjHv0DzanlyKgfsRp933AwA/edit)
