@@ -84,3 +84,5 @@ There are several tools that can brute force the HS256 signature on a JWT:
 ## Conclusion
 
 As with many things JWT is fundamentally secure, but some implementations are not. The application may store sensitive information in the JWT, allow changing the signing algorithm, or have a insufficiently strong key used in the signature.
+
+The source for the demo pages can be found on [GitHub](https://github.com/Sjord/jwtdemo/).
