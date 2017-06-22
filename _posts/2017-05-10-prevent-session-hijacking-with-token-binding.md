@@ -43,12 +43,19 @@ Now we can cryptographically identify clients. This improves session security, b
 
 ## Federation support
 
-OpenId connect is an example of a federated login protocol: logging in on one application gives access to another application. 
+OpenId connect is an example of a federated login protocol: logging in on one application gives access to another application. After you log in on the identity provider, it passes some signed data to the relying party that identifies you as a logged-in user. If you want to make use of token binding, this signed data should also contain information on the token binding token. Since the identity provider should put the token of the relying party in the signed data, there has to be some way to pass the token of the relying party to the identity provider. And there is.
+
+When the relying party redirects to the login page on the identity provider, it sends the `Include-Referred-Token-Binding-ID` response header. This triggers the browser to sent the relying party token to the identity provider.
+
+
+
+## Conclusion
 
 
 
 
 * Binding sessions to tokens
+* Token Binding ID
 
 ## Read more
 
