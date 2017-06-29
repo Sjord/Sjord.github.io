@@ -21,6 +21,8 @@ After this verification step, the public key is passed to the application. This 
 
 Even if an attacker intercepts the signature, he can't use this in another connection. The signature is over the public key and the keying material of the current TLS connection. When a new TLS connection is created, a new signature is needed. This means that if the attacker intercepts the signature, he can't reuse it in a new connection to the server.
 
+<img src="/images/token-binding.svg" class="fullwidth">
+
 ## Using token binding
 
 To use token binding you need a supporting client and server. Currently Edge and [Chrome](https://www.chromestatus.com/feature/5097603234529280) support token binding. Both [Apache](https://github.com/zmartzone/mod_token_binding) and [Nginx](https://github.com/google/ngx_token_binding) have token binding modules. If the connection successfully negotiated token binding, an extra header is sent with each request: Sec-Token-Binding. The value for this header contains a public key and a signature. The server module checks the signature and passes the public key to the application layer.
@@ -55,7 +57,14 @@ Token binding improves client authentication compared to bearer tokens. A privat
 
 ## Read more
 
-* [Update Fetch to support Token Binding](https://github.com/whatwg/fetch/pull/325)
+Specifications:
+
+* [TLS Extension for Token Binding Protocol Negotiation](https://datatracker.ietf.org/doc/draft-ietf-tokbind-negotiation/)
+* [The Token Binding Protocol Version 1.0](https://datatracker.ietf.org/doc/draft-ietf-tokbind-protocol/)
 * [Token Binding over HTTP](https://datatracker.ietf.org/doc/draft-ietf-tokbind-https/)
-* [Introducing Token Binding](https://docs.microsoft.com/en-us/windows-server/security/token-binding/introducing-token-binding)
+
+Other:
+
+* [Update Fetch to support Token Binding](https://github.com/whatwg/fetch/pull/325)
+* [Introducing Token Binding (on Windows)](https://docs.microsoft.com/en-us/windows-server/security/token-binding/introducing-token-binding)
 * [Token Binding concerns and mitigations](https://docs.google.com/document/d/11lZGt584NbaJKGPVg080UjHv0DzanlyKgfsRp933AwA/edit)
