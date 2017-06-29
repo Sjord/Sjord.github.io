@@ -23,13 +23,13 @@ This example shows that it can be dangerous to trust the contents of the host he
 
 ## DNS rebinding attack
 
-Websites can't read each other's data, because of the same origin policy. A site on domain attacker.com can trigger requests to bank.com, but not read the responses. Much of the security of the web is based on this same origin policy. However, it can be bypassed by temporarily directing the attacker.com domain to the bank.com IP address. This DNS rebinding attack works as follows:
+Websites can't read each other's data, because of the same origin policy. A site on domain attacker.com can trigger requests to example.com, but not read the responses. Much of the security of the web is based on this same origin policy. However, it can be bypassed by temporarily directing the attacker.com domain to the example.com IP address. This DNS rebinding attack works as follows:
 
-* The victim visits attacker.com. The DNS record for attacker.com points to the IP address of attacker.com, but with a short TTL timeout. The page is loaded in the browser of the client.
-* The attacker quickly changes his DNS record to point to the site under attack, bank.com.
-* The page in the browser does a request to attacker.com, which now points to bank.com.
+* The victim visits attacker.com. The DNS record for attacker.com points to the IP address of attacker.com, but with a short TTL timeout. The attacker's page is loaded in the browser of the client.
+* The attacker quickly changes his DNS record to point to the site under attack, example.com.
+* The page in the browser does a request to attacker.com, which now points to example.com.
 
-This way, the page on attacker.com can perform a request to the bank.com IP address and read the response. Note that the cookies for bank.com are not sent with the request, as the browser still thinks it is talking to attacker.com. This type of CSRF is effective on hosts behind firewalls, where the client has access and the attacker has not.
+This way, the page on attacker.com can perform a request to the example.com IP address and read the response. Note that the cookies for example.com are not sent with the request, as the browser still thinks it is talking to attacker.com. This type of CSRF is effective on hosts behind firewalls, where the client has access and the attacker has not.
 
 Strict implementation of HTTPS would prevent this type of attack, since the domain name of the certificate will not match. 
 
