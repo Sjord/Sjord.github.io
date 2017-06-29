@@ -25,15 +25,15 @@ Even if an attacker intercepts the signature, he can't use this in another conne
 
 ## Using token binding
 
-To use token binding you need a supporting client and server. Currently Edge and [Chrome](https://www.chromestatus.com/feature/5097603234529280) support token binding. Both [Apache](https://github.com/zmartzone/mod_token_binding) and [Nginx](https://github.com/google/ngx_token_binding) have token binding modules. If the connection successfully negotiated token binding, an extra header is sent with each request: Sec-Token-Binding. The value for this header contains a public key and a signature. The server module checks the signature and passes the public key to the application layer.
+To use token binding you need a supporting client and server. Currently Edge and [Chrome](https://www.chromestatus.com/feature/5097603234529280) support token binding. Both [Apache](https://github.com/zmartzone/mod_token_binding) and [Nginx](https://github.com/google/ngx_token_binding) have token binding modules. When the client sets up a TLS connection to the server it can negotiate the use of token binding. If this succeeds, an extra header is sent with each HTTP request: Sec-Token-Binding. The value for this header contains a public key and a signature. The server module checks the signature and passes the public key to the application layer.
 
 In the application, it is of no use to check the Sec-Token-Binding header, since any client can set this. Instead, check the value that has been passed by the server module. For example, the Apache module sets an environment variable `Token-Binding-ID-Provided`. This variable is only set if the signature is correct. It contains information on the public key, but that is not really important for the application. The application can handle it as being the opaque identifier for this client.
 
-The most straightforward way to use this in an application is to store the token binding identifier in the session when authenticating, and check it in each subsequent request. This way, the session is only accessible by the client in possession of the private key.
+The most straightforward way to use this in an application is to store the token binding identifier in the session when authenticating, and check it in each subsequent request. This way, the session is only accessible by the client that is in possession of the private key.
 
 ## Offered protection
 
-If someone steals the private key, he can impersonate a user. The improved security token binding offers is because the private key is easier to protect than a cookie, since it is not sent over the wire. It can not be obtained with an XSS attack or by impersonating the server.
+If someone steals the private key, he can impersonate a user. The improved security token binding offers is because the private key is easier to protect than a cookie, since it is not sent over the wire. It can't be obtained with an XSS attack or by impersonating the server.
 
 Token binding somewhat protects against a man-in-the-middle attack. If the user visited the application once without a man-in-the-middle on the connection, the application knows the user's identifier. This identifier changes or disappears as soon as there is a man-in-the-middle. However, it is generally not detected if the man-in-the-middle is present even on the first visit.
 
@@ -47,7 +47,7 @@ With token binding it is possible to cryptographically identify clients. This im
 
 ## Federation support
 
-OpenId connect is an example of a federated login protocol: logging in on one application gives access to another application. After you log in on the identity provider, it passes some signed data to the relying party that identifies you as a logged-in user. If you want to make use of token binding, this signed data should also contain information on the token binding identifier. Since the identity provider should put the identifier of the relying party in the signed data, there has to be some way to pass the identifier of the relying party to the identity provider. And there is.
+OpenId Connect is an example of a federated login protocol: logging in on one application gives access to another application. After you log in on the identity provider, it passes some signed data to the relying party that identifies you as a logged-in user. If you want to make use of token binding, this signed data should also contain information on the token binding identifier. Since the identity provider should put the identifier of the relying party in the signed data, there has to be some way to pass the identifier of the relying party to the identity provider. And there is.
 
 When the relying party redirects to the login page on the identity provider, it sends the `Include-Referred-Token-Binding-ID` response header. This triggers the browser to send the relying party token to the identity provider.
 
