@@ -47,3 +47,28 @@ Here is an example to call [lstrcmp](https://msdn.microsoft.com/en-us/library/wi
     var isEqual = lstrcmp(b1, b2) == 0;
 
 This may be the easiest way to compare two BSTR instances, and thus two SecureString instances.
+
+## Time-safe comparing SecureStrings
+
+The problem with lstrcmp is that the time it runs depends on how equal the two strings are. It first compares the first character of the two strings; if those are equal it compares the second character, and so on. The more characters match the longer it takes. In certain cases, this makes it possible for an attacker to guess the secret one character at a time, by measuring the time it takes to compare the two strings. To prevent this, we want the comparison function to take the same amount of time, no matter how much of both strings are equal.
+
+Unfortunately there is no constant-time string comparison function on Windows, so we have to make our own. A typical time-safe comparison uses XOR on each character pair.
+
+    static bool IsEqual(IntPtr bstr1, IntPtr bstr2)
+    {
+        var length1 = Marshal.ReadInt32(bstr1, -4);
+        var length2 = Marshal.ReadInt32(bstr2, -4);
+
+        if (length1 != length2) return false;
+
+        var equal = 0;
+        for (var i = 0; i < length1; i++)
+        {
+            var c1 = Marshal.ReadByte(bstr1 + i);
+            var c2 = Marshal.ReadByte(bstr2 + i);
+            equal |= c1 ^ c2;
+        }
+        return equal == 0;
+    }
+
+As you can see we first read the length of each string, which is four bytes before our BSTR pointer. Then if the lengths are equal we process every character pair. The XOR of the two pairs is only zero if they are equal, so the `equal` variable will only stay zero if all characters are equal. At no point do we break out of the loop, so the contents of the strings do not influence the time it takes to run this code.
