@@ -1,14 +1,25 @@
 ---
 layout: post
-title: "Modifying HTTP requests with Tamper Chrome"
+title: "Hacking from within the browser with Tamper Chrome"
 thumbnail: chrome-unresponsive-240.png
 date: 2017-08-30
 ---
 
+Tamper Chrome is an extension for Chrome that makes it possible to modify HTTP requests in order to pentest web applications.
 
-To hack a web application you need to send all kinds of HTTP requests to it. There are several tools available to intercept and tamper with HTTP requests. Two of the most popular such tools, Burp and ZAP, are intercepting proxies. You configure the browser to connect to the intercepting proxy, and there you can view and modify requests. Tamper Chrome, in contrast, is implemented as a browser plugin and works from within the browser. This is another method of implementing functionality to tamper with HTTP requests, that has some interesting consequences.
+## Introduction
 
-To install Tamper Chrome you need to install both an [extension](https://chrome.google.com/webstore/detail/tamper-chrome-extension/hifhgpdkfodlpnlmlnmhchnkepplebkb) and an [application](https://chrome.google.com/webstore/detail/tamper-chrome-application/odldmflbckacdofpepkdkmkccgdfaemb). Installation can be done in seconds, although it is a little bit cumbersome that two things need to be installed.
+To hack a web application you need to send all kinds of HTTP requests to it. There are several tools available to intercept and tamper with HTTP requests. Most of these tools, such as Burp and ZAP, are intercepting proxies. You configure the browser to connect to the intercepting proxy, and there you can view and modify requests. Tamper Chrome, in contrast, is implemented as a browser plugin and works from within the browser. This is another method of implementing functionality to tamper with HTTP requests, that has some interesting consequences.
+
+## Pentesting from the browser
+
+Pentesting from within Chrome has its advantages. First, it is possible to run it in ChromeOS, so you can pentest from a Chromebook. Secondly, Tamper Chrome can be enabled per tab, so there is no need to have a separate browser for testing and normal browsing. There is also no need to configure proxy settings.
+
+The browser is the obvious place to run a pentesting tool. It already runs the application to be tested. It already provides information on network requests, cookies, local storage, and JavaScript. The browser can become a pentesting IDE instead of just a client to the web application.
+
+## Using Tamper Chrome 
+
+To install Tamper Chrome you need to install both an [extension](https://chrome.google.com/webstore/detail/tamper-chrome-extension/hifhgpdkfodlpnlmlnmhchnkepplebkb) and an [application](https://chrome.google.com/webstore/detail/tamper-chrome-application/odldmflbckacdofpepkdkmkccgdfaemb). Installation can be done in seconds, although it is a bit cumbersome that two things need to be installed.
 
 After installation, Tamper Chrome adds a tab to the developer tools. In this tab, it offers several tools that can be enabled separately:
 
@@ -21,30 +32,28 @@ After installation, Tamper Chrome adds a tab to the developer tools. In this tab
 
 Several of these tools make it possible to intercept and tamper requests, but there are some tools that particularly make use of the close integration with the browser.
 
-
 ## Monitor Reflected XSS
 
-<img src="/images/tamperchrome-xss-detected.png">
+The tool to monitor for XSS shows something in the console very time a `<tcxss>` tag or attribute is found. This makes it easy to test for XSS. Simply insert `<tcxss>` in every input field and watch the console it this resulted in XSS. This also works with DOM XSS, where the element is created by JavaScript. In that case, the stack trace of the JavaScript that inserted the element is also shown in the console.
+
+<img src="/images/tamperchrome-xss-detected.png" alt="Tamper Chrome shows that XSS is present on this page">
 
 ## Monitor PostMessages
 
+With the [postMessage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) two sites can communicate cross-origin. Posting a message to another window, usually an iframe, triggers an event listener in the JavaScript of the receiver. This interface is largely ignored by intercepting proxies, since it doesn't result in a HTTP request. However, it can result in security issues since it makes it possible to perform actions within the context of the receiving site.
 
-> I think Tamper Chrome is similar to Burp and ZAP. The reason I made Tamper Chrome originally was to be able to work (I work in Google's Security Team) from my Chromebook. However, I now a days use Tamper Chrome from my Linux workstation too, mostly because I personally find it more convenient than Burp since it can be enabled per-tab. Also, as part of my work, I've had to add some other features to Tamper Chrome, such as monitoring for postMessage, and adding a few features that make debugging XSS bugs easier. My coworkers usually end up using it too, because it takes 15 seconds to install (vs. Burp which you need to download, get java, configure, restart, etc..). So generally, I guess I find my work easier to do with Tamper Chrome, but that's because I've essentially built it for me :)
+This is where Tamper Chrome's extension structure comes with a great advantage. Since it runs within the browser, Tamper Chrome does have access to the MessageEvent objects send by postMessage. This makes it possible to see which events are sent and how they are handled.
 
-
-
-Web server on http://localhost:34013/
-Checks the Origin header to prevent CSRF.
-Only binds to localhost.
-
-
-* Works in ChromeOS
-* Enabled per tab
 
 ## The future of Tamper Chrome
 
-> Generally, I'm not looking to build a tool to replace Burp or ZAP for everyone but rather to build a tool that helps me do my job doing web security pentesting, so many features that are very popular in Burp or ZAP that aren't needed for the type of work I do, are unlikely to be implemented (eg, the Repeater in Burp, I usually just implement that in JavaScript myself with a for loop in the JavaScript console :-).
+Tamper Chrome is a little rough around the edges. It's clearly some pentester's own functional tool, and the developer has no aspirations to make turn this into a general purpose pentesting product:
 
+> Generally, I'm not looking to build a tool to replace Burp or ZAP for everyone but rather to build a tool that helps me do my job doing web security pentesting, so many features that are very popular in Burp or ZAP that aren't needed for the type of work I do, are unlikely to be implemented (e.g., the Repeater in Burp, I usually just implement that in JavaScript myself with a for loop in the JavaScript console :-).
+
+However, the concept of a pentesting tool in the browser shows much promise. Particularly detecting XSS DOM is something that can be done much easier in the browser than with an intercepting proxy. Intercepting message events sent by postMessage is not possible in an intercepting proxy at all, and this interface often goes untested. Pentesting from the browser offers easy installation and usage and good integration with the runtime environment of the webapp. I think there can be a successful Burp alternative in the browser. However, I don't think Tamper Chrome will be it.
+
+## Try it out
 
 * [Tamper Chrome (extension)](https://chrome.google.com/webstore/detail/tamper-chrome-extension/hifhgpdkfodlpnlmlnmhchnkepplebkb)
 * [Tamper Chrome (application)](https://chrome.google.com/webstore/detail/tamper-chrome-application/odldmflbckacdofpepkdkmkccgdfaemb)
