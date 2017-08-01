@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Some libraries evaluate remote JavaScript"
-thumbnail: todo-240.jpg
-date: 2017-12-20
+thumbnail: card-puncher-240.jpg
+date: 2017-09-27
 ---
 
 ## Introduction
