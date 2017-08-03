@@ -35,11 +35,11 @@ jQuery did a [similar change](https://github.com/jquery/jquery/issues/2432): onl
 
 ## Open redirect trick
 
-So both jQuery and PrototypeJS checks the requested URL against the current URL. If they have the same scheme, domain and port it considers it as same-origin and will evaluate the returned JavaScript. This introduces a vulnerability if the site has an open redirect. In that case the same-origin open redirect page can redirect the request to the attacker's script. The same-origin check will still succeed, since the open redirect is on the same domain as the application doing the request, and the attacker can host his script on his own domain.
+So both jQuery and PrototypeJS check the requested URL against the current URL. If they have the same scheme, domain and port the library considers the request as same-origin and will evaluate the returned JavaScript. This introduces a vulnerability if the site has an open redirect. In that case the same-origin open redirect page can redirect the request to the attacker's script. The same-origin check will still succeed, since the open redirect is on the same domain as the application doing the request, and the attacker can host his script on his own domain.
 
 ## Conclusion
 
-The suprising functionality of running any JavaScript in a response introduces a security risk in PrototypeJS and possible other libraries, even with the same-origin check. This also increases the risks of open redirects, which are normally only considered usable for phishing attacks.
+The surprising functionality of running any JavaScript in a response introduces a security risk in several JavaScript libraries, even with the same-origin check. This also increases the risks of open redirects, which are normally only considered usable for phishing attacks. However, this vulnerability is only exploitable in case the attacker can trigger an AJAX request to an URL under his control.
 
 When using a library to do AJAX requests, explicitly disable evaluation of JavaScript:
 
