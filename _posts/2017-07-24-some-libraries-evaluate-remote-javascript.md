@@ -5,11 +5,11 @@ thumbnail: card-puncher-240.jpg
 date: 2017-09-27
 ---
 
-Some JavaScript libraries have or had functionality to automatically evaluate any JavaScript returned on AJAX requests. This introduces an XSS vulnerability if an attacker can control the URL of the request.
+Some JavaScript libraries have functionality to automatically evaluate any JavaScript returned on AJAX requests. This introduces an XSS vulnerability if an attacker can control the URL of the request.
 
 ## Introduction
 
-Within JavaScript it is possible to do a HTTP request to retrieve a resource from an URL. Before the modern [fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API) existed this happened with [XMLHttpRequest](https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest), which is difficult to work with because of its cumbersome API that differs between browsers. Several JavaScript libraries offer convenience functions to make AJAX requests easier. If the response to the AJAX request contains JavaScript, some libraries will automatically run that JavaScript. This is a mistake, as it may introduce a security vulnerability if the URL is under control of an attacker.
+Within JavaScript it is possible to do a HTTP request to retrieve a resource from an URL. Before the modern [fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API) existed this happened with [XMLHttpRequest](https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest), which is difficult to work with because of its cumbersome API that differs between browsers. Several JavaScript libraries offer convenience functions to make AJAX requests easier. In addition, if the response to the AJAX request contains JavaScript, some libraries will automatically run that JavaScript. This is a mistake, as it may introduce a security vulnerability if the URL is under control of an attacker.
 
 ## Attack scenario
 
