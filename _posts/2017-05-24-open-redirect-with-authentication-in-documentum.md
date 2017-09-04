@@ -5,7 +5,7 @@ thumbnail: railways-240.jpg
 date: 2017-10-11
 ---
 
-Documentum is an enterprise content management platform in which it is possible to upload and share documents. 
+Documentum is an enterprise content management platform in which it is possible to upload and share documents. I found an open redirect in it that also exposes credentials.
 
 ## Open redirect
 
@@ -53,4 +53,6 @@ Assuming secure vlinks is disabled, your username, docbase name and ticket are s
 
 ![Documentum Administrator login](/images/documentum-administrator-login.png)
 
-So this open redirect send valid login credentials to a third party website.
+## Conclusion
+
+As soon as the victim visits a link, he will sent his username and ticket to a third-party site. The attacker can then log in as the victim, using the username and ticket that were sent using the open redirect. That makes this an open redirect with serious impact.
