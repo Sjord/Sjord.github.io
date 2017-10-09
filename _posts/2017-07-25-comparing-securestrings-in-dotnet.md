@@ -137,7 +137,4 @@ As you can see, it is entirely possible to create a comparison function that is 
 
 It is pretty hard to use the SecureString correctly. By converting it to native memory, you are dependent on unsafe code, pointer arithmetic or P/Invoke to native functions. It is hard to imagine a situation where creating such a comparison function is worth the effort. SecureString protects against an improbable attack vector, and the amount of effort to create a secure comparison function while maintaining this protection may not be worth it.
 
-## Read more
-
-* [Example project on GitHub](https://github.com/Sjord/CompareSecureStrings)
-* [How to compare against another SecureString that is safe against timing attacks?](https://security.stackexchange.com/questions/161316/securestring-how-to-compare-against-another-securestring-that-is-safe-against-ti)
+The example code can be found on [GitHub](https://github.com/Sjord/CompareSecureStrings).
