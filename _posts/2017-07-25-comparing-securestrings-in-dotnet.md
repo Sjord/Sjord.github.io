@@ -79,16 +79,18 @@ As you can see we first read the length of each string, which is four bytes befo
 
 ## Comparing hashes
 
-The IsEqual function above first compares the lengths of the two secure strings, and returns early if they are different. This could make it possible for the attacker to guess the length of the secret: if the function returns quickly, the length is incorrect. If the function takes the time to compare the values, the length is correct. This can be prevented by hashing the two strings and comparing those. The attacker should not be able to reproduce the hash, which can be accomplished by using a random key and a HMAC. In pseudo-code:
+The `IsEqual` function above first compares the lengths of the two secure strings, and returns early if they are different. This could make it possible for the attacker to guess the length of the secret: if the function returns quickly, the length is incorrect. If the function takes the time to compare the values, the length is correct. This can be prevented by hashing the two strings and comparing those. The attacker should not be able to reproduce the hash, which can be accomplished by using a random key and a HMAC. In pseudo-code:
 
     bool Compare(a, b) {
         key = CreateRandomKey();
         return hmac(key, a) == hmac(key, b)
     }
 
-Since the attacker doesn't know the HMAC values, we don't even need to use a time-safe comparison function. Now, we can implement this using P/Invoke on functions in the Windows Crypto API. However, this is pretty hard to do correctly.
+Since the attacker doesn't know the HMAC values, we don't even need to use a time-safe comparison function. We can implement this using P/Invoke on functions in the Windows Crypto API.
 
-First, we create a cryptographic context. If C were object-oriented, this would be our object on which we can call methods. Since it isn't, we create a context which we need to pass to every function we call. Second, we create a random key using [CryptGenKey](https://msdn.microsoft.com/en-us/library/windows/desktop/aa379941(v=vs.85).aspx). Since we use a random key each time we compare two values, an attacker can never figure out the value of the key, even if our algorithm was vulnerable to a timing attack. Then we call the function CreateHmacForSecureString, which is described below, and we clean up the key and the context. Note that this code example is missing some crucial error handling. If one of the crypto functions fails, both hmac1 and hmac2 will be filled with null-bytes. The crypto functions won't throw exceptions on error. Instead, they will silently fail and the CompareSecureStrings function will return true to indicate that the strings are equal, even if they aren't. As you see, creating a secure program becomes a lot harder when using these low-level functions.
+First, we create a cryptographic context. If C were object-oriented, this would be our object on which we can call methods. Since it isn't, we create a context which we need to pass to every function we call. Second, we create a random key using [CryptGenKey](https://msdn.microsoft.com/en-us/library/windows/desktop/aa379941(v=vs.85).aspx). Since we use a random key each time we compare two values, an attacker can never figure out the value of the key, even if our algorithm was vulnerable to a timing attack. Then we call the function CreateHmacForSecureString, which is described below, and we clean up the key and the context. 
+
+Note that this code example is missing some crucial error handling. If one of the crypto functions fails, both `hmac1` and `hmac2` will be filled with null-bytes. The crypto functions won't throw exceptions on error. Instead, they will silently fail and the `CompareSecureStrings` function will return true to indicate that the strings are equal, even if they aren't. As you see, creating a secure program becomes a lot harder when using these low-level functions.
 
         bool CompareSecureStrings(SecureString ss1, SecureString ss2)
         {
@@ -107,7 +109,7 @@ First, we create a cryptographic context. If C were object-oriented, this would 
             return hmac1.SequenceEqual(hmac2);
         }
 
-In the CreateHmacForSecureString function, we set up a hash object by calling CryptCreateHash, and instruct it to use SHA512 as an underlying function for the HMAC. Then we marshal our securestring to a BSTR, and hash the contents. Then we retrieve and return the resulting HMAC value.
+In the `CreateHmacForSecureString` function, we set up a hash object by calling `CryptCreateHash`, and instruct it to use SHA512 as an underlying function for the HMAC. Then we marshal our SecureString to a BSTR, and hash the contents. Finally, we retrieve and return the resulting HMAC value.
 
         byte[] CreateHmacForSecureString(IntPtr hProv, IntPtr hKey, SecureString ss)
         {
