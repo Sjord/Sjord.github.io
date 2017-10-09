@@ -13,7 +13,7 @@ Cookies were invented before the same-origin policy was formalized. That is why 
 
 ## Strict secure cookies
 
-The strict secure cookies specification is an addendum to the [specification on the behavior of cookies](https://tools.ietf.org/html/rfc6265). It states that exising cookies with a "secure" flag can't be overwritten by insecure hosts. So http://example.com/ can't overwrite a secure cookie on https://example.com/, something which was possible before. After the specification was finalized, this new behavior was soon implemented in browsers, and currently secure cookies can no longer be overwritten.
+The strict secure cookies specification is an addendum to the [specification on the behavior of cookies](https://tools.ietf.org/html/rfc6265), which aims to "deprecate modification of 'secure' cookies from non-secure origins". It states that exising cookies with a "secure" flag can't be overwritten by insecure hosts. So http://example.com/ can't overwrite a secure cookie on https://example.com/, something which was possible before. After the specification was finalized, this new behavior was soon implemented in browsers, and in modern browsers secure cookies can no longer be overwritten.
 
 ## Don't remove your cookies
 
@@ -27,7 +27,7 @@ An even better alternative is to use [cookie prefixes](/2017/02/09/cookie-prefix
 
 ## Conclusion
 
-Strict secure cookies improve the security of secure cookies. It is currently implemented in browsers and websites don't have to change anything to get advantage of it.
+Strict secure cookies improve the security of secure cookies. It is currently implemented in browsers, and websites don't have to change anything to get advantage of it.
 
 ## Read more
 
