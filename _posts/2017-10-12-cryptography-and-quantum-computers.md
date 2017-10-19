@@ -31,11 +31,11 @@ Actually, it doesn't really work like that. We can't tell the cat with the corre
 
 However, we can use quantum operations to increase the probability that the cat with the correct password comes out of the box when we open it. The price we pay for this is that the cat needs to enter multiple passwords, instead of just one.
 
-Let's say the laptop has an eight-digit password consisting of just letters. If we want to try them all, we have to type in 26^8 ≈  2 × 10^11 passwords. The cat in the box only needs to try the square root of that number, 456976 passwords. This will still take a long time, but it is the difference between a week and 6000 years of cracking. When we open the box, we will have almost a 100% chance of finding the cat with the correct password in it.
+Let's say the laptop has an eight-digit password consisting of just letters. If we want to try them all, we have to type in 26<sup>8</sup> ≈  2 × 10<sup>11</sup> passwords. The cat in the box only needs to try the square root of that number, 456,976 passwords. This will still take a long time, but it is the difference between a week and 6,000 years of cracking. When we open the box, we will have almost a 100% chance of finding the cat with the correct password in it.
 
 ## Speed and limitations
 
-Our cat algorithm provides a quadratic speedup compared to classical cracking. If we want to try N things in the classical world, we only have to do sqrt(N) tries in the quantum computer. This cuts the "security bits" in half: a quantum computer can find a SHA512 hash (of 512 bits) as fast as a classical computer can calculate a SHA256 hash (of 256 bits). A common defense against this attack is thus to double the number of bits used in an algorithm.
+Our cat algorithm provides a quadratic speedup compared to classical cracking. If we want to try N things in the classical world, we only have to do √N tries in the quantum computer. This cuts the "security bits" in half: a quantum computer can find a SHA512 hash (of 512 bits) as fast as a classical computer can calculate a SHA256 hash (of 256 bits). A common defense against this attack is thus to double the number of bits used in an algorithm.
 
 We haven't yet said anything about how the laptop checks the password. The cracking cat algorithm makes no assumptions about that. This means that it works for cracking any password check. As we see later, we can crack some specific algorithms even faster. However, the password check we want to crack must be implemented as a quantum algorithm. If you want to reverse a MD5 hash, you first have to implement MD5 as a quantum algorithm. You can't give the cat a classical laptop, it has to be a quantum laptop that can be in a superstate just like the cat.
 
@@ -68,9 +68,9 @@ If we ask the cat in the box to compute one value, we will have just one value w
 
 Clocks work modulo 12. Two hours after eleven o'clock is one o'clock, because 11 + 2 = 1 (mod 12). Now, let's say we want to find the period of f(x) = 9x (mod 12). The result of this function is 0, 9, 6, 3, 0, 9, 6, 3, 0, etc. As you can see it repeats after four times. This is the period (or order) of this function: 4. Our previously mentioned quantum Fourier algorithm can find that fast.
 
-Also note that 4 is a divisor of 12. This means that 12 can be evenly divided by 4. This is a common property of the period, it evenly divides the modulus.
+The period always cleanly divides the modulus. Furthermore, if the period is even, then 6 is always halfway the period. The half of the modulus can be found at half of the period.
 
-Suppose we have a very big clock of which we don't know the size. We would very much like to know the size of the clock. If we find the period of f(x) = 9x (mod ?) using our quantum Fourier function, we find out some period that evenly divides the size of the clock.
+Suppose we have a very big clock of which we don't know the size. We would very much like to know the size of the clock. If we find the period _p_ of f(x) = 9x (mod ?) using our quantum Fourier function, we know that halfway the period we find the half of the size of the clock. So the size of the clock equals 2 × f(p).
 
 ## How this works for RSA
 
@@ -78,12 +78,13 @@ In RSA, the modulus is published as part of the public key. Unlike the clock exa
 
 ## Some math
 
-We find the period r of the function f(x) = a^x mod N. This loops us around the ring ("clock") in r steps. This means that it loops around half the clock in r/2 steps. a^r/2 * a^r/2 = a^r = 1 mod N.
-z = a^r/2. Replace a^r/2 by z: z * z = 1 mod N
-z^2 = 1 mod N
-z^2 - 1 = 0 mod N = N mod N
-(z-1)(z+1) = 0 mod N = N mod N
-p = z-1 (mod N), q = z+1 (mod N)
+* We find the period _r_ of the function f(x) = a<sup>x</sup> mod N. This loops us around the ring ("clock") in _r_ steps. 
+* This means that it loops around half the ring in ½r steps. a<sup>r</sup>/2 × a<sup>r</sup>/2 = a<sup>r</sup> = 1 mod N.
+* Define z = a<sup>r</sup>/2. Replace a<sup>r</sup>/2 by z: z × z = 1 mod N
+* z<sup>2</sup> = 1 mod N
+* z<sup>2</sup> - 1 = 0 mod N = N mod N
+* (z-1)(z+1) = 0 mod N = N mod N
+* p = z-1 (mod N), q = z+1 (mod N)
 
 ## Current state for quantum computers
 
