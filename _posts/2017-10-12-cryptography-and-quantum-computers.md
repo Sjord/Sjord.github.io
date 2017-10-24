@@ -17,6 +17,8 @@ Quantum computers work with quantum bits. Normal bits can only be one or zero, b
 
 This seems strange to most people. This is because quantum particles act like nothing in the classical world. In fact, quantum particles don't act like cats in boxes. This also means that most of this article is factually incorrect, but it may still give you some feeling about how quantum calculations work.
 
+<img src="/images/quantum-cat-in-box.png">
+
 ## Cracking passwords with cats
 
 Imagine we have a password protected laptop, and we want to crack the password. We could try every password until we get the correct one, but that would take a very long time. Instead, we may be able to use quantum to speed up the process.
@@ -24,6 +26,8 @@ Imagine we have a password protected laptop, and we want to crack the password. 
 We put the laptop along with the cat in the box. We instructed the cat beforehand to enter a random password. When we close the box, there is a superposition of cats that all try a different random password. In each parallel universe, the cat tries a different password. It is as if the cat in the box tries each password in parallel. However, as soon as we open the box, the state collapses and we end up with a classical situation. The cat tried only one password and it was probably the wrong one.
 
 Now we do the same again, but we instruct the cat to enter a random password and climb out of the box if it is the correct one. We close the box, the cat is again in a superposition. However, this time the box opens and collapses to the state we want: the cat has entered the correct password. We obtained the password instantly, and in the classical world the password was just entered once. We used quantum parallelism to get lucky the first time.
+
+<img src="/images/quantum-cat-with-laptop-in-box.png">
 
 ## Increasing correct cat probability
 
@@ -44,17 +48,19 @@ We haven't yet said anything about how the laptop checks the password. The crack
 RSA is a public-private key cryptosystem. Something encrypted with the public key can only be decrypted with the private key, and vice versa. This works because of math. The exact math of encryption and decryption is not important right now. What we are interested in is the key generation algorithm:
 
 * Pick two random big primes.
-* Multiply these two primes to get the "modulus" of our keys.
+* Multiply these two primes to get the modulus of our keys.
 * Pick some small prime. This together with the modulus is the public key.
 * Calculate the private key from the two random big primes and the one small prime.
 
 I won't describe here how to calculate the private key. The point is that you can do so if you have the two random big primes and the small prime.
 
-Assume that we have the public key of someone. That means we have the small prime, and the modulus. If we can determine the two big primes from the modulus, we can calculate the private key.
+Assume that we have the public key of someone. That means we have the small prime, and the modulus. If we find which two primes multiplied give the modulus, we can calculate the private key.
 
 ## Shor's algorithm
 
 That is what Shor's algorithm does. Given a number, it calculates which two prime numbers can be multiplied to yield that number. For example, if you give it 15 it will return 3 and 5. This can obviously be used to break RSA, since we can break up the modulus from the public key into the two primes originally used to create the key. We can use these two primes to calculate the private key, which is supposed to be kept secret.
+
+Shor's algorithm uses quantum computing to find a period of a function, and then uses some more normal math to use that period to factor the modulus into two primes.
 
 ## Period finding
 
@@ -63,6 +69,9 @@ A Fourier transform splits a wave in separate frequencies. It is typically displ
 It is also possible to compute a Fourier transform over a function. This will show which "frequencies" are present in the function. In classical computers, we would first have to compute all outcomes of the function, and pass those to the Fourier transform. In quantum computers, however, we call the function once on a superposition. This in turn results in a superposition, which we can pass directly to the quantum Fourier transform. 
 
 If we ask the cat in the box to compute one value, we will have just one value when we open the box. But instead we take all parallel cats and compute some property (the frequency) on all of them. When we open the box, there will be one frequency that occurs a lot in the function.
+
+<img src="/images/equalizer-680.jpg">
+<!-- photo source: https://www.flickr.com/photos/touho/6103279381 -->
 
 ## Clock math
 
