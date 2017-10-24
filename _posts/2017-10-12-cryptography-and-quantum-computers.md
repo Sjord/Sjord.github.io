@@ -29,19 +29,19 @@ Now we do the same again, but we instruct the cat to enter a random password and
 
 Actually, it doesn't really work like that. We can't tell the cat with the correct password to come out of the box. Remember, as soon as we look in the box the quantum state collapses and we end up with just one cat that tried one password. The test whether we have the correct password is similar to looking in the box. We can't use if-statements when instructing the cats.
 
-However, we can use quantum operations to increase the probability that the cat with the correct password comes out of the box when we open it. The price we pay for this is that the cat needs to enter multiple passwords, instead of just one.
+However, we can use quantum operations to increase the probability that the cat with the correct password comes out of the box when we open it. When the cat is in a superposition, we can perform operations that work on all cats. Some of these operations even change the probability that a certain cat will come out of the box as soon as we open it. We can increase the probability for cats whose outcome deviates from the average. In other words, the cat with the correct password is more likely to come out of the box. This process is called [amplitude amplification](https://en.wikipedia.org/wiki/Amplitude_amplification). The price we pay for this is that the cat needs to enter multiple passwords, instead of just one.
 
 Let's say the laptop has an eight-digit password consisting of just letters. If we want to try them all, we have to type in 26<sup>8</sup> ≈  2 × 10<sup>11</sup> passwords. The cat in the box only needs to try the square root of that number, 456,976 passwords. This will still take a long time, but it is the difference between a week and 6,000 years of cracking. When we open the box, we will have almost a 100% chance of finding the cat with the correct password in it.
 
 ## Speed and limitations
 
-Our cat algorithm provides a quadratic speedup compared to classical cracking. If we want to try N things in the classical world, we only have to do √N tries in the quantum computer. This cuts the "security bits" in half: a quantum computer can find a SHA512 hash (of 512 bits) as fast as a classical computer can calculate a SHA256 hash (of 256 bits). A common defense against this attack is thus to double the number of bits used in an algorithm.
+Our cat algorithm provides a quadratic speedup compared to classical cracking. If we want to try N things in the classical world, we only have to do √N tries in the quantum computer. This cuts the "security bits" in half: a quantum computer can find a SHA512 hash (of 512 bits) as fast as a classical computer can reverse a SHA256 hash (of 256 bits). A common defense against this attack is thus to double the number of bits used in an algorithm.
 
-We haven't yet said anything about how the laptop checks the password. The cracking cat algorithm makes no assumptions about that. This means that it works for cracking any password check. As we see later, we can crack some specific algorithms even faster. However, the password check we want to crack must be implemented as a quantum algorithm. If you want to reverse a MD5 hash, you first have to implement MD5 as a quantum algorithm. You can't give the cat a classical laptop, it has to be a quantum laptop that can be in a superstate just like the cat.
+We haven't yet said anything about how the laptop checks the password. The cracking cat algorithm makes no assumptions about that. This means that it works for cracking any password check. As we'll see later, we can crack some specific algorithms even faster. However, the password check we want to crack must be implemented as a quantum algorithm. If you want to reverse a MD5 hash, you first have to implement MD5 as a quantum algorithm. You can't give the cat a classical laptop, it has to be a quantum laptop that can be in a superstate just like the cat.
 
 ## RSA 
 
-RSA is public-private key cryptosystem. Something encrypted with the public key can only be decrypted with the private key, and vice versa. This works because of math. The exact math of encryption and decryption is not important right now. What we are interested in is the key generation algorithm:
+RSA is a public-private key cryptosystem. Something encrypted with the public key can only be decrypted with the private key, and vice versa. This works because of math. The exact math of encryption and decryption is not important right now. What we are interested in is the key generation algorithm:
 
 * Pick two random big primes.
 * Multiply these two primes to get the "modulus" of our keys.
@@ -86,13 +86,13 @@ In RSA, the modulus is published as part of the public key. Unlike the clock exa
 * (z-1)(z+1) = 0 mod N = N mod N
 * p = z-1 (mod N), q = z+1 (mod N)
 
-## Current state for quantum computers
-
 ## Conclusion
 
 No cats were hurt in the making of this blog post.
 
+## Read more
+
 * [Quantum algorithms: an overview](https://arxiv.org/pdf/1511.04206.pdf)
 * [Post-quantum RSA](https://cr.yp.to/papers/pqrsa-20170419.pdf)
-
+* [Bell's Theorem: The Quantum Venn Diagram Paradox](https://www.youtube.com/watch?v=zcqZHYo7ONs)
 
