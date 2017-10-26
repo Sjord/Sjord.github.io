@@ -27,4 +27,10 @@ I have created [a tool](https://github.com/Sjord/sprengel) that will automatical
 
 Don't expose your source control directory. A good way to make sure you don't is by using a subdirectory of your repository as web root.
 
-When a site has its .hg directory exposed, you can use [sprengel](https://github.com/Sjord/sprengel) to download it. For Git, use [GitTools](https://github.com/internetwache/GitTools).
+When a site has its .hg directory exposed, you can use [sprengel](https://github.com/Sjord/sprengel) to download it.
+
+## Download tools
+
+* [Git](https://github.com/internetwache/GitTools)
+* [Mercurial](https://github.com/Sjord/sprengel)
+* [SVN](https://github.com/anantshri/svn-extractor)
