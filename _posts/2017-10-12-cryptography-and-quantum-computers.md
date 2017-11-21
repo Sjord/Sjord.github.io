@@ -11,7 +11,7 @@ Quantum computers have different properties than classical computers. This can b
 
 ## Cats in superposition
 
-Quantum computers work with quantum bits. Normal bits can only be one or zero, but quantum bits can also be in a _superposition_: both one and zero at the same time. This can be used to perform computations that are not possible in the non-quantum, classical world. In this post, we are particularly interested in how this can be used to break crypto. This is possible with quantum computing because it can perform some calculations dramatically faster than classical computers. Quantum computers are not faster at everything, but for some tasks the superposition can be used to perform calculations on all possible inputs simultanously. This is called quantum parallelism.
+Quantum computers work with quantum bits. Normal bits can only be one or zero, but quantum bits can also be in a _superposition_: both one and zero at the same time. This can be used to perform computations that are not possible in the non-quantum, classical world. In this post, we are particularly interested in how this can be used to break crypto. This is possible with quantum computing because it can perform some calculations dramatically faster than classical computers. Quantum computers are not faster at everything, but for some tasks the superposition can be used to perform calculations on all possible inputs simultaneously. This is called quantum parallelism.
 
 [Some scientists proposed](https://en.wikipedia.org/wiki/EPR_paradox) in 1935 that on a very small scale, particles can be in a superposition. [Schrödinger](https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger) made this more tangible by connecting the particle to a [cat](https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat) in a closed box. The particle and the cat are connected in some way, such that the cat is either alive or dead, depending on the state of the particle. In a classical world, when you open the box and you see a dead cat, you know that the cat has been dead all along. However, in a quantum world, the cat is in a superposition. It is both alive and dead at the same time until you open the box. When you open the box and look inside, only then the universe determines the fate of the cat.
 
@@ -88,14 +88,16 @@ In RSA, the modulus is published as part of the public key. Unlike the clock exa
 ## Some math
 
 * We find the period _r_ of the function f(x) = a<sup>x</sup> mod N. This loops us around the ring ("clock") in _r_ steps. 
-* This means that it loops around half the ring in ½r steps. a<sup>r</sup>/2 × a<sup>r</sup>/2 = a<sup>r</sup> = 1 mod N.
-* Define z = a<sup>r</sup>/2. Replace a<sup>r</sup>/2 by z: z × z = 1 mod N
-* z<sup>2</sup> = 1 mod N
-* z<sup>2</sup> - 1 = 0 mod N = N mod N
-* (z-1)(z+1) = 0 mod N = N mod N
-* p = z-1 (mod N), q = z+1 (mod N)
+* This means that it loops around half the ring in ½r steps. a<sup>r/2</sup> × a<sup>r/2</sup> = a<sup>r</sup> = 1 mod N.
+* Define z = a<sup>r/2</sup>. Replace a<sup>r/2</sup> in the previous calculation by z: z × z = 1 mod N
+* This is the same as z<sup>2</sup> = 1 mod N
+* Subtract 1 from each side: z<sup>2</sup> - 1 = 0 mod N = N mod N
+* This is the same as (z-1)(z+1) = 0 mod N = N mod N
+* So the solutions are p = z-1 (mod N), q = z+1 (mod N)
 
 ## Conclusion
+
+On a quantum computer we can simply calculate the private key from the public key for RSA.
 
 No cats were hurt in the making of this blog post.
 
