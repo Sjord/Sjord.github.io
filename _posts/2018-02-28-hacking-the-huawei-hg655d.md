@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "Hacking the Huawei HG655d"
-thumbnail: todo-240.jpg
+thumbnail: huawei-router-240.jpg
 date: 2018-02-28
 ---
 
-
-
 The Huawei HG655d is an obsolete ADSL modem.
+
+<!-- photo is own work -->
 
 ## Command injection in ping
 
