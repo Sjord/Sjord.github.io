@@ -21,7 +21,7 @@ There is the [public suffix list](https://publicsuffix.org/), which tries to lis
 
 If you want to change anything about a deterministic password manager, you break existing passwords. For example, PwdHash should use a slower hash function to make brute-forcing harder. However, users depend on the existing hash function to log into sites. If you change the hash function, newly generated passwords are secure, but users can no longer log in to anything.
 
-This works similarly for the public suffix list. If there is some new hosting platform, coolhosting.com, that provides subdomains. You create a account on sjoerdsapp.coolhosting.com with your deterministic password manager. The password manager hashes your password wih `coolhosting.com` and you use that output as the password for your account. After some time, the administrators of coolhosting.com add their application to the public suffix list. Now your password is hashes against `sjoerdsapp.coolhosting.com`, and you can no longer log in.
+This works similarly for the public suffix list. Imagine there is some new hosting platform, coolhosting.com, that provides subdomains. You create a account on sjoerdsapp.coolhosting.com with your deterministic password manager. The password manager hashes your password with `coolhosting.com` and you use that output as the password for your account. After some time, the administrators of coolhosting.com add their application to the public suffix list. Now your password is hashed against `sjoerdsapp.coolhosting.com`, and you can no longer log in.
 
 The implementation for deterministic password managers can never change, which is a serious problem.
 
