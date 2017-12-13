@@ -51,6 +51,8 @@ In contrast, `frame-ancestors` checks all intermediate frames, and when this hea
 
 ![Good.internal is not loaded in the iframe](/images/chromium-iframe-in-iframe-blocked.png)
 
+**Update**: browser vendors are thinking about [changing X-Frame-Options](https://www.chromestatus.com/feature/4678102647046144) to check all intermediate frames.
+
 ## Specifying other origins
 
 With both headers you can specify another web site that is allowed to load the content in an iframe:
