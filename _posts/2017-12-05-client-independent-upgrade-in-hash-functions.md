@@ -29,7 +29,9 @@ As far as bcrypt is concerned, the MD5 is the password. This makes it possible t
 
 ## Client independent update
 
-## Inline upgrading of PBKDF2 iterations
+The ability to upgrade a hash without having the password is client independent update. If your hashes became obsolete because computers have been getting faster since you first developed your password mechanism, it could be desirable that you can increase the cost of the password hash so that it becomes slower. Some hash algorithms allow to do that without having the plaintext password, which is a property of the hash function called client independent update.
+
+## Not possible for PBKDF2 
 
 Imagine that we already use PBKDF2, but we want to increase the number of iterations. If you want to increase the number of iterations from 1000 to 5000, you just perform 4000 more iterations on the current hash to obtain the new hash. Unfortunately, this is not possible without having the plaintext password. PBKDF2 works like this:
 
@@ -45,7 +47,7 @@ Imagine that we already use PBKDF2, but we want to increase the number of iterat
 
 As you can see, it uses the plaintext password in every iteration. So we can't upgrade a PBKDF2 hash to a hash with a higher iteration count without the password.
 
-## Yescrypt
+## Yescrypt supports upgrading
 
 Yescrypt looks like this:
 
