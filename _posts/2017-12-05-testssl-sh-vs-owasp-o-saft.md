@@ -32,7 +32,7 @@ It has a great number of checks, which output yes or no. Here, "yes" is always g
 
 ## RC4 warnings
 
-BadSSL also offer insecure servers, such as [rc4-md5.badssl.com](https://rc4-md5.badssl.com/). How do testssl.sh and O-saft compare when scanning this?
+The service [BadSSL](https://badssl.com/) offers several insecurely configured servers, such as [rc4-md5.badssl.com](https://rc4-md5.badssl.com/), that are useful for testing tools like these. How do testssl.sh and O-saft compare when scanning this?
 
 Testssl.sh warns about this four times, with red text and capitals:
 
