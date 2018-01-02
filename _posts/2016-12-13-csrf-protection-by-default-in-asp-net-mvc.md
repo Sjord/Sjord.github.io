@@ -55,6 +55,8 @@ As you can see, this filter only checks the CSRF token on anything else than a G
 
 Now, all our POST requests are protected against CSRF. It no longer matters whether we forget to add an attribute if we create a new controller method.
 
+**Update**: The [AutoValidateAntiforgeryTokenAttribute](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.autovalidateantiforgerytokenattribute?view=aspnetcore-2.0) is a built-in class that provides this functionality.
+
 ## Conclusion
 
 ASP.NET MVC has great CSRF protection built-in, but it can be made even better by checking the CSRF token by default, instead of relying on an attribute which may be missing.
