@@ -57,7 +57,7 @@ The form on [bitflip.php](http://demo.sjoerdlangkemper.nl/bitflip.php) makes use
 Some hints:
 
 * The form values are converted to JSON, encrypted and encoded as hexadecimal.
-* The JSON contains `"is_admin": 0`. The goal is to change this to `"is_admin: 1"`, or any other value.
+* The JSON contains `"is_admin": 0`. The goal is to change this to `"is_admin": 1`, or any other value.
 * You can change the length of the input to get the data you want to modify in a certain block.
 
 ## Conclusion
