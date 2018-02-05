@@ -30,7 +30,7 @@ From the mitmproxy interface, it is possible to save the intercepted traffic to 
     ^C
     $
 
-This file can be read using mitmproxy:
+This saves the intercepted requests to `traffic.mitm`. The file format is specific to mitmproxy, so you can't use it with other tools. You can use mitmproxy to view the requests contained in the file:
 
     $ mitmproxy -r traffic.mitm
 
@@ -43,13 +43,17 @@ You can edit request and responses in mitmproxy, and save the result back to a f
                      << 304 Not Modified 0b
     ...
 
+This command will remove all requests where the URL ends in `jpg` and write the result to `out.mitm`.
+
 ### Replaying
 
 The following command will replay the requests from traffic.mitm:
 
     $ mitmdump --client-replay traffic.mitm
 
-It will perform requests, one by one, in order.
+It will perform requests, one by one, in order. This can be useful to create a certain test case and replay it a couple of times.
+
+Besides replaying client requests, it is also possible to replay server responses. This could be useful when developing a client that depends on another server.
     
 ## Reverse proxy mode
 
