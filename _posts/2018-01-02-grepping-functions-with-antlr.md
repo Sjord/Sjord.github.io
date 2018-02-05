@@ -5,7 +5,7 @@ thumbnail: antlers-240.jpg
 date: 2018-04-11
 ---
 
-In order to find security bugs it is helpful to find specific patterns of code. In this post we will create a programming language parser to help us find certain methods.
+In order to find security bugs it is helpful to find specific patterns of code. In this post we will create a programming language parser to help us find vulnerable methods.
 
 <!-- photo source: https://www.pexels.com/photo/animal-antler-antlers-blur-219906/ -->
 
@@ -15,7 +15,7 @@ For security code reviews, I sometimes want to find a specific pattern in the co
 
 ### Finding missing attributes
 
-For example, in ASP.NET controller methods can be marked with attributes that specify certain behavior for the action. For example, that the method handles POST requests, that authentication is not needed, or that the method should be protected against CSRF:
+In ASP.NET controller methods can be marked with attributes that specify certain behavior for the action. For example, that the method handles POST requests, that authentication is not needed, or that the method should be protected against CSRF:
 
         [HttpPost]
         [AllowAnonymous]
