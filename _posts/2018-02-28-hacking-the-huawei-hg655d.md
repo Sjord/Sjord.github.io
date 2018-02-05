@@ -5,9 +5,13 @@ thumbnail: huawei-router-240.jpg
 date: 2018-02-28
 ---
 
-The Huawei HG655d is an obsolete ADSL modem.
+The Huawei HG655d is an obsolete ADSL modem. I found some vulnerabilities in its admin interface.
 
 <!-- photo is own work -->
+
+## Introduction
+
+I bought this ADSL modem for &euro;4 in the thrift-shop in order to get a new hacking challenge. Hardware like this is often an easy target. It has several interfaces running on its own hardware. You don't need permission from anyone  to hack it and you don't need to install anything to run it. If it breaks, a simple reset makes it possible to continue. Furthermore, they are often full of vulnerabilities.
 
 ## Command injection in ping
 
@@ -23,7 +27,7 @@ This seem to be the remaining arguments to ping. The page runs `ping $INPUT -c 4
 
     var PingResult = "var usr tmp sbin proc mnt linuxrc lib etc dev bin -c 4\n" + "";
 
-This works.
+This works, showing that we can run arbitrary commands on the device.
 
 ## Logging in over SSH
 
@@ -102,7 +106,7 @@ Maybe we can just set x.FtpPath to / and we will get access to the root. We send
 
     x.FtpEnable=1&x.FtpUserName=ftp&x.FtpPassword=&x.FtpPort=21&x.FtpPath=/
 
-Log in over FTP, and we have access to the root directory:
+Log in over FTP, and we have access to the root directory.
 
 Unfortunately, we have read-only access. If we try to upload a file, we get the error
 
@@ -225,3 +229,7 @@ It seems our FTP server has administrative functionality. After logging in, it e
     214-ADMIN_LOGIN
 
 This is also in the source of [bftpd](https://sourceforge.net/projects/bftpd/). Unfortunately, by default no password seems to be configured.
+
+## Conclusion
+
+This hacking spree resulted in total compromise, where I could run commands as root. I found several vulnerabilities in the web interface. Furthermore, I obtained some information from the binaries running on the modem.
