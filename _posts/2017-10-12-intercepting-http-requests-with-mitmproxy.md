@@ -2,7 +2,7 @@
 layout: post
 title: "Intercepting HTTP requests with mitmproxy"
 thumbnail: listening-240.jpg
-date: 2017-11-22
+date: 2018-03-28
 ---
 
 Mitmproxy is a command-line intercepting proxy. Just like with Burp, you can view and modify requests. It also has some features that distinguish it from other intercepting proxies. In this post, we will look into three features unique to mitmproxy.
