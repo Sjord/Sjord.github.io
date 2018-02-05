@@ -12,7 +12,7 @@ if (isset($_POST['username'])) {
 if (isset($_GET['data'])) {
     $ciphertext = hex2bin($_GET['data']);
     $plaintext = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $key, $ciphertext, MCRYPT_MODE_CBC, $iv);
-    $plaintext = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $plaintext);
+    $plaintext = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '?', trim($plaintext));
     $data = json_decode($plaintext);
 }
 ?>
@@ -83,6 +83,7 @@ if (isset($_GET['data'])) {
     </form>
     <script>
         let data = <?php echo $plaintext; ?>;
+        //         ^                               ^                               ^                               ^                               ^                               
         for (let key in data) {
             let elem = document.getElementById(key);
             if (elem) {
