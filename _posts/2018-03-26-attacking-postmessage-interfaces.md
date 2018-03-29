@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "Detecting and attacking postmessage interfaces"
+title: "Detecting postMessage interfaces"
 thumbnail: postes-240.jpg
 date: 2018-05-09
 ---
 
-The postMessage mechanism provides an JavaScript interface to web pages. This interface is not immediately visible in an intercepting proxy when doing a security assessment. However, as any interface, it can have security issues. This post looks into possible security issues and detecting pages which use this mechanism, so that this interface is not overlooked on a security assessment.
+The [postMessage mechanism](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) provides a JavaScript interface to web pages. This interface is not immediately visible in an intercepting proxy when doing a security assessment. However, as any interface, it can have security issues. This post looks into possible security issues and detecting pages which use this mechanism, so that this interface is not overlooked on a security assessment.
 
 <!-- photo source https://pxhere.com/en/photo/814182 -->
 
 ## PostMessage interface
 
-The postMessage interface provides a communication channel between two windows or iframes. By calling the `window.postMessage` function on the target window, a message can be sent. The target window can attach an event listener which is triggered whenever a message is received. The page then runs custom JavaScript code to handle the message as it sees fit.
+The postMessage interface provides a communication channel between two windows or iframes. By calling the `window.postMessage` function on the target window, a message is sent. The target window can attach an event listener which is triggered whenever a message is received. The page then runs custom JavaScript code to handle the message as it sees fit.
 
 This is typically used to communicate between two windows that belong to the same application. For example, an application may load a single sign-on page in an iframe, and send a "logout" message whenever the user clicks the logout button. It is also possible to return some data, again with a message.
 
@@ -44,7 +44,7 @@ The plugin is currently a bit rough, but it works in notifying the user when mes
 
 ## Conclusion
 
-Web messaging is a mechanism for message passing between windows. It can introduce security vulnerabilities if it blindly trusts messages. The MessPostage plugin reminds you to check for such kind of vulnerabilities whenever a page uses messages.
+Web messaging is a mechanism for message passing between windows. It can introduce security vulnerabilities if it blindly trusts messages. The [MessPostage plugin](https://github.com/Sjord/messpostage) reminds you to check for such kind of vulnerabilities whenever a page uses messages.
 
 ## Read more
 
