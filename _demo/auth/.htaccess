@@ -1,0 +1,6 @@
+
+
+RewriteEngine on
+RewriteCond %{HTTP:Authorization} (.+)
+RewriteRule .* - [E=BYTE_AUTHORIZATION:%{HTTP:Authorization},L]
+

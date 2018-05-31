@@ -1,0 +1,8 @@
+<script>
+fetch("http://demo.sjoerdlangkemper.nl/auth/basic.php", {
+    // "credentials": "include"
+    headers: {"Authorization": "Basic c2pvZXJkOnNqb2VyZA=="}
+}).then(function (response) {
+    response.text().then(text => console.log(text));
+});
+</script>
