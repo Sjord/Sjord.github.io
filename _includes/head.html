@@ -3,15 +3,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="viewport" content="width=device-width">
-    {% if page.excerpt %}
-    <meta name="description" content="{{ page.excerpt | strip_html | strip }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+
+    {% if page.title %}
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title }}">
     {% endif %}
+
+    {% if page.excerpt %}
+    <meta name="description" property="og:description" content="{{ page.excerpt | strip_html | strip }}">
+    {% endif %}
+
     {% if page.thumbnail %}
     <meta property="og:image" content="{{ page.thumbnail | prepend: '/images/' | prepend: site.url }}">
     {% endif %}
+
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-
 </head>
