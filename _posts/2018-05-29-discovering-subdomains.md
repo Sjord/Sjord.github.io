@@ -27,6 +27,7 @@
 * [recon-ng](https://bitbucket.org/LaNMaSteR53/recon-ng)
 * [subbrute](https://github.com/TheRook/subbrute)
 * [Sublist3r](https://github.com/aboul3la/Sublist3r)
+* [SubFinder](https://github.com/ice3man543/subfinder)
 * [subquest](https://github.com/skepticfx/subquest)
 * [xray](https://github.com/evilsocket/xray)
 
