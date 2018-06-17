@@ -1,5 +1,11 @@
+---
+layout: post
+title: "Discovering subdomains"
+thumbnail: discovering-240.jpg
+date: 2018-06-20
+---
 
-
+<!-- photo source: http://www.mildenhall.af.mil/News/Article-Display/Article/273410/digging-up-bones-archeologists-discover-human-remains/ -->
 
 ## Tools
 
