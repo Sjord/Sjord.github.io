@@ -5,6 +5,8 @@ thumbnail: discovering-240.jpg
 date: 2018-06-20
 ---
 
+Early in a pentest it may be helpful to enumerate all the subdomains of a domain in scope. This article lists some tools that do that.
+
 <!-- photo source: http://www.mildenhall.af.mil/News/Article-Display/Article/273410/digging-up-bones-archeologists-discover-human-remains/ -->
 
 ## Tools
@@ -51,3 +53,17 @@ date: 2018-06-20
 * [Certificate transparency logs](https://www.certificate-transparency.org/known-logs)
 * [SecLists brute-force lists](https://github.com/danielmiessler/SecLists/tree/master/Discovery/DNS)
 * [Sonar forward DNS](https://opendata.rapid7.com/sonar.fdns_v2/)
+
+## Discovering domains
+
+I most often use Sublist3r to enumerate subdomains. If I want something custom, I write a loop in bash:
+
+    for i in `seq 1 100`; do host server$i.example.com; done
+
+## Keeping secret domains secret
+
+If you are working for a client, keep in mind that some tools may expose the found domain names. Earlier versions of Anubis, for example, would send all found domains to a central database. Also, querying for a domain on a website such as VirusTotal may expose that domain to others.
+
+## Don't write another tool
+
+As you can see, the list above is pretty long. If you are thinking about building yet another tool, consider contributing to any of the listed projects intead.
