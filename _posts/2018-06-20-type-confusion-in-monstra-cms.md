@@ -88,3 +88,4 @@ The remaining 30 characters need to be digits. A position has a ten in sixteen c
 ## Read more
 
 * [Writing Exploits For Exotic Bug Classes: PHP Type Juggling](http://turbochaos.blogspot.com/2013/08/exploiting-exotic-bugs-php-type-juggling.html)
+* [PHP Magic Tricks: Type Juggling](https://www.owasp.org/images/6/6b/PHPMagicTricks-TypeJuggling.pdf)
