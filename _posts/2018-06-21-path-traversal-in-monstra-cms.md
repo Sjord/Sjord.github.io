@@ -13,7 +13,7 @@ In the administration interface of Monstra CMS, there is an option to download a
 
 Monstra is a CMS written in PHP, that stores its data in XML files instead of a database. It has the functionality to create and download backup files:
 
-<img src="/images/monstra-backup-listing.png">
+<img src="/images/monstra-backup-listing.png" alt="Monstra backup listing">
 
 When we click the link, it performs a request to:
 
@@ -27,7 +27,7 @@ Serve the file from the `download` parameter for download. It looks as it does n
 
 Looking at Monstra's [directory layout](https://github.com/monstra-cms/monstra), backup files seem to be in the `backups` directory. We want to break out of that directory and download a file in another directory, such as README.md in the webroot. Let's change the filename to `../README.md`:
 
-<img src="/images/monstra-error.png">
+<img src="/images/monstra-error.png" alt="Monstra error message">
 
 It doesn't work.
 
@@ -69,7 +69,7 @@ In the last `preg_replace`, the first dot is removed. Thus we need one more dot 
 
 which will become `../README.md` after sanitation. When we pass this in the download parameter:
 
-<img src="/images/monstra-download-readme.png">
+<img src="/images/monstra-download-readme.png" alt="Download dialog for README.md">
 
 ## Conclusion
 
