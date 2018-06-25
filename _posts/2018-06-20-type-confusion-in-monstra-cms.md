@@ -61,7 +61,7 @@ which equals 0. This means that you can log in with any *other* password that ha
 
 Let's find two hashes that both have the numerical value 0.
 
-    for ($i = 0; $i < 100000000000000; $i++) {
+    for ($i = 0;; $i++) {
         $hash = encryptPassword($i);
         if ($hash == "0") {
             echo "$i $hash\n";
@@ -77,7 +77,7 @@ We can test it by setting our password to "228453663" and then trying to log in 
 
 ## Probability
 
-For our hash to be numerical zero, we need one or more zeroes, then an `e`, then all numbers. Assuming that an MD5 hash is indistinguishable from random, what would be the probability this happens?
+For our hash to be numerical zero, we need one or more zeros, then an `e`, then all numbers. Assuming that an MD5 hash is indistinguishable from random, what would be the probability this happens?
 
 First, let's calculate the case with exactly one zero. So the hash starts with `0e`. Since each position can have 16 possibilities, there is a one in sixteen chance that a position contains a specific character. For two characters, this is one over sixteen times sixteen, or <sup>1</sup>&#8725;<sub>256</sub>.
 
@@ -89,7 +89,7 @@ So if we assume a random password, there is a one in several hundred million cha
 
 ## Conclusion
 
-Loosely comparing a MD5 is definitely a vulnerability, but it still does not allow an attacker to walk through the door. An attacker would need thundreds of millions of attempts before he can break security with this vulnerability.
+Loosely comparing a MD5 is definitely a vulnerability, but it still does not allow an attacker to walk through the door. An attacker would need hundreds of millions of attempts before he can break security with this vulnerability.
 
 ## Read more
 
