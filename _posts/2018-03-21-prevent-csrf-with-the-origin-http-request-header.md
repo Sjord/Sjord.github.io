@@ -17,6 +17,9 @@ date: 2018-08-01
 
 ## The Origin header
 
+### null
+
+
 
 There can be multiple origins in the origin header.
 
