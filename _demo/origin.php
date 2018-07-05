@@ -1,11 +1,18 @@
 <?php
-$cross_base = "http://sjoerd.local/_demo/";
-$cross_base1 = "http://ace/_demo/";
-$cross_base2 = "http://172.17.0.2/_demo/";
+$hosts = [
+    ["sjoerd.local", "/_demo/"],
+    ["172.17.0.2", "/_demo/"],
+];
 
-header("Access-Control-Allow-Origin: *");
-
-list($type, $remaining) = explode(",", $_REQUEST["type"], 2);
+for ($i = 0; $i < count($hosts); $i++) {
+    list($host, $path) = $hosts[$i];
+    if ($host === $_SERVER['HTTP_HOST']) {
+        $current_host_index = $i;
+        break;
+    }
+}
+$next_host_index = ($current_host_index + 1) % count($hosts);
+$cross_base = "http://" . implode("", $hosts[$next_host_index]);
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {
     $origin_text = $_SERVER['HTTP_ORIGIN'];
@@ -13,11 +20,16 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
     $origin_text = 'no origin header';
 }
 
+header("X-Reflected-Origin: $origin_text");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: HEAD, GET, PUT, POST, OPTIONS");
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    die();
+}
+
+list($type, $remaining) = explode(",", $_REQUEST["type"], 2);
 if ($type === 'redirect') {
     $dest = $cross_base."origin.php";
-    if (strlen($remaining) == 14) {
-        $dest = $cross_base1."origin.php";
-    }
     if ($remaining) {
         $dest .= "?type=$remaining";
     }
@@ -60,11 +72,15 @@ die();
 <link rel="stylesheet" type="text/css" href="origin.php?type=style&id=style_out_same" />
 <link rel="stylesheet" type="text/css" href="<?= $cross_base ?>origin.php?type=style&id=style_out_cross" />
 <script>
-function get_fetch_origin(url, result_id) {
-    fetch(url).then(function (response) {
-        response.text().then(function (content) {
-            document.getElementById(result_id).textContent = content;
-        });
+function get_fetch_origin(method, url, result_id) {
+    fetch(url, {method: method}).then(function (response) {
+        if (method == "HEAD") {
+            document.getElementById(result_id).textContent = response.headers.get("X-Reflected-Origin");
+        } else {
+            response.text().then(function (content) {
+                document.getElementById(result_id).textContent = content;
+            });
+        }
     });
 }
 </script>
@@ -78,11 +94,12 @@ function get_fetch_origin(url, result_id) {
 <li><button onclick="window.location='origin.php'">JS navigation</li>
 <li><form method="GET"><input type="submit" value="GET form"></form></li>
 <li><form method="POST"><input type="submit" value="POST form"></form></li>
+<li><iframe src='data:text/html,<form method="POST" action="<?= $cross_base ?>origin.php" target="_top"><input type="submit" value="POST form from data"></form>'></iframe></li>
 <li><form method="POST" action="origin.php?type=redirect"><input type="submit" value="POST with redirect"></form></li>
 </ul>
 
 <table>
-    <tr><th></th><th>same-origin</th><th>cross-origin</th></tr>
+    <tr><th></th><th>same-origin</th><th>cross-origin</th><th>multi-origin</th></tr>
     <tr>
         <td>This page</td>
         <td><?= $origin_text; ?></td>
@@ -109,9 +126,27 @@ function get_fetch_origin(url, result_id) {
         <td><span id="style_out_cross"></span></td>
     </tr>
     <tr>
-        <td>JS fetch</td>
-        <td><span id="js_fetch_same">?</span><script>get_fetch_origin("origin.php?type=fetch", "js_fetch_same");</script></td>
-        <td><span id="js_fetch_cross">?</span><script>get_fetch_origin("<?= $cross_base ?>origin.php?type=fetch", "js_fetch_cross");</script></td>
-        <td><span id="js_fetch_redirect">?</span><script>get_fetch_origin("origin.php?type=redirect,redirect,fetch", "js_fetch_redirect");</script></td>
+        <td>JS fetch GET</td>
+        <td><span id="js_fetch_get_same">?</span><script>get_fetch_origin("GET", "origin.php?type=fetch", "js_fetch_get_same");</script></td>
+        <td><span id="js_fetch_get_cross">?</span><script>get_fetch_origin("GET", "<?= $cross_base ?>origin.php?type=fetch", "js_fetch_get_cross");</script></td>
+        <td><span id="js_fetch_get_redirect">?</span><script>get_fetch_origin("GET", "<?= $cross_base ?>origin.php?type=redirect,fetch", "js_fetch_get_redirect");</script></td>
     </tr>
-
+    <tr>
+        <td>JS fetch HEAD</td>
+        <td><span id="js_fetch_head_same">?</span><script>get_fetch_origin("HEAD", "origin.php?type=fetch", "js_fetch_head_same");</script></td>
+        <td><span id="js_fetch_head_cross">?</span><script>get_fetch_origin("HEAD", "<?= $cross_base ?>origin.php?type=fetch", "js_fetch_head_cross");</script></td>
+        <td><span id="js_fetch_head_redirect">?</span><script>get_fetch_origin("HEAD", "<?= $cross_base ?>origin.php?type=redirect,fetch", "js_fetch_head_redirect");</script></td>
+    </tr>
+    <tr>
+        <td>JS fetch POST</td>
+        <td><span id="js_fetch_post_same">?</span><script>get_fetch_origin("POST", "origin.php?type=fetch", "js_fetch_post_same");</script></td>
+        <td><span id="js_fetch_post_cross">?</span><script>get_fetch_origin("POST", "<?= $cross_base ?>origin.php?type=fetch", "js_fetch_post_cross");</script></td>
+        <td><span id="js_fetch_post_redirect">?</span><script>get_fetch_origin("POST", "<?= $cross_base ?>origin.php?type=redirect,fetch", "js_fetch_post_redirect");</script></td>
+    </tr>
+    <tr>
+        <td>JS fetch PUT</td>
+        <td><span id="js_fetch_put_same">?</span><script>get_fetch_origin("PUT", "origin.php?type=fetch", "js_fetch_put_same");</script></td>
+        <td><span id="js_fetch_put_cross">?</span><script>get_fetch_origin("PUT", "<?= $cross_base ?>origin.php?type=fetch", "js_fetch_put_cross");</script></td>
+        <td><span id="js_fetch_put_redirect">?</span><script>get_fetch_origin("PUT", "<?= $cross_base ?>origin.php?type=redirect,fetch", "js_fetch_put_redirect");</script></td>
+    </tr>
+</table>
