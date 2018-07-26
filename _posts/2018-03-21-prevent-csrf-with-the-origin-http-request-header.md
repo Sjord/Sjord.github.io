@@ -13,7 +13,11 @@ date: 2018-08-01
 
 ## The Referer header
 
+The Referer header is a pretty old header that contains the URL the user came from. If you click on a link, the URL of the current page is sent in the Referer header to the requested link. In other words, this could be used to determine where the user came from, which can help us to block cross-site requests. However, there are two problems with the Referer header.
 
+First, the Referer header is poorly specified. It is not specified on which requests the header should be sent, or even if it should be sent at all. Even though most browsers do send this header, there is no specification that says they should.
+
+Secondly, the Referer header leaks the whole URL to other domains. If the URL contains sensitive data such as the session token or some other identifier, that is leaked when the URL is sent in the Referer header when the user clicks a link. This is the reason that many anti-virus solutions strip the Referer header from all HTTP requests, to avoid leaking sensitive data in the URL. Because so many anti-virus solutions strip the header, we can't rely on the Referer header to be present.
 
 ## The Origin header
 
