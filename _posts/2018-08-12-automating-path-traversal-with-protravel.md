@@ -38,6 +38,8 @@ So maybe /var/log/messages contains a log message about a cronjob running, with 
 
 I made a tool to automate this: [protravel](https://github.com/Sjord/protravel). It contains a list of interesting files that it downloads, and then searching in those files for more file paths. It tries to interpret some files, such as /etc/passwd to find home directories to search for files in.
 
+<img src="/images/protravel-screenshot.png" alt="Protravel screenshot">
+
 ## Conclusion
 
 Protravel is a tool to exploit path traversal vulnerabilities. It downloads files and tries to guess file paths.
