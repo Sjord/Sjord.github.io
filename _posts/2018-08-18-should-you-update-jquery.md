@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "Should you update jQuery over a hypotethical vulnerability?"
-thumbnail: todo.jpg
+thumbnail: fortune-teller-240.jpg
 date: 2018-08-18
 ---
 
+
+<!-- photo source: https://www.2ndmlg.marines.mil/Photos/igphoto/2000010532/ -->
 
 ## A vulnerability in jQuery
 
