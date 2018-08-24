@@ -11,7 +11,7 @@ if (isset($_GET['allowCredentials'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] != "OPTIONS") {
-    if (empty($_SERVER["REDIRECT_BYTE_AUTHORIZATION"])) {
+    if (empty($_SERVER["HTTP_AUTHORIZATION"])) {
         header('WWW-Authenticate: Basic realm="My Realm"', true, 401);
         echo "Authorization header missing";
     } else {

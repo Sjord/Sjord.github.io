@@ -1,6 +1,1 @@
-
-
-RewriteEngine on
-RewriteCond %{HTTP:Authorization} (.+)
-RewriteRule .* - [E=BYTE_AUTHORIZATION:%{HTTP:Authorization},L]
-
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
