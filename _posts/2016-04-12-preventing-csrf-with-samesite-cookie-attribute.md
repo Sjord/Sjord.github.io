@@ -62,6 +62,8 @@ As you would expect strict mode gives better security, but breaks some functiona
 
 As of April 2016, the same-site attribute for cookies is [implemented](https://www.chromestatus.com/feature/4672634709082112) in Chrome 51 and Opera 39.
 
+**Update:** Same-site cookies are now also supported in [Firefox 60](https://blog.mozilla.org/security/2018/04/24/same-site-cookies-in-firefox-60/).
+
 ## Conclusion
 
 The same-site attribute gives the possibility to disable third-party usage for any cookie. This is a good method to protect against CSRF attacks, because it seems to the attacker as though you are no longer logged in to the website under attack.
