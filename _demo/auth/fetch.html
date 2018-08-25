@@ -15,6 +15,7 @@
 <label><input type="checkbox" id="includeCredentials">Include credentials in request</label>
 <label><input type="checkbox" id="allowHeaders">Enable Access-Control-Allow-Headers: Authorization in response</label>
 <label><input type="checkbox" id="allowCredentials">Enable Access-Control-Allow-Credentials: true in response</label>
+<label>Access-Control-Allow-Origin: <select id="allowOrigin"><option value="host">demo.sjoerdlangkemper.nl</option><option value="wildcard">* (wildcard)</option></select></label>
 
 <button id="send">Send request</button>
 <div id="result">No result received yet</div>
@@ -26,16 +27,16 @@ const includeCredentials = document.getElementById("includeCredentials");
 const authorizationHeader = document.getElementById("authorizationHeader");
 const allowHeaders = document.getElementById("allowHeaders");
 const allowCredentials = document.getElementById("allowCredentials");
+const allowOrigin = document.getElementById("allowOrigin");
 
 function createUrl(allowHeaders, allowCredentials) {
     let url = "http://test.sjoerdlangkemper.nl/auth/basic.php";
-    let join = "?";
+    url += "?" + allowOrigin.value;
     if (allowHeaders) {
-        url += join + "allowHeaders";
-        join = "&";
+        url += "&allowHeaders";
     }
     if (allowCredentials) {
-        url += join + "allowCredentials";
+        url += "&allowCredentials";
     }
     return url;
 }
