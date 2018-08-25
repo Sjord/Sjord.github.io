@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CORS vs Authorization</title>
+</head>
+<style type="text/css">
+    label {
+        display: block;
+    }
+</style>
+<body>
+
+<label><input type="checkbox" id="authorizationHeader">Specify Authorization header in request</label>
+<label><input type="checkbox" id="includeCredentials">Include credentials in request</label>
+<label><input type="checkbox" id="allowHeaders">Enable Access-Control-Allow-Headers: Authorization in response</label>
+<label><input type="checkbox" id="allowCredentials">Enable Access-Control-Allow-Credentials: true in response</label>
+<label>Access-Control-Allow-Origin: <select id="allowOrigin"><option value="host">demo.sjoerdlangkemper.nl</option><option value="wildcard">* (wildcard)</option></select></label>
+
+<button id="send">Send request</button>
+<div id="result">No result received yet</div>
+
+<script>
+const send = document.getElementById("send");
+const result = document.getElementById("result");
+const includeCredentials = document.getElementById("includeCredentials");
+const authorizationHeader = document.getElementById("authorizationHeader");
+const allowHeaders = document.getElementById("allowHeaders");
+const allowCredentials = document.getElementById("allowCredentials");
+const allowOrigin = document.getElementById("allowOrigin");
+
+function createUrl(allowHeaders, allowCredentials) {
+    let url = "http://test.sjoerdlangkemper.nl/auth/basic.php";
+    url += "?" + allowOrigin.value;
+    if (allowHeaders) {
+        url += "&allowHeaders";
+    }
+    if (allowCredentials) {
+        url += "&allowCredentials";
+    }
+    return url;
+}
+
+send.addEventListener("click", function () {
+    result.innerText = "?";
+    const url = createUrl(allowHeaders.checked, allowCredentials.checked);
+    fetchData = {};
+    if (includeCredentials.checked) {
+        fetchData["credentials"] = "include";
+    }
+    if (authorizationHeader.checked) {
+        fetchData["headers"] = {"Authorization": "Basic c2pvZXJkOnNqb2VyZA=="};
+    }
+    fetch(url, fetchData).then(function (response) {
+        response.text().then(text => result.innerText = "Response received: " + text, error => result.innerText = error);
+    }, error => result.innerText = error);
+});
+</script>
+</body>
+</html>
