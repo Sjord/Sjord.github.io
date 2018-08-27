@@ -34,3 +34,5 @@ Conveniently, Metasfresh also has a page that lists session identifiers. If we r
 * We change our session cookie to a valid session ID, and are logged in into Metasfresh.
 
 [CORSFilter](https://github.com/metasfresh/metasfresh-webui-api/blob/master/src/main/java/de/metas/ui/web/config/CORSFilter.java#L68)
+
+<img src="/images/metasfresh-get-sessions.png" alt="A webpage on another domain lists Metasfresh session identifiers">
