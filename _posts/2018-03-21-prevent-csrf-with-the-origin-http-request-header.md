@@ -21,9 +21,9 @@ Secondly, the Referer header leaks the whole URL to other domains. If the URL co
 
 ## The Origin header
 
-### null
+### null value
 
-
+> In some scenarios, the string "null" is sent in lieu of origin information. This is done to indicate that the cause of the request is not trustworthy, even though it may come from the same origin. Certain requests are not generally useful as state-changing triggers (like requests for stylesheets, images or window navigation) and probably should not be trusted even if sent same-origin. 
 
 There can be multiple origins in the origin header.
 
@@ -31,3 +31,5 @@ There can be multiple origins in the origin header.
 * [Issue #10482384 - Send "Origin" HTTP header on POST form submit](https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10482384/)
 * [Robust Defenses for Cross-Site Request Forgery (PDF)](https://seclab.stanford.edu/websec/csrf/csrf.pdf)
 * [RFC6454 - The Web Origin Concept](https://datatracker.ietf.org/doc/rfc6454/)
+* [Origin header on Mozilla wiki](https://wiki.mozilla.org/Security/Origin)
+* [When does Firefox set the Origin header to null in POST requests?](https://stackoverflow.com/questions/42239643/when-does-firefox-set-the-origin-header-to-null-in-post-requests)
