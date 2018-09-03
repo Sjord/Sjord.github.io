@@ -2,7 +2,7 @@
 layout: post
 title: "Should you update jQuery over a hypothetical vulnerability?"
 thumbnail: fortune-teller-240.jpg
-date: 2018-08-29
+date: 2018-10-24
 ---
 
 If the version of jQuery you use contains a vulnerability, you may need to update your site to use a newer version. However, this can break functionality. You need to incorporate that into your decision on how to mitigate the vulnerability.
