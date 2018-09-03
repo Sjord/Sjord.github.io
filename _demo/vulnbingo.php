@@ -1,5 +1,5 @@
 <?php
 header("Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
 header('Content-Disposition: attachment; filename="vulnbingo.docx"');
-chdir("/home/users/sjoevftp/vulnbingo");
-passthru("/home/users/sjoevftp/vulnbingo/venv/bin/python /home/users/sjoevftp/vulnbingo/vulnbingo.py -");
+chdir("/data/sites/web/sjoerdlangkempernl/subsites/vulnbingo");
+passthru("/data/sites/web/sjoerdlangkempernl/subsites/vulnbingo/venv/bin/python /data/sites/web/sjoerdlangkempernl/subsites/vulnbingo/vulnbingo.py -");
