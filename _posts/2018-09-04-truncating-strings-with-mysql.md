@@ -50,6 +50,8 @@ This means that is we supply `webshel.php ` as our filename, it ends in white sp
 Do the following to reduce unexpected behavior of the database:
 
 * Use the utf8mb4 charset instead of utf8.
+    * Use the same charset for databases, tables and columns.
+    * Use the same charset on your [connection](https://dev.mysql.com/doc/refman/8.0/en/charset-connection.html).
 * Strip trailing spaces before validating user input.
 * Enable the following [SQL modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html):
     * STRICT_TRANS_TABLES
@@ -63,3 +65,7 @@ Do the following to reduce unexpected behavior of the database:
 ## Conclusion
 
 Unexpected behavior of the database can introduce security issues even if the validation logic is correct. Be aware of the behavior of your database and configure your database correctly in order to avoid this.
+
+## Read more
+
+* [How to support full Unicode in MySQL databases](https://mathiasbynens.be/notes/mysql-utf8mb4)
