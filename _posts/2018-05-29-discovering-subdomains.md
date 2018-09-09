@@ -18,6 +18,7 @@ Early in a pentest it may be helpful to enumerate all the subdomains of a domain
 * [bluto](https://github.com/darryllane/Bluto)
 * [censys-subdomain-finder](https://github.com/christophetd/censys-subdomain-finder)
 * [Cleveridge Subdomain Scanner](https://github.com/Cleveridge/cleveridge-subdomain-scanner)
+* [ct-exposer](https://github.com/chris408/ct-exposer)
 * [DMitry](http://mor-pah.net/software/dmitry-deepmagic-information-gathering-tool/)
 * [dnscan](https://github.com/rbsec/dnscan)
 * [dnsenum.pl](https://github.com/fwaeytens/dnsenum)
@@ -43,6 +44,7 @@ Early in a pentest it may be helpful to enumerate all the subdomains of a domain
 
 * [crt.sh](https://crt.sh/)
 * [DNSDumpster](https://dnsdumpster.com/)
+* [Entrust Certificate Transparency Search Tool](https://www.entrust.com/ct-search/)
 * [FindSubDomains](https://findsubdomains.com/)
 * [Robtex](https://www.robtex.com/)
 * [SecurityTrails](https://securitytrails.com/)
