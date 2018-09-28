@@ -36,6 +36,16 @@ The hackers, reportedly from China, maintained their stealth presence in OPM's n
 
 business - related c ybercrime was quite prevalent in 2015 - 2016 and affected large and medium - size businesses more frequently than small ones -- lp16
 
+Just under half (46%) of all UK businesses identified at least one cyber security breach or attack in the last 12 months. This rises to two - thirds among 
+medium firms (66%) and large firms (68%). - ip17
+
+The likelihood of a data breach involving a minimum of 10,000 records is estimated at approximately 27.9 percent over a 24-month period.  - ponemon18
+The likelihood is based on the companies participating in the study. These companies had a data breach which makes it more likely they will have another. - susan
+
+Ponemon gaat helemaal aan de haal met deze statistieken:
+    https://securityintelligence.com/ponemon-cost-of-a-data-breach-2018/
+    You’re more likely to experience a data breach of at least 10,000 records (27.9 percent) than you are to catch the flu this winter (5–20 percent, according to WebMD).
+
 
 
 1. [Glenn Greenwald: how the NSA tampers with US-made internet routers](https://www.theguardian.com/books/2014/may/12/glenn-greenwald-nsa-tampers-us-internet-routers-snowden)
@@ -56,3 +66,6 @@ Insider Threats: A Survey](http://www.nsclab.org/yang/publications/08278157.pdf)
 1. [Secret Code Found in Juniper&#x27;s Firewalls Shows Risk of Government Backdoors](https://www.wired.com/2015/12/juniper-networks-hidden-backdoors-show-the-risk-of-government-backdoors/)
 1. [The Year's 11 Biggest Hacks, From Ashley Madison to OPM](https://www.wired.com/2015/12/the-years-11-biggest-hacks-from-ashley-madison-to-opm/) wh15
 1. [The impact of cybercrime on businesses](https://www.researchgate.net/profile/Letizia_Paoli/publication/325120529_The_impact_of_cybercrime_on_businesses_A_novel_conceptual_framework_and_its_application_to_Belgium/links/5af96b1e0f7e9b026bf73418/The-impact-of-cybercrime-on-businesses-A-novel-conceptual-framework-and-its-application-to-Belgium.pdf) lp16
+1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf) ip17
+1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
+1. [Spionage, Sabotage, Datendiebstahl: Deutscher Wirtschaft entsteht jährlich ein Schaden von 55 Milliarden Euro](https://www.verfassungsschutz.de/de/oeffentlichkeitsarbeit/presse/pm-20170721-bfv-bitkom-vorstellung-studie-wirtschaftsspionage-sabotage-datendiebstahl)

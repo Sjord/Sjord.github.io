@@ -19,3 +19,4 @@ Involve marketeers whitler2017
 1. [Protecting against spear-phishing](http://faronics.com/assets/CFS_2012-01_Jan.pdf)
 1. [We ’ re sorry but it ’ s not our fault: Organizational apologies in ambiguous crisis situations](https://onlinelibrary.wiley.com/doi/pdf/10.1111/1468-5973.12169)
 1. [Game of information security investment: Impact of attack types and network vulnerability](https://www.sciencedirect.com/science/article/pii/S0957417415002274)
+1. [Get the basics right: risk management principles for cyber security](https://www.ncsc.gov.uk/guidance/get-basics-right-risk-management-principles-cyber-security)

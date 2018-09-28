@@ -22,6 +22,28 @@ Therefore, the estimates of damage run into hundreds of millions of dollars, sup
 it did not generate serious costs or harm for the majority of the businesses. The 
 monetary costs reported by the respondents are for all cybercrime types quite low. -- lp16
 
+Among the 46 per cent of businesses that detected breaches in the last 12 months , the survey finds that the average business faces costs of £ 1,570 as a result of these breaches.  -- ip17
+
+Telecoms company TalkTalk has been issued with a record £400,000 fine by the ICO for security failings that allowed a cyber attacker to access customer data “with ease”. ico16
+The Information Commissioner’s Office has fined TalkTalk Telecom Group PLC £100,000 after it failed to look after its customers’ data and risked it falling into the hands of scammers and fraudsters. - ico17
+
+Higher impact for sectors (ponemon18):
+* Health
+* Financial
+* Services
+
+Higher impact (ponemon18):
+* Third-party involvement
+* Extensive cloud migration
+* Compliancy failtures
+* Extensive use of mobile platforms
+
+Lower impact (ponemon18):
+* Incident response team
+* Extensive use of encryption
+* BCM involvement (business contiunity management)
+* Employee training
+
 1. [The Economic Impact of Cyber-Attacks](http://www.au.af.mil/au/awc/awcgate/crs/rl32331.pdf)
 1. [What is the Impact of Successful Cyberattacks on Target Firms?](http://www.nber.org/papers/w24409)
 1. [The Inside Story of Mt. Gox, Bitcoin's $460 Million Disaster](https://www.wired.com/2014/03/bitcoin-exchange/)
@@ -33,3 +55,8 @@ monetary costs reported by the respondents are for all cybercrime types quite lo
 1. [2018 Cost of a Data Breach Study](https://databreachcalculator.mybluemix.net/assets/2018_Global_Cost_of_a_Data_Breach_Report.pdf)
 1. [Measuring the Economic Effects of Data Breaches on Firm
 Outcomes: Challenges and Opportunities](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3044726)
+1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf) ip17
+1. [TalkTalk gets record £400,000 fine for failing to prevent October 2015 attack](https://ico.org.uk/about-the-ico/news-and-events/news-and-blogs/2016/10/talktalk-gets-record-400-000-fine-for-failing-to-prevent-october-2015-attack/) ico16
+1. [Personal data belonging to up to 21,000 TalkTalk customers could have been used for scams and fraud](https://ico.org.uk/about-the-ico/news-and-events/news-and-blogs/2017/08/personal-data-belonging-to-up-to-21-000-talktalk-customers-could-have-been-used-for-scams-and-fraud/) ico17
+1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
+1. [The Hiscox Cyber Readiness Report 2017](https://www.hiscox.co.uk/cyber-readiness-report/docs/cyber-readiness-report-2017.pdf)
