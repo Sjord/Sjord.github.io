@@ -35,9 +35,10 @@ Early in a pentest it may be helpful to enumerate all the subdomains of a domain
 * [nsec3walker](https://dnscurve.org/nsec3walker.html)
 * [recon-ng](https://bitbucket.org/LaNMaSteR53/recon-ng)
 * [subbrute](https://github.com/TheRook/subbrute)
-* [Sublist3r](https://github.com/aboul3la/Sublist3r)
 * [SubFinder](https://github.com/ice3man543/subfinder)
+* [Sublist3r](https://github.com/aboul3la/Sublist3r)
 * [subquest](https://github.com/skepticfx/subquest)
+* [SubScraper](https://github.com/m8r0wn/subscraper)
 * [xray](https://github.com/evilsocket/xray)
 
 ## Websites
