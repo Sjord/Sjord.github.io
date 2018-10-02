@@ -60,3 +60,4 @@ Outcomes: Challenges and Opportunities](https://papers.ssrn.com/sol3/papers.cfm?
 1. [Personal data belonging to up to 21,000 TalkTalk customers could have been used for scams and fraud](https://ico.org.uk/about-the-ico/news-and-events/news-and-blogs/2017/08/personal-data-belonging-to-up-to-21-000-talktalk-customers-could-have-been-used-for-scams-and-fraud/) ico17
 1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
 1. [The Hiscox Cyber Readiness Report 2017](https://www.hiscox.co.uk/cyber-readiness-report/docs/cyber-readiness-report-2017.pdf)
+1. [Uber will pay $148 million for 2016 data breach coverup](https://www.engadget.com/2018/09/26/uber-pay-148-million-2016-data-breach-coverup/)
