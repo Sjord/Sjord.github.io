@@ -15,8 +15,8 @@ In a bit flip attack, you typically want to change a single bit in a predefined 
 
 To flip a bit we will XOR it with 1. The XOR operation is done using the `^` hat.
 
-    >>> 123 ^ 1
-    122
+    >>> 97 ^ 1
+    96 
 
 ## Common to Python 2 and 3
 
@@ -80,6 +80,8 @@ Now, this example will only work in Python 2 and not in Python 3. Let's get into
 
 ## Python 2
 
+### Using strings
+
 The `str` type in Python 2 is a string of bytes. If you index it you get another `str` containing just one byte:
 
     >>> message = b"attack at dawn"
@@ -95,7 +97,32 @@ We can't just flip bits in this single-byte string. We need to convert it to a n
     >>> chr(ord(message[3]) ^ 1)
     '`'
 
+Now we have changed the letter at index 3, we can concatenate the rest of the string to it:
+
+    >>> message[0:3] + chr(ord(message[3]) ^ 1) + message[4:]
+    'att`ck at dawn'
+
+### Using a bytearray
+
+An alternative is to copy the string to a bytearray and directly change a letter:
+
+    >>> message = b"attack at dawn"
+    >>> message_array = bytearray(message)
+    >>> message_array[3] = message_array[3] ^ 1
+    >>> str(message_array)
+    'att`ck at dawn'
+
+Even in Python 2 the elements of bytearray are numbers. Indexing a bytearray will give a number. That said, it is still possible to assign single-letter strings to positions in a bytearray:
+
+    >>> message_array[3]
+    97
+    >>> message_array[3] = 'x'
+    >>> message_array
+    bytearray(b'attxck at dawn')
+
 ## Python 3
+
+### Using bytes
 
 In Python 3, `str` is the type for a string of text and `bytes` is the type for a string of bytes. If you index a `bytes` you get a number:
 
@@ -108,7 +135,17 @@ After we modify the number we want to put it back in our message. We have to con
     >>> bytes([97])
     b'a'
 
+### Using a bytearray
 
+The example given for Python 2 still works in Python 3. However, it is no longer possible to assign letters to bytearray indices. You can only assign numbers:
+
+    >>> message_array[3] = "x"
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: an integer is required
+    >>> message_array[3] = 96
+    >>> message_array
+    bytearray(b'att`ck at dawn')
 
 ## Which one to choose?
 
