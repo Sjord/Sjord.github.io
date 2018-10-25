@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Securing against cyber attacks"
-thumbnail: coins-480.jpg
+thumbnail: firefighters-480.jpg
 date: 2019-02-13
 ---
 
-<!-- photo source: https://pixabay.com/en/euro-coins-currency-money-yellow-1353420/ -->
+<!-- photo source: http://kentuckyguard.dodlive.mil/2016/07/11/fighting-fire-with-cooperation/ -->
 
 Rescorla has argued that for software with many latent vulnerabilities (e.g., Windows), removing one bug makes little difference to the likelihood of an attacker finding another one later (11).
 
