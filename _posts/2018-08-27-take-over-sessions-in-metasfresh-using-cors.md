@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Take over sessions in Metasfresh using CORS"
-thumbnail: metasfresh-240.jpg
+thumbnail: metasfresh-240.png
 date: 2018-11-25
 ---
 
-Metasfresh is a open source ERP web application. It has misconfigured CORS headers which allow any other site to perform authenticated requests to it.
+Metasfresh is a open source ERP web application. By default, it has misconfigured CORS headers which allow any other site to perform authenticated requests to it.
 
 ## Cross origin resource sharing
 
@@ -33,6 +33,13 @@ Conveniently, Metasfresh also has a page that lists session identifiers. If we r
 * Our page requests session IDs from Metasfresh using cross-origin requests from JavaScript. These requests use the cookie of the admin that visits our page.
 * We change our session cookie to a valid session ID, and are logged in into Metasfresh.
 
-[CORSFilter](https://github.com/metasfresh/metasfresh-webui-api/blob/master/src/main/java/de/metas/ui/web/config/CORSFilter.java#L68)
-
 <img src="/images/metasfresh-get-sessions.png" alt="A webpage on another domain lists Metasfresh session identifiers">
+
+## Conclusion
+
+CORS can be useful to grant access to another domain, but it works by disabling the corner stone of browser security: the same origin policy. Be sure to restrict access to certain domains.
+
+## Read more
+
+* [Implement CORS support #1035](https://github.com/metasfresh/metasfresh-webui-api/issues/1035)
+* [CORSFilter](https://github.com/metasfresh/metasfresh-webui-api/blob/master/src/main/java/de/metas/ui/web/config/CORSFilter.java#L68)
