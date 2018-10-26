@@ -5,6 +5,8 @@ thumbnail: impact-480.jpg
 date: 2019-01-30
 ---
 
+In a risk assessment, total risk is often calculated as a product of probability and impact. To make a proper risk assessment of cyber attacks, companies need to know both the probability and the impact of cyber attacks. This article explores the impact. What are the consequences of getting hacked?
+
 <!-- photo source: https://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17932 -->
 
 significant negative impact on sales growth (3.4pp) kamiya2018
@@ -45,7 +47,7 @@ Lower impact (ponemon18):
 * Employee training
 
 1. [The Economic Impact of Cyber-Attacks](http://www.au.af.mil/au/awc/awcgate/crs/rl32331.pdf)
-1. [What is the Impact of Successful Cyberattacks on Target Firms?](http://www.nber.org/papers/w24409)
+1. [What is the Impact of Successful Cyberattacks on Target Firms?](https://www.nber.org/papers/w24409)
 1. [The Inside Story of Mt. Gox, Bitcoin's $460 Million Disaster](https://www.wired.com/2014/03/bitcoin-exchange/)
 1. [The Untold Story of NotPetya, the Most Devastating Cyberattack in History](https://www.wired.com/story/notpetya-cyberattack-ukraine-russia-code-crashed-the-world/)
 1. [Foreign spies stealing US economic secrets in cyberspace](https://www.dni.gov/files/documents/Newsroom/Reports%20and%20Pubs/20111103_report_fecie.pdf)

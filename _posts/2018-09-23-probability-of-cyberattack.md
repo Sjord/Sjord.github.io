@@ -5,36 +5,13 @@ thumbnail: probability-480.jpg
 date: 2019-01-16
 ---
 
+In a risk assessment, total risk is often calculated as a product of probability and impact. To make a proper risk assessment of cyber attacks, companies need to know both the probability and the impact of cyber attacks. This article explores the probability. How likely is it for a company to get hacked?
+
 <!-- photo source: https://commons.wikimedia.org/wiki/File:High_School_Probability_and_Statistics_Cover.jpg -->
 
+## Somewhere between 0 and 68 per cent
 
 It follows that the unconditional probability of a cyberattack in a given year for a firm in our sample is extremely low, as it is 0.32%. kamiya2018
-
-Higher risk for:
-* larger companies kamiya2018
-* companies with lower leverage kamiya2018
-* poor past stock performance kamiya2018
-* more intangible assets kamiya2018
-
-Lower risk for:
-* companies with a risk committee on the board kamiya2018
-
-
-Many victims of economic espionage are unaware of the crime until years after loss of the information. fecie11
-
-There is almost no defense against a zero-day attack: while the vulnerability remains unknown, the software affected cannot be patched and anti-virus products cannot detect the attack through signature-based scanning. bilge2012
-
-For a given stockpile of zero-day vulnerabilities, after a year, approximately 5.7 percent have been discovered by an outside entity. ablon17
-
-At the most basic level, any serious attacker can always get an a ordable zero-day for almost any target.  ablon17
-
-The NSA routinely receives – or intercepts – routers, servers and other computer network devices being exported from the US before they are delivered to the international customers. The agency then implants backdoor surveillance tools, repackages the devices with a factory seal and sends them on. The NSA thus gains access to entire networks and all their users. gg14
-
-If an organisation is co nnec ted to the internet, it is vulnerable. The incidents in the public eye are just the tip of the iceberg. -- acsc15
-
-The hackers, reportedly from China, maintained their stealth presence in OPM's networks for more than a year before being discovered. -- wh15
-
-business - related c ybercrime was quite prevalent in 2015 - 2016 and affected large and medium - size businesses more frequently than small ones -- lp16
 
 Just under half (46%) of all UK businesses identified at least one cyber security breach or attack in the last 12 months. This rises to two - thirds among 
 medium firms (66%) and large firms (68%). - ip17
@@ -46,8 +23,42 @@ Ponemon gaat helemaal aan de haal met deze statistieken:
     https://securityintelligence.com/ponemon-cost-of-a-data-breach-2018/
     You’re more likely to experience a data breach of at least 10,000 records (27.9 percent) than you are to catch the flu this winter (5–20 percent, according to WebMD).
 
+## Factors influencing probability
+
+Higher risk for:
+* larger companies kamiya2018
+* companies with lower leverage kamiya2018
+* poor past stock performance kamiya2018
+* more intangible assets kamiya2018
+
+Lower risk for:
+* companies with a risk committee on the board kamiya2018
+
+business-related cybercrime was quite prevalent in 2015 - 2016 and affected large and medium - size businesses more frequently than small ones -- lp16
+
+## There is little you can do
+
+Many victims of economic espionage are unaware of the crime until years after loss of the information. fecie11
+
+There is almost no defense against a zero-day attack: while the vulnerability remains unknown, the software affected cannot be patched and anti-virus products cannot detect the attack through signature-based scanning. bilge2012
+
+For a given stockpile of zero-day vulnerabilities, after a year, approximately 5.7 percent have been discovered by an outside entity. ablon17
+
+At the most basic level, any serious attacker can always get an a ordable zero-day for almost any target.  ablon17
+
+The NSA routinely receives – or intercepts – routers, servers and other computer network devices being exported from the US before they are delivered to the international customers. The agency then implants backdoor surveillance tools, repackages the devices with a factory seal and sends them on. The NSA thus gains access to entire networks and all their users. gg14
+
+If an organisation is connected to the internet, it is vulnerable. The incidents in the public eye are just the tip of the iceberg. -- acsc15
+
+The hackers, reportedly from China, maintained their stealth presence in OPM's networks for more than a year before being discovered. -- wh15
+
+## Many vulnerabilities are not exploited
+
+## Conclusion
 
 
+
+1. [What is the Impact of Successful Cyberattacks on Target Firms?](https://www.nber.org/papers/w24409)
 1. [Glenn Greenwald: how the NSA tampers with US-made internet routers](https://www.theguardian.com/books/2014/may/12/glenn-greenwald-nsa-tampers-us-internet-routers-snowden)
 1. [Photos of an NSA “upgrade” factory show Cisco router getting implant](https://arstechnica.com/tech-policy/2014/05/photos-of-an-nsa-upgrade-factory-show-cisco-router-getting-implant/)
 1. [Protecting against spear-phishing](http://faronics.com/assets/CFS_2012-01_Jan.pdf)

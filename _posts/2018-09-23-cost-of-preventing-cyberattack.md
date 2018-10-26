@@ -5,11 +5,13 @@ thumbnail: firefighters-480.jpg
 date: 2019-02-13
 ---
 
+In the previous two articles, we explored the risk of cyber attacks. This artice explores how you can reduce that risk.
+
 <!-- photo source: http://kentuckyguard.dodlive.mil/2016/07/11/fighting-fire-with-cooperation/ -->
 
 Rescorla has argued that for software with many latent vulnerabilities (e.g., Windows), removing one bug makes little difference to the likelihood of an attacker finding another one later (11).
 
-rather than focusing only on  nding zero-day vulnerabilities, defenders may be able to shift the balance in their favor by starting from the assumption of compromise, investigating ways to improve system architecture design to contain the impact of compromise, and adopting di erent techniques to identify vulnerabilities. ablon17
+rather than focusing only on finding zero-day vulnerabilities, defenders may be able to shift the balance in their favor by starting from the assumption of compromise, investigating ways to improve system architecture design to contain the impact of compromise, and adopting different techniques to identify vulnerabilities. ablon17
 
 Involve marketeers whitler2017
 
