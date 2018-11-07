@@ -18,7 +18,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 400; }
 
-a         { color: #2a7ae2; text-decoration: none; }
+a         { color: #1f73e0; text-decoration: none; }
 a:hover   { color: #000; text-decoration: underline; }
 a:visited { color: #205caa; }
 
@@ -116,7 +116,7 @@ a:visited { color: #205caa; }
 .site-footer address {
   font-size: 15px;
   letter-spacing: -.3px;
-  color: #828282;
+  color: #757575;
 }
 
 /* Page Content styles */
@@ -173,7 +173,7 @@ a:visited { color: #205caa; }
 .posts .post-date {
   display: block;
   font-size: 15px;
-  color: #818181;
+  color: #757575;
 }
 
 
@@ -191,7 +191,7 @@ a:visited { color: #205caa; }
 
 .post-header .meta {
   font-size: 15px;
-  color: #818181;
+  color: #757575;
   margin-top: 5px;
 }
 
