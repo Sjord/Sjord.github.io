@@ -49,7 +49,7 @@ Adding random unstored data to passwords is an interesting way to slow down crac
 
 * [Authentication using random challenges](https://www.google.com/patents/US5872917), patent US5872917, Hellman, 1995
 * [A Simple Scheme to Make Passwords Based on One-Way Functions Much Harder to Crack](http://webglimpse.net/trial/bins/TR94-34.pdf), Udi Manber, 1996
-* [Strengthening Passwords](ftp://gatekeeper.dec.com/pub/DEC/SRC/technical-notes/SRC-1997-033.pdf), Abadi, 1997
+* [Strengthening Passwords](https://pdfs.semanticscholar.org/b855/6c4b4276bbf5451cc0875731b0b0574f0162.pdf), Abadi, 1997
 * [Method and apparatus for strengthening passwords for protection of computer systems](https://www.google.com/patents/US6079021), patent US6079021, Abadi, 1997
 * [Secure Applications of Low-Entropy Keys](https://www.schneier.com/academic/paperfiles/paper-low-entropy.pdf), Kelsey, 1997
 * [Brute Force Attack on UNIX Passwords with SIMD Computer](https://www.usenix.org/legacy/events/sec99/full_papers/kedem/kedem.pdf), 1999
