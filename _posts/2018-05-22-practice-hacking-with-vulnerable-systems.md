@@ -13,9 +13,9 @@ The best way to learn how to hack is to do it. There are several practice sites 
 
 * [CTF365](https://ctf365.com/)
 * [CTFTime](https://ctftime.org/)
+* [CTFlearn](https://ctflearn.com/) 
 * [Cryptopals](https://cryptopals.com/) - Cryptographic programming challenges
 * [Enigma Group](https://www.enigmagroup.org/)
-* [Exploit Exercises](https://exploit-exercises.com/) - Hacking Linux boxes
 * [Game of Hacks](http://www.gameofhacks.com/)
 * [Google Gruyere](http://google-gruyere.appspot.com/) - Vulnerable web app
 * [Google XSS Game](https://xss-game.appspot.com/) - Cross-site scripting for beginners
@@ -38,6 +38,7 @@ The best way to learn how to hack is to do it. There are several practice sites 
 * [Typhoon vulnerable VM](https://www.prismacsi.com/en/typhoon-vulnerable-virtual-machines/)
 * [W3Challs](https://w3challs.com/)
 * [bWAPP](http://www.itsecgames.com/)
+* [picoCTF](https://picoctf.com/)
 * [pwn0](https://pwn0.com/)
 * [pwnable.kr](http://pwnable.kr/)
 * [pwnable.tw](https://pwnable.tw/)
@@ -57,3 +58,4 @@ A CTF is a puzzle thought up by someone. There is always one obvious vulnerabili
 ## Read more
 
 * [Pentest-practice](https://github.com/roya0045/Pentest-practice)
+* [Practice CTF List](http://captf.com/practice-ctf/)
