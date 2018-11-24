@@ -2,7 +2,7 @@
 layout: post
 title: "Take over sessions in Metasfresh using CORS"
 thumbnail: metasfresh-240.png
-date: 2018-11-25
+date: 2018-12-05
 ---
 
 Metasfresh is a open source ERP web application. By default, it has misconfigured CORS headers which allow any other site to perform authenticated requests to it.
