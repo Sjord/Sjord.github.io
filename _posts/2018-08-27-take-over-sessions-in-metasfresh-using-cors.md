@@ -11,7 +11,7 @@ Metasfresh is a open source ERP web application. By default, it has misconfigure
 
 Because of the [same-origin policy](https://en.wikipedia.org/wiki/Same-origin_policy), every site can only access its own data. One site can perform a request to another site, but it can't read the response. This is so that one website can't read confidential information of another website.
 
-However, somtimes there is a need for one site to access another site's data, and there is a way to configure access. Cross origin resource sharing (CORS) specifies a set of headers that make it possible to grant another site access.
+However, sometimes there is a need for one site to access another site's data, and there is a way to configure access. Cross origin resource sharing (CORS) specifies a set of headers that make it possible to grant another site access.
 
 ## CORS in Metasfresh
 
@@ -33,7 +33,7 @@ Conveniently, Metasfresh also has a page that lists session identifiers. If we r
 * Our page requests session IDs from Metasfresh using cross-origin requests from JavaScript. These requests use the cookie of the admin that visits our page.
 * We change our session cookie to a valid session ID, and are logged in into Metasfresh.
 
-<img src="/images/metasfresh-get-sessions.png" alt="A webpage on another domain lists Metasfresh session identifiers">
+<img src="/images/metasfresh-get-sessions.png" alt="A web page on another domain lists Metasfresh session identifiers">
 
 ## Conclusion
 
