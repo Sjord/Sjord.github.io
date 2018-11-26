@@ -9,15 +9,21 @@ In a risk assessment, total risk is often calculated as a product of probability
 
 <!-- photo source: https://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17932 -->
 
+## Possible negative results of a hack
+
+* cost of investigating the hack;
+* cost of reinstalling systems and otherwise recovering technically;
+* brand damage and loss of sales;
+* lost revenue due to denial of service;
+* loss of intelectual property or valuable data;
+* legal defense;
+* fines.
+
 significant negative impact on sales growth (3.4pp) kamiya2018
 this translates into an average value loss of $439 million per attack kamiya2018
 
-Higher impact for:
-* attacks resulting in loss of personal information kamiya2018
-
-
-For example, an employee of Valspar Corpora on unlawfully downloaded proprietary paint formulas valued at $20 million, which he intended to take to a new
-job in China, according to press reports. This the  represented about one-eighth of Valspar’s reported pro ts in 2009, the year the employee was arrested. fecie11
+For example, an employee of Valspar Corporation unlawfully downloaded proprietary paint formulas valued at $20 million, which he intended to take to a new
+job in China, according to press reports. This the represented about one-eighth of Valspar’s reported profits in 2009, the year the employee was arrested. fecie11
 
 Therefore, the estimates of damage run into hundreds of millions of dollars, supporting the assertion that the risks of targeted cyber-attacks are not exaggerated. -- salus16
 
@@ -28,6 +34,11 @@ Among the 46 per cent of businesses that detected breaches in the last 12 months
 
 Telecoms company TalkTalk has been issued with a record £400,000 fine by the ICO for security failings that allowed a cyber attacker to access customer data “with ease”. ico16
 The Information Commissioner’s Office has fined TalkTalk Telecom Group PLC £100,000 after it failed to look after its customers’ data and risked it falling into the hands of scammers and fraudsters. - ico17
+
+## Factors influencing impact
+
+Higher impact for:
+* attacks resulting in loss of personal information kamiya2018
 
 Higher impact for sectors (ponemon18):
 * Health
@@ -45,6 +56,8 @@ Lower impact (ponemon18):
 * Extensive use of encryption
 * BCM involvement (business contiunity management)
 * Employee training
+
+## Read more
 
 1. [The Economic Impact of Cyber-Attacks](http://www.au.af.mil/au/awc/awcgate/crs/rl32331.pdf)
 1. [What is the Impact of Successful Cyberattacks on Target Firms?](https://www.nber.org/papers/w24409)

@@ -9,53 +9,79 @@ In a risk assessment, total risk is often calculated as a product of probability
 
 <!-- photo source: https://commons.wikimedia.org/wiki/File:High_School_Probability_and_Statistics_Cover.jpg -->
 
-## Somewhere between 0 and 68 per cent
+## Introduction
 
-It follows that the unconditional probability of a cyberattack in a given year for a firm in our sample is extremely low, as it is 0.32%. kamiya2018
+A proper risk assessment takes into account the chance and impact of a certain risk and the cost of securing against that risk. Maybe you lock your door, because it gives great security benifits at little expense. Maybe you don't own a bulletproof car, because the expense doesn't weigh up against the small chance of getting shot at. For some people this balance tips the other way: if you are rich and likely to get shot at, maybe you do buy an armored car.
 
-Just under half (46%) of all UK businesses identified at least one cyber security breach or attack in the last 12 months. This rises to two - thirds among 
-medium firms (66%) and large firms (68%). - ip17
+The same principles hold for cyber security. It makes little sense to spend more money on preventive measures than that can be lost in an attack. To correctly make decisions about how much to invest in securing and mitigating risk, companies need some information on the risk of getting hacked.
 
-The likelihood of a data breach involving a minimum of 10,000 records is estimated at approximately 27.9 percent over a 24-month period.  - ponemon18
-The likelihood is based on the companies participating in the study. These companies had a data breach which makes it more likely they will have another. - susan
+## Uncertainty
 
-Ponemon gaat helemaal aan de haal met deze statistieken:
-    https://securityintelligence.com/ponemon-cost-of-a-data-breach-2018/
-    You’re more likely to experience a data breach of at least 10,000 records (27.9 percent) than you are to catch the flu this winter (5–20 percent, according to WebMD).
+Although there are some studies on the risk of cyber attacks, these provide little certainty on the probability. Different studies produce different results, sometimes differing by a factor of 100 in the chance of being hacked. One of the more conservative studies puts the risk fairly low [1]:
+
+> It follows that the unconditional probability of a cyberattack in a given year for a firm in our sample is extremely low, as it is 0.32%.
+
+So each year, one in 312 companies get hacked. This seems somewhat consistent with my experiences.
+
+On the other end of the spectrum, studies say one in two companies get hacked yearly. Especially studies done or sponsored by security companies seem to artificially increase the risk.
+
+> Just under half (46%) of all UK businesses identified at least one cyber security breach or attack in the last 12 months. This rises to two - thirds among 
+medium firms (66%) and large firms (68%). [18]
+
+And then there are studies that totally blow up the results. There are three kinds of lies: lies, damned lies, and statistics.
+    
+> You’re more likely to experience a data breach of at least 10,000 records (27.9 percent) than you are to catch the flu this winter (5–20 percent, according to WebMD). [12]
+
+This is just plain false and Ponemon knows this. The Ponemon study [21] is done under companies that already had a data breach, which makes it more likely they will have another. Furthermore, the 27.9% is the chance over two years, not over one winter.
+
+I would say the chances of a company getting hacked are more in the order of 1% yearly, but this may be higher for specific companies.
 
 ## Factors influencing probability
 
+The chance of getting hacked depends on the type and size of your company. If you are a cryptocoin broker hackers have more incentive to attack your company than if you are a hobby shop. Studies [1, 17] identified the following factors that influence the chance of cyber attacks:
+
 Higher risk for:
-* larger companies kamiya2018
-* companies with lower leverage kamiya2018
-* poor past stock performance kamiya2018
-* more intangible assets kamiya2018
+* larger companies
+* companies with lower leverage
+* poor past stock performance
+* more intangible assets
 
 Lower risk for:
-* companies with a risk committee on the board kamiya2018
+* companies with a risk committee on the board
 
-business-related cybercrime was quite prevalent in 2015 - 2016 and affected large and medium - size businesses more frequently than small ones -- lp16
+I think the main factor is whether hackers have a motive to target you in an attack. If you are a notable company, engage in ethically disputable operations, have a lot of personal information on your customers, or are involved in financial transactions, hackers will have some reason to pick your company for a targeted attack.
+
+What also contributes is how well you have secured your software and network. However, I think this plays a relatively small part for most companies. It is hard to perfectly secure your company from targeted attacks.
 
 ## There is little you can do
 
-Many victims of economic espionage are unaware of the crime until years after loss of the information. fecie11
+While it is a good idea to secure your software and networks, it may not be enough to totally prevent all attacks.
 
-There is almost no defense against a zero-day attack: while the vulnerability remains unknown, the software affected cannot be patched and anti-virus products cannot detect the attack through signature-based scanning. bilge2012
+> If an organisation is connected to the internet, it is vulnerable. The incidents in the public eye are just the tip of the iceberg. [14]
 
-For a given stockpile of zero-day vulnerabilities, after a year, approximately 5.7 percent have been discovered by an outside entity. ablon17
+Security assessments typically scan for known issues. However, there is a chance that a dedicated attacker finds a previously unknown issue, a so called zero-day.
 
-At the most basic level, any serious attacker can always get an a ordable zero-day for almost any target.  ablon17
+> There is almost no defense against a zero-day attack: while the vulnerability remains unknown, the software affected cannot be patched and anti-virus products cannot detect the attack through signature-based scanning. [6]
 
-The NSA routinely receives – or intercepts – routers, servers and other computer network devices being exported from the US before they are delivered to the international customers. The agency then implants backdoor surveillance tools, repackages the devices with a factory seal and sends them on. The NSA thus gains access to entire networks and all their users. gg14
+And if the attacker isn't capable of finding a zero-day, he can still buy one from another hacker.
 
-If an organisation is connected to the internet, it is vulnerable. The incidents in the public eye are just the tip of the iceberg. -- acsc15
+> At the most basic level, any serious attacker can always get an a ordable zero-day for almost any target. [8]
 
-The hackers, reportedly from China, maintained their stealth presence in OPM's networks for more than a year before being discovered. -- wh15
+Then there are attacks that are pretty hard to defend against. Phishing, for example, is surprisingly effective. While you may not believe a prince in Nigeria has some money for you, you may believe an email pretending to be from a coworker, targeted just for you. This type of targeted phishing attacks are called spear phishing.
+
+And even if you have done everything right, you may be vulnerable to this specific man in the middle attack:
+
+> The NSA routinely receives – or intercepts – routers, servers and other computer network devices being exported from the US before they are delivered to the international customers. The agency then implants backdoor surveillance tools, repackages the devices with a factory seal and sends them on. The NSA thus gains access to entire networks and all their users. [2]
+
+Many victims of economic espionage are unaware of the crime until years after loss of the information. [13]
+The hackers, reportedly from China, maintained their stealth presence in OPM's networks for more than a year before being discovered. [16]
 
 ## Many vulnerabilities are not exploited
 
 ## Conclusion
 
+
+## Read more
 
 
 1. [What is the Impact of Successful Cyberattacks on Target Firms?](https://www.nber.org/papers/w24409)
@@ -71,7 +97,7 @@ Insider Threats: A Survey](http://www.nsclab.org/yang/publications/08278157.pdf)
 1. [Hack Back, A DIY Guide](http://pastebin.com/raw/0SNSvyjJ)
 1. [Broken Browser](https://www.brokenbrowser.com/)
 1. [Sony Pictures hack](https://en.wikipedia.org/wiki/Sony_Pictures_hack)
-1. [What is the Impact of Successful Cyberattacks on Target Firms?](http://www.nber.org/papers/w24409)
+1. [Calculating the Cost of a Data Breach in 2018, the Age of AI and the IoT](https://securityintelligence.com/ponemon-cost-of-a-data-breach-2018/)
 1. [Foreign spies stealing US economic secrets in cyberspace](https://www.dni.gov/files/documents/Newsroom/Reports%20and%20Pubs/20111103_report_fecie.pdf)
 1. [ACSC 2015 Threat Report](https://www.acsc.gov.au/publications/ACSC_Threat_Report_2015.pdf)
 1. [Secret Code Found in Juniper&#x27;s Firewalls Shows Risk of Government Backdoors](https://www.wired.com/2015/12/juniper-networks-hidden-backdoors-show-the-risk-of-government-backdoors/)
@@ -80,3 +106,4 @@ Insider Threats: A Survey](http://www.nsclab.org/yang/publications/08278157.pdf)
 1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf) ip17
 1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
 1. [Spionage, Sabotage, Datendiebstahl: Deutscher Wirtschaft entsteht jährlich ein Schaden von 55 Milliarden Euro](https://www.verfassungsschutz.de/de/oeffentlichkeitsarbeit/presse/pm-20170721-bfv-bitkom-vorstellung-studie-wirtschaftsspionage-sabotage-datendiebstahl)
+1. [Cost of a Data Breach Study](https://www.ibm.com/security/data-breach)
