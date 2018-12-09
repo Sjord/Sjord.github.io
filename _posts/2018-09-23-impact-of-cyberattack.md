@@ -11,6 +11,8 @@ In a risk assessment, total risk is often calculated as a product of probability
 
 ## Possible negative results of a hack
 
+A company that gets hacked experiences many cost factors. It takes work to recover from the hack. Users may lose trust in the company and take their business elsewhere. Later on in this article we will look at these possible damages from a hack:
+
 * cost of investigating the hack;
 * cost of reinstalling systems and otherwise recovering technically;
 * brand damage and loss of sales;
@@ -19,18 +21,32 @@ In a risk assessment, total risk is often calculated as a product of probability
 * legal defense;
 * fines.
 
-significant negative impact on sales growth (3.4pp) kamiya2018
-this translates into an average value loss of $439 million per attack kamiya2018
+### Overview
 
-For example, an employee of Valspar Corporation unlawfully downloaded proprietary paint formulas valued at $20 million, which he intended to take to a new
-job in China, according to press reports. This the represented about one-eighth of Valspar’s reported profits in 2009, the year the employee was arrested. fecie11
+But first, let's look at what studies say the monetary damage of a hack is on average.
 
 Therefore, the estimates of damage run into hundreds of millions of dollars, supporting the assertion that the risks of targeted cyber-attacks are not exaggerated. -- salus16
 
 it did not generate serious costs or harm for the majority of the businesses. The 
 monetary costs reported by the respondents are for all cybercrime types quite low. -- lp16
 
-Among the 46 per cent of businesses that detected breaches in the last 12 months , the survey finds that the average business faces costs of £ 1,570 as a result of these breaches.  -- ip17
+Among the 46 per cent of businesses that detected breaches in the last 12 months, the survey finds that the average business faces costs of £ 1,570 as a result of these breaches.  -- ip17
+
+### Cost of investigating
+### Cost of technical recovery
+### Brand damage and loss of sales
+
+significant negative impact on sales growth (3.4pp) kamiya2018
+this translates into an average value loss of $439 million per attack kamiya2018
+
+### Lost revenue due to denial of service
+### Loss of intelectual property or valuable data
+
+For example, an employee of Valspar Corporation unlawfully downloaded proprietary paint formulas valued at $20 million, which he intended to take to a new
+job in China, according to press reports. This the represented about one-eighth of Valspar’s reported profits in 2009, the year the employee was arrested. fecie11
+
+### Legal defense
+### Fines
 
 Telecoms company TalkTalk has been issued with a record £400,000 fine by the ICO for security failings that allowed a cyber attacker to access customer data “with ease”. ico16
 The Information Commissioner’s Office has fined TalkTalk Telecom Group PLC £100,000 after it failed to look after its customers’ data and risked it falling into the hands of scammers and fraudsters. - ico17
