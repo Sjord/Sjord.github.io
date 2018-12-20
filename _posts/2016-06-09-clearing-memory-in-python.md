@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Clearing memory in Python"
+title: "Overwriting memory in Python"
 thumbnail: shredded-paper-240.jpg
 date: 2016-06-09
 ---
