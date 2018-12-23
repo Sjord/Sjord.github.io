@@ -127,6 +127,18 @@ E.g. COM9 of /dev/ttyUSB0
 
 Using screen or putty.
 
+screen /dev/ttyUSB0 128000 - Looks like it works, but it silently falls back to a baud rate of 9600.
+gtkterm -p /dev/ttyUSB0 -s 128000 - Looks like it works, but actually uses 38400 as baud rate.
+cu -s 128000 -l /dev/ttyUSB0 - cu: Unsupported baud rate 128000
+
+screen /dev/ttyUSB0 4098 - Uses baud rate of 115200, because B115200 == 4098
+stty sets the baud rate, but screen overwrites that
+Exit cu with ~.
+
+* screen
+* cu
+* gtkterm
+
 ### Finding an UART interface on a device
 
 * Find debug pins
@@ -146,6 +158,9 @@ Is it possible to use arbitrary baud rates?
 Max baud rate is up to 2M or 3M
 
 Screen zegt soms niks ook al klopt de baud rate niet. Gebruik stty. En dan nog klopt het vaak niet.
+Hoe gebruik je stty samen met een ander programma?
+Hoe werkt BOTHER?
+Deze gist werkt: https://gist.github.com/sentinelt/3f1a984533556cf890d9
 
 <img src="/images/uart-logic-680.png" alt="A pulse is 104µs long">
 
