@@ -37,7 +37,7 @@ We can only flip bits on binary content. If we were passed a text string instead
 
     >>> message = u"Thanks for the tête-à-tête about our coup d'état in Zaïre"
     >>> message.encode("utf-8")
-    b"Thanks for the t\xc3\xaate-\xc3\xa0-t\xc3\xaate. Let's hope that El Ni\xc3\xb1o doesn't disturb our coup d'\xc3\xa9tat in Za\xc3\xafre"
+    b"Thanks for the t\xc3\xaate-\xc3\xa0-t\xc3\xaate about our coup d'\xc3\xa9tat in Za\xc3\xafre"
 
 As you can see our letters have been converted to bytes according to the UTF-8 encoding.
 
