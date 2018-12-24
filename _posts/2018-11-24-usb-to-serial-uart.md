@@ -5,20 +5,15 @@ thumbnail: ch340-480.jpg
 date: 2019-05-22
 ---
 
-TODO
+USB to UART converters or bridges present themselves as a serial port to your computer and send serial data over a couple of wires. They can be used to make a serial connection to another device. In this post we'll look into how this works.
 
 <!-- photo source: own work -->
-
-## Introduction
-
-TODO
-These chips are sometimes called USB to UART bridges
 
 ## Applications
 
 From a hacking perspective, the most interesting application of UARTs is in embedded devices. Most embedded devices have a UART header on the board. The device sends console output and accepts commands over the UART interface. Often, this gives direct access to a root shell.
 
-UART communication is sometimes also needed to interact with a development board, such as an Arduino or ESP8266, although most of these boards have a USB toq serial converter on board.
+UART communication is sometimes also needed to interact with a development board, such as an Arduino or ESP8266, although most of these boards have a USB to serial converter on board.
 
 Some other protocols are built upon UART communication, such as [IrDA](https://en.wikipedia.org/wiki/Infrared_Data_Association), [DMX](https://en.wikipedia.org/wiki/DMX512), [MIDI](https://en.wikipedia.org/wiki/MIDI) and [smart meter P1 ports](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf). These can also be used with USB to UART bridges, but require some further hacking to get working.
 
@@ -28,7 +23,7 @@ When two devices communicate using UART, they are connected with at least three 
 
 * Common ground, or 0V, or the negative lead of the power supply.
 * The transmitting pin (Tx) of one device is connected to the receiving pin (Rx) of the other device.
-* Similarly, the Rx is connected to the Tx.
+* Similarly, Rx is connected to Tx.
 
 Now, the devices can send data to each other by varying the voltage on the Tx lines, and read data by checking the voltage on the Rx line. UART uses a binary protocol, so there are only two voltage levels: high and low.
 
@@ -40,14 +35,13 @@ The baud rate is a term for the number of bits per second that are transmitted o
 
 The sending party flips the signal every 104µs, and the receiving party checks the voltage on the line every 104µs. It will still work if this is off by a couple of per cent. This sometimes happens with microcontrollers, that have trouble keeping an exact clock.
 
-The most common baud rates in use are 9600 and 115200. Then there are a handful of standard baud rates, such as 19200 and 38400. In theory you can use any baud rate, but some interfaces only support the standard baud rates.
+The most common baud rates in use are 9600 and 115200. Then there are a handful of standard baud rates, such as 19200 and 38400. In theory you can use any baud rate, but some interfaces only support the standard baud rates. It is also possible to use different baud rates for sending and receiving, although this is pretty rare.
 
 <img src="/images/uart-logic-680.png" alt="A pulse is 104µs long">
 
 ### Start, stop and parity bits
 
-When sending data, the transmitting party usually first sends a start bit, then 8 data bits, followed by a stop bit.
-UART frames consist of a start bit, 7 or 8 data bits, optionally a parity bit and one or two stop bits. By far the most common configuration is to use 8 data bits, no parity bit and one stop bit, or 8N1.
+UART frames consist of a start bit, seven or eight data bits, optionally a parity bit and one or two stop bits. By far the most common configuration is to use 8 data bits, no parity bit and one stop bit, or 8N1. So the transmitting party first sends a start bit, then eight data bits, followed by a stop bit.
 
 ### Voltage levels
 
@@ -70,21 +64,14 @@ To let your computer talk UART, you need a device that converts computer bytes t
 
 A USB to UART bridge has a chip on it specifically for this purpose. There are several commonly used chips:
 
-* WCH CH340
-* Silicon Labs CP2102
-* Prolific PL2303
-* FTDI FT232
+| Manufacturer | Chip   | Price | Max baud rate | Buffer size | Datasheet |
+|--------------|--------|-------|---------------|-------------|-----------|
+| WCH          | CH340  | €0.25 | 2 Mbps        | ?           | [CH340](https://cdn.sparkfun.com/datasheets/Dev/Arduino/Other/CH340DS1.PDF)         |
+| Silicon Labs | CP2102 | €0.75 | 1 Mbps        | 1216 B      | [CP2102/9](https://www.silabs.com/documents/public/data-sheets/CP2102-9.pdf)          |
+| Prolific     | PL2303 | €0.25 | 12 Mbps       | 512 B       | [PL2303HX](http://www.prolific.com.tw/UserFiles/files/ds_pl2303HXD_v1_4_4.pdf)          |
+| FTDI         | FT232  | €3.50 | 3 Mbps        | 384 B       | [FT232R](https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf)          |
 
 The FTDI is around the longest and was previously the only implementation available for USB to UART bridges. They were so common that a bridge was sometimes called a FTDI, after the company name that made the converter chip. Nowadays, they are quickly taken over by much cheaper Chinese converter chips.
-
-CH340 €0.25
-CP2102 €0.75
-PL2303 €0.25
-FTDI FT232 €3.50
-
-* Arduino has custom chip
-    Makes it possible to identify as Arduino to the computer
-    Makes it possible to change the USB device later
 
 #### Fake FTDI chips
 
@@ -98,14 +85,14 @@ When picking a USB to UART bridge, keep these things in mind:
 
 * Voltage level. Determine the voltage level you want to use. Some bridges support both 3.3V and 5V, and there is a little jumper to switch voltage.
 * Drivers. Check whether the bridge you want to buy has drivers for your platform.
-* Blinking LEDs. They look cool and they indicate what is going on.
+* Blinking LEDs. They look cool and they can help you with troubleshooting.
 * USB connector. Some bridges plug right into your computer, but it is often nice to have a USB cable between your computer and your bridge so that you have some more room on your desk. Bridges with mini-USB sockets are pretty common, but I prefer micro-USB sockets.
 * Features. Do you need special features such as inverted signals? Check the data sheet of the chip.
 * Speed. Do you need particularly fast or uncommon speeds? Check the data sheet of the chip.
 
 I think the best chip is the FTDI FT232. It is also the most expensive and it is hard to determine whether you have a legitimate chip or a cheap knock-off.
 
-For normal UART usage, any chip is fine. With the cheapest bridge on AliExpress (€0.500 you can talk to embedded devices just fine.
+For normal UART usage, any chip is fine. With the cheapest bridge on AliExpress (€0.50) you can talk to embedded devices just fine.
 
 ### Drivers
 
@@ -113,56 +100,93 @@ Your computer needs to know how to talk to the module, and for that you need dri
 
 On Linux the drivers ship with the kernel. The most common chips are supported from kernel version 2.6 and up, and the drivers are still being improved in the latest versions.
 
+On MacOS you need drivers. Some drivers can be installed using homebrew. The following command installs the CH340 drivers:
 
-brew cask install nogwat?
-[Serial](https://www.decisivetactics.com/products/serial/) for macOS
+    brew cask install wch-ch34x-usb-serial-driver
+
+Alternatively, you can use the excellent [Serial](https://www.decisivetactics.com/products/serial/) app for macOS, which comes with its own drivers.
+
+On Windows you need drivers. For some chips (FTDI) these can be obtained through Windows Update, and for others an installer can be found on the manufacturer site.
+
+Some of these drivers are of questionable quality and can make your system unstable. I could reliably crash my Mac by reading and writing a large amount of data to the serial port.
 
 ### Finding the serial port
 
-E.g. COM9 of /dev/ttyUSB0
+A USB to UART bridge adds a serial port to your computer. To communicate over the UART, you have to read and write to the correct serial port. If you can't find the correct port, you probably have trouble with drivers or the USB connection to your bridge.
 
-* Unplug the bridge, list all devices (ls /dev), plug the bridge in again, and compare the two.
+#### Linux
+
+The device is called something like /dev/ttyUSB0. If you plug the device in a look in the logs (`sudo dmesg`), a line typically indicates where the newly found device is attached:
+
+<img src="/images/uart-dmesg-output.png" alt="ch341-uart converter now attached to ttyUSB0">
+
+#### macOS
+
+The device is called something like /dev/tty.wchusbserial1410. I haven't found a reliable way to get the filename of this port. You can try the following things:
+
+* View the logs using `sudo dmesg`.
+* List USB devices using `ioreg -p IOUSB`.
+
+If all else fails, list all files in /dev, plug the device in, list again and diff the two:
+
+    $ ls /dev > before.txt
+    $ ls /dev > after.txt
+    $ diff before.txt after.txt
+    268a269,270
+    > cu.usbserial-1410
+    > cu.wchusbserial1410
+    444a447,448
+    > tty.usbserial-1410
+    > tty.wchusbserial1410
+
+#### Windows
+
+On Windows, the port is called COM3 or some other number. You can find the correct port number in the device manager.
+
+<img src="/images/uart-windows-device-manager-installed.png">
 
 ### Talking to the serial port
 
-Using screen or putty.
+You need some software that sets the baud rate and sends and receives bytes over the serial port. Use [tio](https://tio.github.io/) on Linux, [Putty](https://www.putty.org/) on Windows and [Serial](https://www.decisivetactics.com/products/serial/) on macOS. Don't use `screen`.
 
-screen /dev/ttyUSB0 128000 - Looks like it works, but it silently falls back to a baud rate of 9600.
-gtkterm -p /dev/ttyUSB0 -s 128000 - Looks like it works, but actually uses 38400 as baud rate.
-cu -s 128000 -l /dev/ttyUSB0 - cu: Unsupported baud rate 128000
+You typically wants some software that supports arbitrary baud rates and informs you of what is going on. In that regard, `screen` and `gtkterm` are insufficient. While `screen` can set up a serial connection and it sometimes works correctly, it doesn't inform you when it can't do what you want. If you run the command `screen /dev/ttyUSB0 128000`, you may expect the baud rate to be set to 128000. However, this is an unsupported baud rate and `screen` silently falls back to 9600. Everything seems to be OK, except the baud rate is incorrect.
 
-screen /dev/ttyUSB0 4098 - Uses baud rate of 115200, because B115200 == 4098
-stty sets the baud rate, but screen overwrites that
-Exit cu with ~.
+Even more weirdly, `screen /dev/ttyUSB0 4098` uses a baud rate of 115200, because the kernel constant `B115200` equals `4098`, and screen interprets the given number either way.
 
-* screen
-* cu
-* gtkterm
+The `cu` command at least tells you that the baud rate is unsupported.
+
+Everything you type is sent over the serial line, which can make it tricky to exit the program. Use the following key shortcuts to exit:
+* screen: ctrl-a, k, y
+* tio: ctrl-t, q
+* cu: ~. enter
 
 ### Finding an UART interface on a device
 
-* Find debug pins
-* Use headphones
-* Use a logic analyzer
+If you want to connect to an embedded device, the first step is to find the correct pins on the board. Often there is a row of four or five pins with at least ground, Vcc, Rx and Tx. Sometimes the pins are omitted and there are only holes. Often such a connection is labeled as J5 or some other number.
 
 <img src="/images/uart-hg655.jpg" width="680">
 
+A sending UART line can be identified with a multimeter. First, find a good connection for the common ground and connect the black lead of the multimeter to it. Then measure the voltage on the suspected pins with the red lead. A Tx line will be 3.3V when idle. Keep measuring while rebooting the device. Data is often sent on boot, so we can use this to determine whether data is sent over the line. If data is sent, the voltage will temporarily drop below 3V according to the multimeter.
+
+A more hacky way is to connect headphones to the pin. If data is sent over the line this can be heard as noise, even if the baud rate is high.
+
+A more precise way is to use a logic analyzer or oscilloscope. This way you can accurately view (and decode) the signal.
+
 ### Connecting to the device
 
-* Find ground
-* Don't connect VCC
+When connecting your UART bridge to the device, connect ground, Tx and Rx. Don't connect Vcc if your device already has power on its own.
 
 ### Finding the baud rate
 
-Is it possible to use arbitrary baud rates?
-Max baud rate is up to 2M or 3M
+A common way is to try the standard baud rates until the output looks legible. Alternatively, the baud rate can be determined by measuring the length of the shortest pulse. With a baud rate of 9600, one bit takes <sup>1</sup>&#8725;<sub>9600</sub> of a second. So if we measure the duration of one bit we can determine the baud rate.
 
-Screen zegt soms niks ook al klopt de baud rate niet. Gebruik stty. En dan nog klopt het vaak niet.
-Hoe gebruik je stty samen met een ander programma?
-Hoe werkt BOTHER?
-Deze gist werkt: https://gist.github.com/sentinelt/3f1a984533556cf890d9
+This is easiest with a logic analyzer, which just shows the timing in the interface:
 
 <img src="/images/uart-logic-680.png" alt="A pulse is 104µs long">
+
+It is also possible with a microcontroller with a sufficiently high clock frequency. I  used my 72 Mhz Teensy to measure baud rates. It simply measures the time the signal stays low and calculates the baud rate from that. The high precision timing makes [the program](https://github.com/Sjord/autobaud) a bit complex, but it works quite well.
+
+Using an incorrect baud rate will typically show gibberish, although it is also possible that you see nothing at all.
 
 <img src="/images/uart-baud-rate-incorrect.png" alt="Incorrect baud rate will give gibberish">
 
@@ -172,6 +196,7 @@ The first step is to pinpoint where the problem is: is it between your computer 
 
 #### Locating the problem
 
+* Does your computer get an extra COM or tty device when plugging the bridge in? If not, you have a driver problem.
 * Check the LEDs on the bridge.
     * Is the Tx LED lighting up when you are sending data? Then the connection between your computer and the bridge is OK.
     * Is the Rx LED lighting up but you don't see anything in your terminal application? Then the the connection between the bridge and the device is OK and the problem is between your computer and the bridge.
@@ -186,45 +211,19 @@ The first step is to pinpoint where the problem is: is it between your computer 
 * View the logs (using dmesg) when putting the device into your computer.
 * Unplug the bridge, list all devices (ls /dev), plug the bridge in again, and compare the two.
 * Try another known good USB cable.
+* Retry what you are doing a couple of times, to rule out a temporary problem.
 
 #### Remote problems
 
-List the plugged in USB devices.
-
-On MacOS: ioreg -p IOUSB
-
-Diff between ls /dev with and without device plugged in
-
-Watch the LEDs
-
-Connect RX and TX together with a jumper wire.
-
-Ground not connected? Baud rate off?
-
-
-Is your data line an "open collector"? Do you need a pull-up resistor? Does the converter has a pull-up resistor?
-Is the data inverted? This is common in smart meters. This can be solved in software by programming the USB to UART chip. CH340 heeft R232 pin.
-
-### OS differences
-
-
-
-Verkoopt op Ali:
-CH340
-CP2102
-PL2303
-
-Bij Qbit hebben we:
-PL2303
-CH340
-
-
-FTDI FT232
-
+* Is the baud rate correct? 
+* Is the bridge using the baud rate you think it is?
+* Does the device use an inverted data line?
+* Does the device need to have serial communication enabled? Does it have a data request line?
+* Is ground correctly connected to the device?
 
 ## Conclusion
 
-TODO
+Using a USB to UART bridge can be pretty simple if it works, or it can be painful if it doesn't. I am surprised that there is so much to tell about UART's. 
 
 ## Read more
 
