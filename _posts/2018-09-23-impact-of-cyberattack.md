@@ -9,6 +9,16 @@ In a risk assessment, total risk is often calculated as a product of probability
 
 <!-- photo source: https://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17932 -->
 
+## Introduction
+
+If a company gets hacked, this results in technical costs to recover from the hack as well as damage to the public image of the company, impacting sales. This latter category is hard to estimate, as in most cases it is hard to say what would have happened if the company didn't get hacked. Nevertheless, some studies attempted to calculate the total cost of a cyber security breach. And the results of these studies are over the place:
+
+> Among the 46 per cent of businesses that detected breaches in the last 12 months, the survey finds that the average business faces costs of £ 1,570 as a result of these breaches. [11]
+
+> Therefore, the estimates of damage run into hundreds of millions of dollars, supporting the assertion that the risks of targeted cyber-attacks are not exaggerated. [6]
+
+So we can be sure that the costs range from £ 1,570 to hundreds of millions of dollars. That's quite a range, so let's break it down.
+
 ## Possible negative results of a hack
 
 A company that gets hacked experiences many cost factors. It takes work to recover from the hack. Users may lose trust in the company and take their business elsewhere. Later on in this article we will look at these possible damages from a hack:
@@ -21,19 +31,17 @@ A company that gets hacked experiences many cost factors. It takes work to recov
 * legal defense;
 * fines.
 
-### Overview
-
-But first, let's look at what studies say the monetary damage of a hack is on average.
-
-Therefore, the estimates of damage run into hundreds of millions of dollars, supporting the assertion that the risks of targeted cyber-attacks are not exaggerated. -- salus16
-
-it did not generate serious costs or harm for the majority of the businesses. The 
-monetary costs reported by the respondents are for all cybercrime types quite low. -- lp16
-
-Among the 46 per cent of businesses that detected breaches in the last 12 months, the survey finds that the average business faces costs of £ 1,570 as a result of these breaches.  -- ip17
-
 ### Cost of investigating
+
+A hack is rarely detected by a watchful system administrator. Often a company only notices something is wrong when data has been manipulated, or their records become available on the internet. Then it is a big task to find out how the hack took place. This is quite some work and has to be done carefully. Often, a consultancy firm specializing in this type of assignment is hired. If there is suspicion of a crime, a forensic team needs to analyze the evidence.
+
+This type of cost depends largely on the type of hack. If it is immediately obvious how the company got hacked the investigation may be over quickly. For large, complex companies that only notice the breach when their records are published, this become quite costly.
+
+Sony spend $15 million “in investigation and remediation costs" [17], which suggests that investigation is a substantial part of that.
+
 ### Cost of technical recovery
+
+
 ### Brand damage and loss of sales
 
 significant negative impact on sales growth (3.4pp) kamiya2018
@@ -73,6 +81,8 @@ Lower impact (ponemon18):
 * BCM involvement (business contiunity management)
 * Employee training
 
+## Conclusion
+
 ## Read more
 
 1. [The Economic Impact of Cyber-Attacks](http://www.au.af.mil/au/awc/awcgate/crs/rl32331.pdf)
@@ -92,3 +102,4 @@ Outcomes: Challenges and Opportunities](https://papers.ssrn.com/sol3/papers.cfm?
 1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
 1. [The Hiscox Cyber Readiness Report 2017](https://www.hiscox.co.uk/cyber-readiness-report/docs/cyber-readiness-report-2017.pdf)
 1. [Uber will pay $148 million for 2016 data breach coverup](https://www.engadget.com/2018/09/26/uber-pay-148-million-2016-data-breach-coverup/)
+1. [How much do data breaches cost big companies? Shockingly little](http://fortune.com/2015/03/27/how-much-do-data-breaches-actually-cost-big-companies-shockingly-little/)

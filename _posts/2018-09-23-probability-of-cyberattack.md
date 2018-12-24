@@ -78,11 +78,13 @@ The hackers, reportedly from China, maintained their stealth presence in OPM's n
 
 ## Many vulnerabilities are not exploited
 
+When performing a security assessment on a client's product, I often find serious security vulnerabilities that have been present in production for years. Most of the time, this vulnerability did not seem to be exploited by hackers. SQL injection or path traveral vulnerabilities remain undetected for years, without any bad consequences. So it is not the case that if you have a vulnerability, that you are going to get hacked. There doesn't seem to be a clear correlation between the amount of vulnerabilities and the exploitation of them.
+
 ## Conclusion
 
+There is much uncertainty about the probability of getting hacked, but I would put it in the order of 1% yearly. Some factors influence the probability, especially the size of the company. The presence of vulnerabilities does not necessarily correlate with exploitation by malicious actors.
 
 ## Read more
-
 
 1. [What is the Impact of Successful Cyberattacks on Target Firms?](https://www.nber.org/papers/w24409)
 1. [Glenn Greenwald: how the NSA tampers with US-made internet routers](https://www.theguardian.com/books/2014/may/12/glenn-greenwald-nsa-tampers-us-internet-routers-snowden)
@@ -101,9 +103,9 @@ Insider Threats: A Survey](http://www.nsclab.org/yang/publications/08278157.pdf)
 1. [Foreign spies stealing US economic secrets in cyberspace](https://www.dni.gov/files/documents/Newsroom/Reports%20and%20Pubs/20111103_report_fecie.pdf)
 1. [ACSC 2015 Threat Report](https://www.acsc.gov.au/publications/ACSC_Threat_Report_2015.pdf)
 1. [Secret Code Found in Juniper&#x27;s Firewalls Shows Risk of Government Backdoors](https://www.wired.com/2015/12/juniper-networks-hidden-backdoors-show-the-risk-of-government-backdoors/)
-1. [The Year's 11 Biggest Hacks, From Ashley Madison to OPM](https://www.wired.com/2015/12/the-years-11-biggest-hacks-from-ashley-madison-to-opm/) wh15
-1. [The impact of cybercrime on businesses](https://www.researchgate.net/profile/Letizia_Paoli/publication/325120529_The_impact_of_cybercrime_on_businesses_A_novel_conceptual_framework_and_its_application_to_Belgium/links/5af96b1e0f7e9b026bf73418/The-impact-of-cybercrime-on-businesses-A-novel-conceptual-framework-and-its-application-to-Belgium.pdf) lp16
-1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf) ip17
+1. [The Year's 11 Biggest Hacks, From Ashley Madison to OPM](https://www.wired.com/2015/12/the-years-11-biggest-hacks-from-ashley-madison-to-opm/)
+1. [The impact of cybercrime on businesses](https://www.researchgate.net/profile/Letizia_Paoli/publication/325120529_The_impact_of_cybercrime_on_businesses_A_novel_conceptual_framework_and_its_application_to_Belgium/links/5af96b1e0f7e9b026bf73418/The-impact-of-cybercrime-on-businesses-A-novel-conceptual-framework-and-its-application-to-Belgium.pdf)
+1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf)
 1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
 1. [Spionage, Sabotage, Datendiebstahl: Deutscher Wirtschaft entsteht jährlich ein Schaden von 55 Milliarden Euro](https://www.verfassungsschutz.de/de/oeffentlichkeitsarbeit/presse/pm-20170721-bfv-bitkom-vorstellung-studie-wirtschaftsspionage-sabotage-datendiebstahl)
 1. [Cost of a Data Breach Study](https://www.ibm.com/security/data-breach)
