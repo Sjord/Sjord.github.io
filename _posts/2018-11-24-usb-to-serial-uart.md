@@ -66,10 +66,10 @@ A USB to UART bridge has a chip on it specifically for this purpose. There are s
 
 | Manufacturer | Chip   | Price | Max baud rate | Buffer size | Datasheet |
 |--------------|--------|-------|---------------|-------------|-----------|
-| WCH          | CH340  | €0.25 | 2 Mbps        | ?           | [CH340](https://cdn.sparkfun.com/datasheets/Dev/Arduino/Other/CH340DS1.PDF)         |
-| Silicon Labs | CP2102 | €0.75 | 1 Mbps        | 1216 B      | [CP2102/9](https://www.silabs.com/documents/public/data-sheets/CP2102-9.pdf)          |
+| WCH          | CH340  | €0.25 | 2 Mbps        | 32 + 32 B           | [CH340](https://cdn.sparkfun.com/datasheets/Dev/Arduino/Other/CH340DS1.PDF)         |
+| Silicon Labs | CP2102 | €0.75 | 1 Mbps        | 576 + 640 B      | [CP2102/9](https://www.silabs.com/documents/public/data-sheets/CP2102-9.pdf)          |
 | Prolific     | PL2303 | €0.25 | 12 Mbps       | 512 B       | [PL2303HX](http://www.prolific.com.tw/UserFiles/files/ds_pl2303HXD_v1_4_4.pdf)          |
-| FTDI         | FT232  | €3.50 | 3 Mbps        | 384 B       | [FT232R](https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf)          |
+| FTDI         | FT232  | €3.50 | 3 Mbps        | 128 + 256 B       | [FT232R](https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf)          |
 
 The FTDI is around the longest and was previously the only implementation available for USB to UART bridges. They were so common that a bridge was sometimes called a FTDI, after the company name that made the converter chip. Nowadays, they are quickly taken over by much cheaper Chinese converter chips.
 
