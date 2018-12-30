@@ -52,7 +52,9 @@ On a UART line, high voltage indicates a 1 bit and low voltage indicates a 0 bit
 * Most devices use 0V and 3.3V.
 * Some devices use 0V and 1.8V.
 
-Voltage that ranges between 0 and power supply voltage (Vcc) is also called TTL voltage levels. To avoid frying your device, it is important to use the correct voltage.
+To avoid frying your device, it is important to use the correct voltage.
+
+Voltage that ranges between 0 and power supply voltage (Vcc) is also called TTL voltage levels. 5V TTL voltage levels consider everything above 2V a logic high, and can thus also receive data from 3.3V UART devices. So in some cases it is possible to communicate with a 5V UART using a 3.3V UART.
 
 ## USB to UART converter module
 
@@ -68,8 +70,10 @@ A USB to UART bridge has a chip on it specifically for this purpose. There are s
 |--------------|--------|-------|------------|---------------|-------------|-----------------------------------------------------------------------------------|
 | WCH          | CH340  | €0.25 | 3.3 / 5V   | 2 Mbps        | 32 + 32 B   | [CH340](https://cdn.sparkfun.com/datasheets/Dev/Arduino/Other/CH340DS1.PDF)       |
 | Silicon Labs | CP2102 | €0.75 | 3.3V       | 1 Mbps        | 576 + 640 B | [CP2102/9](https://www.silabs.com/documents/public/data-sheets/CP2102-9.pdf)      |
-| Prolific     | PL2303 | €0.25 | 1.8 - 3.3V | 12 Mbps       | 512 B       | [PL2303HX](http://www.prolific.com.tw/UserFiles/files/ds_pl2303HXD_v1_4_4.pdf)    |
+| Prolific     | PL2303 | €0.25 | 1.8 - 3.3V | 12 Mbps       | 512 B       | [PL2303TA](https://cdn-shop.adafruit.com/datasheets/DS_PL2303TA_d20120504.pdf)    |
 | FTDI         | FT232  | €3.50 | 1.8 - 5V   | 3 Mbps        | 128 + 256 B | [FT232R](https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf) |
+
+The CP2102 and PL2302 only output a maximum 3.3V, but can take up to 5V as input, making them compatible with 5V UART devices.
 
 The FTDI is around the longest and was previously the only implementation available for USB to UART bridges. They were so common that a bridge was sometimes called a FTDI, after the company name that made the converter chip. Nowadays, they are quickly taken over by much cheaper Chinese converter chips.
 
@@ -87,7 +91,7 @@ When picking a USB to UART bridge, keep these things in mind:
 * Drivers. Check whether the bridge you want to buy has drivers for your platform.
 * Blinking LEDs. They look cool and they can help you with troubleshooting.
 * USB connector. Some bridges plug right into your computer, but it is often nice to have a USB cable between your computer and your bridge so that you have some more room on your desk. Bridges with mini-USB sockets are pretty common, but I prefer micro-USB sockets.
-* Features. Do you need special features such as inverted signals? Check the data sheet of the chip.
+* Features. Do you need special features such as inverted signals or custom EPROM? Check the data sheet of the chip.
 * Speed. Do you need particularly fast or uncommon speeds? Check the data sheet of the chip.
 
 I think the best chip is the FTDI FT232. It is also the most expensive and it is hard to determine whether you have a legitimate chip or a cheap knock-off.
