@@ -11,10 +11,11 @@ The best way to learn how to hack is to do it. There are several practice sites 
 
 ## List of practice sites
 
-* [CTF365](https://ctf365.com/)
-* [CTFTime](https://ctftime.org/)
-* [CTFlearn](https://ctflearn.com/) 
+* [bWAPP](http://www.itsecgames.com/)
 * [Cryptopals](https://cryptopals.com/) - Cryptographic programming challenges
+* [CTF365](https://ctf365.com/)
+* [CTFlearn](https://ctflearn.com/) 
+* [CTFTime](https://ctftime.org/)
 * [Enigma Group](https://www.enigmagroup.org/)
 * [Game of Hacks](http://www.gameofhacks.com/)
 * [Google Gruyere](http://google-gruyere.appspot.com/) - Vulnerable web app
@@ -22,14 +23,18 @@ The best way to learn how to hack is to do it. There are several practice sites 
 * [Gruyere](http://google-gruyere.appspot.com/) - Vulnerable web app
 * [Hack This Site](https://www.hackthissite.org/)
 * [Hack.me](https://hack.me/)
-* [HackThis!!](https://www.hackthis.co.uk/)
 * [Hacking-Lab](https://www.hacking-lab.com/index.html)
+* [HackThis!!](https://www.hackthis.co.uk/)
 * [Hellbound Hackers ](https://www.hellboundhackers.org/)
 * [IO](http://io.netgarage.org/)
 * [Juice shop](https://github.com/bkimminich/juice-shop) - Vulnerable web app
 * [Microcorruption](https://microcorruption.com/) - ARM disassembling
-* [OWASP WebGoat 1.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project)
 * [Over The Wire wargames](http://overthewire.org/wargames/)
+* [OWASP WebGoat 1.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project)
+* [picoCTF](https://picoctf.com/)
+* [pwn0](https://pwn0.com/)
+* [pwnable.kr](http://pwnable.kr/)
+* [pwnable.tw](https://pwnable.tw/)
 * [Reversing.kr](http://reversing.kr/)
 * [RingZer0 Team Online CTF](https://ringzer0team.com/)
 * [Root Me](https://www.root-me.org/)
@@ -37,11 +42,7 @@ The best way to learn how to hack is to do it. There are several practice sites 
 * [Try2Hack](http://www.try2hack.nl/)
 * [Typhoon vulnerable VM](https://www.prismacsi.com/en/typhoon-vulnerable-virtual-machines/)
 * [W3Challs](https://w3challs.com/)
-* [bWAPP](http://www.itsecgames.com/)
-* [picoCTF](https://picoctf.com/)
-* [pwn0](https://pwn0.com/)
-* [pwnable.kr](http://pwnable.kr/)
-* [pwnable.tw](https://pwnable.tw/)
+* [XSS Challenge Wiki](https://github.com/cure53/XSSChallengeWiki/wiki)
 
 ## Alternatives
 
