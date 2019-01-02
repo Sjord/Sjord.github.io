@@ -45,6 +45,12 @@ It may seem that data is cheap to keep around, but it can be a liability in the 
 
 Often all defenses are targeting the outer shell of a network. Everybody on the local network is trusted. This can make it easy for hackers to move through the environment once they get a foothold in some system. You don't want people on your guest WiFi to be able to attack the production servers. Better to have separate security zones and defense in depth, so that a single leak doesn't result in total compromise.
 
+## Have a team responsible for security
+
+In a company, people often want to deploy new services as quickly as possible without minding about security much. To avoid this, you need a security stake holder with security knowledge. This can take the form of a CISO, a risk management committee on the board or an cyber incidence response team. Having someone responsible for the cyber security of the company makes sure that security gets a significant priority in your company.
+
+Furthermore, the security team should report to the board and not a project manager who is accountable for getting something deployed as soon as possible. The goals of the security team may be at odds with functional goals, and the security team should feel free to do their job without being reprimanded for it. 
+
 ## Conclusion
 
 Securing against cyber attacks consists in part of finding and fixing vulnerabilities, but also for a large part in reducing the impact when a hack does happen. Talk in your company about what you would do when you get hacked.

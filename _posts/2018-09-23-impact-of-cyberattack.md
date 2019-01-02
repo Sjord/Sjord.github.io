@@ -41,47 +41,60 @@ Sony spend $15 million “in investigation and remediation costs" [17], which su
 
 ### Cost of technical recovery
 
+After a hack, systems need to be reinstalled and redeployed to make sure nothing of the hacker leaves behind. Although this can be quite costly, the expenses can be reasonably calculated beforehand. Another factor of the cost is that the employees that are reinstalling systems can not work on anything else, so there may be a delay in projects.
 
 ### Brand damage and loss of sales
 
-significant negative impact on sales growth (3.4pp) kamiya2018
-this translates into an average value loss of $439 million per attack kamiya2018
+A cyber attack can significantly influence the way people view the company. Customers lose trust in the company because it has been hacked, and this results in loss of sales. According to [2], the growth in sales can be cut almost in half:
+
+> We find that large firms experience a significant decrease in ROA, cash flow, and sales growth after the attacks. The decrease in sales growth is of 3.4 percentage points [...], which is large compared to the average sales growth of 8 percent the year before the attack for the sample of affected firms.
 
 ### Lost revenue due to denial of service
+
+A cyber attack can temporarily disrupt operations. The cost depends on how vital your IT infrastructure is to your work and how much turnover you lose in a given amount of time. In the 2017 NotPetya ransomware attack on Maersk, the shipping company's computers were down for several weeks [4]. A company with a yearly revenue of 30 billion dollars was brought down to a halt for a couple of weeks.
+
 ### Loss of intelectual property or valuable data
 
-For example, an employee of Valspar Corporation unlawfully downloaded proprietary paint formulas valued at $20 million, which he intended to take to a new
-job in China, according to press reports. This the represented about one-eighth of Valspar’s reported profits in 2009, the year the employee was arrested. fecie11
+In a cyber attack, confidential data can be compromised. The cost of this is hard to express in money, but here is an example:
+
+> For example, an employee of Valspar Corporation unlawfully downloaded proprietary paint formulas valued at $20 million, which he intended to take to a new
+job in China, according to press reports. This the represented about one-eighth of Valspar’s reported profits in 2009, the year the employee was arrested. [5]
 
 ### Legal defense
+
+If you got hacked because your security was criminally bad, your customers may sue you for exposing their data. Lawyers are expensive, and especially in the U.S. the cost of a legal battle can escalate quickly.
+
+> Just last week, Target agreed to pay $10 million in a proposed settlement of a class-action lawsuit related to a huge 2013 data breach. [17]
+
 ### Fines
 
-Telecoms company TalkTalk has been issued with a record £400,000 fine by the ICO for security failings that allowed a cyber attacker to access customer data “with ease”. ico16
-The Information Commissioner’s Office has fined TalkTalk Telecom Group PLC £100,000 after it failed to look after its customers’ data and risked it falling into the hands of scammers and fraudsters. - ico17
+Especially in Europe there exists laws how to protect customer data, such as the GDPR. Breaking that law and exposing customer data may get you fined, up to €10 million, or 2% of the worldwide annual revenue of the prior financial year, whichever is higher. These fines are real and significant, as TalkTalk discovered in 2016:
+
+> Telecoms company TalkTalk has been issued with a record £400,000 fine by the ICO for security failings that allowed a cyber attacker to access customer data “with ease”. [12]
+
+And again in 2017:
+
+> The Information Commissioner’s Office has fined TalkTalk Telecom Group PLC £100,000 after it failed to look after its customers’ data and risked it falling into the hands of scammers and fraudsters. [13]
 
 ## Factors influencing impact
 
-Higher impact for:
-* attacks resulting in loss of personal information kamiya2018
+The impact of a cyber attack greatly depends on the type of company and type of attack. Several factors increase the cost of a cyber attack. The impact is higher when:
 
-Higher impact for sectors (ponemon18):
-* Health
-* Financial
-* Services
+* the attack follows an earlier attack [2]
+* the attack results in loss of personal information [2]
+* the company is in the health, financial or services sector [9]
+* the company is older [2]
 
-Higher impact (ponemon18):
-* Third-party involvement
-* Extensive cloud migration
-* Compliancy failtures
-* Extensive use of mobile platforms
+On the other hand, the impact is lower when:
 
-Lower impact (ponemon18):
-* Incident response team
-* Extensive use of encryption
-* BCM involvement (business contiunity management)
-* Employee training
+* the company has an incident response team [9]
+* the company has a risk management committee on the board [2]
+* the company trains employees on cyber security [9]
+* the company makes extensive use of encryption [9]
 
 ## Conclusion
+
+Although numbers vary on how much they cost exactly, we can conclude that hacks are very expensive.
 
 ## Read more
 
@@ -96,9 +109,9 @@ Lower impact (ponemon18):
 1. [2018 Cost of a Data Breach Study](https://databreachcalculator.mybluemix.net/assets/2018_Global_Cost_of_a_Data_Breach_Report.pdf)
 1. [Measuring the Economic Effects of Data Breaches on Firm
 Outcomes: Challenges and Opportunities](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3044726)
-1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf) ip17
-1. [TalkTalk gets record £400,000 fine for failing to prevent October 2015 attack](https://ico.org.uk/about-the-ico/news-and-events/news-and-blogs/2016/10/talktalk-gets-record-400-000-fine-for-failing-to-prevent-october-2015-attack/) ico16
-1. [Personal data belonging to up to 21,000 TalkTalk customers could have been used for scams and fraud](https://ico.org.uk/about-the-ico/news-and-events/news-and-blogs/2017/08/personal-data-belonging-to-up-to-21-000-talktalk-customers-could-have-been-used-for-scams-and-fraud/) ico17
+1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf)
+1. [TalkTalk gets record £400,000 fine for failing to prevent October 2015 attack](https://ico.org.uk/about-the-ico/news-and-events/news-and-blogs/2016/10/talktalk-gets-record-400-000-fine-for-failing-to-prevent-october-2015-attack/)
+1. [Personal data belonging to up to 21,000 TalkTalk customers could have been used for scams and fraud](https://ico.org.uk/about-the-ico/news-and-events/news-and-blogs/2017/08/personal-data-belonging-to-up-to-21-000-talktalk-customers-could-have-been-used-for-scams-and-fraud/)
 1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
 1. [The Hiscox Cyber Readiness Report 2017](https://www.hiscox.co.uk/cyber-readiness-report/docs/cyber-readiness-report-2017.pdf)
 1. [Uber will pay $148 million for 2016 data breach coverup](https://www.engadget.com/2018/09/26/uber-pay-148-million-2016-data-breach-coverup/)
