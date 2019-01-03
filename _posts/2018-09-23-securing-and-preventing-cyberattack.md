@@ -5,7 +5,7 @@ thumbnail: firefighters-480.jpg
 date: 2019-02-13
 ---
 
-In the previous two articles, we explored the risk of cyber attacks. This artice explores how you can reduce that risk.
+In the [previous](/2019/01/16/probability-of-cyberattack/) [two](/2019/01/30/impact-of-cyberattack/) articles, we explored the risk of cyber attacks. This artice explores how you can reduce that risk.
 
 <!-- photo source: http://kentuckyguard.dodlive.mil/2016/07/11/fighting-fire-with-cooperation/ -->
 
@@ -29,11 +29,13 @@ Risk consists of both probability and impact, so it is a good idea to reduce bot
 
 ## Invest in detection
 
-After the hackers have intruded the company systems, it can take months before they are detected [8]. All this time they can widen their attack and copy confidential data out of the company network. Detecting a hack in time can significantly reduce the duration and the impact of a hack. Furthermore, a large part of the costs consists of investigating the hack. Performing monitoring and logging correctly can greatly reduce the cost of the investigation into the hack.
+After the hackers have intruded the company systems, it can take months before they are detected [8]. All this time they can widen their attack and copy confidential data out of the company network. Detecting a hack in time can significantly reduce the duration and the impact of a hack. Furthermore, a large part of the costs of an attack consist of investigating the hack. Performing monitoring and logging correctly can greatly reduce the cost of the investigation into the hack.
 
 ## Make a recovery plan
 
-Once you get hacked, you need to recover from it both technically and as a company. In both cases, it helps if you thought of solutions ahead of time. Technically, it may help if you have some backup solution for when the primary network is offline. Have a consulting company on speed dial that can help you recover from the hack.
+Once you get hacked, you need to recover from it both technically and as a company. In both cases, it helps if you thought of solutions ahead of time. It may help if you have some backup solution for when the primary network is offline. Have a consulting company on speed dial that can help you recover from the hack.
+
+## Make a communication plan
 
 As a company, you may need to issue a formal apology or explain the hack to your customers. This is a decisive marketing moment. You just got bad reputation because of the hack, and how you communicate about it can make or break your company. It is a good idea to put the company marketeers through a fire drill and let the marketing department think ahead of time about what to communicate about a potential hack.
 

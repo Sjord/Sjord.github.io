@@ -11,7 +11,7 @@ In a risk assessment, total risk is often calculated as a product of probability
 
 ## Introduction
 
-A proper risk assessment takes into account the chance and impact of a certain risk and the cost of securing against that risk. Maybe you lock your door, because it gives great security benifits at little expense. Maybe you don't own a bulletproof car, because the expense doesn't weigh up against the small chance of getting shot at. For some people this balance tips the other way: if you are rich and likely to get shot at, maybe you do buy an armored car.
+A proper risk assessment takes into account the chance and impact of a certain risk and the cost of securing against that risk. Maybe you lock your door, because it gives great security benefits at little expense. Maybe you don't own a bulletproof car, because the expense doesn't weigh up against the small chance of getting shot at. For some people this balance tips the other way: if you are rich and likely to get shot at, maybe you do buy an armored car.
 
 The same principles hold for cyber security. It makes little sense to spend more money on preventive measures than that can be lost in an attack. To correctly make decisions about how much to invest in securing and mitigating risk, companies need some information on the risk of getting hacked.
 
@@ -28,7 +28,7 @@ On the other end of the spectrum, studies say one in two companies get hacked ye
 > Just under half (46%) of all UK businesses identified at least one cyber security breach or attack in the last 12 months. This rises to two - thirds among 
 medium firms (66%) and large firms (68%). [18]
 
-And then there are studies that totally blow up the results. There are three kinds of lies: lies, damned lies, and statistics.
+These numbers are for attacks, successful or not, and can therefore expected to be much higher than numbers for successful hacks. And then there are studies that totally blow up the results. There are three kinds of lies: lies, damned lies, and statistics.
     
 > You’re more likely to experience a data breach of at least 10,000 records (27.9 percent) than you are to catch the flu this winter (5–20 percent, according to WebMD). [12]
 
@@ -40,14 +40,14 @@ I would say the chances of a company getting hacked are more in the order of 1% 
 
 The chance of getting hacked depends on the type and size of your company. If you are a cryptocoin broker hackers have more incentive to attack your company than if you are a hobby shop. Studies [1, 17] identified the following factors that influence the chance of cyber attacks:
 
-Higher risk for:
-* larger companies
-* companies with lower leverage
-* poor past stock performance
-* more intangible assets
+Higher risk for companies that:
+* are relatively large
+* have lower [leverage](https://en.wikipedia.org/wiki/Leverage_(finance))
+* have poor past stock performance
+* have more intangible assets
 
-Lower risk for:
-* companies with a risk committee on the board
+Lower risk for companies:
+* with a risk committee on the board
 
 I think the main factor is whether hackers have a motive to target you in an attack. If you are a notable company, engage in ethically disputable operations, have a lot of personal information on your customers, or are involved in financial transactions, hackers will have some reason to pick your company for a targeted attack.
 
@@ -65,7 +65,7 @@ Security assessments typically scan for known issues. However, there is a chance
 
 And if the attacker isn't capable of finding a zero-day, he can still buy one from another hacker.
 
-> At the most basic level, any serious attacker can always get an a ordable zero-day for almost any target. [8]
+> At the most basic level, any serious attacker can always get an affordable zero-day for almost any target. [8]
 
 Then there are attacks that are pretty hard to defend against. Phishing, for example, is surprisingly effective. While you may not believe a prince in Nigeria has some money for you, you may believe an email pretending to be from a coworker, targeted just for you. This type of targeted phishing attacks are called spear phishing.
 
@@ -78,7 +78,7 @@ The hackers, reportedly from China, maintained their stealth presence in OPM's n
 
 ## Many vulnerabilities are not exploited
 
-When performing a security assessment on a client's product, I often find serious security vulnerabilities that have been present in production for years. Most of the time, this vulnerability did not seem to be exploited by hackers. SQL injection or path traveral vulnerabilities remain undetected for years, without any bad consequences. So it is not the case that if you have a vulnerability, that you are going to get hacked. There doesn't seem to be a clear correlation between the amount of vulnerabilities and the exploitation of them.
+When performing a security assessment on a client's product, I often find serious security vulnerabilities that have been present in production for years. Most of the time, this vulnerability did not seem to be exploited by hackers. SQL injection or path traversal vulnerabilities remain undetected for years, without any bad consequences. So it is not the case that if you have a vulnerability, that you are going to get hacked. There doesn't seem to be a clear correlation between the amount of vulnerabilities and the exploitation of them.
 
 ## Conclusion
 
@@ -104,7 +104,7 @@ Insider Threats: A Survey](http://www.nsclab.org/yang/publications/08278157.pdf)
 1. [ACSC 2015 Threat Report](https://www.acsc.gov.au/publications/ACSC_Threat_Report_2015.pdf)
 1. [Secret Code Found in Juniper&#x27;s Firewalls Shows Risk of Government Backdoors](https://www.wired.com/2015/12/juniper-networks-hidden-backdoors-show-the-risk-of-government-backdoors/)
 1. [The Year's 11 Biggest Hacks, From Ashley Madison to OPM](https://www.wired.com/2015/12/the-years-11-biggest-hacks-from-ashley-madison-to-opm/)
-1. [The impact of cybercrime on businesses](https://www.researchgate.net/profile/Letizia_Paoli/publication/325120529_The_impact_of_cybercrime_on_businesses_A_novel_conceptual_framework_and_its_application_to_Belgium/links/5af96b1e0f7e9b026bf73418/The-impact-of-cybercrime-on-businesses-A-novel-conceptual-framework-and-its-application-to-Belgium.pdf)
+1. [The Impact of Cybercrime on Belgian Businesses](http://www.belspo.be/belspo/fedra/BR/BCC_ImpactCybercrimeBelgianBusinesses.pdf)
 1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf)
 1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
 1. [Spionage, Sabotage, Datendiebstahl: Deutscher Wirtschaft entsteht jährlich ein Schaden von 55 Milliarden Euro](https://www.verfassungsschutz.de/de/oeffentlichkeitsarbeit/presse/pm-20170721-bfv-bitkom-vorstellung-studie-wirtschaftsspionage-sabotage-datendiebstahl)

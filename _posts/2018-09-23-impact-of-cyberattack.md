@@ -5,7 +5,7 @@ thumbnail: impact-480.jpg
 date: 2019-01-30
 ---
 
-In a risk assessment, total risk is often calculated as a product of probability and impact. To make a proper risk assessment of cyber attacks, companies need to know both the probability and the impact of cyber attacks. This article explores the impact. What are the consequences of getting hacked?
+In a risk assessment, total risk is often calculated as a product of [probability](/2019/01/16/probability-of-cyberattack/) and impact. To make a proper risk assessment of cyber attacks, companies need to know both the probability and the impact of cyber attacks. This article explores the impact. What are the consequences of getting hacked?
 
 <!-- photo source: https://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17932 -->
 
@@ -21,13 +21,13 @@ So we can be sure that the costs range from £ 1,570 to hundreds of millions of 
 
 ## Possible negative results of a hack
 
-A company that gets hacked experiences many cost factors. It takes work to recover from the hack. Users may lose trust in the company and take their business elsewhere. Later on in this article we will look at these possible damages from a hack:
+A company that gets hacked experiences many cost factors. It takes work to recover from the hack. Users may lose trust in the company and take their business elsewhere. In this article we will look at these possible damages from a hack:
 
 * cost of investigating the hack;
 * cost of reinstalling systems and otherwise recovering technically;
 * brand damage and loss of sales;
 * lost revenue due to denial of service;
-* loss of intelectual property or valuable data;
+* loss of intellectual property or valuable data;
 * legal defense;
 * fines.
 
@@ -92,9 +92,43 @@ On the other hand, the impact is lower when:
 * the company trains employees on cyber security [9]
 * the company makes extensive use of encryption [9]
 
+## Case studies
+
+### Target
+
+In December 2013 hackers attacked the retail store Target and acquired 70 million customer records. Target is a fairly large company with a revenue of about $73 billion yearly and net earnings of about $3 billion yearly. The direct cost of the hack are reported as $61 million:
+
+> In the fourth quarter of 2013, we recorded $61 million of pretax Data Breach-related expenses, and expected insurance proceeds of $44 million, for net expenses of $17 million ($11 million after tax), or $0.02 per diluted share.  [...]  Expenses include costs to investigate the Data Breach, provide credit-monitoring services to our guests, increase staffing in our call centers, and procure legal and other professional services. [18]
+
+These are the costs directly following the hack, so these do not include legal services and settlement costs. In the end, Target's earnings before interest and tax decreased by more than a quarter:
+
+> Target’s EBIT decreased by $1.59 billion (-28.6%) from $5.52 billion during the four quarters prior to the breach to $3.94 billion during the four quarters after the breach. In addition, Target reported data breach-related expenses of $292 million including the settlement of class action lawsuits and investigations by state prosecutors in its 2016 10-K. [2]
+
+### Cryptocurrency exchanges
+
+Bitcoin exchanges trade in cryptocurrency and as such absolutely need the trust of their customers. Unlike other data breaches, compromise of bitcoin can directly transfer ownership of a lot of money. As such, cryptocurrency hacks have typically very large impact, often with the end of the company as the result.
+
+* [Mt. Gox](https://en.wikipedia.org/wiki/Mt._Gox) lost $450 million in bitcoins and has filed backruptcy.
+* [Bitfinex](https://en.wikipedia.org/wiki/Bitfinex) had $73 million stolen and is struggling as a company.
+* Bitfloor had $25,000 stolen and ceased operations the next year.
+
+For a cyptocurrency exchange, cyber security is of vital importance. Getting hacked often results in both losing a large sum of money and total lose of trust from the customers.
+
+### Equifax
+
+Equifax is an U.S. consumer credit agency with a yearly revenue of around $3.4 billion. In 2017, an attack compromised 145 million consumer records. In November 2017, it spent $87.5 million on direct costs relating to the breach, and lost about a quarter in lost income:
+
+> Its net income fell 27 percent to $96.3 million in the third quarter. [20]
+
+The total cost of this hack is still unclear, as lawsuits and investigations still go on. However, early 2018 it was already fairly astronomical:
+
+> That brings expected breach-related costs through the end of this year to $439 million, some $125 million of which Equifax said will be covered by insurance. [19]
+
+What surprises me is that Equifax hasn't ceased operations. Their data is their core business and virtually all of them were compromised. The brand name has been irreparably damaged. Still, the company thinks it can continue doing business after the hack. Apparently Equifax wasn't totally destroyed yet after the hack.
+
 ## Conclusion
 
-Although numbers vary on how much they cost exactly, we can conclude that hacks are very expensive.
+Although numbers vary on how much they cost exactly, we can conclude that hacks are very expensive. Both direct costs (investigation and recovery) and indirect costs (loss of sales) are significant. For large hacks, costs of the hack can be around 10% of yearly earnings, and can result in more than a quarter in lost earnings following the hack.
 
 ## Read more
 
@@ -116,3 +150,6 @@ Outcomes: Challenges and Opportunities](https://papers.ssrn.com/sol3/papers.cfm?
 1. [The Hiscox Cyber Readiness Report 2017](https://www.hiscox.co.uk/cyber-readiness-report/docs/cyber-readiness-report-2017.pdf)
 1. [Uber will pay $148 million for 2016 data breach coverup](https://www.engadget.com/2018/09/26/uber-pay-148-million-2016-data-breach-coverup/)
 1. [How much do data breaches cost big companies? Shockingly little](http://fortune.com/2015/03/27/how-much-do-data-breaches-actually-cost-big-companies-shockingly-little/)
+1. [Target 2013 Annual Report](https://corporate.target.com/_media/TargetCorp/annualreports/content/download/pdf/Target-2013-Annual-Report.pdf?ext=.pdf)
+1. [Equifax breach could be most costly in corporate history](https://www.reuters.com/article/us-equifax-cyber/equifax-breach-could-be-most-costly-in-corporate-history-idUSKCN1GE257)
+1. [Massive data breach has cost Equifax nearly $90 million](https://phys.org/news/2017-11-massive-breach-equifax-million.html)
