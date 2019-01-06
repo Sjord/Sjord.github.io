@@ -9,7 +9,7 @@ In a CSRF attack it is typically not possible for the attacker to retrieve the r
 
 ## Limits of CSRF
 
-CSRF uses the fact that a user is logged in on one site to do requests on behalf of that user on another site. This way the attacker can trigger actions on the site the user is logged in, even though the attacker has no access to the site.
+[CSRF](/2019/01/02/csrf/) uses the fact that a user is logged in on one site to do requests on behalf of that user on another site. This way the attacker can trigger actions on the site the user is logged in, even though the attacker has no access to the site.
 
 Normally, this method cannot be used to get information from the other site. It is possible to include another site in an iframe, but it is not possible to read the contents of that iframe with Javascript
 
