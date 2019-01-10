@@ -13,15 +13,15 @@ In a risk assessment, total risk is often calculated as a product of probability
 
 A proper risk assessment takes into account the chance and impact of a certain risk and the cost of securing against that risk. Maybe you lock your door, because it gives great security benefits at little expense. Maybe you don't own a bulletproof car, because the expense doesn't weigh up against the small chance of getting shot at. For some people this balance tips the other way: if you are rich and likely to get shot at, maybe you do buy an armored car.
 
-The same principles hold for cyber security. It makes little sense to spend more money on preventive measures than that can be lost in an attack. To correctly make decisions about how much to invest in securing and mitigating risk, companies need some information on the risk of getting hacked.
+The same principles hold for cyber security. It makes little sense to spend more money on preventive measures than that can be lost in an attack. To correctly make decisions about how much to invest in securing and mitigating risk, companies need information on the risk of getting hacked.
 
 ## Uncertainty
 
-Although there are some studies on the risk of cyber attacks, these provide little certainty on the probability. Different studies produce different results, sometimes differing by a factor of 100 in the chance of being hacked. One of the more conservative studies puts the risk fairly low [1]:
+Although there are studies on the risk of cyber attacks, these provide little certainty on the probability. Different studies produce different results, sometimes differing by a factor of 100 in the chance of being hacked. One of the more conservative studies puts the risk fairly low [1]:
 
 > It follows that the unconditional probability of a cyberattack in a given year for a firm in our sample is extremely low, as it is 0.32%.
 
-So each year, one in 312 companies get hacked. This seems somewhat consistent with my experiences.
+So each year, one in 312 companies get hacked. This seems consistent with my experiences.
 
 On the other end of the spectrum, studies say one in two companies get hacked yearly. Especially studies done or sponsored by security companies seem to artificially increase the risk.
 
@@ -49,7 +49,7 @@ Higher risk for companies that:
 Lower risk for companies:
 * with a risk committee on the board
 
-I think the main factor is whether hackers have a motive to target you in an attack. If you are a notable company, engage in ethically disputable operations, have a lot of personal information on your customers, or are involved in financial transactions, hackers will have some reason to pick your company for a targeted attack.
+I think the main factor is whether hackers have a motive to target you in an attack. If you are a notable company, engage in ethically disputable operations, have a lot of personal information on your customers, or are involved in financial transactions, hackers will have reason to pick your company for a targeted attack.
 
 What also contributes is how well you have secured your software and network. However, I think this plays a relatively small part for most companies. It is hard to perfectly secure your company from targeted attacks.
 
@@ -67,14 +67,9 @@ And if the attacker isn't capable of finding a zero-day, he can still buy one fr
 
 > At the most basic level, any serious attacker can always get an affordable zero-day for almost any target. [8]
 
-Then there are attacks that are pretty hard to defend against. Phishing, for example, is surprisingly effective. While you may not believe a prince in Nigeria has some money for you, you may believe an email pretending to be from a coworker, targeted just for you. This type of targeted phishing attacks are called spear phishing.
+Then there are attacks that are pretty hard to defend against. Phishing, for example, is surprisingly effective. While you may not believe a prince in Nigeria has money for you, you may believe an email pretending to be from a coworker, targeted just for you. This type of targeted phishing attacks are called spear phishing.
 
-And even if you have done everything right, you may be vulnerable to this specific man in the middle attack:
-
-> The NSA routinely receives – or intercepts – routers, servers and other computer network devices being exported from the US before they are delivered to the international customers. The agency then implants backdoor surveillance tools, repackages the devices with a factory seal and sends them on. The NSA thus gains access to entire networks and all their users. [2]
-
-Many victims of economic espionage are unaware of the crime until years after loss of the information. [13]
-The hackers, reportedly from China, maintained their stealth presence in OPM's networks for more than a year before being discovered. [16]
+So the probability of getting hacked depends for a great deal on whether you are targeted, and not so much on whether your systems have vulnerabilities.
 
 ## Many vulnerabilities are not exploited
 
@@ -82,7 +77,7 @@ When performing a security assessment on a client's product, I often find seriou
 
 ## Conclusion
 
-There is much uncertainty about the probability of getting hacked, but I would put it in the order of 1% yearly. Some factors influence the probability, especially the size of the company. The presence of vulnerabilities does not necessarily correlate with exploitation by malicious actors.
+There is much uncertainty about the probability of getting hacked, but I would put it in the order of 1% yearly. Several factors influence the probability, especially the size of the company. The presence of vulnerabilities does not necessarily correlate with exploitation by malicious actors.
 
 ## Read more
 

@@ -13,11 +13,11 @@ In the [previous](/2019/01/16/probability-of-cyberattack/) [two](/2019/01/30/imp
 
 In the [previous post](/2019/01/16/probability-of-cyberattack/), we saw that there is no silver bullet for security. Finding and solving vulnerabilities in your software, while a good idea, doesn't solve all your problems. There may simply be more vulnerabilities that you haven't found yet, or the attacker enters through a system that was not tested or patched.
 
-For some systems, solving one vulnerability does not significantly reduce the number of vulnerabilities in the system:
+For particularly vulnerable systems, solving one vulnerability does not significantly reduce the number of vulnerabilities in the system:
 
 > Rescorla has argued that for software with many latent vulnerabilities (e.g., Windows), removing one bug makes little difference to the likelihood of an attacker finding another one later [1].
 
-Some systems are too complex or too buggy to find and fix all the vulnerabilities. In that case, it is a good idea to depend on other layers: if the attacker breaches the first defense, can we do anything to reduce the impact of the attack?
+Systems can be too complex or too buggy to find and fix all the vulnerabilities. In that case, it is a good idea to depend on other layers: if the attacker breaches the first defense, can we do anything to reduce the impact of the attack?
 
 ## Assume you get hacked
 

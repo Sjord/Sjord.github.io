@@ -11,7 +11,7 @@ In a risk assessment, total risk is often calculated as a product of [probabilit
 
 ## Introduction
 
-If a company gets hacked, this results in technical costs to recover from the hack as well as damage to the public image of the company, impacting sales. This latter category is hard to estimate, as in most cases it is hard to say what would have happened if the company didn't get hacked. Nevertheless, some studies attempted to calculate the total cost of a cyber security breach. And the results of these studies are over the place:
+If a company gets hacked, this results in technical costs to recover from the hack as well as damage to the public image of the company, impacting sales. This latter category is hard to estimate, as in most cases it is hard to say what would have happened if the company didn't get hacked. Nevertheless, several studies attempted to calculate the total cost of a cyber security breach. And the results of these studies are over the place:
 
 > Among the 46 per cent of businesses that detected breaches in the last 12 months, the survey finds that the average business faces costs of £ 1,570 as a result of these breaches. [11]
 
@@ -33,7 +33,7 @@ A company that gets hacked experiences many cost factors. It takes work to recov
 
 ### Cost of investigating
 
-A hack is rarely detected by a watchful system administrator. Often a company only notices something is wrong when data has been manipulated, or their records become available on the internet. Then it is a big task to find out how the hack took place. This is quite some work and has to be done carefully. Often, a consultancy firm specializing in this type of assignment is hired. If there is suspicion of a crime, a forensic team needs to analyze the evidence.
+A hack is rarely detected by a watchful system administrator. Often a company only notices something is wrong when data has been manipulated, or their records become available on the internet. Then it is a big task to find out how the hack took place. This is quite a lot of work and has to be done carefully. Often, a consultancy firm specializing in this type of assignment is hired. If there is suspicion of a crime, a forensic team needs to analyze the evidence.
 
 This type of cost depends largely on the type of hack. If it is immediately obvious how the company got hacked the investigation may be over quickly. For large, complex companies that only notice the breach when their records are published, this become quite costly.
 
@@ -124,7 +124,7 @@ The total cost of this hack is still unclear, as lawsuits and investigations sti
 
 > That brings expected breach-related costs through the end of this year to $439 million, some $125 million of which Equifax said will be covered by insurance. [19]
 
-What surprises me is that Equifax hasn't ceased operations. Their data is their core business and virtually all of them were compromised. The brand name has been irreparably damaged. Still, the company thinks it can continue doing business after the hack. Apparently Equifax wasn't totally destroyed yet after the hack.
+It surprises me that Equifax hasn't ceased operations. Their data is their core business and virtually all of them were compromised. The brand name has been irreparably damaged. Still, the company thinks it can continue doing business after the hack. Apparently Equifax wasn't totally destroyed yet after the hack.
 
 ## Conclusion
 
