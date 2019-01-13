@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Prevent CSRF with the Origin request header"
-thumbnail: switchboard-240.jpg
+thumbnail: switchboard-480.jpg
 date: 2019-02-27
 ---
 
