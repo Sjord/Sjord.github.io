@@ -5,6 +5,8 @@ thumbnail: switchboard-240.jpg
 date: 2018-08-01
 ---
 
+The Origin header in a HTTP request indicates where the request originated from. This can be useful in preventing cross-site request forgery.
+
 <!-- photo source https://www.flickr.com/photos/88121076@N02/8455371254 -->
 
 ## Cross-site requests
@@ -21,13 +23,41 @@ Secondly, the Referer header leaks the whole URL to other domains. If the URL co
 
 ## The Origin header
 
-The Origin header only contains the scheme, hostname and port of the URL. This avoids the problem of leaking URL parameters to other hosts, while still making it possible to see where a request came from.
+The Origin header only contains the scheme, hostname and port of the URL. This avoids the problem of leaking URL parameters to other hosts, while still making it possible to see where a request came from. The header may look like this:
+
+    Origin: https://www.sjoerdlangkemper.nl
+
+According to the specification it can contain multiple origins, although I haven't seen that implemented in browsers. There is also the special _null_ value to indicate the origin is not trustworthy.
 
 ### null value
 
-> In some scenarios, the string "null" is sent in lieu of origin information. This is done to indicate that the cause of the request is not trustworthy, even though it may come from the same origin. Certain requests are not generally useful as state-changing triggers (like requests for stylesheets, images or window navigation) and probably should not be trusted even if sent same-origin. 
+If a document does not have a clear origin, or the request should not be trusted no matter the origin, the null origin can be used to indicate this.
 
-There can be multiple origins in the origin header.
+> In some scenarios, the string "null" is sent in lieu of origin information. This is done to indicate that the cause of the request is not trustworthy, even though it may come from the same origin. Certain requests are not generally useful as state-changing triggers [...] and probably should not be trusted even if sent same-origin. 
+
+Browsers do use the _null_ origin, for example for an iframe with a data URL.
+
+    <iframe src="data:text/html,<form method="POST"...
+
+Data URLs are treated as unique opaque origins by modern browsers, rather than inheriting the origin of the including page. This means that the origin of a data URL is never trustworthy, and the _null_ origin is sent to indicate this.
+
+### Browsers differences
+
+Even though the origin header specification describes the header and points out some uses for it, it is not well defined when to include the origin header in the request and what the value should be. Both Chrome and Firefox include the origin header in JavaScript POST requests, and their behavior differs on all other types of navigation. The origin header is included on:
+
+* all POST forms in Chrome, none in Firefox.
+* all JavaScript fetch requests in Firefox, but not HEAD and GET in Chrome.
+* redirects across domains, but Firefox uses the originating domain as origin and Chrome uses the null origin.
+
+Use [the demo page](https://demo.sjoerdlangkemper.nl/origin.php) to see how your browser behaves.
+
+These differences make the origin header of limited use at the moment. You can't depend on the origin header to be present in a certain type of request. It is limited to a defense-in-depth: check it when it is present, but don't depend on it.
+
+## Conclusion
+
+Checking the origin header is a good additional measure to prevent cross-site request forgery and related attacks. Although it is already implemented in browsers, its behavior is not defined enough to depend on the origin header to be present in particular requests.
+
+## Read more
 
 * [Bug 446344 - Implement Origin header CSRF mitigation](https://bugzilla.mozilla.org/show_bug.cgi?id=446344)
 * [Issue #10482384 - Send "Origin" HTTP header on POST form submit](https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10482384/)
