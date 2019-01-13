@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Hacking the Motorola MBP88Connect WiFi camera"
-thumbnail: mbp88connect-240.jpg
-date: 2018-08-09
+thumbnail: mbp88connect-480.jpg
+date: 2019-03-27
 ---
 
-The Motorola Wi-Fi Video Baby Monitor Camera (MBP88CONNECT) is a webcam that can be controlled and viewed using the Hubble mobile app and Hubble web app.
+The Motorola Wi-Fi Video Baby Monitor Camera (MBP88CONNECT) is a webcam that can be controlled and viewed using the Hubble mobile app and Hubble web app. I found several vulnerabilities in the camera's web interface, which have been resolved by the distributor through firmware updates. This article describes the vulnerabilities and how I found them.
 
 ## Setup
 
@@ -168,4 +168,4 @@ Furthermore, when you enable motion detection on the camera it sends a camera pi
 
 ## Conclusion
 
-This camera is insecure.
+This camera was insecure, particularly because was is missing authentication and had a path traversal vulnerability in the web server. I reported these vulnerabilities to the distributor, who took it seriously and has deployed fixes through firmware updates.
