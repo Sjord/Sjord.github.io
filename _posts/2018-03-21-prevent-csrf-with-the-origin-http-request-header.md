@@ -2,7 +2,7 @@
 layout: post
 title: "Prevent CSRF with the Origin request header"
 thumbnail: switchboard-240.jpg
-date: 2018-08-01
+date: 2019-02-27
 ---
 
 The Origin header in a HTTP request indicates where the request originated from. This can be useful in preventing cross-site request forgery.
