@@ -5,8 +5,13 @@ thumbnail: improvised-mailbox-480.jpg
 date: 2019-04-10
 ---
 
+If you are setting up a web application on your own computer you sometimes need a simple mailserver that just lets you view emails, for example for a password reset mail. This article lists several solutions to quickly set up a test mailserver.
 
 <!-- photo source: https://pixabay.com/en/scouting-tools-nature-camping-1146330/ -->
+
+### Using Python
+
+
 
 
 
