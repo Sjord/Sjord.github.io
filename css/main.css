@@ -375,3 +375,7 @@ a:visited { color: #205caa; }
     padding: 10px;
   }
 }
+
+td {
+  vertical-align: baseline;
+}
