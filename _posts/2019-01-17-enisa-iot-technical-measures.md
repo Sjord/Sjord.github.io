@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "ENISA Technical Measures for IoT"
-thumbnail: cc2530-240.jpg
-date: 2019-02-14
+thumbnail: enisa-iot-480.png
+date: 2019-03-08
 ---
+
+Intro todo
 
 | §     | TM       | Description |
 |-------|----------|-------------|
