@@ -6,7 +6,7 @@ $hosts = [
 $scheme = "https://";
 
 for ($i = 0; $i < count($hosts); $i++) {
-    list($host, $path) = $hosts[$i];
+    $host = $hosts[$i];
     if ($host === $_SERVER['HTTP_HOST']) {
         $current_host_index = $i;
         break;
