@@ -11,7 +11,9 @@ For an IoT assignment I wanted to intercept Wi-Fi traffic between two devices. I
 
 For the adapter to work, you need to install the drivers from the TP-Link website. The driver for MacOS 10.14 is marked as beta at the moment. The adapter does not integrate with the Wi-Fi functionality of MacOS. Instead, you get an extra menu item in the top bar.
 
-It's not possible to set up an access point or do internet sharing with this adapter on MacOS. Connecting to Wi-Fi networks works well.
+It's not possible to set up an access point with this adapter on MacOS. You can use internet sharing by sharing your connection on the TP-Link through your Mac's built-in WiFi, but not the other way around: you can't do internet sharing over the TP-Link adapter.
+
+Connecting to Wi-Fi networks and sending and receiving data works well.
 
 More info on the [TP-Link](https://www.tp-link.com/us/download/TL-WN823N.html) website.
 
