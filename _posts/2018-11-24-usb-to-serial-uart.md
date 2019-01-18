@@ -15,7 +15,7 @@ From a hacking perspective, the most interesting application of UARTs is in embe
 
 UART communication is sometimes also needed to interact with a development board, such as an Arduino or ESP8266, although most of these boards have a USB to serial converter on board.
 
-Some other protocols are built upon UART communication, such as [IrDA](https://en.wikipedia.org/wiki/Infrared_Data_Association), [DMX](https://en.wikipedia.org/wiki/DMX512), [MIDI](https://en.wikipedia.org/wiki/MIDI) and [smart meter P1 ports](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf). These can also be used with USB to UART bridges, but require some further hacking to get working.
+Several other protocols are built upon UART communication, such as [IrDA](https://en.wikipedia.org/wiki/Infrared_Data_Association), [DMX](https://en.wikipedia.org/wiki/DMX512), [MIDI](https://en.wikipedia.org/wiki/MIDI) and [smart meter P1 ports](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf). These can also be used with USB to UART bridges, but require further hacking to get working.
 
 ## Communicating with UARTs
 
@@ -24,7 +24,7 @@ When two devices communicate using UART, they are connected with at least three 
 * Common ground, or 0V, or the negative lead of the power supply.
 * The transmitting pin (Tx) of one device is connected to the receiving pin (Rx) of the other device.
 * Similarly, Rx is connected to Tx.
-* For some devices, Vcc or the positive lead of the power supply.
+* For isolated adapters, Vcc or the positive lead of the power supply.
 
 Now, the devices can send data to each other by varying the voltage on the Tx lines, and read data by checking the voltage on the Rx line. UART uses a binary protocol, so there are only two voltage levels: high and low.
 
@@ -36,7 +36,7 @@ The baud rate is a term for the number of bits per second that are transmitted o
 
 The sending party flips the signal every 104µs, and the receiving party checks the voltage on the line every 104µs. It will still work if this is off by a couple of per cent. This sometimes happens with microcontrollers, that have trouble keeping an exact clock.
 
-The most common baud rates in use are 9600 and 115200. Then there are a handful of standard baud rates, such as 19200 and 38400. In theory you can use any baud rate, but some interfaces only support the standard baud rates. It is also possible to use different baud rates for sending and receiving, although this is pretty rare.
+The most common baud rates in use are 9600 and 115200. Then there are a handful of standard baud rates, such as 19200 and 38400. In theory you can use any baud rate, but old interfaces only support the standard baud rates. It is also possible to use different baud rates for sending and receiving, although this is pretty rare.
 
 <img src="/images/uart-logic-680.png" alt="A pulse is 104µs long">
 
@@ -57,7 +57,7 @@ For RS232, negative voltage is a logical 1, positive voltage a 0. For most other
 
 To avoid frying your device, it is important to use the correct voltage. Connecting your 3.3V bridge to a 15V RS232 line will quickly destroy it.
 
-Voltage that ranges between 0 and power supply voltage (Vcc) is also called TTL voltage levels. 5V TTL voltage levels consider everything above 2V a logic high, and can thus also receive data from 3.3V UART devices. So in some cases it is possible to communicate with a 5V UART using a 3.3V UART.
+Voltage that ranges between 0 and power supply voltage (Vcc) is also called TTL voltage levels. 5V TTL voltage levels consider everything above 2V a logic high, and can thus also receive data from 3.3V UART devices. So in that case it is possible to communicate with a 5V UART using a 3.3V UART.
 
 ## USB to UART converter module
 
@@ -91,7 +91,7 @@ These have different versions with different specs:
 
 Besides the differences in the chips, the quality of the drivers also differs between the various chips. Some chips have Windows drivers built-in to Windows or distributed through Windows Update, creating a plug-and-play experience. Other chips have drivers that reliably crash the operating system when you read and write significant amounts of data to the device. Linux is an exception in this, since the Linux drivers are written, maintained and checked by kernel developers instead of the chip manufacturer.
 
-The FTDI is around the longest and was previously the only implementation available for USB to UART bridges. They were so common that a bridge was sometimes called a FTDI, after the company name that made the converter chip. Nowadays, they are quickly taken over by much cheaper Chinese converter chips.
+The FTDI is around the longest and was previously the only implementation available for USB to UART bridges. They were so common that a bridge was often called a FTDI, after the company name that made the converter chip. Nowadays, they are quickly taken over by much cheaper Chinese converter chips.
 
 #### Fake FTDI chips
 
@@ -101,7 +101,7 @@ FTDI was not happy with this. In 2014 they pushed a driver update that only work
 
 ### Adapter differences
 
-The cheapest adapters simply have an USB port and pin header directly connected to the chip. They typically expose only ground, some positive voltage (Vcc), Rx and Tx, and not other data control modem lines such as RTS and CTS.
+The cheapest adapters simply have an USB port and pin header directly connected to the chip. They typically expose only ground, positive voltage (Vcc), Rx and Tx, and not other data control modem lines such as RTS and CTS.
 
 There are also [galvanically isolated](https://www.crowdsupply.com/pylo/muart/updates/the-advantages-of-galvanic-isolation) adapters. These use the ground and Vcc of the device you want to communicate with, and don't electrically connect the device with your computer. This protects your computer from high voltage, prevents ground loops, and reduces noise. These adapters are more expensive, but they may safe your computer's life in case you ever connect the bridge to a high voltage by mistake.
 
@@ -112,7 +112,7 @@ When picking a USB to UART bridge, keep these things in mind:
 * Voltage level. Determine the voltage level you want to use. Some bridges support both 3.3V and 5V, and there is a little jumper to switch voltage.
 * Drivers. Check whether the bridge you want to buy has drivers for your platform.
 * Blinking LEDs. They look cool and they can help you with troubleshooting.
-* USB connector. Some bridges plug right into your computer, but it is often nice to have a USB cable between your computer and your bridge so that you have some more room on your desk. Bridges with mini-USB sockets are pretty common, but I prefer micro-USB sockets.
+* USB connector. Some bridges plug right into your computer, but it is often nice to have a USB cable between your computer and your bridge so that you have more room on your desk. Bridges with mini-USB sockets are pretty common, but I prefer micro-USB sockets.
 * Features. Do you need special features such as inverted signals or custom EPROM? Check the data sheet of the chip.
 * Speed. Do you need particularly fast or uncommon speeds? Check the data sheet of the chip.
 * Galvanic isolation. As described above, electrically disconnecting the USB connection from the I/O pins protects from damage to your computer.
@@ -128,15 +128,15 @@ Your computer needs to know how to talk to the module, and for that you need dri
 
 On Linux the drivers ship with the kernel. The most common chips are supported from kernel version 2.6 and up, and the drivers are still being improved in the latest versions.
 
-On MacOS you need drivers. Some drivers can be installed using homebrew. The following command installs the CH340 drivers:
+MacOS comes with built-in drivers for certain chips. Several FTDI chips are supported from MacOS 10.9 or 10.10, and certain CH340 and PL2303 chips are supported under MacOS 10.14. For other chips, you need drivers on MacOS. For example, the CH340 driver can be installed using homebrew using the following command:
 
     brew cask install wch-ch34x-usb-serial-driver
 
 Alternatively, you can use the excellent [Serial](https://www.decisivetactics.com/products/serial/) app for macOS, which comes with its own drivers.
 
-On Windows you need drivers. For some chips (FTDI) these can be obtained through Windows Update, and for others an installer can be found on the manufacturer site.
+On Windows you need drivers. For FTDI chips these can be obtained through Windows Update, and for others an installer can be found on the manufacturer site.
 
-Some of these drivers are of questionable quality and can make your system unstable. I could reliably crash my Mac by reading and writing a large amount of data to the serial port.
+Some of these drivers are of questionable quality and can make your system unstable. I could reliably crash my Mac by reading and writing a large amount of data to the serial port when using the CH340 driver.
 
 ### Finding the serial port name
 
@@ -175,11 +175,11 @@ On Windows, the port is called COM3 or some other number. You can find the corre
 
 ### Talking to the serial port
 
-You need some software that sets the baud rate and sends and receives bytes over the serial port. Use [tio](https://tio.github.io/) on Linux, [Putty](https://www.putty.org/) on Windows and [Serial](https://www.decisivetactics.com/products/serial/) on macOS. Don't use `screen`.
+You need software that sets the baud rate and sends and receives bytes over the serial port. Use [tio](https://tio.github.io/) on Linux, [Putty](https://www.putty.org/) on Windows and [Serial](https://www.decisivetactics.com/products/serial/) on macOS. Don't use `screen`.
 
 When using Putty on Windows, turn of software handshaking, which is on by default. In the _Serial_ menu, set _Flow control_ to _None_.
 
-You typically wants some software that supports arbitrary baud rates and informs you of what is going on. In that regard, `screen` and `gtkterm` are insufficient. While `screen` can set up a serial connection and it sometimes works correctly, it doesn't inform you when it can't do what you want. If you run the command `screen /dev/ttyUSB0 128000`, you may expect the baud rate to be set to 128000. However, this is an unsupported baud rate and `screen` silently falls back to 9600. Everything seems to be OK, except the baud rate is incorrect.
+You typically want software that supports arbitrary baud rates and informs you of what is going on. In that regard, `screen` and `gtkterm` are insufficient. While `screen` can set up a serial connection and it may works correctly, it doesn't inform you when it can't do what you want. If you run the command `screen /dev/ttyUSB0 128000`, you may expect the baud rate to be set to 128000. However, this is an unsupported baud rate and `screen` silently falls back to 9600. Everything seems to be OK, except the baud rate is incorrect.
 
 Even more weirdly, `screen /dev/ttyUSB0 4098` uses a baud rate of 115200, because the kernel constant `B115200` equals `4098`, and screen interprets the given number either way.
 
@@ -192,13 +192,13 @@ Everything you type is sent over the serial line, which can make it tricky to ex
 
 ### Finding an UART interface on a device
 
-If you want to connect to an embedded device, the first step is to find the correct pins on the board. Often there is a row of four or five pins with at least ground, Vcc, Rx and Tx. Sometimes the pins are omitted and there are only holes. Often such a connection is labeled as J5 or some other number.
+If you want to connect to an embedded device, the first step is to find the correct pins on the board. Often there is a row of four or five pins with at least ground, Vcc, Rx and Tx. Sometimes the pins are omitted and there are only holes. Often such a connection is labeled as J5 or another number.
 
 <img src="/images/uart-hg655.jpg" width="680">
 
 If you suspect a pin to be a UART line, the first step is to measure the voltage using a multimeter. First, find a good connection for the common ground and connect the black lead of the multimeter to it. Then measure the voltage on the suspected pins with the red lead. A Tx line will be 3.3V when idle. Keep measuring while rebooting the device. Data is often sent on boot, so we can use this to determine whether data is sent over the line. If data is sent, the voltage will temporarily drop below 3V according to the multimeter.
 
-Now you have determined that the line has an acceptable voltage and there is some activity on it. This does not yet mean that the line is an UART line, it could also use some other protocol such as I2C or SPI. One way to determine this is to use a logic analyzer or oscilloscope to view the electrical signals. Or, you can connect your USB to UART bridge and see if it works.
+Now you have determined that the line has an acceptable voltage and there is activity on it. This does not yet mean that the line is an UART line, it could also use another protocol such as I2C or SPI. One way to determine this is to use a logic analyzer or oscilloscope to view the electrical signals. Or, you can connect your USB to UART bridge and see if it works.
 
 ### Connecting to the device
 
@@ -206,9 +206,9 @@ Before connecting to the device, make sure it emits a voltage that is compatible
 
 When connecting your UART bridge to the device, connect ground, Tx and Rx. The Rx of the bridge connects to the Tx of the device, and the other way around.
 
-Whether to connect Vcc depends on whether you use an isolated bridge. If you have an isolated bridge there is no electrical connection between your USB port and the I/O pins. However, the I/O pins still need to put out some voltage, and for this the I/O side needs Vcc.
+Whether to connect Vcc depends on whether you use an isolated bridge. If you have an isolated bridge there is no electrical connection between your USB port and the I/O pins. However, the I/O pins still need to put out a voltage, and for this the I/O side needs Vcc.
 
-If your adapter is not isolated, connecting Vcc of your bridge to the device may interfere with the voltage already on the device. If the device gets power from some other power supply it already has a certain voltage level on its Vcc pin. If you connect the bridge's Vcc pin and the voltage is different, a current will flow which may damage the device.
+If your adapter is not isolated, connecting Vcc of your bridge to the device may interfere with the voltage already on the device. If the device gets power from another power supply it already has a certain voltage level on its Vcc pin. If you connect the bridge's Vcc pin and the voltage is different, a current will flow which may damage the device.
 
 An alternative is to disconnect the device from the power supply and supply power through the USB to UART bridge. However, most bridges can only supply up to 100 mA or so, which is not enough for most devices.
 
