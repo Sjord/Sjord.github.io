@@ -7,7 +7,7 @@ date: 2019-02-20
 
 This article describes my experiences with the TP-Link TL-WN823N USB Wi-Fi adapter under MacOS Mojave.
 
-For an IoT assignment I wanted to intercept Wi-Fi traffic between two devices. In order to route the traffic through my laptop I wanted to connect to one device and set up an access point to another device. For this I needed an additional Wi-Fi adapter. It took some searching to find one that works with MacOS Mojave 10.14, and I ended up with the TP-Link TL-WN823N, which works perfectly.
+For an IoT assignment I wanted to intercept Wi-Fi traffic between two devices. In order to route the traffic through my laptop I wanted to connect to one device and set up an access point for another device. For this I needed an additional Wi-Fi adapter. It took some searching to find one that works with MacOS Mojave 10.14, and I ended up with the TP-Link TL-WN823N, which works perfectly.
 
 For the adapter to work, you need to install the drivers from the TP-Link website. The driver for MacOS 10.14 is marked as beta at the moment. The adapter does not integrate with the Wi-Fi functionality of MacOS. Instead, you get an extra menu item in the top bar.
 
