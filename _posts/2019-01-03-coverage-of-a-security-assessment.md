@@ -34,8 +34,8 @@ Many issues are impossible to test without the source code. For example, the way
 ## Influences on coverage
 
 * Time. Taking more time for an assessment increases the coverage.
+* Application size and complexity. If the application is very big or complex, vulnerable functionality may be hidden deep in the application.
 * Source code. Having source code available increases the visibility of security vulnerabilities.
-* Application complexity. If the application is very big or complex, vulnerable functionality may be hidden deep in the application.
 * Environment. Testing on production reduces the possible tests that can be done, lowering the coverage. A test environment that is different from production may in turn hide vulnerabilities that are present on the production environment and not in the test environment. An acceptance environment that is similar to production gives the highest coverage.
 
 ## Conclusion
