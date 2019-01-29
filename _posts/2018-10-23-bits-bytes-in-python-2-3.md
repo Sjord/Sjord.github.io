@@ -149,7 +149,7 @@ The example given for Python 2 still works in Python 3. However, it is no longer
 
 ## Which one to choose?
 
-## Conclusion
+Use Python 3 with bytearray. Python 3 is stricter with data types than Python 2. It may seem easier to use Python 2 at first because you can get away with treating strings and bytes the same, but this can hide subtle bugs. Python 3 is more explicit with types and warns you try to do something that is probably not what you want. 
 
 ## Read more
 
