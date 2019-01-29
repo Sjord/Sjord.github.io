@@ -2,10 +2,16 @@
 layout: post
 title: "ENISA Technical Measures for IoT"
 thumbnail: enisa-iot-480.png
-date: 2019-03-08
+date: 2019-05-08
 ---
 
-Intro todo
+ENISA has created a list of technical measures for securing IoT devices. These are hands-on rules which IoT manufacturers and developers should follow to secure their devices. Furthermore, the measures are useful when testing IoT devices, to make sure that all measures have been tested, and to point out in which field the most vulnerabilities are.
+
+ENISA already published two ways of accessing the IoT technical measures:
+* [Baseline Security Recommendations for IoT](https://www.enisa.europa.eu/publications/baseline-security-recommendations-for-iot), a comprehensive document,
+* [interactive tool](https://www.enisa.europa.eu/topics/iot-and-smart-infrastructures/iot/baseline-security-recommendations-for-iot-interactive-tool), a searchable table.
+
+However, I was looking for a way to easily search the technical measures, which is why I put them in the table below. You can filter the table by typing something in the input fields.
 
 | §     | TM       | Description |
 |-------|----------|-------------|
