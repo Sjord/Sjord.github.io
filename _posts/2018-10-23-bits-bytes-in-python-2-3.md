@@ -2,7 +2,7 @@
 layout: post
 title: "Working with bits and bytes in Python 2 and 3"
 thumbnail: dipswitch-480.jpg
-date: 2018-11-07
+date: 2019-04-24
 ---
 
 When performing a [bit flip](/2018/04/25/bitflip-effect-on-encryption-operation-modes/) attack or working with XOR encryption, you want to change the bits and bytes in a string of bytes. How this is done differs between Python 2 and 3, and this article explains how.
