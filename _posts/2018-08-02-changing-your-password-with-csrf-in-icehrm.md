@@ -5,7 +5,7 @@ thumbnail: icebreaker-240.jpg
 date: 2018-08-15
 ---
 
-IceHRM is an open source human resource management system. Its functionality to change the user's password is vulnerable to CSRF.
+IceHRM is an open source human resource management system. Its functionality to change the user's password is vulnerable to [CSRF](/2019/01/09/csrf/).
 
 <!-- photo source: http://archive.defense.gov/homepagephotos/leadphotoimage.aspx?id=102878 -->
 
