@@ -5,7 +5,7 @@ thumbnail: silence-240.jpg
 date: 2017-06-21
 ---
 
-The referer header is sometimes used as CSRF protection. This post describes a method for the attacker to remove the referer header, which can bypass some CSRF checks.
+The referer header is sometimes used as [CSRF protection](/2019/01/09/csrf/). This post describes a method for the attacker to remove the referer header, which can bypass some CSRF checks.
 
 ## Checking for CSRF with the referer header
 

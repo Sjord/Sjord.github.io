@@ -5,7 +5,7 @@ thumbnail: probability-480.jpg
 date: 2019-01-16
 ---
 
-In a risk assessment, total risk is often calculated as a product of probability and impact. To make a proper risk assessment of cyber attacks, companies need to know both the probability and the impact of cyber attacks. This article explores the probability. How likely is it for a company to get hacked?
+In a risk assessment, total risk is often calculated as a product of probability and [impact](/2019/01/30/impact-of-cyberattack/). To make a proper risk assessment of cyber attacks, companies need to know both the probability and the impact of cyber attacks. This article explores the probability. How likely is it for a company to get hacked?
 
 <!-- photo source: https://commons.wikimedia.org/wiki/File:High_School_Probability_and_Statistics_Cover.jpg -->
 
