@@ -40,15 +40,26 @@ A more modern SMTP module is [aiosmtpd](https://aiosmtpd.readthedocs.io/en/lates
 
 The modern aiosmtpd is prefered over the deprecated smtpd. The only disadvantage is that you have to install it, whereas smtpd comes bundled with Python.
 
-* [Mailtrap](https://mailtrap.io/)
-* [MailSlurper](http://mailslurper.com/)
+### Using MailSlurper
+
+[MailSlurper](http://mailslurper.com/) is a tool programmed in Go that opens a mailserver and shows all mails through a web interface. The ports it uses are specified in a configuration file, `config.json`. It is pretty straightforward and easy to use.
+
+<img src="/images/mailslurper.png" width="100%" alt="MailSlurper screenshot">
+
+### Using specifiedPickupDirectory 
+
+If you are developing a .NET application, you can configure mail to be stored in a specific directory instead of being sent out over SMTP. Using the [specifiedPickupDirectory](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/file-schema/network/specifiedpickupdirectory-element-network-settings) directive you can configure the directory to store your mails in.
+
+### More tools 
+
 * [smtp4dev](https://github.com/rnwood/smtp4dev)
-* [Mailosaur](https://mailosaur.com/)
 * [Dummy SMTP Server](https://github.com/enbiso/dummy-smtp-server)
 * [Papercut](https://github.com/ChangemakerStudios/Papercut)
-* [specifiedPickupDirectory Element](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/file-schema/network/specifiedpickupdirectory-element-network-settings)
 * [MockSMTP.app](http://mocksmtpapp.com/)
 * [DevNull SMTP](http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp)
-* [smtpd](https://docs.python.org/3/library/smtpd.html)
-* [aiosmtpd](https://aiosmtpd.readthedocs.io/en/latest/)
 * [MailDev](https://danfarrelly.nyc/MailDev/)
+
+### Cloud services
+
+* [Mailtrap](https://mailtrap.io/)
+* [Mailosaur](https://mailosaur.com/)
