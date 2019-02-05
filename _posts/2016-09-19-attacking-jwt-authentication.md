@@ -69,7 +69,7 @@ If the JWT uses asymmetric RS256, this correctly verifies the signature on the t
 
 #### Try it
 
-Go to [this RS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/rs256.php). You get a RS256 signed token. Create a new token, set the algorithm to HS256 and sign it with the [public key](http://demo.sjoerdlangkemper.nl/jwtdemo/public.pem). Verify that the key is accepted.
+Go to [this RS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/rs256.php). You get a RS256 signed token. Create a new token, set the algorithm to HS256 and sign it with the [public key](http://demo.sjoerdlangkemper.nl/jwtdemo/public.pem). Verify that the key is accepted. You can check [this walk-through](https://www.nccgroup.trust/uk/about-us/newsroom-and-events/blogs/2019/january/jwt-attack-walk-through/) if you get stuck.
 
 ### Crack the key
 
