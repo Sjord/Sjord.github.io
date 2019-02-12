@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "Insecure direct object reference in Growatt"
-thumbnail: todo-480.jpg
+thumbnail: solarpanel-480.jpg
 date: 2019-08-28
 ---
+
+<!-- photo source: https://pixabay.com/en/photovoltaic-solar-system-energy-2814504/ -->
 
 While looking for an API endpoint that provides higer resolution data, I mailed someone a link that worked for me:
 
