@@ -5,7 +5,7 @@ thumbnail: improvised-mailbox-480.jpg
 date: 2019-04-10
 ---
 
-If you are setting up a web application on your own computer you sometimes need a simple mailserver that just lets you view emails, for example for a password reset mail. This article lists several solutions to quickly set up a test mailserver.
+If you are setting up a web application on your own computer you sometimes need a simple mail server that just lets you view emails, for example for a password reset mail. This article lists several solutions to quickly set up a test mail server.
 
 <!-- photo source: https://pixabay.com/en/scouting-tools-nature-camping-1146330/ -->
 
@@ -15,7 +15,7 @@ The easiest way is to use Python's built-in smtpd module. You can start a SMTP s
 
     $ python -m smtpd --nosetuid --class DebuggingServer
 
-That will open a SMTP server on port 8025, and simply print messages that look like this:
+That opens a SMTP server on port 8025, and simply prints messages that look like this:
 
     ---------- MESSAGE FOLLOWS ----------
     To: test@example.com
@@ -34,7 +34,7 @@ That will open a SMTP server on port 8025, and simply print messages that look l
     Hello world
     ------------ END MESSAGE ------------
 
-A more modern SMTP module is [aiosmtpd](https://aiosmtpd.readthedocs.io/en/latest/aiosmtpd/docs/cli.html), which can also be run on the command line to print email messages:
+A more modern SMTP module is [aiosmtpd](https://aiosmtpd.readthedocs.io/en/latest/aiosmtpd/docs/cli.html), which can be run to print email messages with the following command:
 
     $ python -m aiosmtpd -n
 
@@ -42,15 +42,21 @@ The modern aiosmtpd is prefered over the deprecated smtpd. The only disadvantage
 
 ### Using MailSlurper
 
-[MailSlurper](http://mailslurper.com/) is a tool programmed in Go that opens a mailserver and shows all mails through a web interface. The ports it uses are specified in a configuration file, `config.json`. It is pretty straightforward and easy to use.
+[MailSlurper](http://mailslurper.com/) is a tool programmed in Go that opens a mail server and shows all mails through a web interface. The ports it uses are specified in a configuration file, `config.json`. It is pretty straightforward and easy to use, and it handles HTML emails better than the Python solution described above.
 
 <img src="/images/mailslurper.png" width="100%" alt="MailSlurper screenshot">
 
-### Using specifiedPickupDirectory 
+### Using application configuration
 
-If you are developing a .NET application, you can configure mail to be stored in a specific directory instead of being sent out over SMTP. Using the [specifiedPickupDirectory](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/file-schema/network/specifiedpickupdirectory-element-network-settings) directive you can configure the directory to store your mails in.
+If you are using a .NET application, you can configure mail to be stored in a specific directory instead of being sent out over SMTP. Using the [specifiedPickupDirectory](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/file-schema/network/specifiedpickupdirectory-element-network-settings) directive you can configure the directory to store your mails in.
+
+Similarly, for Django there is a [console email backend](https://docs.djangoproject.com/en/dev/topics/email/#console-backend). Putting the following in the settings.py will display emails on the console instead of sending them:
+
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ### More tools 
+
+These tools set up a temporary email server on your own computer:
 
 * [smtp4dev](https://github.com/rnwood/smtp4dev)
 * [Dummy SMTP Server](https://github.com/enbiso/dummy-smtp-server)
@@ -61,5 +67,11 @@ If you are developing a .NET application, you can configure mail to be stored in
 
 ### Cloud services
 
+These services provide a cloud-based email server for testing purposes:
+
 * [Mailtrap](https://mailtrap.io/)
 * [Mailosaur](https://mailosaur.com/)
+
+### Conclusion
+
+You can have your own mail server running within minutes, making it possible to test password resets and other functionality that sends email without using your actual mail server.
