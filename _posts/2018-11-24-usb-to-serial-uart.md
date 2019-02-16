@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "USB to UART serial"
+title: "USB to UART serial bridges"
 thumbnail: ch340-480.jpg
 date: 2019-05-22
 ---
@@ -15,7 +15,7 @@ From a hacking perspective, the most interesting application of UARTs is in embe
 
 UART communication is sometimes also needed to interact with a development board, such as an Arduino or ESP8266, although most of these boards have a USB to serial converter on board.
 
-Several other protocols are built upon UART communication, such as [IrDA](https://en.wikipedia.org/wiki/Infrared_Data_Association), [DMX](https://en.wikipedia.org/wiki/DMX512), [MIDI](https://en.wikipedia.org/wiki/MIDI) and [smart meter P1 ports](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf). These can also be used with USB to UART bridges, but require further hacking to get working.
+Several other protocols are built upon UART communication, such as [IrDA](https://en.wikipedia.org/wiki/Infrared_Data_Association), [DMX](https://en.wikipedia.org/wiki/DMX512), [MIDI](https://en.wikipedia.org/wiki/MIDI) and [smart meter P1 ports](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf). These can be used with USB to UART bridges, but require further hacking to get working.
 
 ## Communicating with UARTs
 
@@ -32,17 +32,17 @@ There is no clock signal and no negotiation between the two devices. To correctl
 
 ### Baud rate
 
-The baud rate is a term for the number of bits per second that are transmitted over the wire. A common baud rate is 9600. In that case, one bit takes up <sup>1</sup>&#8725;<sub>9600</sub> of a second, or 104µs. 
+The baud rate is a term for the number of bits per second that are transmitted over the wire. A common baud rate is 9600 bits per second. In that case, one bit takes up <sup>1</sup>&#8725;<sub>9600</sub> of a second, or 104µs. 
 
 The sending party flips the signal every 104µs, and the receiving party checks the voltage on the line every 104µs. It will still work if this is off by a couple of per cent. This sometimes happens with microcontrollers, that have trouble keeping an exact clock.
 
-The most common baud rates in use are 9600 and 115200. Then there are a handful of standard baud rates, such as 19200 and 38400. In theory you can use any baud rate, but old interfaces only support the standard baud rates. It is also possible to use different baud rates for sending and receiving, although this is pretty rare.
+The most common baud rates in use are 9600 and 115200. Then there are a handful of standard baud rates, such as 19200 and 38400. In theory you can use any baud rate, but old interfaces only support the standard baud rates. It is possible to use different baud rates for sending and receiving, although this is pretty rare.
 
 <img src="/images/uart-logic-680.png" alt="A pulse is 104µs long">
 
 ### Start, stop and parity bits
 
-UART frames consist of a start bit, seven or eight data bits, optionally a parity bit and one or two stop bits. By far the most common configuration is to use 8 data bits, no parity bit and one stop bit, or 8N1. So the transmitting party first sends a start bit, then eight data bits, followed by a stop bit.
+UART frames consist of a start bit, seven or eight data bits, optionally a parity bit and one or two stop bits. By far the most common configuration is to use eight data bits, no parity bit and one stop bit, or 8N1. So the transmitting party first sends a start bit, then eight data bits, followed by a stop bit.
 
 ### Voltage levels
 
@@ -95,7 +95,7 @@ The FTDI is around the longest and was previously the only implementation availa
 
 #### Fake FTDI chips
 
-FTDI FT232 chips are pretty expensive (€3.50) and became popular quickly. This led to the rise of fake Chinese knock-offs. These imitations have the FTDI logo on them and work correctly, and are [hard to tell from fakes](https://zeptobars.com/en/read/FTDI-FT232RL-real-vs-fake-supereal).
+FTDI FT232 chips are pretty popular and relatively expensive (€3.50). This led to the rise of fake Chinese knock-offs. These imitations have the FTDI logo on them and work correctly, and are [hard to tell from fakes](https://zeptobars.com/en/read/FTDI-FT232RL-real-vs-fake-supereal).
 
 FTDI was not happy with this. In 2014 they pushed a driver update that only works with real FTDI chips, and [bricked counterfeit chips](https://en.wikipedia.org/wiki/FTDI#Driver_controversy). Later they reverted this controversial behavior, but it severely damaged their reputation. Despite that, fake FT232 chips are still widely used and available.
 
@@ -194,11 +194,17 @@ Everything you type is sent over the serial line, which can make it tricky to ex
 
 If you want to connect to an embedded device, the first step is to find the correct pins on the board. Often there is a row of four or five pins with at least ground, Vcc, Rx and Tx. Sometimes the pins are omitted and there are only holes. Often such a connection is labeled as J5 or another number.
 
-<img src="/images/uart-hg655.jpg" width="680">
+In the following image you can see a UART interface on a Huawei modem. The device came with blank pads and I soldered the pins to it. You can see a little table in the silk screening that describes the pins: Tx, Gnd, Vcc, Rx. The pins on the right side are JTAG pins. Having UART and JTAG in one connector makes it possible to easily connect a debug cable to the board for debugging. For similar reasons, debug ports are often on the side of the board.
+
+<img src="/images/uart-hg655.jpg" width="100%">
 
 If you suspect a pin to be a UART line, the first step is to measure the voltage using a multimeter. First, find a good connection for the common ground and connect the black lead of the multimeter to it. Then measure the voltage on the suspected pins with the red lead. A Tx line will be 3.3V when idle. Keep measuring while rebooting the device. Data is often sent on boot, so we can use this to determine whether data is sent over the line. If data is sent, the voltage will temporarily drop below 3V according to the multimeter.
 
-Now you have determined that the line has an acceptable voltage and there is activity on it. This does not yet mean that the line is an UART line, it could also use another protocol such as I2C or SPI. One way to determine this is to use a logic analyzer or oscilloscope to view the electrical signals. Or, you can connect your USB to UART bridge and see if it works.
+Now you have determined that the line has an acceptable voltage and there is activity on it. This does not yet mean that the line is an UART line, it could use another protocol such as I2C or SPI. One way to determine this is to use a logic analyzer or oscilloscope to view the electrical signals. Or, you can connect your USB to UART bridge and see if it works.
+
+In the example below a camera has five holes, initially hidden under a white sticker. This makes it possible to access the UART interface from the outside. However, I couldn't get this working and soldered wires to the pads. The pads are marked as TP41, TP42, and so on, where TP stands for test point.
+
+<img src="/images/camerauart.jpg" width="100%">
 
 ### Connecting to the device
 
@@ -220,7 +226,7 @@ This is easiest with a logic analyzer, which just shows the timing in the interf
 
 <img src="/images/uart-logic-680.png" alt="A pulse is 104µs long">
 
-It is also possible with a microcontroller with a sufficiently high clock frequency. I  used my 72 Mhz Teensy to measure baud rates. It simply measures the time the signal stays low and calculates the baud rate from that. The high precision timing makes [the program](https://github.com/Sjord/autobaud) a bit complex, but it works quite well.
+Alternatively, it is possible with a microcontroller by using input capture to measure pulse widths. I created an [autobaud program](https://github.com/Sjord/autobaud) that works on Arduino Uno and can determine baud rates up to 200,000 bps reliably.
 
 Using an incorrect baud rate will typically show gibberish, although it is also possible that you see nothing at all.
 
