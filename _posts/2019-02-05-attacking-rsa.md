@@ -6,15 +6,19 @@ date: 2019-06-19
 ---
 
 Single key:
+* key too short
 * Low private exponent
 * Low public exponent (not actually a vulnerability)
 * Small N
 * p and q close to √N
 * unsafe primes
+* May 2008 Debian OpenSSH bug
+* e = 1
 
 Multiple keys:
 * Shared p or q
 * Shared n
+* Shared private key
 
 
 
@@ -27,3 +31,5 @@ Multiple keys:
 * [Finding Duplicate RSA Moduli in the Wild](http://sbudella.altervista.org/blog/20181211-duplicate-moduli.html)
 * [Mathematical attack on RSA](https://www.nku.edu/~christensen/Mathematical%20attack%20on%20RSA.pdf)
 * [A New Class of Unsafe Primes](https://eprint.iacr.org/2002/109.pdf)
+* [RsaCtfTool](https://github.com/Ganapati/RsaCtfTool)
+* [Ron was wrong, Whit is right](https://eprint.iacr.org/2012/064.pdf)
