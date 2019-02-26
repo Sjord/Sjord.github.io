@@ -1,10 +1,13 @@
 ---
 layout: post
-title: "Attacking RSA"
+title: "Attacking RSA keys"
 thumbnail: drilling-safe-480.jpg
 date: 2019-06-19
 ---
 
+RSA keys need to conform to certain mathematical properties in order to be secure. If the key is not generated carefully it can have vulnerabilities which may totally compromise the encryption algorithm. Sometimes this can be determined from the public key alone. This article describes vulnerabilities that can be tested when in possession a RSA public key.
+
+<!-- photo source: https://www.kadena.af.mil/News/Article-Display/Article/417628/18th-ces-holds-keys-to-kadena/ -->
 
 ## Single key weaknesses
 
@@ -16,7 +19,9 @@ Demo: smallkey.pem
 
 ### Low private exponent
 
-Decrypting a message consists of calculating _c<sup>d</sup>_ mod _N_. The smaller _d_ is, the faster this operation goes. However, [Wiener](http://www.reverse-engineering.info/Cryptography/ShortSecretExponents.pdf) found a way to recover _d_ (and thus the private key). [Boneh and Durfee](http://antoanthongtin.vn/Portals/0/UploadImages/kiennt2/KyYeu/DuLieuNuocNgoai/8.Advances%20in%20cryptology-Eurocrypt%201999-LNCS%201592/15920001.pdf) improved this attack to recover private exponents that are less than _N_<sup>0.292</sup>.
+Decrypting a message consists of calculating _c<sup>d</sup>_ mod _N_. The smaller _d_ is, the faster this operation goes. However, [Wiener](http://www.reverse-engineering.info/Cryptography/ShortSecretExponents.pdf) found a way to recover _d_ (and thus the private key) when _d_ is relatively small. [Boneh and Durfee](http://antoanthongtin.vn/Portals/0/UploadImages/kiennt2/KyYeu/DuLieuNuocNgoai/8.Advances%20in%20cryptology-Eurocrypt%201999-LNCS%201592/15920001.pdf) improved this attack to recover private exponents that are less than _N_<sup>0.292</sup>.
+
+If the private exponent is small, the public exponent is [necessarily large](https://crypto.stackexchange.com/questions/67426/can-you-recognize-a-low-private-exponent-from-a-public-key/67432#67432). If you encounter a public key with a large public exponent, it may be worth it to run the Boneh-Durfee attack against it.
 
 Demo: smalld.pem
 
@@ -36,7 +41,7 @@ When multiplying two primes, the result is almost always hard to factor. However
 
 * Pollard's p − 1 algorithm: _p_ - 1 is powersmooth.
 * Williams's p + 1 algorithm: _p_ + 1 is smooth.
-* Cheng's elliptic curve algorithm: _p_ − 1 has the form db<sup>2</sup> where d ∈ {3,11,19,43,67,163}
+* Cheng's elliptic curve algorithm: 4_p_ − 1 has the form db<sup>2</sup> where d ∈ {3,11,19,43,67,163}
 
 Demo: williams.pem
 
@@ -48,7 +53,7 @@ Demo: debian.pub
 
 ### e = 1
 
-Encryption is done by calculting _m<sup>e</sup>_. If _e_ = 1, this operation does nothing and the message is not encrypted.
+Encryption is done by calculating _m<sup>e</sup>_. If _e_ = 1, this operation does nothing and the message is not encrypted.
 
 Demo: eone.pem
 
@@ -60,7 +65,11 @@ Demo: nprime.pem
 
 ## Relations between multiple keys
 
+If you have multiple keys, there may be relations between the keys that are interesting to search for.
+
 ### Shared N
+
+If two keys have the same modulus, they also have the same p and q and can calculate each other's private key. This may not be a problem if both keys belong to the same person.
 
 Demo: sharedn1.pem, sharedn2.pem
 
@@ -70,10 +79,9 @@ Devices that create their private key on first boot may not have enough entropy 
 
 Demo: sharedp1.pem, sharedp2.pem
 
+## Conclusion
 
-* Shared private key
-
-
+There is a lot that can go wrong when creating RSA keys, especially when using a non-standard RSA-like cryptosystem. When finding a RSA public key during a test, make sure to test it for the vulnerabilities listed above.
 
 ### Read more
 
@@ -87,3 +95,13 @@ Demo: sharedp1.pem, sharedp2.pem
 * [RsaCtfTool](https://github.com/Ganapati/RsaCtfTool)
 * [Ron was wrong, Whit is right](https://eprint.iacr.org/2012/064.pdf)
 * [How I recovered your private key or why small keys are bad](https://0day.work/how-i-recovered-your-private-key-or-why-small-keys-are-bad/)
+* [RSA and a higher degree diophantine equation](https://eprint.iacr.org/2006/093)
+* [Cryptanalysis of RSA with constrained keys](https://eprint.iacr.org/2006/092)
+* [New Partial Key Exposure Attacks on RSA](https://www.iacr.org/archive/crypto2003/27290027/27290027.pdf)
+* [A Generalized Wiener Attack on RSA](https://link.springer.com/content/pdf/10.1007/978-3-540-24632-9_1.pdf)
+* [Cryptanalysis of RSA with Small Prime Difference](http://www.enseignement.polytechnique.fr/profs/informatique/Francois.Morain/Master1/Crypto/projects/Weger02.pdf)
+* [Mining Your Ps and Qs: Detection of Widespread Weak Keys in Network Devices](https://www.usenix.org/system/files/conference/usenixsecurity12/sec12-final228.pdf)
+* [RSA Cryptanalysis with Increased Bounds on the Secret Exponent using Less Lattice Dimension](https://eprint.iacr.org/2008/315.pdf)
+* [New Attacks on RSA with Modulus N = p<sup>2</sup>q Using Continued Fractions](https://iopscience.iop.org/article/10.1088/1742-6596/622/1/012019/pdf)
+* [A New Vulnerable Class of Exponents in RSA](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.182.1949&rep=rep1&type=pdf)
+* [A new attack on RSA with a composed decryption exponent](https://eprint.iacr.org/2014/035.pdf)
