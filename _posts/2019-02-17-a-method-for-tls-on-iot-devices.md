@@ -35,6 +35,8 @@ Other subdomains on umbrellacams.com are not to be trusted. If I buy a camera an
 
 Each device must have a different key and certificate for this to be secure. This is pretty hard for device manufacturers. It is much easier to roll out the same firmware on all devices, but this would compromise all devices and domains as soon as one is hacked.
 
+For the same reason, a wildcard certificate won't be secure, since that will give control of all subdomains to all devices.
+
 ## Custom client
 
 There is an alternative to the setup described above. If the manufacturer has control over the client, he can set up his own secure link. If the device has a corresponding mobile app or desktop application the authentication logic can be made to work however you like. It is only when you want to use browsers and trusted certificates that you are limited by the behavior of those.
