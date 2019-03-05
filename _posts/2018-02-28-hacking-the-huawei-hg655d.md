@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hacking the Huawei HG655d"
-thumbnail: huawei-router-240.jpg
+thumbnail: huawei-router-480.jpg
 date: 2018-02-28
 ---
 
