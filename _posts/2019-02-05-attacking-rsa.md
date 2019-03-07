@@ -11,6 +11,8 @@ RSA keys need to conform to certain mathematical properties in order to be secur
 
 ## Single key weaknesses
 
+If you have a single public key, there are already several things you can test to determine whether the key is secure.
+
 ### Modulus too small
 
 If the RSA key is too short, the modulus can be factored by just using brute force. A 256-bit modulus can be factored in a couple of minutes. A 512-bit modulus takes several weeks on modern consumer hardware. Factoring 1024-bit keys is definitely not possible in a reasonable time with reasonable means, but may be possible for well equiped attackers. 2048-bit is secure against brute force factoring.
@@ -27,11 +29,13 @@ Demo: smalld.pem
 
 ### Low public exponent
 
-Encrypting is performed by calculating _m<sup>e</sup>_ mod _N_. Here _e_ is a low number that is relative prime to N. A common choice is _e_ = 3. Having a low public exponent makes the system vulnerable to certain attacks if used incorrectly. If the same message is encrypted by three seperate keys, the security breaks and the message can be recovered. However, RSA should only be used with randomized padding which prevents this and related attacks. With proper padding it is totally fine to use a low public exponent, so this is not really a vulnerability.
+Encrypting is performed by calculating _m<sup>e</sup>_ mod _N_. Here _e_ is a low number that is relative prime to _N_. A common choice is _e_ = 3. Having a low public exponent makes the system vulnerable to certain attacks if used incorrectly. If the same message is encrypted by three seperate keys, the security breaks and the message can be recovered. However, RSA should only be used with randomized padding which prevents this and related attacks. With proper padding it is totally fine to use a low public exponent, so this is not really a vulnerability.
 
 ### _p_ and _q_ close together
 
 When creating the key, two random primes _p_ and _q_ are multiplied. Consider what happens when _p_ ≈ _q_. Then _N_ ≈ _p_<sup>2</sup> or _p_ ≈ √_N_. In that case, N can be efficiently factored using [Fermat's factorization method](https://en.wikipedia.org/wiki/Fermat%27s_factorization_method).
+
+Fermat's algorithm searches for an a and b such that _N_ = _a_<sup>2</sup> - _b_<sup>2</sup>. In that case, _N_ is factorable as (_a_ + _b_)(_a_ - _b_). If _p_ and _q_ are close together, _a_ is close to √_N_ and _b_ is small, making them easy to find.
 
 Demo: closepq.pem
 
@@ -39,9 +43,9 @@ Demo: closepq.pem
 
 When multiplying two primes, the result is almost always hard to factor. However, it turns out that if at least one of the primes conforms to certain conditions there is a shortcut to factor the result.
 
-* Pollard's p − 1 algorithm: _p_ - 1 is powersmooth.
-* Williams's p + 1 algorithm: _p_ + 1 is smooth.
-* Cheng's elliptic curve algorithm: 4_p_ − 1 has the form db<sup>2</sup> where d ∈ {3,11,19,43,67,163}
+* [Pollard's p − 1 algorithm](https://en.wikipedia.org/wiki/Pollard%27s_p_%E2%88%92_1_algorithm): _p_ - 1 is powersmooth.
+* [Williams's p + 1 algorithm](https://en.wikipedia.org/wiki/Williams%27s_p_%2B_1_algorithm): _p_ + 1 is smooth.
+* [Cheng's elliptic curve algorithm](https://eprint.iacr.org/2002/109.pdf): 4_p_ − 1 has the form _db_<sup>2</sup> where _d_ ∈ {3,11,19,43,67,163}
 
 Demo: williams.pem
 
@@ -49,17 +53,19 @@ Demo: williams.pem
 
 To create a random key, a good cryptographic random number generator is required. Between 2006 and 2008 Debian had a [bug](https://www.debian.org/security/2008/dsa-1571) where the random number generator was improperly seeded, resulting in predictable keys.
 
+In the Debian branch of OpenSSL, a line was removed that seeded the random number generator, because it generated compiler warnings. This resulted in insufficiently random data to generate good keys, which means many keys are the same, even if they were generated on different systems.
+
 Demo: debian.pub
 
 ### e = 1
 
-Encryption is done by calculating _m<sup>e</sup>_. If _e_ = 1, this operation does nothing and the message is not encrypted.
+Encryption is done by calculating _m<sup>e</sup>_. If _e_ = 1, this operation does nothing and the message is not encrypted. The message may still be padded but otherwise is just plain text and not encrypted at all.
 
 Demo: eone.pem
 
 ### Prime N
 
-Normally, two primes compose the modulus. However, you could also use three primes, or one prime. In the case of one prime, however, the private key is not very secret.
+Normally, two primes compose the modulus. However, you could also use three primes, or one prime. In the case of one prime, however, the private key is not very secret. Normally the chosen _p_ and _q_ are secret and you publish _N_, but in single-factor RSA you choose one number that you also publish.
 
 Demo: nprime.pem
 
