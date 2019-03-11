@@ -44,3 +44,7 @@ There is an alternative to the setup described above. If the manufacturer has co
 ## Conclusion
 
 With this setup it is possible to provide HTTPS that works in a browser and is properly secure. 
+
+## Read more
+
+* [Using Let’s Encrypt for internal servers](https://blog.heckel.xyz/2018/08/05/issuing-lets-encrypt-certificates-for-65000-internal-servers/)
