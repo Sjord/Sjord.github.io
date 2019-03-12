@@ -2,7 +2,7 @@
 layout: post
 title: "USB to UART serial bridges"
 thumbnail: ch340-480.jpg
-date: 2019-05-22
+date: 2019-03-20
 ---
 
 USB to UART converters or bridges present themselves as a serial port to your computer and send serial data over a couple of wires. They can be used to make a serial connection to another device. In this post we'll look into how this works.
