@@ -57,6 +57,12 @@ In the Debian branch of OpenSSL, a line was removed that seeded the random numbe
 
 Demo: debian.pub
 
+### Example keys
+
+What do you do when as a developer you need a key pair and don't know exactly how it works? The same way you do for all your code, you copy-paste it from StackOverflow. Example keys in software implementations, web sites or protocol specifications may end up in software. Multiple implementations then use the same key, and the private key is available for everyone in the documentation or on the internet.
+
+Demo: example.pem
+
 ### e = 1
 
 Encryption is done by calculating _m<sup>e</sup>_. If _e_ = 1, this operation does nothing and the message is not encrypted. The message may still be padded but otherwise is just plain text and not encrypted at all.
