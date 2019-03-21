@@ -121,15 +121,18 @@ There is a lot that can go wrong when creating RSA keys, especially when using a
 #### Key testing software
 
 * [RsaCtfTool](https://github.com/Ganapati/RsaCtfTool)
+* [Lattice based attacks on RSA](https://github.com/mimoo/RSA-and-LLL-attacks)
 
 #### Overview
 
+* [FactHacks](https://facthacks.cr.yp.to/)
 * [Twenty Years of Attacks on the RSA Cryptosystem](http://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf)
 * [Possible Attacks on RSA](http://www.members.tripod.com/irish_ronan/rsa/attacks.html)
 * [Exploring 3 insecure usage of RSA](https://www.quaxio.com/exploring_three_weaknesses_in_rsa/)
 * [Ron was wrong, Whit is right](https://eprint.iacr.org/2012/064.pdf)
 * [How to compute RSA keys?](http://igm.univ-mlv.fr/~jyt/Crypto/4/slides_iAWACS09_Erra-Grenier_How-to-compute-RSA-keys.pdf)
 * [The properties of RSA key generation process in software libraries](https://is.muni.cz/th/oba30/thesis-nemec.pdf)
+* [Survey: Lattice Reduction Attacks on RSA](https://www.davidwong.fr/papers/david_wong_rsa_lll_boneh_durfee__2015.pdf)
 
 #### Small prime differences
 
