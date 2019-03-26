@@ -196,7 +196,7 @@ If you want to connect to an embedded device, the first step is to find the corr
 
 In the following image you can see a UART interface on a Huawei modem. The device came with blank pads and I soldered the pins to it. You can see a little table in the silk screening that describes the pins: Tx, Gnd, Vcc, Rx. The pins on the right side are JTAG pins. Having UART and JTAG in one connector makes it possible to easily connect a debug cable to the board for debugging. For similar reasons, debug ports are often on the side of the board.
 
-<img src="/images/uart-hg655.jpg" width="100%">
+<img src="/images/uart-hg655.webp" width="100%">
 
 If you suspect a pin to be a UART line, the first step is to measure the voltage using a multimeter. First, find a good connection for the common ground and connect the black lead of the multimeter to it. Then measure the voltage on the suspected pins with the red lead. A Tx line will be 3.3V when idle. Keep measuring while rebooting the device. Data is often sent on boot, so we can use this to determine whether data is sent over the line. If data is sent, the voltage will temporarily drop below 3V according to the multimeter.
 
