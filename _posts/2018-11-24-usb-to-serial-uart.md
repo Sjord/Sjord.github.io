@@ -202,7 +202,7 @@ If you suspect a pin to be a UART line, the first step is to measure the voltage
 
 Now you have determined that the line has an acceptable voltage and there is activity on it. This does not yet mean that the line is an UART line, it could use another protocol such as I2C or SPI. One way to determine this is to use a logic analyzer or oscilloscope to view the electrical signals. Or, you can connect your USB to UART bridge and see if it works.
 
-In the example below a camera has five holes, initially hidden under a white sticker. This makes it possible to access the UART interface from the outside. However, I couldn't get this working and soldered wires to the pads. The pads are marked as TP41, TP42, and so on, where TP stands for test point.
+In the example below [a camera](/2019/03/27/hacking-the-motorola-mbp88connect-wifi-camera/) has five holes, initially hidden under a white sticker. This makes it possible to access the UART interface from the outside. However, I couldn't get this working and soldered wires to the pads. The pads are marked as TP41, TP42, and so on, where TP stands for test point.
 
 <img src="/images/camerauart.jpg" width="100%">
 
