@@ -37,7 +37,7 @@ The browser handles authentication, so the application won't see a username or p
 
 ### By the application
 
-Instead of letting the browser handle authentication, it is possible to send an Authorization header with a request from JavaScript by just specifying the name and value of th header. It works just like any other header.
+Instead of letting the browser handle authentication, it is possible to send an Authorization header with a request from JavaScript by just specifying the name and value of the header. It works just like any other header.
 
 One of these if the header `Access-Control-Allow-Credentials`, which allows authentication information such as cookies, authorization headers and client certificates in a cross-origin request. Another response header that can be used is `Access-Control-Allow-Headers`, which can be used to whitelist the Authorization header.
 
