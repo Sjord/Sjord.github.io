@@ -110,7 +110,11 @@ If two keys have the same modulus, they also have the same p and q and can calcu
 
 Devices that create their private key on first boot may not have enough entropy to create a random number. What sometimes happens is that this results in keys that have a different modulus but have one factor in common. In that case the greatest common divisor of the two moduli can be efficiently calculated to factor the modulus and recover the private key.
 
-**Try it**: [sharedp1.pem](https://demo.sjoerdlangkemper.nl/rsa/sharedp1.pem), [sharedp2.pem](https://demo.sjoerdlangkemper.nl/rsa/sharedp2.pem)
+In some cases, even if two keys don't have the exact same factor but the factor is close, both keys can be broken.
+
+**Try it**: 
+* [sharedp1.pem](https://demo.sjoerdlangkemper.nl/rsa/sharedp1.pem), [sharedp2.pem](https://demo.sjoerdlangkemper.nl/rsa/sharedp2.pem)
+* [closep1.pem](https://demo.sjoerdlangkemper.nl/rsa/closep1.pem), [closep2.pem](https://demo.sjoerdlangkemper.nl/rsa/closep2.pem)
 
 ## Conclusion
 
@@ -133,6 +137,7 @@ There is a lot that can go wrong when creating RSA keys, especially when using a
 * [How to compute RSA keys?](http://igm.univ-mlv.fr/~jyt/Crypto/4/slides_iAWACS09_Erra-Grenier_How-to-compute-RSA-keys.pdf)
 * [The properties of RSA key generation process in software libraries](https://is.muni.cz/th/oba30/thesis-nemec.pdf)
 * [Survey: Lattice Reduction Attacks on RSA](https://www.davidwong.fr/papers/david_wong_rsa_lll_boneh_durfee__2015.pdf)
+* [15 ways to break RSA security](https://github.com/comaeio/OPCDE/blob/master/2017/15%20ways%20to%20break%20RSA%20security%20-%20Renaud%20Lifchitz/opcde2017-ds-lifchitz-break_rsa.pdf)
 
 #### Small prime differences
 
@@ -146,6 +151,7 @@ There is a lot that can go wrong when creating RSA keys, especially when using a
 * [Understanding Common Factor Attacks: An RSA-Cracking Puzzle](http://www.loyalty.org/~schoen/rsa/)
 * [Finding Duplicate RSA Moduli in the Wild](http://sbudella.altervista.org/blog/20181211-duplicate-moduli.html)
 * [Mining Your Ps and Qs: Detection of Widespread Weak Keys in Network Devices](https://www.usenix.org/system/files/conference/usenixsecurity12/sec12-final228.pdf)
+* [Implicit factorization of unbalanced RSA moduli](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.638.2268&rep=rep1&type=pdf)
 
 #### Unsafe primes
 
