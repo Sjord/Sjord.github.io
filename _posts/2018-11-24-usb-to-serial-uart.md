@@ -153,7 +153,7 @@ The device is called something like /dev/ttyUSB0. If you plug the device in a lo
 The device is called something like /dev/tty.wchusbserial1410. I haven't found a reliable way to get the filename of this port. You can try the following things:
 
 * View the logs using `sudo dmesg`.
-* List USB devices using `ioreg -p IOUSB`.
+* List USB devices using `ioreg -p IOUSB`, or by going to About This Mac, System Report, USB.
 
 If all else fails, list all files in /dev, plug the device in, list again and diff the two:
 
