@@ -32,6 +32,7 @@ The best way to learn how to hack is to do it. There are several practice sites 
 * [Over The Wire wargames](http://overthewire.org/wargames/)
 * [OWASP WebGoat 1.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project)
 * [picoCTF](https://picoctf.com/)
+* [Portswigger's Web Security Academy](https://portswigger.net/web-security)
 * [pwn0](https://pwn0.com/)
 * [pwnable.kr](http://pwnable.kr/)
 * [pwnable.tw](https://pwnable.tw/)
