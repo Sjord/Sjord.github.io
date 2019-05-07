@@ -5,7 +5,7 @@ thumbnail: phone-store-480.jpg
 date: 2019-07-31
 ---
 
-Consider a device with a web interface in a home network. It has an RFC1918 address like 192.168.1.123. How can we connect to this device using HTTPS using a trusted certificate?
+Consider a device with a web interface in a home network. It has an RFC1918 address like 192.168.1.123. How can we connect to this device using HTTPS with a trusted certificate?
 
 <!-- photo source: https://www.flickr.com/photos/usdagov/36372930581/ -->
 
