@@ -21,7 +21,7 @@ If you have a single public key, there are already several things you can test t
 
 ### Modulus too small
 
-If the RSA key is too short, the modulus can be factored by just using brute force. A 256-bit modulus can be factored in a couple of minutes. A 512-bit modulus takes several weeks on modern consumer hardware. Factoring 1024-bit keys is definitely not possible in a reasonable time with reasonable means, but may be possible for well equiped attackers. 2048-bit is secure against brute force factoring.
+If the RSA key is too short, the modulus can be factored by just using brute force. A 256-bit modulus can be factored in a couple of minutes. A 512-bit modulus takes several weeks on modern consumer hardware. Factoring 1024-bit keys is definitely not possible in a reasonable time with reasonable means, but may be possible for well equipped attackers. 2048-bit is secure against brute force factoring.
 
 **Try it**: [smallkey.pem](https://demo.sjoerdlangkemper.nl/rsa/smallkey.pem) is a small public key. Can you find the corresponding private key?
 
@@ -35,7 +35,7 @@ If the private exponent is small, the public exponent is [necessarily large](htt
 
 ### Low public exponent
 
-Encrypting is performed by calculating _m<sup>e</sup>_ mod _N_. Here _e_ is a low number that is relative prime to _N_. A common choice is _e_ = 3. Having a low public exponent makes the system vulnerable to certain attacks if used incorrectly. If the same message is encrypted by three seperate keys, the security breaks and the message can be recovered. However, RSA should only be used with randomized padding which prevents this and related attacks. With proper padding it is totally fine to use a low public exponent, so this is not really a vulnerability.
+Encrypting is performed by calculating _m<sup>e</sup>_ mod _N_. Here _e_ is a low number that is relative prime to _N_. A common choice is _e_ = 3. Having a low public exponent makes the system vulnerable to certain attacks if used incorrectly. If the same message is encrypted by three separate keys, the security breaks and the message can be recovered. However, RSA should only be used with randomized padding which prevents this and related attacks. With proper padding it is totally fine to use a low public exponent, so this is not really a vulnerability.
 
 ### _p_ and _q_ close together
 
@@ -55,7 +55,7 @@ When multiplying two primes, the result is almost always hard to factor. However
 * [Williams's p + 1 algorithm](https://en.wikipedia.org/wiki/Williams%27s_p_%2B_1_algorithm): _p_ + 1 is smooth.
 * [Cheng's elliptic curve algorithm](https://eprint.iacr.org/2002/109.pdf): 4_p_ − 1 has the form _db_<sup>2</sup> where _d_ ∈ {3,11,19,43,67,163}
 
-In practice the chance is negligable that a prime you pick at random conforms to one of these formats. Some key generation algorithms create "strong primes" where _p_ - 1 and _p_ + 1 have large prime factors and are thus not smooth.
+In practice the chance is negligible that a prime you pick at random conforms to one of these formats. Some key generation algorithms create "strong primes" where _p_ - 1 and _p_ + 1 have large prime factors and are thus not smooth.
 
 **Try it**: 
 * [williams.pem](https://demo.sjoerdlangkemper.nl/rsa/williams.pem)
@@ -78,7 +78,7 @@ The public exponent _e_ needs to be coprime with &lambda;(N). The most often use
         e = e + 2;
     }
 
-This means that if a public key has a public exponent of 65539, it is divisable by 65537. If it has an exponent of 65541, it is divisable by both 65537 and 65539, and so on. The public exponent leaks information on the private key by being generated this way.
+This means that if a public key has a public exponent of 65539, it is divisible by 65537. If it has an exponent of 65541, it is divisible by both 65537 and 65539, and so on. The public exponent leaks information on the private key by being generated this way.
 
 **Try it**: [leake.pem](https://demo.sjoerdlangkemper.nl/rsa/leake.pem)
 
