@@ -13,8 +13,9 @@ class TestDemo(unittest.TestCase):
     def test_compression(self):
         url = "http://demo.sjoerdlangkemper.nl/compression.php"
         assert "XmreZ8v" in requests.get(url, params={"search": "XmreZ8v"}).text
-        contain_len = requests.get(url, params={"search": "determine"}).headers["content-length"]
-        missing_len = requests.get(url, params={"search": "XmreZ8v"}).headers["content-length"]
+        contain_len = len(requests.get(url, params={"search": "determine"}, stream=True).raw.read())
+        missing_len = len(requests.get(url, params={"search": "XmreZ8v"}, stream=True).raw.read())
+        assert contain_len < missing_len
 
     def test_cors(self):
         url = "http://demo.sjoerdlangkemper.nl/cors.php"
