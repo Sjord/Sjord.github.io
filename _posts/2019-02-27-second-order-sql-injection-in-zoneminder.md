@@ -5,21 +5,21 @@ thumbnail: cctv-480.jpg
 date: 2019-09-25
 ---
 
-While [searching for vulnerable projects](https://www.sjoerdlangkemper.nl/2017/06/07/finding-vulnerable-code-in-github-with-bigquery/) I encountered ZoneMinder, a video surveillance software system. It provides a web interface where I found several vulnerabilities, including second order SQL injection.
+While [searching for vulnerable projects](https://www.sjoerdlangkemper.nl/2017/06/07/finding-vulnerable-code-in-github-with-bigquery/) I encountered ZoneMinder, a video surveillance software system. I found several vulnerabilities in its web interface, including second order SQL injection.
 
 <!-- photo source: https://pixabay.com/photos/cctv-security-camera-1144366/ -->
 
 ## Setting up ZoneMinder
 
-To test the web application I first set up a test environment. I first tried using a docker but later switched to a virtual machine, in order to run several services installed from one package on the same host. I used a netinst ISO to install Debian Buster and then installed the ZoneMinder deb from the default repository. After following more [installation instructions](https://zoneminder.readthedocs.io/en/stable/installationguide/debian.html#easy-way-debian-jessie) I got it running and could access the web interface with a browser.
+To test the web application I set up a test environment. I tried using a docker but later switched to a virtual machine, which can run several services installed from one package on the same host. I used a [netinst ISO](https://www.debian.org/CD/netinst/) to install Debian Buster and then installed the ZoneMinder deb from the default repository. After following more [installation instructions](https://zoneminder.readthedocs.io/en/stable/installationguide/debian.html#easy-way-debian-jessie) I got it running and could access the web interface with a browser.
 
 ## Searching for unauthenticated XSS
 
-By default, authentication is disabled, which means no login is required to access the web application. After clicking through the application to see which options are available I noticed a simple feature to set the home URL and title. There is a link in the top-left corner, and the destination of this link is configurable in the application. This is a nice place to try stored XSS. Assuming that the `HOME_URL` value is put in a `<a href="…">` tag, maybe we can inject a HTML attribute by using a quote in our `HOME_URL`. And indeed, using the value `http://zoneminder.com" onmouseover="alert(1)` works and shows a JavaScript popup when we hover over the link.
+By default, authentication is disabled, which means the web application requires no login. After clicking through the application to see which options are available I noticed a simple feature to set the home URL and title. There is a link in the top-left corner, and the destination of this link is configurable in the application. This is a nice place to try stored XSS. Assuming that the `HOME_URL` value is put in a `<a href="…">` tag, maybe we can inject a HTML attribute by using a quote in our `HOME_URL`. And indeed, using the value `http://zoneminder.com" onmouseover="alert(1)` works and shows a JavaScript popup when we hover over the link.
 
 <img src="/images/zoneminder-home-url-xss.png" width="100%">
 
-However, XSS is particularly interesting if it can be used to attack higher privileged users. This is not applicable when authentication is disabled, so I enabled it. This gives a login screen when requesting the URL. After logging in and clicking through the application again, I noticed that login attempts are logged in the application's log. This can be interesting if this is also vulnerable to XSS.
+However, XSS is particularly interesting if it can attack higher privileged users. This is not applicable without authentication, so I enabled it. This gives a login screen when requesting the URL. After logging in and clicking through the application again, I noticed that login attempts are logged in the application's log. This can be interesting if this is also vulnerable to XSS.
 
 We try to log in with `<h1 onmouseover="alert(1)">XSS</h1>`, and any password. Of course we get an error message that the credentials are incorrect, but now the username value is logged. When the administrator views the log, our HTML is rendered.
 
@@ -70,7 +70,7 @@ Another interesting thing here is that `$_SESSION['username']` is set early on, 
       …
     } // end getAuthUser($auth)
 
-It is used in `getAuthUser`, where it is used unescaped in the SQL query. This means that the application is vulnerable to unauthenticated second order SQL injection. We inject a SQL expression in the username field of the login form, and that gets executed when `getAuthUser` is called. Where does `getAuthUser` get called? In [`AppController.php`](https://github.com/ZoneMinder/zoneminder/blob/1.32.3/web/api/app/Controller/AppController.php):
+The username from the session is used in `getAuthUser`. Here, it is used unescaped in the SQL query. This means that the application is vulnerable to unauthenticated second order SQL injection. We inject a SQL expression in the username field of the login form, and that gets executed in `getAuthUser`. Where is `getAuthUser` called? In [`AppController.php`](https://github.com/ZoneMinder/zoneminder/blob/1.32.3/web/api/app/Controller/AppController.php):
 
     public function beforeFilter() {
       …
@@ -87,7 +87,7 @@ So first, we try to log in with the username `a' or SLEEP(3)='a`. This gets stor
 
 ### Exploiting with sqlmap
 
-Sqlmap is an excellent tool to exploit SQL injection, and can be used to exploit this particular vulnerability. This can be done with this command:
+Sqlmap is an excellent tool to exploit SQL injection, and can exploit this particular vulnerability. This can be done with this command:
 
     ./sqlmap.py -r login.request.txt -p username --second-url='http://zoneminder.local/zm/api/index.php/logs.json?auth=a' --ignore-code=401 --dbms=mysql --level=3
 
@@ -99,7 +99,7 @@ I saved the login request to the file `login.request.txt`, and passed this to sq
 
 ## Conclusion
 
-While investigating an XSS issue we found a second order SQL injection vulnerability.
+While investigating an XSS issue I found a second order SQL injection vulnerability.
 
 ## Read more
 
