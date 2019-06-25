@@ -13,7 +13,7 @@ An insecure direct object reference in the Growatt API to retrieve data on solar
 
 At our scouting clubhouse we have solar panels on the roof. These are connected with a Wi-Fi dongle to the internet so that you can view the amount of generated power through the [Growatt](https://server.growatt.com/) web site. In order to integrate this data into another application I created an Python [API client](https://github.com/Sjord/growatt_api_client) that retrieves the data on the solar panels.
 
-While looking for an API endpoint that provides higer resolution data, I mailed someone a link that worked for me:
+While looking for an API endpoint that provides higher resolution data, I mailed someone a link that worked for me:
 
     https://server.growatt.com/newPlantDetailAPI.do?plantId=23528&date=2019-02-09&type=1
 
@@ -21,4 +21,4 @@ He reported back that he could see the data from my plant, which at least seemed
 
 ## Conclusion
 
-This vulnerability was found by accident when sharing a link.
+This vulnerability was found by accident when sharing a link. My modifying an identifier, another user's data can be retrieved.
