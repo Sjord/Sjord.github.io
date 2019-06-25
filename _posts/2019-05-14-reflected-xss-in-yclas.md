@@ -5,13 +5,13 @@ thumbnail: building-reflection-480.jpg
 date: 2019-10-09
 ---
 
-Yclas is a content management system for classified marketplaces. 
+Yclas is a content management system for classified marketplaces. The search functionality was vulnerable to reflected cross-site scripting, even though HTML tags are stripped.
 
 <!-- photo source: https://pixabay.com/photos/architecture-building-geometric-1868547/ -->
 
 ## Reflection without tags
 
-Yclas has functionality to search advertisements. As usual, the search input is reflected in a couple of places. The page says "1 advertisement for searchterm", and the search term is put back in the same input field. If you search on "hello", the input field still contains "hello". The HTML looks like this:
+Yclas has functionality to search advertisements. As usual, the search input is reflected in a couple of places. The page says "1 advertisement for *searchterm*", and the search term is put back in the same input field. If you search on "hello", the input field still contains "hello" on the results page. The HTML looks like this:
 
     <input type="text" id="title" name="title" class="form-control"
            value="hello" placeholder="Title">
