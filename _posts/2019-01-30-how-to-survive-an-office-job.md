@@ -5,7 +5,7 @@ thumbnail: cubicles-480.jpg
 date: 2019-08-14
 ---
 
-A pentester typically works in an office at a desk behind a computer for hours at end, with many people in the room that do the same. Working in an office with nerds brings some challenges, and in this post I will share some of my experiences with handling these.
+A pentester works in an office at a desk behind a computer for hours on end, with many people in the room that do the same. Working in an office with nerds brings some challenges, and in this post I will share some of my experiences with handling these.
 
 <!-- photo source: https://pixabay.com/en/language-lab-college-university-181083/ -->
 
@@ -13,11 +13,15 @@ A pentester typically works in an office at a desk behind a computer for hours a
 
 Take on the right amount of responsibility. In every company many things can be improved. Maybe reporting takes longer than scheduled, or sales is always late with the signed contract, or the paper in the printer jams every monday. Don't concern yourself with all these things. Concern yourself with doing your job. You have a limited amount of control over the company, and trying to fix the whole company by yourself will only get you frustrated.
 
+In my previous job, I felt responsible for everything that went on in the company. The responsibilities of my job were not clearly defined, which made me worry about everything. In my current job I stick to my job of testing web applications, and this works much better.
+
 If you have the feeling that you have some room left to worry about other things, pick one problem at a time to solve. Make sure that it is solvable by you. Worrying about problems that you can't solve only brings you stress.
 
 ## Keep to a maker's schedule
 
-If I start working at 9:00 and have a meeting at 10:00, I don't get much work done during that first hour. I have to remember to go to the meeting on time and there is not a lot of time to get concentrated on work. For me, it works best if I can spend the whole day hacking on a project. Paul Graham distinguishes the [maker's schedule and manager's schedule](http://www.paulgraham.com/makersschedule.html): a maker is dedicated to one job, and the manager goes from meeting to meeting. Mixing the two works quite poorly in my experience.
+If I start working at 9:00 and have a meeting at 10:00, I don't get much work done during that first hour. I have to remember to go to the meeting on time and there is not a lot of time to get concentrated on work. For me, it works best if I can spend the whole day hacking on a project. Paul Graham distinguishes the [maker's schedule and manager's schedule](http://www.paulgraham.com/makersschedule.html): a maker is dedicated to one job, and the manager goes from meeting to meeting. 
+
+Mixing the two works quite poorly in my experience. If I have several meetings a day I don't get any concentrated work done in the meantime. Therefore, I try to avoid meetings and interrupts if possible, or otherwise plan them all on the same day.
 
 This is partly the reason I try to avoid project management tasks. I have to remember them and break up my day to switch contexts. I am happier spending the whole day on a single project, hacking web applications.
 
@@ -31,7 +35,7 @@ In [one of my previous posts](/2017/08/16/from-developer-to-pentester/) I compla
 
 Imposter syndrome is the feeling that you are not as good as your colleagues, and you are afraid that they find that out. This is quite common [in infosec](https://medium.com/@west.a.dominique/navigating-imposter-syndrome-in-the-world-of-information-security-dc6ec10d9c0f). People with imposter syndrome often try to compensate by pretending they know everything, that they never make mistakes, and that they are better than everyone else. This can give the impression that they are much smarter than you, but this is just show. Don't fall for it.
 
-Admit your mistakes and show that you are not all-knowing. This makes you vulnerable, which is a good thing, because it builds trust between people. This prevents you from becoming an imposter, as well as breaking down the wall of other imposters.
+At first I would try to one-up imposters by also spewing facts or knowledge, but this doesn't work and only breeds hostility. Instead, admit your mistakes and show that you are not all-knowing. This makes you vulnerable, which is a good thing, because it builds trust between people. This prevents you from becoming an imposter, as well as breaking down the wall of other imposters.
 
 ## Have a hobby
 
@@ -51,6 +55,8 @@ Get to know yourself. Know your strengths and weaknesses.
 
 One thing that bothered me was my own perfectionism. It took quite a while to recognize this of myself, and that it was a bad fit with software development. So software development isn't inherently stupid, but the combination of software development and my character gave troubles for me.
 
+I still struggle with perfectionism, but now I recognize it. I am less frustrated by it and I can better articulate it when talking about it.
+
 ## Make the best of it
 
 Don't let perfect be the enemy of good when it comes to a job. Don't get annoyed with little things in your job. Don't get stuck in negativity over a few things that don't work so well.
@@ -59,3 +65,4 @@ That said, as soon as you hate your job, start looking for a new job. It's prett
 
 ## Conclusion
 
+I shared some struggles I have while working at a pentesting company, and some tips how to handle them. Hopefully these will help you with reducing stress with your own job.
