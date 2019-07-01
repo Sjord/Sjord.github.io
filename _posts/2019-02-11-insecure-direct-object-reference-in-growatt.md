@@ -19,6 +19,8 @@ While looking for an API endpoint that provides higher resolution data, I mailed
 
 He reported back that he could see the data from my plant, which at least seemed remarkable. It turns out that you can see data from any plant my modifying the `plantId` parameter. This is a classic insecure direct object reference. The `plantId` contains the number to retrieve. While you have to be logged in, there is no further authorization check whether you are the owner of this plant.
 
+The impact is limited: in this instance, only the name of the plant and the amount of generated power are returned.
+
 ## Conclusion
 
 This vulnerability was found by accident when sharing a link. My modifying an identifier, another user's data can be retrieved.
