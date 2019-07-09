@@ -293,6 +293,7 @@ Using a USB to UART bridge can be pretty simple if it works, or it can be painfu
 
 ### Articles
 
+* [Reverse Engineering Serial Ports](http://www.devttys0.com/2012/11/reverse-engineering-serial-ports/)
 * [Buggy CP2102N Replaced](https://www.crowdsupply.com/pylo/muart/updates/buggy-cp2102n-replaced)
 * [Using the Hardware Serial Ports](https://www.pjrc.com/teensy/td_uart.html)
 * [How high of a baud rate can I go (without errors)?](https://arduino.stackexchange.com/questions/296/how-high-of-a-baud-rate-can-i-go-without-errors)
