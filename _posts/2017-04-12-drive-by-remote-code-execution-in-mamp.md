@@ -7,8 +7,6 @@ date: 2017-07-19
 
 MAMP is an Apache, MySQL, and PHP stack for Mac OS X. It comes with SQLiteManager, which has several vulnerabilities. This post describes how to exploit these vulnerabilities to execute code when a user of MAMP visits a malicious web site.
 
-This post appeared earlier on [my employers web site](https://www.itsec.nl/en/2017/06/26/drive-by-remote-code-execution-by-mamp/).
-
 ## MAMP
 
 MAMP is a web stack that can be installed on Mac OS X. It is typically used by web developers to test the web applications they are working on.
