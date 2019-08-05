@@ -5,11 +5,13 @@ thumbnail: shopfront-480.jpg
 date: 2020-01-15
 ---
 
+Yclas is a CMS for classified advertisements. Its administrator interface has general search functionality, and was vulnerable to path traversal. Combined, these could be abused by administrators to obtain the passwords of other users.
+
 <!-- photo source: https://pixabay.com/photos/architecture-facade-brick-old-3290756/ -->
 
 ## User input as database column
 
-While investigating Yclas I encountered an [article about cache poisoning](https://portswigger.net/blog/practical-web-cache-poisoning) which mentions the [Param Miner](https://github.com/PortSwigger/param-miner) Burp extension. This extension tries to find GET parameter names or request header names that trigger different behavior in a web page. By brute-forcing a lot of GET parameters, parameter names can be found that trigger functionality in the application.
+While investigating Yclas I encountered an [article about cache poisoning](https://portswigger.net/blog/practical-web-cache-poisoning) which mentions the [Param Miner](https://github.com/PortSwigger/param-miner) Burp extension. This extension attempts to find GET parameter names or request header names that trigger different behavior in a web page. By brute-forcing many GET parameters, parameter names can be found that trigger functionality in the application.
 
 I ran the "Guess GET parameters" function on a couple of Yclas URLs. It returned several new GET parameters, but these did not seem very interesting and I went on with something else. Then when I viewed the application log, I noticed the following error:
 
@@ -31,7 +33,7 @@ When user input is used in an SQL query and it triggers an error, it is likely t
 
 Even though we can't perform arbitrary SQL queries, we can still search on arbitrary columns. This is especially interesting for the `password` column in the user table. This contains the password hash, which makes it possible to crack the plaintext password of other users. 
 
-By performing a request with `filter__password=a` and checking the results, we can check wheter there is an `a` in the password hash. If there is, we try `a0`, `a1`, etc. I wrote the following script to automate this process:
+By performing a request with `filter__password=a` and checking the results, we can check whether there is an `a` in the password hash. If there is, we try `a0`, `a1`, etc. I wrote the following script to automate this process:
 
     import requests
 
@@ -57,7 +59,7 @@ After about 12 minutes and 32400 requests, we have obtained the whole password h
 
 ## Hash format
 
-The password hash is a HMAC of the password, with a key configured in the config file auth.php. So even though we have obtained the password hash, we still can't crack it since we don't know the `hash_key`, and it is sufficiently complex that brute forcing it is no option.
+The password hash is a HMAC of the password, with a key configured in the config file auth.php. So even though we have obtained the password hash, we still can't crack it since we don't know the `hash_key`, and it is sufficiently complex that brute forcing it is not possible.
 
     hash_hmac("sha256", $password, $config['hash_key']);
 
@@ -65,7 +67,7 @@ If we want to get somewhere with the hashes, we have to know the hash key in the
 
 ## Reading log files
 
-Another tool in the Yclas admin interface is the ability to read log files. The screenshot below shows this functionality. We input a date and the corresponding log file is shown:
+The admin interface also has a tool to read log files. The screenshot below shows this functionality. We input a date and the corresponding log file is shown:
 
 <img src="/images/yclas-logs.png" width="100%">
 
@@ -81,3 +83,9 @@ Now we have enough information to crack the passwords. We create a file containi
     57e1df5adde8bc160e777cae78fda3ed6dba58a30e4b336a66149d94256094c6:rax96tpzb5%mx*up
 
 Then we use hashcat mode 1460, HMAC-SHA256 (key = $salt). This cracks the hashes, and we obtain the plaintext passwords of other users.
+
+## Conclusion
+
+By combining two vulnerabilities we can obtain the passwords for other users. Administrator privileges are required, and the attack is complex, loud and slow. Even so, it may yield a password of an administrator, which can be interesting if the password is reused somewhere else.
+
+The path traversal vulnerability [was solved by validating the date format](https://github.com/yclas/yclas/pull/2882).
