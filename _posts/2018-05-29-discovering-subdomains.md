@@ -27,6 +27,7 @@ Early in a pentest it may be helpful to enumerate all the subdomains of a domain
 * [DomainRecon](https://github.com/x73x61x6ex6ax61x79/DomainRecon)
 * [Fierce](https://github.com/davidpepper/fierce-domain-scanner)
 * [Fierce](https://github.com/mschwager/fierce)
+* [findomain](https://github.com/Edu4rdSHL/findomain)
 * [gobuster](https://github.com/OJ/gobuster)
 * [Knockpy](https://github.com/guelfoweb/knock)
 * [ldns-walk](https://linux.die.net/man/1/ldns-walk)
