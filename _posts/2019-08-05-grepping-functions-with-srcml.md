@@ -61,3 +61,13 @@ This returns a list of 36 function names that have the `HttpPost` attribute, but
 ### Conclusion
 
 SrcML offers a XML tree specification and a tool to convert source code to XML, which makes it possible to query source code using XPath.
+
+
+### Read more
+
+* [Semmle QL](https://github.com/Semmle/ql)
+* [AST Path for Python](https://github.com/hchasestevens/astpath/)
+* [Grasp for JavaScript](https://www.graspjs.com/)
+* [Gogrep for Go](https://github.com/mvdan/gogrep)
+* [AST Grep for JavaScript](https://github.com/azz/ast-grep)
+* [ESQuery for ECMAScript](https://github.com/estools/esquery)
