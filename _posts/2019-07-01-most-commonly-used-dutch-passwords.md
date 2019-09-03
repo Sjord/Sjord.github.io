@@ -41,3 +41,5 @@ Most common password lists do not contain most of our Dutch words. When defendin
 * [Dutch top 1134 of LinkedIn passwords](/wordlists/linkedin-dutch-top-1134.txt)
 * [Richelieu - List of the most common French passwords](https://github.com/tarraschk/richelieu)
 * [LinkedIn password breach torrent](magnet:?xt=urn:btih:07e8619ccd43aba5208ab8f66204ebf6c4c58838&dn=LinkedIn.rar)
+* [Dropbox password breach torrent](magnet:?xt=urn:btih:e1a1e35e65454a08cde363cb5ee42fa56841a0e7&dn=dropbox.zip)
+* [MySpace password breach torrent](magnet:?xt=urn:btih:17e6fc94dae0a3168301012c290a53a2bd314a28&dn=Myspace.com.rar), password is `KLub8pT&iU$8oBY(*$NOiu`
