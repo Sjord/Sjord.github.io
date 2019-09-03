@@ -32,9 +32,13 @@ Of the top 10 passwords, eight are Dutch. This scales to the rest of the list: o
 
 Similarly, when defending, you should block common passwords in the language of your user. 68 of the first 100 commonly used passwords by Dutch people are not in the zxcvbn common password list. The word "netwerk" on place 15 is the first word that doesn't occur in the zxcvbn wordlist. You can't trust zxcvbn to prevent common passwords if you have non-English users. 
 
+### Use Pwned Passwords
+
+If you want to block weak passwords in your application, you may want to use the [Pwned Passwords](https://haveibeenpwned.com/Passwords) API. This service isn't focused on Dutch users, but because it contains so many passwords, that doesn't matter. It contains all passwords from the LinkedIn breach, so that includes all Dutch passwords. The API can be used in a way that doesn't disclose the password you want to check.
+
 ### Conclusion
 
-Most common password lists do not contain most of our Dutch words. When defending or attacking a Dutch application, it is important to use a Dutch password list. This probably goes for any other language that is not English.
+Most common password lists do not contain most common Dutch passwords. When defending or attacking a Dutch application, it is important to use a Dutch password list. This probably goes for any other language that is not English.
 
 ### Resources
 
