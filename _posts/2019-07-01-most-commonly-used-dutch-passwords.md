@@ -5,7 +5,7 @@ thumbnail: finish-480.jpg
 date: 2019-11-06
 ---
 
-Online brute force attacks use a list of commonly used passwords. Which passwords are common can vary for different countries. In this article, we look into how passwords differ for each country.
+Online brute force attacks use a list of commonly used passwords. Which passwords are common can vary for different countries. In this article, we look into how passwords differ for Dutch users.
 
 <!-- photo source: https://commons.wikimedia.org/wiki/File:Stage_2_finish,_Tour_de_France_1966_(cropped).jpg -->
 
@@ -38,7 +38,7 @@ If you want to block weak passwords in your application, you may want to use the
 
 ### Conclusion
 
-Most common password lists do not contain most common Dutch passwords. When defending or attacking a Dutch application, it is important to use a Dutch password list. This probably goes for any other language that is not English.
+Most common password lists do not contain most common Dutch passwords. When defending or attacking a Dutch application, it is important to use a Dutch password list. This probably goes for any language other than English.
 
 ### Resources
 
@@ -47,3 +47,4 @@ Most common password lists do not contain most common Dutch passwords. When defe
 * [LinkedIn password breach torrent](magnet:?xt=urn:btih:07e8619ccd43aba5208ab8f66204ebf6c4c58838&dn=LinkedIn.rar)
 * [Dropbox password breach torrent](magnet:?xt=urn:btih:e1a1e35e65454a08cde363cb5ee42fa56841a0e7&dn=dropbox.zip)
 * [MySpace password breach torrent](magnet:?xt=urn:btih:17e6fc94dae0a3168301012c290a53a2bd314a28&dn=Myspace.com.rar), password is `KLub8pT&iU$8oBY(*$NOiu`
+* [Leaks collection torrent](magnet:?xt=urn:btih:85f39f1d94917d61277725e7da85d8177a5c12eb&dn=leaks)
