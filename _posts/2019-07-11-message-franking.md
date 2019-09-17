@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Breaking message franking"
-thumbnail: todo-240.jpg
+thumbnail: seal-480.jpg
 date: 2019-11-20
 ---
 
