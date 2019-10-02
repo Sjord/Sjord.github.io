@@ -46,6 +46,16 @@ The `__Secure-` prefix makes a cookie accessible from HTTPS sites only. A HTTP s
 
 The `__Host-` prefix does the same as the `__Secure-` prefix and more. A `__Host-`-prefixed cookie is only accessible by the same domain it is set on. This means that a subdomain can no longer overwrite the cookie value.
 
+## Implementation
+
+To use cookie prefixes, simply rename the cookies and include the prefix in front. If the cookie was previously named `Bastogne`, rename it to `__Host-Bastogne`. If the cookie is set by the framework, look up how to rename the session cookie of that framework. For example, in .NET you can put the following in the web.config:
+
+    <system.web>
+        <sessionState cookieName="__Host-SessionId" />
+    </system.web>
+
+Similarly, in PHP there is the setting `session.name` to rename the `PHPSESSID` cookie.
+
 ## Conclusion
 
 Cookies can be overwritten by attackers in some cases, even if using secure cookies over HTTPS. Cookie prefixes change the browser policy on cookies, making this no longer possible.
