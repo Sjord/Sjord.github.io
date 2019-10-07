@@ -5,6 +5,8 @@ thumbnail: seal-480.jpg
 date: 2019-11-20
 ---
 
+Message franking is a mechanism to facilitate abuse reporting when using end-to-end encryption. This article describes how it works and how it can fail.
+
 ## The problem
 
 Facebook Messenger provides end-to-end encryption. This means that Facebook is not aware of the contents of messages. This introduces a problem when a user reports an abusive message to Facebook: Alice says Bob is sending dick pics to her, but Facebook can't know whether this is true since it can't view the message contents.
