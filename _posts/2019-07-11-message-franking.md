@@ -13,12 +13,13 @@ Facebook Messenger provides end-to-end encryption. This means that Facebook is n
 
 ## Message franking
 
-Message franking solves this by providing verifiable abuse reporting. When Bob sends a message to Alice, they first create a binding tag, which is a HMAC using a random key. The HMAC is readable by Facebook, but the HMAC key and the message are encrypted with Alice's key. Facebook stores this HMAC before sending it and the encrypted message along to Alice. 
-When Alice reports the message, they provide the message and the key used for the HMAC to Facebook. Facebook can verify that it indeed seen this HMAC and that the message matches this HMAC. Bob can no longer deny that they are sending abusive messages.
+Message franking solves this by providing verifiable abuse reporting. When Bob sends a message to Alice, they first create a *binding tag*, which is a HMAC using a random key. The HMAC is readable by Facebook, but the HMAC key and the message are encrypted with Alice's key. Facebook stores this HMAC before sending it and the encrypted message along to Alice. 
+
+When Alice reports the message, she provides the message and the key used for the HMAC to Facebook. Facebook can verify that it indeed seen this HMAC and that the message matches this HMAC. Bob can no longer deny that he is sending abusive messages.
 
 ## Franking on attachments
 
-For files, an optimization is done. Instead of calculating the HMAC over the whole file, which may be slow, the file is encrypted and the HMAC is only calculated over the file's encryption key. Since they is generally much shorter than the attachment, this speeds up calculating the HMAC. Facebook remembers a hash of the ciphertext and the HMAC of the encryption key. When Alice reports the attachment, Facebook can check that the decryption key was indeed sent, and that the image decrypt to an abuse image.
+For files, an optimization is done. Instead of calculating the HMAC over the whole file, which may be slow, the file is encrypted and the HMAC is only calculated over the file's encryption key. Since the key is generally much shorter than the attachment, this speeds up calculating the HMAC. Facebook remembers a hash of the ciphertext and the HMAC of the encryption key. When Alice reports the attachment, Facebook can check that the decryption key was indeed sent, and that the image decrypts to an abuse image.
 
 ## Flawed deduplication
 
@@ -30,14 +31,15 @@ The attack thus looks as follows: an attacker creates two images with the same c
 
 ## Cause
 
-The cause of this flaw is that the encryption algorithm used is not *robust*: it is possible to have a ciphertext that decrypts to different things, depending on the key. Creating a binding tag on the key is thus not sufficient to prove particular message contents. For a secure mechanism, it's really needed to calculate the HMAC over the whole attachment file.
+The cause of this flaw is that the encryption algorithm used is not *robust*: it is possible to have a ciphertext that decrypts to different things, depending on the key. Creating a binding tag on the key is thus not sufficient to prove particular message contents. For a secure mechanism, it is really needed to calculate the HMAC over the whole attachment file.
 
 ## Conclusion
 
+Message franking is a fairly new cryptographic construct, brought about by the need to do abuse reporting while having end-to-end encryption. Facebook's optimization introduced a subtle bug: by sending two messages with the same ciphertext, the second message could not be reported.
 
 ## Read more
 
+* [Fast Message Franking: From Invisible Salamanders to Encryptment](https://eprint.iacr.org/2019/016.pdf), [video](https://www.youtube.com/watch?v=9xePC0Tyeuc&t=2952s)
 * [Messenger Secret Conversations](https://fbnewsroomus.files.wordpress.com/2016/07/secret_conversations_whitepaper-1.pdf)
 * [Message Franking via Committing Authenticated Encryption](https://eprint.iacr.org/2017/664.pdf), [video](https://www.youtube.com/watch?v=ky9nRIl_TqY)
 * [Private Message Franking with After Opening Privacy](https://eprint.iacr.org/2018/938.pdf)
-* [Fast Message Franking From Invisible Salamanders to Encryptment](https://eprint.iacr.org/2019/016.pdf), [video](https://www.youtube.com/watch?v=9xePC0Tyeuc&t=2952s)
