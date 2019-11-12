@@ -15,7 +15,7 @@ Some applications are riddled with XSS, because they don't have a structural pre
 
 The username or given name of the user is always an interesting place to try XSS payloads, since it is displayed on many places and is often considered "trusted" by the application developers.
 
-The most straightforward XSS payloads are prevented through input sanitation. HTML tags are removed from the user input. So when inputting `<h1>Sjoerd` as the first name, only `Sjoerd` remains. Only matching brackets are removed, so single brackets remain. There are two ways around this:
+Sakai prevents the most straightforward XSS payloads through input sanitation. HTML tags are removed from the user input. So when inputting `<h1>Sjoerd` as the first name, only `Sjoerd` remains. Only matching brackets are removed, so single brackets remain. There are two ways around this:
 
 * Split the payload over multiple fields. The user can set his first name and last name, which are often displayed next to each other. By putting `<svg` in the first name and `onload=alert(1)>` in the last name, the input sanitation does not see a HTML tag in any of the fields, but the result is a complete tag: `<svg onload=alert(1)>`.
 * Insert a partial HTML tag. The tag doesn't have to be closed, since there will be a `>` already on the page somewhere. If the first name is displayed within a `<div>` element, and we inject `<svg onload=alert(1) `, the closing element of the div closes our tag: `<div><svg onload=alert(1) </div>`.
