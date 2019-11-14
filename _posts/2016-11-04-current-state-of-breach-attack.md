@@ -55,7 +55,7 @@ The attackers also have made some progress.
 
 In 2016 a group of researchers shown that the same attack done by BREACH could also be done from the browser using a timing attack. They named it [HEIST](https://www.blackhat.com/docs/us-16/materials/us-16-VanGoethem-HEIST-HTTP-Encrypted-Information-Can-Be-Stolen-Through-TCP-Windows-wp.pdf). With HEIST, a man-in-the-middle position is no longer needed. Instead, an attacker just needs to be able to run Javascript in the browser of the victim.
 
-Another nice thing for the attackers is a new toolkit that helps with exploiting compression side-channel attacks, [Rupture](https://ruptureit.com/). Two researchers described some improvements to BREACH in [their paper](file:///home/sjoerd/Downloads/asia-16-Practical-New-Developments-In-The-BREACH-Attack-wp.pdf) and developed a tool to exploit it.
+Another nice thing for the attackers is a new toolkit that helps with exploiting compression side-channel attacks, [Rupture](https://github.com/decrypto-org/rupture). Two researchers described some improvements to BREACH in [their paper](https://www.blackhat.com/docs/asia-16/materials/asia-16-Karakostas-Practical-New-Developments-In-The-BREACH-Attack-wp.pdf) and developed a tool to exploit it.
 
 ## Conclusion
 
