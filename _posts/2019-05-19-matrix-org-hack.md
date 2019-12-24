@@ -25,11 +25,23 @@ Since Jenkins is a complex environment which runs untrusted code for a living, i
 
 > This allowed them to further compromise a Jenkins slave (Flywheel, an old Mac Pro used mainly for continuous integration testing of Riot/iOS and Riot/Android).
 
+Jenkins has functionality to run jobs on other computers, for example if you want to test software on another operating system. Since the Jenkins SSH keys were compromised by the attacker, these could be used to connect to a Jenkins slave.
+
+Even though the attacker now also had access to this computer, this was only as the Jenkins user. The next step was gaining access to other systems as root.
+
 ### Setting a trap
 
+The attacker set up a script on the Jenkins slave to hijack any SSH agent forwarding whenever someone logs in as the Jenkins user.
 
+SSH agent forwarding is a feature where the SSH keys on your computer can be used to set up SSH connections, even when you are working on a remote host. If you SSH to another host, the keys in ~/.ssh/ are used to identify you. However, if you want to perform another hop and SSH from that host to another host, you need agent forwarding to transfer your keys across connections. So when you use agent forwarding, you always have your keys on hand, even when you are connected to a remote host.
 
-### Domain name takeovers
+On 4 April 2019, a developer connected with SSH to the Jenkins slave. The attacker's script triggered, and could now perform actions using the SSH keys of the developer. Even though the script could not *read* the private key, it could still *use* the private key. Since this developer had root access on all systems, the script could connect to every system and add the attacker's SSH key everywhere.
+
+### Total compromise
+
+Now the attacker had root access to all systems.
+
+### Domain name takeover
 
 > the attacker used a cloudflare API key to repoint DNS for matrix.org to a defacement website ... The API key was known compromised in the original attack
 
@@ -77,9 +89,16 @@ ProxyJump
 ## Conclusion
 
 
+## Read more
+
+About the hack:
+
+* [Post-mortem and remediations for Apr 11 security incident](https://matrix.org/blog/2019/05/08/post-mortem-and-remediations-for-apr-11-security-incident)
+* [Matrix.org hacked? #9435](https://github.com/vector-im/riot-web/issues/9435)
+
+About agent forwarding:
+
 * [SSH Agent Hijacking](https://www.clockwork.com/news/2012/09/28/602/ssh_agent_hijacking/)
 * [SSH Agent Forwarding Vulnerability and Alternative](https://blog.wizardsoftheweb.pro/ssh-agent-forwarding-vulnerability-and-alternative/)
 * [The Problem with SSH Agent Forwarding](https://defn.io/2019/04/12/ssh-forwarding/)
 * [SSH Agent Forwarding considered harmful](https://heipei.io/2015/02/26/SSH-Agent-Forwarding-considered-harmful/)
-* [Post-mortem and remediations for Apr 11 security incident](https://matrix.org/blog/2019/05/08/post-mortem-and-remediations-for-apr-11-security-incident)
-* [Matrix.org hacked? #9435](https://github.com/vector-im/riot-web/issues/9435)
