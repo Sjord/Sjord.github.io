@@ -130,3 +130,7 @@ About agent forwarding:
 * [SSH Agent Forwarding Vulnerability and Alternative](https://blog.wizardsoftheweb.pro/ssh-agent-forwarding-vulnerability-and-alternative/)
 * [The Problem with SSH Agent Forwarding](https://defn.io/2019/04/12/ssh-forwarding/)
 * [SSH Agent Forwarding considered harmful](https://heipei.io/2015/02/26/SSH-Agent-Forwarding-considered-harmful/)
+
+Other hacks:
+
+* [Interesting recent web application hacks](/2016/08/19/recent-web-hacks/)

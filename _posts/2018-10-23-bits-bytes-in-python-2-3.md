@@ -153,4 +153,5 @@ Use Python 3 with bytearray. Python 3 is stricter with data types than Python 2.
 
 ## Read more
 
+* [Datatypes for pycrypto in Python 3](/2016/03/17/datatypes-for-pycrypto-in-python3/)
 * [Bit Twiddling Hacks](https://graphics.stanford.edu/~seander/bithacks.html)

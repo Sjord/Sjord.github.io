@@ -9,7 +9,7 @@ A common protection against CSRF attacks is to have a secret token in each POST 
 
 ## Introduction
 
-In a CSRF attack, the attacker's website sends a request that triggers an action on the target website. The "forged" request triggers an action in the user's session, even though the user did not willfully do so from the application.
+In a [CSRF attack](/2019/01/09/csrf/), the attacker's website sends a request that triggers an action on the target website. The "forged" request triggers an action in the user's session, even though the user did not willfully do so from the application.
 
 A common way to prevent CSRF is to include a secret token in each form, and check that token on the server. Only the target website knows the secret token, so if a request contains that token it can be safely assumed that it is a legitimate request, and not from an attacker's site.
 

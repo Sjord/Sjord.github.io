@@ -56,6 +56,7 @@ Making an algorithm memory hard or using CPU-optimized arithmetic are two ways t
 
 ## Read more
 
+* [Requirements for iterative password hashing](/2016/05/25/iterative-password-hashing/)
 * [Secure Applications of Low-Entropy Keys](https://www.schneier.com/academic/archives/1998/01/secure_applications.html)
 * [Stronger key derivation via sequential memory-hard functions](https://www.tarsnap.com/scrypt/scrypt.pdf)
 * [Balloon Hashing: A Memory-Hard Function Providing Provable Protection Against Sequential Attacks](https://eprint.iacr.org/2016/027.pdf)

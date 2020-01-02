@@ -39,7 +39,7 @@ Fortunately, the chance for hash collisions is very small with modern hash funct
 
 ## Secret number of iterations
 
-If we use iterative hash function, we can also store our extra entropy in the number of iterations instead of in the password. Boyen suggests a specifically [interesting mechanism](http://crypto.stanford.edu/~xb//security07/hkdf.pdf) in where the number of iterations is unbound and determined by the user. Imagine that when verifying a password, you never really know whether you have the incorrect password or that it was hashed with an iteration count you haven't tried yet.
+If we use an [iterative hash function](/2016/05/25/iterative-password-hashing/), we can also store our extra entropy in the number of iterations instead of in the password. Boyen suggests a specifically [interesting mechanism](http://crypto.stanford.edu/~xb//security07/hkdf.pdf) in where the number of iterations is unbound and determined by the user. Imagine that when verifying a password, you never really know whether you have the incorrect password or that it was hashed with an iteration count you haven't tried yet.
 
 ## Conclusion
 

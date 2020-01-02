@@ -45,5 +45,14 @@ I reported this issue to Sakai and they quickly resolved it.
 
 ## Read more
 
+Sakai issues:
+
 * [SAK-41763 - Escaping some outputs in the chat - #6928](https://github.com/sakaiproject/sakai/pull/6928)
 * [SAK-41763: XSS in chat user name - 12.x - #6971](https://github.com/sakaiproject/sakai/pull/6971)
+
+Other XSS posts:
+
+* [Reflected XSS in Yclas](/2019/10/09/reflected-xss-in-yclas/)
+* [XSS in Kayako helpdesk software](/2016/08/29/kayako-xss/)
+* [XSS in user-agent header in Bolt CMS](/2016/05/02/xss-in-useragent-header-in-bolt-cms/)
+* [Circumventing XSS filters](/2016/01/29/circumventing-xss-filters/)

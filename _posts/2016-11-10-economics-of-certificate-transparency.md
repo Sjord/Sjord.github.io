@@ -52,4 +52,5 @@ Certificate transparency is cool from a technological standpoint, with Merkle ha
 ## Read more
 
 * [Certificate Transparency web site](https://www.certificate-transparency.org/)
-* The book [Bulletproof SSL and TLS](https://www.amazon.com/gp/product/1907117040/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=sjoerdlangkem-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=1907117040&linkId=3471bbb4e27a1556cfc083a8699545fd)
+* [A method to do TLS on IoT devices](/2019/07/31/a-method-for-tls-on-iot-devices/)
+* [Book review: Bulletproof SSL and TLS](/2017/01/05/book-review-bulletproof-ssl-tls/)

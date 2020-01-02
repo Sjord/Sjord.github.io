@@ -173,4 +173,7 @@ This way, we can find the methods we are interested in using this XPath:
 
 It is pretty easy to construct a parser with ANTLR. Furthermore, JXPath makes it easy to query the resulting syntax tree. This is currently only a proof of concept, but I think it could be expanded relatively easy to support more types of queries in more programming languages. That would make a great tool to help with code reviews.
 
-[GitHub repo](https://github.com/Sjord/funcgrep)
+## Read more
+
+* [GitHub repo](https://github.com/Sjord/funcgrep)
+* [Grepping functions with srcML](/2020/01/29/grepping-functions-with-srcml/)
