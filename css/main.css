@@ -52,7 +52,7 @@ a:visited { color: #205caa; }
 }
 
 @media print {
-  .sidebar .icons {
+  .sidebar .icons, .site-footer nav {
     display: none;
   }
 }
@@ -112,11 +112,18 @@ a:visited { color: #205caa; }
   margin-bottom: 15px;
 }
 
-.site-footer p,
-.site-footer address {
+.site-footer p {
   font-size: 15px;
   letter-spacing: -.3px;
   color: #757575;
+}
+
+.site-footer nav {
+  width: 681px;
+  margin-bottom: 1em;
+}
+.site-footer nav a[rel=next] {
+  float: right;
 }
 
 /* Page Content styles */
