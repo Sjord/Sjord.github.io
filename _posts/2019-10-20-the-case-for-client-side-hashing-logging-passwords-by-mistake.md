@@ -5,17 +5,17 @@ thumbnail: coffee-accident-480.jpg
 date: 2020-02-12
 ---
 
-Hashing passwords makes it possible to use them for authentication, without being able to reconstruct the original password. Hashing passwords on the client may be benificial: even though it does not protect against attackers, it does protect against accidental mistakes.
+Hashing passwords makes it possible to use them for authentication, while making it hard to reconstruct the original password. Hashing passwords on the client may be beneficial: even though it does not protect against attackers, it does protect against accidental mistakes.
 
 ## Introduction
 
-Instead of storing plaintext passwords in a database, applications typically store a hash of the password. This makes it possible to verify the password, but make it hard to recover the original password. If information in the database is exposed, for example through SQL injection, hashing passwords mitigates the impact by making it harder to recover the original passwords.
+Instead of storing plaintext passwords in a database, applications typically store a hash of the password. This makes it possible to verify the password, but make it hard to recover the original password. If information in the database is exposed, for example through SQL injection, hashed passwords mitigate the impact by making it harder to recover the original passwords.
 
 ## Where to hash?
 
 When a user configures a password, the application must calculate a hash to store it in the database. This calculation can be done either on the client, using JavaScript in the browser, or on the server. There have been discussions in the past about whether to hash on the client or on the server, and the general consensus is to hash on the server.
 
-If a hash is calculated on the client, the client authenticates to the server by submitting his hash. The server then compares the hash to the database entry. This means that if the database is exposed, attackers can authenticate as anyone by submitting the correct hash. Even though they cannot determine the original passwords, they can still use the hashes directly to break authentication. With client-side hashing, the hash effectively becomes the password.
+If a hash is calculated on the client, the client authenticates to the server by submitting their hash. The server then compares the hash to the database entry. This means that if the database is exposed, attackers can authenticate as anyone by submitting the correct hash. Even though they cannot determine the original passwords, they can still use the hashes directly to break authentication. With client-side hashing, the hash effectively becomes the password.
 
 ## Why not both?
 
@@ -46,4 +46,4 @@ Accidentally logging plaintext passwords is surprisingly common. Some big player
 
 ## Conclusion
 
-Even though client-side hashing does not offer additional security against attackers, it does provide additional security against accidental mistakes. This threat model is not often considered, even though the examples above show that it is realistic. I think this warrants an evaluation of how we handle passwords, and whether client-side hashing is benificial.
+Even though client-side hashing does not offer additional security against attackers, it does provide additional security against accidental mistakes. This threat model is not often considered, even though the examples above show that it is realistic. I think this warrants an evaluation of how we handle passwords, and whether client-side hashing is beneficial.
