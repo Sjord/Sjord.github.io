@@ -20,7 +20,6 @@ The best way to learn how to hack is to do it. There are several practice sites 
 * [Game of Hacks](http://www.gameofhacks.com/)
 * [Google Gruyere](http://google-gruyere.appspot.com/) - Vulnerable web app
 * [Google XSS Game](https://xss-game.appspot.com/) - Cross-site scripting for beginners
-* [Gruyere](http://google-gruyere.appspot.com/) - Vulnerable web app
 * [Hack This Site](https://www.hackthissite.org/)
 * [Hack.me](https://hack.me/)
 * [Hacking-Lab](https://www.hacking-lab.com/index.html)
