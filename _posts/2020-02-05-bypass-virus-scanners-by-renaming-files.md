@@ -2,7 +2,7 @@
 layout: post
 title: "Bypass virus scanners by renaming files"
 thumbnail: bag-head-480.jpg
-date: 2020-03-25
+date: 2020-03-11
 ---
 
 To prevent spreading viruses or malware, many web applications scan uploaded files using a virus scanner. Often, the virus scanner is started as another process, and the output is checked for the result. The output of the virus scanner also contains the filename, which makes it possible to influence the logic that checks for the result. This post describes some instances where virus scanning can be bypassed by naming the file a particular way.
