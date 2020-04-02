@@ -1,13 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8"/>
-<p>
-    <input type="text" name="firstname" id="firstname" placeholder="First name" autocomplete="off">
-    <input type="text" name="lastname" id="lastname" placeholder="Last name" autocomplete="off">
-    <input type="hidden" name="token" value="nVt570DOzhCbFiCZeVN3pYh1ki" id="token">
-    <input type="submit">
-</p>
+<body id="body">
+<aside>
+    <div id="first9539"><div id="first5569"><div id="first8470"><div id="first5524"><div id="first4123"></div><div id="first9898"></div><div id="first6609"><div id="first7965"></div></div></div></div></div></div>
+    <div id="first5705"><div id="first760"><div id="first1597"><div id="first9687"><div id="first1295"></div><div id="first5221"></div><div id="first3263"><div id="first9989"></div></div></div></div></div></div>
+    <div id="first3457"><div id="first2789"><div id="first3552"><div id="first8688"><div id="first114"></div><div id="first8621"></div><div id="first6834"><div id="first2175"></div></div></div></div></div></div>
+    <div id="first4735"><div id="first2154"><div id="first2426"><div id="first1932"><div id="first9505"></div><div id="first5904"></div><div id="first6852"><div id="first6766"></div></div></div></div></div></div>
+    <div id="first5403"><div id="first7228"><div id="first8411"><div id="first2803"><div id="first5783"></div><div id="first8616"></div><div id="first9326"><div id="first2150"></div></div></div></div></div></div>
+</aside>
+
+<main>
+    <p>
+        <form>
+            <input type="text" name="firstname" id="firstname" placeholder="First name" autocomplete="off">
+            <input type="text" name="lastname" id="lastname" placeholder="Last name" autocomplete="off">
+            <input type="hidden" name="token" value="nVt570DOzhCbFiCZeVN3pYh1ki" id="token">
+            <input type="submit">
+        </form>
+    </p>
+</main>
 <ul>
     <li><a href="https://portswigger.net/research/abusing-jquery-for-css-powered-timing-attacks">Abusing jQuery for CSS powered timing attacks</a></li>
 </ul>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script>
-    document.querySelector(location.hash).focus();
+    //jQuery(location.hash).focus();
+
+    const start = +new Date();
+    const elem = jQuery(location.hash);
+    const stop = +new Date();
+    console.log(location.hash, "gives", elem, "in", stop - start, "ms.");
 </script>
+<aside>
+    <div id="last7391"><div id="last8875"><div id="last9487"><div id="last9158"><div id="last4755"></div><div id="last6955"></div><div id="last9256"><div id="last103"></div></div></div></div></div></div>
+    <div id="last5232"><div id="last2786"><div id="last2730"><div id="last3000"><div id="last1481"></div><div id="last8324"></div><div id="last7143"><div id="last634"></div></div></div></div></div></div>
+    <div id="last5190"><div id="last939"><div id="last7453"><div id="last5345"><div id="last9063"></div><div id="last964"></div><div id="last7308"><div id="last3372"></div></div></div></div></div></div>
+    <div id="last7693"><div id="last2865"><div id="last6352"><div id="last2983"><div id="last6181"></div><div id="last6042"></div><div id="last7668"><div id="last8904"></div></div></div></div></div></div>
+    <div id="last6690"><div id="last9291"><div id="last4169"><div id="last8330"><div id="last5759"></div><div id="last5745"></div><div id="last5454"><div id="last689"></div></div></div></div></div></div>
+</aside>
+<!--
+http://localhost:8000/hash.html#body\u0020*:has(*:has(*:has(*))\u0020*:has(*:has(*:has(*)))\u0020*:has(*:has(*:has(*)))\u0020*:has(*:has(*:has(*))))\u0020input[id='token'][value^='n']
+
+sibling ~ werkt
+-->
