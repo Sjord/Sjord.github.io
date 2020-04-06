@@ -1,0 +1,28 @@
+
+<div id="forward">
+    <a href="https://nbe.com.eg/404">NBE 404 page</a>
+</div>
+<div id="phish">
+    This is totally the National Bank of Egypt.
+</div>
+<script>
+function hide(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+function show(id) {
+    document.getElementById(id).style.display = '';
+}
+
+window.addEventListener("pageshow", function () {
+    if (performance.navigation.type === performance.navigation.TYPE_BACK_FORWARD) {
+        hide("forward");
+        show("phish");
+    } else {
+        hide("phish");
+        show("forward");
+
+        document.querySelector("#forward a").click();
+    }
+});
+</script>
