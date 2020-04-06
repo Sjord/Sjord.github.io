@@ -7,6 +7,8 @@ date: 2020-04-08
 
 Using `javascript:history.back()` on a page may introduce a kind of open redirect. The previous page may not belong to the application that contains the link, so a seemingly trusted link now points to another (untrusted) page. This may be usable in phishing attacks.
 
+<!-- photo source: https://pixabay.com/photos/dinosaur-mirror-wing-mirror-behind-1564323/ -->
+
 ## Open redirects and phishing
 
 An open redirect is a webpage that redirects to another URL, and the destination can be set to anything. This can be abused in phishing attacks: an URL with a trusted domain can be presented, even though the URL actually redirects to an attacker page.
