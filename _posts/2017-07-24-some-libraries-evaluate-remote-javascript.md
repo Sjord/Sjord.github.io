@@ -55,6 +55,7 @@ When using a library to do AJAX requests, explicitly disable evaluation of JavaS
 
 ## Read more
 
+* [Should you update jQuery over a hypothetical vulnerability?](/2018/10/24/should-you-update-jquery/)
 * [CVE-2008-7220: Unspecified vulnerability in Prototype JavaScript framework](http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2008-7220)
 * [Prototype 1.6.0.2: Bug fixes, performance improvements, and security](http://web.archive.org/web/20080128133717/http://prototypejs.org/2008/1/25/prototype-1-6-0-2-bug-fixes-performance-improvements-and-security)
 * [prototype: Prevent a potential security issue for cross-site ajax requests](https://github.com/sstephenson/prototype/commit/02cc9992e915c024650ddc77a91064f7a4252914)
