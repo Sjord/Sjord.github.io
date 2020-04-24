@@ -2,7 +2,7 @@
 layout: post
 title: "Combine two word lists for cracking passwords"
 thumbnail: joined-ropes-480.jpg
-date: 2020-04-22
+date: 2020-04-29
 ---
 
 To crack passwords, it is sometimes useful to combine word lists in a way that concatenates words from multiple lists. This article shows three ways to accomplish this.
@@ -11,7 +11,7 @@ To crack passwords, it is sometimes useful to combine word lists in a way that c
 
 ## Problem description
 
-Cracking passwords consists of performing many attempts to guess the correct password. The success of this greatly depends on the quality of the dictionary to use as guesses. Sometimes it is helpful to combine two word lists, in such a way that passwords consist of concatenations of words from one word list with words from a second word list.
+Cracking passwords consists of performing many attempts to guess the correct password. The success of this greatly depends on the quality of the dictionary to use as guesses. Sometimes it is helpful to combine two word lists, in such a way that passwords consist of concatenations of words from one list with words from a second list.
 
 For example, one word list may contain seasons:
 
@@ -47,7 +47,7 @@ Combinator.bin works well. It does what it is supposed to do and works on multip
 
 ## join shell utility
 
-The shell command `join` can also combine word lists. However, it is meant for joining files on a certain key. If you have two files with tab-separated tabular data, it can perform something similar to a SQL join. However, we don't have a key, and several tricks are needed to perform the more simpler combination we are after.
+The shell command `join` can also combine word lists. However, it is meant for joining files on a certain key. If you have two files with tab-separated tabular data, it can perform something similar to a SQL join. However, we don't have a key, and several tricks are needed to perform the simpler combination we are after.
 
 First, we want to join all lines, no matter what the key value is. To do this, we tell `join` to use a non-existing key; since the value of a non-existing key is always empty, all lines match. The option `-j 2` uses the second column, which presumably doesn't exist.
 
@@ -61,7 +61,7 @@ This works. It is more complicated than needs to be, but the advantage is that t
 
 ## Using Python's itertools.product
 
-Of course this simple task can also be performed by a little script in Python, or any other language suitable for quick small projects. Python already has functionality to combine lists in a way we want: [itertools.product](https://docs.python.org/3/library/itertools.html#itertools.product). We read the files into lists, call itertools.product, and convert to resulting list back into strings:
+Of course this simple task can also be performed by a little script in Python, or any other language suitable for quick small scripts. Python already has functionality to combine lists in a way we want: [itertools.product](https://docs.python.org/3/library/itertools.html#itertools.product). We read the files into lists, call itertools.product, and convert to resulting list back into strings:
 
     import sys
     import itertools
@@ -84,4 +84,5 @@ This article listed three tools to combine word lists like a Cartesian product. 
 
 ## Read more
 
-* [GitHub repo](https://github.com/Sjord/cartesianwords)
+* [GitHub repo with Python script and shell script shown above](https://github.com/Sjord/cartesianwords)
+* [Hashcat utils](https://hashcat.net/wiki/doku.php?id=hashcat_utils)
