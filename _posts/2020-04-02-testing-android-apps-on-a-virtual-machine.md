@@ -95,6 +95,7 @@ Proxy uit:
 * IP adres: Wi-Fi preferences, Advanced    
     172.16.122.232
     adb connect 172.16.122.232
+    Of terminal emulator, ifconfig of ip a
 
 * Install APK;
     adb install ShineWifi.apk
