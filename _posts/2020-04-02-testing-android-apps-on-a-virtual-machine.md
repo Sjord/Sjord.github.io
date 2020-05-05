@@ -5,6 +5,17 @@ thumbnail: lab-480.jpg
 date: 2020-05-06
 ---
 
+A virtual machine running Android is useful when hacking Android apps. In this post I describe my experiences with setting up a virtual machine and intercepting traffic from Android apps.
+
+## Introduction
+
+Occasionally I test web applications that also have an Android client. Intercepting the traffic from an Android app gives insight in what APIs the app uses, which in turn can expose vulnerabilities.
+
+Testing on an actual Android phone is more reliable. Android is meant to run on ARM phones and not on x86 virtual machines, so things may randomly break when using a VM. Apps that ship with native libraries may not run at all in the VM, or they may run perfectly but don't show up in the Play store.
+
+The advantage is that you don't need an actual phone to analyze an Android app. Restoring snapshots and interacting with the app are easier than with a phone. With the VM you get full access without "rooting" the device. A virtual machine is much faster than an emulator, since it doesn't need to translate the machine instructions.
+
+So if it works, it's great, but it doesn't always work.
 
 ## Obtaining an Android virtual machine
 
@@ -19,7 +30,6 @@ Alternatively, you can build your own virtual machine from an ISO:
       *  OS: Linux kernel 64-bit
       *  Memory: at least 2.5 GB
       *  Display: Accelerate 3D Graphics 
-      *  TODO disable suspend
       *  Hard disk: at least 7 GB
 3. Boot the VM. Select "Installation" to start the installation process, and follow the steps in the [installation howto](https://www.android-x86.org/installhowto.html).
 4. Reboot after installation.
@@ -44,9 +54,12 @@ Of course, we want `adb` to connect over the network, since we have no USB cable
 ## Useful ADB commands
 
 Install apps from an APK file with the following command:
-TODO what if you have two apks?
 
     adb install app.apk
+
+The following command spawns an interactive shell. Any arguments after `adb shell` are executed within the VM.
+
+    adb shell
 
 The following command sets a proxy server. This does not show up in Android's Wi-Fi settings. This setting is applied immediately, and persists after reboot. Apps that have certificate pinning, such as the Play Store, no longer work after settings a proxy.
 
@@ -59,11 +72,15 @@ These commands unsets the proxy server. It is only applied after reboot, which i
     adb shell settings delete global global_http_proxy_port
     adb shell reboot
 
-Enter text. The following command types "hello" in the currently focussed input field. The parameter containing the text to type needs to be escaped (TODO how?).
+Enter text. The following command types "hello" in the currently focussed input field. The parameter containing the text to type needs to be escaped twice. That's because you type it in a shell, and adb passes it to the shell within Android. This puts *hello* within single quotes twice:
 
-    adb shell input text "hello"
+    adb shell input text \''hello'\'
 
-Reboot Android:
+To press certain buttons, use `keyevent`. A list of valid keys can be found in the [Android KeyEvent documentation](https://developer.android.com/reference/android/view/KeyEvent). To press the volume up button:
+
+    adb shell input keyevent KEYCODE_VOLUME_UP
+
+To reboot Android:
 
     adb shell reboot
 
@@ -73,24 +90,44 @@ Retrieve a APK of an installed app:
     adb shell pm path nl.ns.android.activity
     adb pull /data/app/nl.ns.android.activity-1/base.apk
 
-## Frida
+## Disable certificate checks
 
-    https://github.com/frida/frida/releases
-    frida-server-12.8.10-android-x86_64.xz
+To intercept traffic from the Android app, we need it to communicate with our intercepting proxy. If the app has any security at all, it will not trust the proxy's certificate and refuse to connect. There are two ways to solve this:
+
+* [Install the proxy's certificate as system certificate](https://blog.jeroenhd.nl/article/android-7-nougat-and-certificate-authorities). Installing it as user certificate may not be sufficient to intercept app traffic.
+* Disable certificate checks altogether using Frida and Objection. This also bypasses any certificate pinning.
+
+When working with certificates, keep in mind that the policy may differ between apps. Chrome on Android trusts user certificates, but not certificates that have a long validity. However, this is specific to Chrome and doesn't apply to other apps. So testing whether your setup works with Chrome is not reliable.
+
+### Disable certificate checks
+
+Frida can hook into apps and change the implementation of one or more functions. We are going to use this to change the certificate check function, to always return that the certificate is trusted. This disables any certificate pinning, and the app will trust our proxy's certificate.
+
+First, set up Frida. Download the correct [frida-server release](https://github.com/frida/frida/releases), and run it on the phone as root
+
+    wget https://github.com/frida/frida/releases/download/12.8.20/frida-server-12.8.20-android-x86_64.xz -d frida-server-12.8.20-android-x86_64.xz
     adb push frida-server-12.8.10-android-x86_64 /data/local/tmp
-    # adb shell "chmod 755 /data/local/tmp/frida-server"
+    adb shell
     su
-    /data/local/tmp/frida-server-12.8.10-android-x86_64
-    Frida luistert normaal alleen op 127.0.0.1
-    ./frida-server-12.8.10-android-x86_64 -l 0.0.0.0
+    /data/local/tmp/frida-server-12.8.10-android-x86_64 -l 0.0.0.0
 
-    pip install frida-tools
-    pip install objection
+The `-l` argument is needed because we want to connect over the network, and Frida normally only listens on localhost. Next, we install the client tools. I like to do that in a virtualenv:
+
+    python3 -m venv venv
+    . venv/bin/activate
+    pip3 install frida-tools objection
+
+Test it by running frida-ps. Remember that you need to pass the IP address every time you invoke Frida:
+
     frida-ps -H 172.16.122.225
+
+Next, start objection on an app, and disable pinning:
+
     objection --network -h 172.16.122.225 -g nl.ns.android.activity explore
+    # android sslpinning disable
 
-## Todo
+Now, you are good to intercept some traffic.
 
-* Chrome zegt dat certificaat te lang geldig is. Is specifiek voor Chrome.
-* ShinePhone doesn't show up in VM Play Store
-* Errors in Dashboard Event Log in Burp als het cert niet goed is.
+## Conclusion
+
+Testing Android apps in a virtual machine is possible. If it works it is pretty easy, but since Android is not really supported on x86, things may break in unexpected ways. Testing on an actual device is more reliable.
