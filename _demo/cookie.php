@@ -5,7 +5,6 @@ $cookie_name = "chocolate_chip";
 
 if (!isset($_COOKIE[$cookie_name])) {
     setcookie($cookie_name, $cookie_name, 0, "", "", false, true);
-    setcookie("__Host-".$cookie_name, $cookie_name, 0, "", "", true, true);
     header("Location: $_SERVER[REQUEST_URI]");
     exit();
 }
