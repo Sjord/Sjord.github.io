@@ -11,7 +11,7 @@ A virtual machine running Android is useful when hacking Android apps. In this p
 
 Occasionally I test web applications that also have an Android client. Intercepting the traffic from an Android app gives insight in what APIs the app uses, which in turn can expose vulnerabilities.
 
-Testing on an actual Android phone is more reliable. Android is meant to run on ARM phones and not on x86 virtual machines, so things may randomly break when using a VM. Apps that ship with native libraries may not run at all in the VM, or they may run perfectly but don't show up in the Play store.
+Testing on a virtual machine (VM) has some disadvantages. Testing on an actual Android phone is more reliable. Android is meant to run on ARM phones and not on x86 virtual machines, so things may randomly break when using a VM. Apps that ship with native libraries may not run at all in the VM, or they may run perfectly but don't show up in the Play store.
 
 The advantage is that you don't need an actual phone to analyze an Android app. Restoring snapshots and interacting with the app are easier than with a phone. With the VM you get full access without "rooting" the device. A virtual machine is much faster than an emulator, since it doesn't need to translate the machine instructions.
 
@@ -38,7 +38,7 @@ Alternatively, you can build your own virtual machine from an ISO:
 
 ## Troubleshooting
 
-* Android turns the screen off after several minutes. Use "Send Ctrl-alt-delete" in VMWare, which behaves as the power button, to wake up Android.
+* Android turns the screen off after several minutes. Use "Send Ctrl-alt-delete" in VMWare, which behaves as the power button, to wake up Android. Or use `adb shell input keyevent KEYCODE_POWER` to virtually press the power button.
 * If you have trouble accessing VMWare's disk, change the disk type from SCSI to IDE.
 * Connecting to your virtual machine over the virtual network may not work if you also have a VPN application running.
 * If the screen stays black when booting, enable graphics hardware acceleration. Or add the following kernel options when booting: `nomodeset xforcevesa`.
