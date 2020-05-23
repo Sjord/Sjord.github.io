@@ -2,7 +2,7 @@
 layout: post
 title: "Overwriting HttpOnly cookies using cookie jar overflow"
 thumbnail: cookie-coffee-splash-480.jpg
-date: 2020-05-20
+date: 2020-05-27
 ---
 
 Even though HttpOnly cookies cannot be read using JavaScript, it is still possible to overwrite HttpOnly cookies using JavaScript.
