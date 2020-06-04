@@ -5,15 +5,15 @@ thumbnail: rollercoaster-loop-480.jpg
 date: 2020-07-01
 ---
 
-Centreon is a IT infrastructure monitoring tool, similar to Nagios. 
+Centreon is a IT infrastructure monitoring tool, similar to Nagios. An infinite loop can be caused by changing a parameter that is used for the loop counter to a punctuation character, which is a denial-of-service vulnerability.
 
 <!-- photo source: https://commons.wikimedia.org/wiki/File:Canobie_Lake_Park_Untamed.jpg -->
 
 ## Centreon hangs
 
-While testing Centreon for security vulnerabilities, it suddenly stopped responding. After rebooting the virtual machine it was running on it worked again, but when I ran the active scanner on a particular page I could reliably cause Centreon to stop working. This may hint to a denial-of-service vulnerability, but some more investigation is required to narrow down what the problem is exactly.
+While testing Centreon for security vulnerabilities, it suddenly stopped responding. If worked again after rebooting the virtual machine it was running on, but when I ran the active scanner on a particular page I could reliably cause Centreon to stop working. This may hint to a denial-of-service vulnerability, but some more investigation was required to narrow down what the problem is exactly.
 
-## Investigating the problem
+## Finding the hanging script
 
 First, I logged into the server and ran `top`. That showed a single `php-fpm` process using almost all of the CPU.
 
@@ -51,7 +51,7 @@ The script has a file descriptor to a log file, `centreon-error.log`. Looking at
     PHP Warning:  A non-numeric value encountered in 
     /usr/share/centreon/www/include/eventLogs/xml/data.php on line 657
 
-## The request that triggers the loop
+## Finding the triggering request
 
 So, the log file points to the following loop, in which `$iStart` and `$iEnd` are both set to the value of the `num` GET parameter.
 
