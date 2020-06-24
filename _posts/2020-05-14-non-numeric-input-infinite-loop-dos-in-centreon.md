@@ -11,7 +11,7 @@ Centreon is a IT infrastructure monitoring tool, similar to Nagios. An infinite 
 
 ## Centreon hangs
 
-While testing Centreon for security vulnerabilities, it suddenly stopped responding. If worked again after rebooting the virtual machine it was running on, but when I ran the active scanner on a particular page I could reliably cause Centreon to stop working. This may hint to a denial-of-service vulnerability, but some more investigation was required to narrow down what the problem is exactly.
+While testing Centreon for security vulnerabilities, it suddenly stopped responding. It worked again after rebooting the virtual machine it was running on, but when I ran the active scanner on a particular page I could reliably cause Centreon to stop working. This may hint to a denial-of-service vulnerability, but some more investigation was required to narrow down what the problem is exactly.
 
 ## Finding the hanging script
 
@@ -96,6 +96,6 @@ If `$i` is a punctuation character, `$i++` does not change it. So `$i` stays `)`
 
 ## Conclusion
 
-Injecting a punctuation character into a loop variable causes an infinite loop, effectively disabling the web server. In the investigation I used the `/proc` directory and edited the PHP file. These are powerful debugging methods, but obviously only available when having access to the web server. The bug is typically one that is only possible in PHP, that accepts punctation characters as loop counter, and silently and unexpectantly fails to increment the loop variable.
+Injecting a punctuation character into a loop variable causes an infinite loop, effectively disabling the web server. In the investigation I used the `/proc` directory and edited the PHP file. These are powerful debugging methods, but obviously only available when having access to the web server. The bug is typically one that is only possible in PHP, that accepts punctuation characters as loop counter, and silently and unexpectedly fails to increment the loop variable.
 
 I solved this by converting the parameters to integers: [enh(secu): sanitize and cast parameters to int #8702](https://github.com/centreon/centreon/pull/8702)
