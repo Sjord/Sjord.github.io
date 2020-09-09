@@ -80,7 +80,7 @@ You can read more about this attack here:
 
 ### Crack the key
 
-As previously stated, the HS256 algorithm uses a secret key to sign and verify messages. If we know this key, we can create our own signed messages. If the key is not sufficiently strong it may be possible to break it using a brute-force or dictionary attack. By trying a lot of keys on a JWT and checking whether the signature is valid we can discover the secret key. This can be done offline, without any requests to the server, once we have obtained a JWT.
+As previously stated, the HS256 algorithm uses a secret key to sign and verify messages. If we know this key, we can create our own signed messages. If the key is not sufficiently strong it may be possible to break it using a brute-force or [dictionary](https://github.com/wallarm/jwt-secrets) attack. By trying a lot of keys on a JWT and checking whether the signature is valid we can discover the secret key. This can be done offline, without any requests to the server, once we have obtained a JWT.
 
 There are several tools that can brute force the HS256 signature on a JWT:
 
