@@ -63,3 +63,7 @@ Some hints:
 ## Conclusion
 
 If data is encrypted this does not mean that an attacker can't tamper with it. By flipping a bit in the ciphertext it is possible to determine which block mode is used, as long as the application reflects a bit of plaintext.
+
+## Read more
+
+* [Why is unauthenticated encryption insecure?](https://cybergibbons.com/reverse-engineering-2/why-is-unauthenticated-encryption-insecure/)
