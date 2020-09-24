@@ -13,21 +13,21 @@ Consumer IoT devices have been riddled with the same vulnerabilities for a long 
 
 The security devices of IoT consumer devices has been bad for a long time. The same basic problems keep appearing. 
 
-One of the reoccurring problems is the use of default passwords. In 2014, [over 73,000 camera's could be accessed using default passwords](https://www.csoonline.com/article/2844283/peeping-into-73-000-unsecured-security-cameras-thanks-to-default-passwords.html). In 2018, the Mirai botnet compromised a large number of devices. Mirai gained access using default usernames and passwords. Last year, [Rapid7 reported vulnerabilities in children's smart watches](https://blog.rapid7.com/2019/12/11/iot-vuln-disclosure-childrens-gps-smart-watches-r7-2019-57/). One of the main problems was a default password. As you can see, manufacturers have had the chance for years to become aware of this vulnerability and prevent it, but the vulnerability still occurs in many devices.
+One of the reoccurring problems is the use of default passwords. In 2014, [over 73,000 camera's could be accessed using default passwords](https://www.csoonline.com/article/2844283/peeping-into-73-000-unsecured-security-cameras-thanks-to-default-passwords.html). In 2018, the Mirai botnet compromised a large number of devices, using default usernames and passwords. Last year, [Rapid7 reported vulnerabilities in children's smart watches](https://blog.rapid7.com/2019/12/11/iot-vuln-disclosure-childrens-gps-smart-watches-r7-2019-57/). One of the main problems was a default password. As you can see, manufacturers have had the chance for years to become aware of this vulnerability and prevent it, but the vulnerability still occurs in many devices.
 
 ## Insufficient market pressure
 
 If a device is hacked, it typically remains functioning normally from the perspective of the end user. If it stops working, the end user may not be aware that this is because of insufficient security. Consumers typically are not aware that their device has been hacked, making it unlikely that they select a more secure product in their next purchase.
 
-And even when consumers prefer a secure product, it is pretty hard to evaluate in advance whether a product is secure. The box saying "military grade encryption" is not a good indication of overall product security. Devices are not typically tested for security before hitting the market, and consumer organisations have only recently started to evaluate security in consumer devices.
+And even when consumers prefer a secure product, it is pretty hard to evaluate in advance whether a product is secure. The box saying "military grade encryption" is not a good indication of overall product security. Devices are not typically tested for security before hitting the market, and consumer organizations have only recently started to evaluate security in consumer devices.
 
 This lack of pressure and lack of transparency means that the free market is not going to solve the security problems of IoT devices on its own.
 
 ## Regulations and enforcement
 
-Security in IoT devices needs to be regulated. There should be laws that state that devices should have certain security provisions. If the device does not meet the minimum security requirements, the distributor is fined and the device is taken of the market.
+Security in IoT devices needs to be regulated. We need laws that state that devices should have certain security provisions. If the device does not meet the minimum security requirements, the distributor is fined and the device is taken of the market.
 
-How this currently works in Europe is that devices are tested selectively after they are available on the market. No permission is required before selling the product, but the distribution can be forbidden if the device does not meet the regulations. It is limited to European distributers. You would still be able to purchase an insecure device from AliExpress.
+How this currently works in Europe is that devices are tested selectively after they are available on the market. No permission is required before selling the product, but the distribution can be forbidden if the device does not meet the regulations. It is limited to European distributors. You would still be able to purchase an insecure device from AliExpress.
 
 The need for regulation is not limited to Europe. In the United States, Senator Mark Warner introduced the [Internet of Things Cybersecurity Improvement Act](https://www.congress.gov/bill/116th-congress/senate-bill/734). In the United Kingdom, the government wants to introduce [IoT regulation](https://www.gov.uk/government/collections/secure-by-design) as well.
 
@@ -37,7 +37,7 @@ Enforcing regulations would give authorities the means to formally reprimand com
 
 The regulations need to be fairly simple. The goal is to eliminate the low-hanging fruit, such as default passwords, to enforce a minimum security on all devices. The requirements should be fairly easy to implement for the device manufacturer. They should be easy to test by authorities.
 
-Forbidding zero-day vulnerabilities such as buffer overflows is not needed, and would not work. It is hard to determine whether a device has vulnerabilities for the authorities, and it is hard for the manufacturer to prevent them. The biggest threat comes from really basic security ommissions, such as exposing debug ports or total lack of authentication. This makes it possible to compromise a whole range of devices with little investment.
+Forbidding zero-day vulnerabilities such as buffer overflows is not needed, and would not work. It is hard to determine whether a device has vulnerabilities for the authorities, and it is hard for the manufacturer to prevent them. The biggest threat comes from really basic security omissions, such as exposing debug ports or total lack of authentication. This makes it possible to compromise a whole range of devices with little investment.
 
 ### UK's secure by design
 
