@@ -5,6 +5,10 @@ thumbnail: iot-board-480.jpg
 date: 2020-09-30
 ---
 
+<!-- photo source: https://commons.wikimedia.org/wiki/File:Iot_Devices_At_Fscons_(130792869).jpeg -->
+
+Consumer IoT devices have been riddled with the same vulnerabilities for a long time. Authorities are now considering IoT cybersecurity regulation, which would make it possible to take insecure devices off the market.
+
 ## History of IoT security
 
 The security devices of IoT consumer devices has been bad for a long time. The same basic problems keep appearing. 
@@ -25,11 +29,27 @@ Security in IoT devices needs to be regulated. There should be laws that state t
 
 How this currently works in Europe is that devices are tested selectively after they are available on the market. No permission is required before selling the product, but the distribution can be forbidden if the device does not meet the regulations. It is limited to European distributers. You would still be able to purchase an insecure device from AliExpress.
 
+The need for regulation is not limited to Europe. In the United States, Senator Mark Warner introduced the [Internet of Things Cybersecurity Improvement Act](https://www.congress.gov/bill/116th-congress/senate-bill/734). In the United Kingdom, the government wants to introduce [IoT regulation](https://www.gov.uk/government/collections/secure-by-design) as well.
+
 Enforcing regulations would give authorities the means to formally reprimand companies that distribute insecure devices.
 
 ## Basic requirements
 
-The regulations need to be fairly simple. The goal is to eliminate the low-hanging fruit, such as default passwords. Forbidding zero-day vulnerabilities such as buffer overflows would not work. The requirements should be fairly easy to implement for the device manufacturer. They should be easy to test by authorities.
+The regulations need to be fairly simple. The goal is to eliminate the low-hanging fruit, such as default passwords, to enforce a minimum security on all devices. The requirements should be fairly easy to implement for the device manufacturer. They should be easy to test by authorities.
+
+Forbidding zero-day vulnerabilities such as buffer overflows is not needed, and would not work. It is hard to determine whether a device has vulnerabilities for the authorities, and it is hard for the manufacturer to prevent them. The biggest threat comes from really basic security ommissions, such as exposing debug ports or total lack of authentication. This makes it possible to compromise a whole range of devices with little investment.
+
+### UK's secure by design
+
+The proposed regulations in the United Kingdom has just three points:
+
+* no universal default passwords,
+* possibility to report vulnerabilities,
+* a defined period for security updates.
+
+These points are adapted from the more complete [ETSI 303 635](https://www.etsi.org/deliver/etsi_en/303600_303699/303645/02.01.01_60/en_303645v020101p.pdf) requirements. It bans the use of default passwords, and improves the communication about security between the vendor, consumers, and security researchers. However, it could really use some more technical requirements. Often, IoT devices have open ports than lack any access control, which these requirements don't cover. However, the regulation is simple and would much improve IoT security.
+
+### Dutch Telecommunication Agency's minimum requirements
 
 I participated in a research project for [Qbit](https://www.qbit.nl/blog/publication-iot-devices-blog-2/) and the [Dutch Telecommunication Agency](https://www.agentschaptelecom.nl/actueel/nieuws/2020/08/26/acht-simpele-eisen-kunnen-de-cyberveiligheid-van-%E2%80%98slimme-apparatuur%E2%80%99-sterk-verbeteren), in which we determined that the following requirements make sense:
 
@@ -42,9 +62,11 @@ I participated in a research project for [Qbit](https://www.qbit.nl/blog/publica
 * Verify firmware before installing
 * Inform the end user about security
 
+These requirements are a little more elaborate than the UK's mentioned above. But they are still fairly easy to implement, and you can buy devices today that meet all these requirements. The requirements in [the report](https://www.agentschaptelecom.nl/binaries/agentschap-telecom/documenten/rapporten/2020/08/26/onderzoeksrapport-essential-requirements-for-securing-iot-consumer-devices/Essential+requirements+for+securing+consumer+IoT+devices.pdf) are written more formally, which makes them suitable for legislation. Vendors, authorities, researches and consumers are likely to agree on the exact meaning of the requirements, and it is easy to determine whether a device meets the requirements. If IoT devices conform to these requirements, the security of them would improve greatly.
+
 ## Conclusion
 
-These requirements are pretty basic; easy to implement and easy to verify in a black-box test. Even so, if IoT devices conform to these requirements, the security of them would improve greatly.
+Authorities are looking for security regulations for IoT consumer devices. The requirements need to be clear and basic, and leave room for vendors to innovate and sell new devices. However, they also need to improve the security of consumer IoT devices, which is currently in poor state.
 
 ## Read more
 
