@@ -5,9 +5,9 @@ thumbnail: iot-board-480.jpg
 date: 2020-09-30
 ---
 
-<!-- photo source: https://commons.wikimedia.org/wiki/File:Iot_Devices_At_Fscons_(130792869).jpeg -->
-
 Consumer IoT devices have been riddled with the same vulnerabilities for a long time. Authorities are now considering IoT cybersecurity regulation, which would make it possible to take insecure devices off the market.
+
+<!-- photo source: https://commons.wikimedia.org/wiki/File:Iot_Devices_At_Fscons_(130792869).jpeg -->
 
 ## History of IoT security
 
@@ -41,7 +41,7 @@ Forbidding zero-day vulnerabilities such as buffer overflows is not needed, and 
 
 ### UK's secure by design
 
-The proposed regulations in the United Kingdom has just three points:
+The [proposed regulation](https://www.gov.uk/government/collections/secure-by-design) in the United Kingdom has just three points:
 
 * no universal default passwords,
 * possibility to report vulnerabilities,
