@@ -31,6 +31,7 @@ Alternatively, you can build your own virtual machine from an ISO:
       *  Memory: at least 2.5 GB
       *  Display: Accelerate 3D Graphics 
       *  Hard disk: at least 7 GB
+      *  Firmware type: Legacy BIOS
 3. Boot the VM. Select "Installation" to start the installation process, and follow the steps in the [installation howto](https://www.android-x86.org/installhowto.html).
 4. Reboot after installation.
 5. Finish installation within Android.
