@@ -43,6 +43,7 @@ Alternatively, you can build your own virtual machine from an ISO:
 * If you have trouble accessing VMWare's disk, change the disk type from SCSI to IDE.
 * Connecting to your virtual machine over the virtual network may not work if you also have a VPN application running.
 * If the screen stays black when booting, enable graphics hardware acceleration. Or add the following kernel options when booting: `nomodeset xforcevesa`.
+* Correctly set the system time of the Android virtual machine, to avoid timing issues with certificates and expiring tokens.
 
 ## Connect with ADB
 
@@ -91,7 +92,7 @@ Retrieve a APK of an installed app:
     adb shell pm path nl.ns.android.activity
     adb pull /data/app/nl.ns.android.activity-1/base.apk
 
-## Disable certificate checks
+## Trusting the intercepting proxy
 
 To intercept traffic from the Android app, we need it to communicate with our intercepting proxy. If the app has any security at all, it will not trust the proxy's certificate and refuse to connect. There are two ways to solve this:
 
