@@ -162,6 +162,7 @@ There is a lot that can go wrong when creating RSA keys, especially when using a
 #### Unsafe primes
 
 * [A New Class of Unsafe Primes](https://eprint.iacr.org/2002/109.pdf)
+* [I want to break square-free: The 4p-1 factorization method and its RSA backdoor viability](https://crocs.fi.muni.cz/public/papers/Secrypt2019)
 
 #### Small keys
 
