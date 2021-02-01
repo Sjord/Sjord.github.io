@@ -13,7 +13,7 @@ In cross origin requests, the authorization header can be sent in two ways: eith
 
 The Authorization HTTP header provides authentication information on a request. There are several types of authentication that use this header, and some are supported by browsers, such as [basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). When an unauthenticated request is received by the server, it will respond with a HTTP 401 Unauthorized response with a WWW-Authenticate header. This will trigger the browser to ask the user for credentials. The browser will then perform the same request, but include an Authorization header with the entered credentials.
 
-In contrast, some applications use the Authorization header without any intervening from the browser. A JavaScript app may obtain a token from the server and send that with each request to authenticate the request. This if called bearer authentication and the Authorization header is often used to send the token.
+In contrast, some applications use the Authorization header without any intervening from the browser. A JavaScript app may obtain a token from the server and send that with each request to authenticate the request. This is called bearer authentication and the Authorization header is often used to send the token.
 
 ## Cross origin access with credentials
 
@@ -39,7 +39,7 @@ The browser handles authentication, so the application won't see a username or p
 
 Instead of letting the browser handle authentication, it is possible to send an Authorization header with a request from JavaScript by just specifying the name and value of the header. It works just like any other header.
 
-One of these if the header `Access-Control-Allow-Credentials`, which allows authentication information such as cookies, authorization headers and client certificates in a cross-origin request. Another response header that can be used is `Access-Control-Allow-Headers`, which can be used to whitelist the Authorization header.
+One of these is the header `Access-Control-Allow-Credentials`, which allows authentication information such as cookies, authorization headers and client certificates in a cross-origin request. Another response header that can be used is `Access-Control-Allow-Headers`, which can be used to whitelist the Authorization header.
 
 You need three things:
 
