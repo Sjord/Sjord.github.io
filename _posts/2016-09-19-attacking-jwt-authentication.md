@@ -75,7 +75,7 @@ Go to [this RS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/rs256.php).
 
 You can read more about this attack here:
 
-* [JWT Attack Walk-Through](https://www.nccgroup.trust/uk/about-us/newsroom-and-events/blogs/2019/january/jwt-attack-walk-through/)
+* [JWT Attack Walk-Through](https://www.nccgroup.com/ae/about-us/newsroom-and-events/blogs/2019/january/jwt-attack-walk-through/)
 * [JWT: Signature-vs-MAC attacks](https://snikt.net/blog/2019/05/16/jwt-signature-vs-mac-attacks/)
 
 ### Crack the key
