@@ -1,17 +1,18 @@
 <?php
-$iv = bin2hex("circumnavigation");
+$iv = "circumnavigation";
 $key = "whatchamacallits";
+$method = "AES-256-CBC";
 
 if (isset($_POST['username'])) {
     $_POST['is_admin'] = 0;
     $json = json_encode($_POST);
-    $ciphertext = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $json, MCRYPT_MODE_CBC, $iv);
+    $ciphertext = openssl_encrypt($json, $method, $key, OPENSSL_RAW_DATA, $iv);
     header('Location: /bitflip.php?data='.bin2hex($ciphertext));
 }
 
 if (isset($_GET['data'])) {
     $ciphertext = hex2bin($_GET['data']);
-    $plaintext = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $key, $ciphertext, MCRYPT_MODE_CBC, $iv);
+    $plaintext = openssl_decrypt($ciphertext, $method, $key, OPENSSL_RAW_DATA, $iv);
     $plaintext = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '?', trim($plaintext));
     $data = json_decode($plaintext);
 }
@@ -83,7 +84,7 @@ if (isset($_GET['data'])) {
     </form>
     <script>
         let data = <?php echo $plaintext; ?>;
-        //         ^                               ^                               ^                               ^                               ^                               
+        //         ^               ^               ^               ^               ^               ^               ^               ^
         for (let key in data) {
             let elem = document.getElementById(key);
             if (elem) {
