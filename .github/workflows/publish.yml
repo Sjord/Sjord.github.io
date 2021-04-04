@@ -1,0 +1,7 @@
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: jekyll/jekyll
+    steps:
+      - run: jekyll build
