@@ -20,4 +20,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: site
-      - run: ls -l
+      - run: aws s3 sync . s3://sjoerdlangkemper.nl --size-only --acl public-read --cache-control "max-age=1209600" --exclude "*.html" --exclude "*.xml"
+      - run: aws s3 sync . s3://sjoerdlangkemper.nl --size-only --acl public-read --cache-control "max-age=3600" --exclude "*" --include "*.html"
+      - run: aws s3 sync . s3://sjoerdlangkemper.nl --size-only --acl public-read --cache-control "max-age=14400" --exclude "*" --include "*.xml"
