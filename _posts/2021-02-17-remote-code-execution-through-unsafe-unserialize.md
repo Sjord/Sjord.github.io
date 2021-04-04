@@ -2,7 +2,7 @@
 layout: post
 title: "Remote code execution through unsafe unserialize in PHP"
 thumbnail: cereal-480.jpg
-date: 2021-03-17
+date: 2021-04-04
 ---
 
 Using gadget chains it is possible to achieve remote code execution in web application that unserialize user input, even without having the complete source code.
