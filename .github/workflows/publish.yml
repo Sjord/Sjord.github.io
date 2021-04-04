@@ -13,7 +13,6 @@ jobs:
           path: _site
   upload:
     runs-on: ubuntu-latest
-    container: amazon/aws-cli
     needs: build
     steps:
       - name: Download built site
