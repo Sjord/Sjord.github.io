@@ -2,9 +2,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: jekyll/jekyll
     steps:
       - uses: actions/checkout@v2
-      - run: mkdir .jekyll-cache
-      - run: ls -l
+      - uses: ruby/setup-ruby@v1
+      - run: gem install jekyll
       - run: jekyll build
