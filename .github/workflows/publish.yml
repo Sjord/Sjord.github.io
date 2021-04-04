@@ -2,11 +2,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: jekyll/jekyll
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-      - run: gem install jekyll
+      - run: mkdir .jekyll-cache _site
       - run: jekyll build
