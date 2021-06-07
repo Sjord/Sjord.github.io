@@ -19,7 +19,7 @@ In this scenario, the cookies sent to Facebook are called third-party cookies. T
 
 ## CSRF
 
-In the previous example, a random web site caused a request to Facebook. The same principle can also be used to cause your browser to do a request to your banking web application whenever you visit an attacker's web site. This is called [cross site request forgery](/2019/01/02/csrf/). The user needs to be logged in to the banking application for this to work, so that the attacker can perform authenticated requests as if he were the user. 
+In the previous example, a random web site caused a request to Facebook. The same principle can also be used to cause your browser to do a request to your banking web application whenever you visit an attacker's web site. This is called [cross site request forgery](/2019/01/09/csrf/). The user needs to be logged in to the banking application for this to work, so that the attacker can perform authenticated requests as if he were the user. 
 
 ![If you visit a malicious site, the attacker may let you send requests to your bank](/images/third-party-cookies-attack.png)
 
