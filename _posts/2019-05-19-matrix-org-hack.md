@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Matrix.org hack"
-thumbnail: matrix-480.jpg
+thumbnail: matrix-480.webp
 date: 2020-01-01
 ---
 
