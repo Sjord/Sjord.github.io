@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Long passwords don't cause denial of service with proper hash functions"
+title: "Long passwords don't cause denial of service when using proper hash functions"
 thumbnail: scrap-iron-480.jpg
-date: 2021-06-30
+date: 2021-07-02
 ---
 
-ASVS [states](https://github.com/OWASP/ASVS/blob/v4.0.3/4.0/en/0x11-V2-Authentication.md#:~:text=no%20longer%20than%20128%20characters) that passwords should be at most 128 characters. This originates from the idea that longer passwords take longer to hash, which can lead to a denial of service when an attacker performs login attempts with very long passwords. However, this is not generally true. With a proper hash function, longer passwords do not take longer time to hash.
+ASVS [states](https://github.com/OWASP/ASVS/blob/v4.0.3/4.0/en/0x11-V2-Authentication.md#:~:text=no%20longer%20than%20128%20characters) that passwords should be at most 128 characters. This originates from the idea that longer passwords take longer to hash, which can lead to a denial of service when an attacker performs login attempts with very long passwords. However, this is not generally true. With a proper hash function, longer passwords do not take a significantly longer time to hash.
 
 ## How PBKDF2 works
 
@@ -32,7 +32,13 @@ Now, even though it seems like we need `Password` in each loop iteration, the ac
 
 With this optimization, the password is only hashed once. This means that the length of the password is not of great influence on the total execution time.
 
-Without this optimization, the password is hashed several hundred thousand times, and a large password can take up considerable time on the server.
+## Length dependent hash functions
+
+If PBKDF2 is naively implemented without this optimization, the password is hashed on each iteration. Since there are typically hunders of thousands of iterations, this can have a big result on performance. It may take minutes to calculate the hash of a password of millions of characters.
+
+PBKDF2's algorithm does not specify exactly when and how often the password is hashed. It depends on the implementation whether the execution time blows up with password length. Scrypt builds on top of PBKDF2, and execution time is also implementation dependent. Bcrypt only uses the first 72 bytes of the password, so is not affected by long passwords. The first thing Argon2 does is to hash the password, and works on the hash from then on, so it is not vulnerable to long passwords.
+
+Of course, people don't always use proper implementations, or even approved password hash functions. In those cases, it may be possible to cause a denial of service attack by performing a login attempt with a password of several megabytes.
 
 ### Django's PBKDF2
 
@@ -44,7 +50,7 @@ At this point, the Django developers were not aware of their inefficient PBKDF2 
 
 > To remedy this, Django's authentication framework will now automatically fail authentication for any password exceeding 4096 bytes.
 
-A couple of weeks later, they [fixed their PBKDF2 function](https://github.com/django/django/commit/68540fe4df44492571bc610a0a043d3d02b3d320) and [removed the password length limit](https://github.com/django/django/commit/5d74853e156105ea02a41f4731346dbe272c2412).
+A couple of weeks later, they [fixed their PBKDF2 function](https://github.com/django/django/commit/68540fe4df44492571bc610a0a043d3d02b3d320) and [removed the password length limit](https://github.com/django/django/commit/5d74853e156105ea02a41f4731346dbe272c2412). Nowadays, Python has a [built-in PBKDF2 function](https://docs.python.org/3.9/library/hashlib.html#hashlib.pbkdf2_hmac), but that didn't exist yet when Django was created.
 
 ### phpass
 
@@ -63,9 +69,17 @@ As you can see, it hashes the password in every iteration, and is thus vulnerabl
 
 ### crypt
 
-The `crypt` function built-in to libc originally supported hashing passwords of at most 8 characters using [DES](https://en.wikipedia.org/wiki/Data_Encryption_Standard). This was not very secure, and in 1994 Poul-Henning Kamp (PHK) came up with md5crypt to solve this. In turn, md5crypt became insecure and in 2007 Ulrich Drepper came up with SHA256-crypt and SHA512-crypt. For all these hash functions, the execution time is dependent on the length of the password. This means it's possible to trigger a denial of service by using a very long password.
+The `crypt` function built-in to libc originally supported hashing passwords of at most 8 characters using [DES](https://en.wikipedia.org/wiki/Data_Encryption_Standard). This was not very secure, and in 1994 Poul-Henning Kamp (PHK) came up with [md5crypt](http://phk.freebsd.dk/sagas/md5crypt/) to solve this. In turn, md5crypt became insecure and in 2007 Ulrich Drepper came up with [SHA256-crypt and SHA512-crypt](https://akkadia.org/drepper/SHA-crypt.txt). For all these hash functions, the execution time is dependent on the length of the password, which means it's possible to trigger a denial of service by using a very long password.
 
-I used SHA512-crypt in the past. My reasoning was that if it was in libc, it must be designed by cryptographers and properly reviewed, instead of being thought up by an arrogant developer who thinks "don't roll your own crypto" doesn't apply to them. Also, `$6$` is more that `$2$`, so it must be better.
+I think this one is especially unfortunate. Being the standard password hashing function in a widely used standard library, these algorithms received respect that turned out to be undeserved.
+
+## Conclusion
+
+Denial of service through long passwords is a vulnerability that affected at least Django, Drupal, and WordPress. The underlying cause of this was a hash function with execution time dependent on input length, either through faulty implementation or because of an improper hashing algorithm. Applications that use platform or framework implementations for recommended hash functions are unlikely to be vulnerable.
+
+To defend against this vulnerability, we should recommend application developers to use proper hash functions. Recommending a maximum length for the password only hides underlying problems, and is unnecessary when using a proper hash function.
+
+## Read more
 
 * [Aaron Toponce : Do Not Use sha256crypt / sha512crypt - They're Dangerous](https://pthree.org/2018/05/23/do-not-use-sha256crypt-sha512crypt-theyre-dangerous/)
 * [Requirements for iterative password hashing](/2016/05/25/iterative-password-hashing/)
