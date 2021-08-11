@@ -9,9 +9,11 @@ Git diff does not display a sequence of consecutive lines, if all of the removed
 
 Git diff shows the differences in files between two commits. Instead of showing all differences, it can omit some differences and show only interesting changes. For example, `--ignore-all-space` or `-w` omits differences in white space. Additionally, it is possibly to specify which differences to ignore, by specifying one or more regular expressions with `--ignore-matching-lines` (`-I`).
 
-A difference is only ignored when both the removed lines and the added lines match at least one of the supplied regular expressions.
+A difference is only ignored when both the removed lines and the added lines match at least one of the supplied regular expressions. The set of consecutive lines that are removed and added is checked against each regex. If all lines match, this difference is not shown. This is reevaluated for each set of consecutive lines. Commits don't matter here; the diff is taken between the old version and the new version.
 
-## Example
+The `--ignore-matching-lines` and other similar flags only work when git is actually comparing the content of the files. When passing `--name-only` or `--name-status`, git only determines whether files are changed without looking at their contents. The ignore flags don't do anything in that case. They also don't affect binary files.
+
+## Simple example
 
 We have this text file:
 
@@ -58,14 +60,13 @@ It's easier to use something like `--ignore-blank-lines` to ignore blank lines. 
 An empty line cannot be matched with `^$`. `^` matches both the beginning of the line and the beginning of the buffer. Similarly, `$` matches both the end of the line as the end of the buffer. All changed lines end in a newline, just before the end of the buffer. This means that `^$` matches every changed line. The newline at the end starts a new line, and is immediately followed by the end of the buffer.
 
 ```
-His bill will hold more than his belican,\n
-                                           ↑
-                                           ^ matches because \n starts a new line
-                                           $ matches because the buffer ends here
-
+… his belican,\n
+                ↑
+                ^ matches because \n starts a new line
+                $ matches because the buffer ends here
 ```
 
-To match more precisely, we can use <code class="language-plaintext highlighter-rouge">\`</code> to match the start of the buffer, and `\'` to match the end of the buffer. An empty line can thus be matched with:
+To match more precisely, we can use ``\` `` to match the start of the buffer, and `\'` to match the end of the buffer. An empty line can thus be matched with:
 
     \`\n\'
 
@@ -75,62 +76,72 @@ Where `\n` is an actual newline, not backslash-n. This needs much escaping to en
     
 ## Regex dialect
 
+Git calls [regcomp](https://man7.org/linux/man-pages/man3/regcomp.3.html) and [regexec](https://man7.org/linux/man-pages/man3/regcomp.3.html) to handle regular expressions. However, it brings [its own version](https://github.com/git/git/tree/55194925e62b34a3f62b31034f73a6bcfb063bc5/compat/regex) of these functions instead of relying on the systems C library. Each system has its own dialect of regular expressions, and this way git can keep the same dialect across systems.
+
 Git [passes](https://github.com/git/git/blob/55194925e62b34a3f62b31034f73a6bcfb063bc5/diff.c#L5237-L5238) the following flags to `regcomp`:
 
 * REG_EXTENDED - [Extended](https://www.gnu.org/software/gnulib/manual/html_node/posix_002dextended-regular-expression-syntax.html#posix_002dextended-regular-expression-syntax) syntax. We don't have to put a backslash before modifiers, so 'a+b?' matches multiple *a*'s optionally followed by a *b*.
 * REG_NEWLINE - Line-based matching, so `.` doesn't match newline, `^` matches the start of the line, and `$` matches the end of the line.
 
+These features are supported:
 
-```
-static void xdl_mark_ignorable_regex(xdchange_t *xscr, const xdfenv_t *xe,
-				     xpparam_t const *xpp)
-{
-	xdchange_t *xch;
+* `\1`, `\2` … `\9` for backreferences: `bi(ll) wi\1` matches `bill will`, because `\1` references the first capture group.
+* `\<` matches the beginning of words, `\>` matches the end of words, `\b` matches either.
+* `\B` matches an empty string within a word.
+* `\w` matches any word character, `\W` matches any non-word character.
+* `\s` matches any white space, `\S` matches any non-space.
+* ``\` `` matches the beginning of the buffer, `\'` matches the end of the buffer.
+* `(…)` Parenthesis to mark capture groups.
+* `*`, `+`, `?`, `{n,m}` for repetition.
+* `[abc]` for character classes.
+* `[[:alnum:]]` and similar named character classes.
+* `^` matches either start of string or start of buffer, `$` matches the end of either.
 
-	for (xch = xscr; xch; xch = xch->next) {
-		xrecord_t **rec;
-		int ignore = 1;
-		long i;
+These features don't work in git:
 
-		/*
-		 * Do not override --ignore-blank-lines.
-		 */
-		if (xch->ignore)
-			continue;
+* `\d` or `\D` just match `d` and `D`, not digits.
+* `\l` and `\u` don't match lowercase or uppercase letters.
+* `\A` and `\z` don't work, use ``\` `` and `\'`.
+* `\n`, `\x0a`, `\u000a` don't work. If you want to match a newline, you have to pass a literal newline in the parameter.
 
-		rec = &xe->xdf1.recs[xch->i1];
-		for (i = 0; i < xch->chg1 && ignore; i++)
-			ignore = record_matches_regex(rec[i], xpp);
+## Advanced example
 
-		rec = &xe->xdf2.recs[xch->i2];
-		for (i = 0; i < xch->chg2 && ignore; i++)
-			ignore = record_matches_regex(rec[i], xpp);
+I have a C# project where I want to review changes to the code. However, they also recently changed some namespaces, and I am not interested in that, so we want to ignore lines starting with:
 
-		xch->ignore = ignore;
-	}
-}
-```
+* `namespace …`, the namespace for a class.
+* `using …`, the import of a namespace.
 
-* `xdl_diff` called for each changed file.
-* commits are not relevant.
-* `chg1` contains removed text, `chg2` contains new text.
-* Both old text and new text must match any of the regexes for it to be ignored.
-* If text is added, there is no old text, and the regexes are not tested against it.
-* Each record is a line. Each line in a change needs to match the regex for it to be ignored.
-* Match empty lines: not with `^$`. Because every line ends in a newline? With `^\s+$`?
-* [regexec](https://www.man7.org/linux/man-pages/man3/regex.3.html) with REG_STARTEND
-* git comes with its own regex functions, because macOS regex and Linux regex are different
-* doesn't work in --name-status and related modes.
-* \A and \z don't seem to work.
-* Do \` and \' work to indicate start and end of buffer?
-* Not called for binary files
+So, we'll use this command to ignore these words at the start of the line, followed by a single space.
+
+    git diff -I '^using ' -I '^namespace '
+
+However, the resulting diff still has namespace changes:
+
+    -<U+FEFF>namespace SomeOldNameSpace
+	+<U+FEFF>namespace SomeNewNameSpace^M
+
+These are [byte order marks](https://en.wikipedia.org/wiki/Byte_order_mark) (BOM) that can appear at the start of the file. We want to ignore those too. And of course we want to ignore any empty lines that are added during the namespace changes:
+
+    git diff -I $'^(\ufeff)?using ' -I '^(\ufeff)?namespace ' -I $'\\`\n\\\'' …
+
+As you can see, it becomes quite complex quite fast.
+
+## Conclusion
+
+So, git diff --ignore-matching-lines:
+
+* works on sets of consecutive lines,
+* only hides a set if all the deleted lines and all the added lines match any of the given regular expressions,
+* uses the glibc extended POSIX regex dialect, even on non-glibc systems,
+
 
 ## Read more
 
-* [xdl_mark_ignorable_regex in git source code](https://github.com/git/git/blob/55194925e62b34a3f62b31034f73a6bcfb063bc5/xdiff/xdiffi.c#L1028-L1054)
-* [Specified Lines (Comparing and Merging Files)](https://www.gnu.org/software/diffutils/manual/html_node/Specified-Lines.html#Specified-Lines)
-* [diff: add -I<regex> that ignores matching changes · git/git@296d4a9](https://github.com/git/git/commit/296d4a94e7231a1d57356889f51bff57a1a3c5a1)
-* [[LINUX] Exact behavior of diff --ignore-matching-lines = RE](https://memotut.com/diff-ignore-matching-lines=re-exact-behavior-d9ff4/)
-* [[PATCH 0/2] diff: add -I<regex> that ignores matching changes - Michał Kępień](https://lore.kernel.org/git/20201001120606.25773-1-michal@isc.org/)
-* [regular expression - How to diff files ignoring comments (lines starting with #)? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/17040/how-to-diff-files-ignoring-comments-lines-starting-with)
+* [Exact behavior of diff --ignore-matching-lines = RE](https://memotut.com/diff-ignore-matching-lines=re-exact-behavior-d9ff4/)
 * [GNU Gnulib: Regular expressions](https://www.gnu.org/software/gnulib/manual/html_node/Regular-expressions.html#Regular-expressions)
+* [Diff manual - Suppressing differences whose lines all match a regular expression](https://www.gnu.org/software/diffutils/manual/html_node/Specified-Lines.html#Specified-Lines)
+* [Git - git-diff Documentation](https://git-scm.com/docs/git-diff)
+* [xdl_mark_ignorable_regex in git source code](https://github.com/git/git/blob/55194925e62b34a3f62b31034f73a6bcfb063bc5/xdiff/xdiffi.c#L1028-L1054)
+* [git commit 296d4a9: diff: add -I&lt;regex&gt; that ignores matching changes](https://github.com/git/git/commit/296d4a94e7231a1d57356889f51bff57a1a3c5a1)
+* [git mailinglist: diff: add -I&lt;regex&gt; that ignores matching changes - Michał Kępień](https://lore.kernel.org/git/20201001120606.25773-1-michal@isc.org/)
+* [regular expression - How to diff files ignoring comments (lines starting with #)? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/17040/how-to-diff-files-ignoring-comments-lines-starting-with)
