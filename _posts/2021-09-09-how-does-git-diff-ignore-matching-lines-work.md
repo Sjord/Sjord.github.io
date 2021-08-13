@@ -2,14 +2,22 @@
 layout: post
 title: "How does git diff --ignore-matching-lines work"
 thumbnail: compare-questions-480.jpg
-date: 2021-08-14
+date: 2021-08-13
 ---
 
-Git diff does not display a sequence of consecutive lines, if all of the removed and added lines match any of the regexes specified by `--ignore-matching-lines` (`-I`).
+Git diff does not display a hunk of changes, if all of the removed and added lines match any of the regexes specified by `--ignore-matching-lines` (`-I`).
+
+## Introduction
+
+During a code review, it is often useful to view the changes in a file. However, many changes are not very interesting. Renaming a class or namespace may result in differences in many files, but this is not important from a security perspective. Therefore, it is useful to ignore certain changes. Git has an option to ignore changes that match a certain regular expression, which can be used for this task.
+
+## Matching lines in hunks
 
 Git diff shows the differences in files between two commits. Instead of showing all differences, it can omit some differences and show only interesting changes. For example, `--ignore-all-space` or `-w` omits differences in white space. Additionally, it is possibly to specify which differences to ignore, by specifying one or more regular expressions with `--ignore-matching-lines` (`-I`).
 
-A difference is only ignored when both the removed lines and the added lines match at least one of the supplied regular expressions. The set of consecutive lines that are removed and added is checked against each regex. If all lines match, this difference is not shown. This is reevaluated for each set of consecutive lines. Commits don't matter here; the diff is taken between the old version and the new version.
+A difference is only ignored when both the removed lines and the added lines match at least one of the supplied regular expressions. The lines in the hunk that are removed and added are checked against each regex. If all lines match, this difference is not shown. This is reevaluated for each hunk. Commits don't matter here; the diff is taken between the old version and the new version.
+
+A hunk is a number of changed lines that are close toogether. Consecutive lines are always in the same hunk. But hunks can also contain several lines of unchanged text. This means that changes on lines 4 and 7 may belong to the same hunk. Only these changed lines are compared to the given regular expression, but both must match to ignore the hunk.
 
 The `--ignore-matching-lines` and other similar flags only work when git is actually comparing the content of the files. When passing `--name-only` or `--name-status`, git only determines whether files are changed without looking at their contents. The ignore flags don't do anything in that case. They also don't affect binary files.
 
@@ -103,6 +111,7 @@ These features don't work in git:
 * `\l` and `\u` don't match lowercase or uppercase letters.
 * `\A` and `\z` don't work, use ``\` `` and `\'`.
 * `\n`, `\x0a`, `\u000a` don't work. If you want to match a newline, you have to pass a literal newline in the parameter.
+* `[:alnum:]`. It only works with two brackets: `[[:alnum:]]`.
 
 ## Advanced example
 
@@ -130,9 +139,9 @@ As you can see, it becomes quite complex quite fast.
 
 So, git diff --ignore-matching-lines:
 
-* works on sets of consecutive lines,
-* only hides a set if all the deleted lines and all the added lines match any of the given regular expressions,
-* uses the glibc extended POSIX regex dialect, even on non-glibc systems,
+* works on hunks,
+* only hides a hunk if all the deleted lines and all the added lines match any of the given regular expressions,
+* uses the glibc extended POSIX regex dialect, even on non-glibc systems.
 
 
 ## Read more
@@ -140,6 +149,7 @@ So, git diff --ignore-matching-lines:
 * [Exact behavior of diff --ignore-matching-lines = RE](https://memotut.com/diff-ignore-matching-lines=re-exact-behavior-d9ff4/)
 * [GNU Gnulib: Regular expressions](https://www.gnu.org/software/gnulib/manual/html_node/Regular-expressions.html#Regular-expressions)
 * [Diff manual - Suppressing differences whose lines all match a regular expression](https://www.gnu.org/software/diffutils/manual/html_node/Specified-Lines.html#Specified-Lines)
+* [Hunks (Comparing and Merging Files)](https://www.gnu.org/software/diffutils/manual/html_node/Hunks.html)
 * [Git - git-diff Documentation](https://git-scm.com/docs/git-diff)
 * [xdl_mark_ignorable_regex in git source code](https://github.com/git/git/blob/55194925e62b34a3f62b31034f73a6bcfb063bc5/xdiff/xdiffi.c#L1028-L1054)
 * [git commit 296d4a9: diff: add -I&lt;regex&gt; that ignores matching changes](https://github.com/git/git/commit/296d4a94e7231a1d57356889f51bff57a1a3c5a1)
