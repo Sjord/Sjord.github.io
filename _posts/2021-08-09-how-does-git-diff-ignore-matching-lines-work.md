@@ -15,9 +15,9 @@ During a code review, it is often useful to view the changes in a file. However,
 
 Git diff shows the differences in files between two commits. Instead of showing all differences, it can omit some differences and show only interesting changes. For example, `--ignore-all-space` or `-w` omits differences in white space. Additionally, it is possibly to specify which differences to ignore, by specifying one or more regular expressions with `--ignore-matching-lines` (`-I`).
 
-A difference is only ignored when both the removed lines and the added lines match at least one of the supplied regular expressions. The lines in the hunk that are removed and added are checked against each regex. If all lines match, this difference is not shown. This is reevaluated for each hunk. Commits don't matter here; the diff is taken between the old version and the new version.
+A diff of one file can contain several hunks of changed lines. A hunk is a set of changed lines that are close together. Consecutive lines are always in the same hunk, but hunks can also contain several lines of unchanged text. The `--ignore-matching-lines` option works per hunk; each hunk is either fully shown or fully hidden.
 
-A hunk is a number of changed lines that are close toogether. Consecutive lines are always in the same hunk. But hunks can also contain several lines of unchanged text. This means that changes on lines 4 and 7 may belong to the same hunk. Only these changed lines are compared to the given regular expression, but both must match to ignore the hunk.
+A hunk is only ignored when each of the removed and added lines match at least one of the supplied regular expressions. This is reevaluated for each hunk. The lines in the hunk that are removed and added are checked against each regex. If all lines match, this hunk is not shown. Commits don't matter here; the diff is taken between the old version and the new version.
 
 The `--ignore-matching-lines` and other similar flags only work when git is actually comparing the content of the files. When passing `--name-only` or `--name-status`, git only determines whether files are changed without looking at their contents. The ignore flags don't do anything in that case. They also don't affect binary files.
 
@@ -103,7 +103,7 @@ These features are supported:
 * `*`, `+`, `?`, `{n,m}` for repetition.
 * `[abc]` for character classes.
 * `[[:alnum:]]` and similar named character classes.
-* `^` matches either start of string or start of buffer, `$` matches the end of either.
+* `^` matches both the start of a line and the start of the buffer, `$` matches the end of either.
 
 These features don't work in git:
 
@@ -139,7 +139,7 @@ As you can see, it becomes quite complex quite fast.
 
 So, git diff --ignore-matching-lines:
 
-* works on hunks,
+* works on hunks, which are sets of changed lines that are close together,
 * only hides a hunk if all the deleted lines and all the added lines match any of the given regular expressions,
 * uses the glibc extended POSIX regex dialect, even on non-glibc systems.
 
