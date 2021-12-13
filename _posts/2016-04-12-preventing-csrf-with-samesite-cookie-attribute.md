@@ -67,3 +67,7 @@ As of April 2016, the same-site attribute for cookies is [implemented](https://w
 ## Conclusion
 
 The same-site attribute gives the possibility to disable third-party usage for any cookie. This is a good method to protect against CSRF attacks, because it seems to the attacker as though you are no longer logged in to the website under attack.
+
+## Addendum
+
+This article uses "origin" and "site" interchangeably, but this is incorrect. Requests from subdomains are typically same-site but cross-origin. Read [The great SameSite confusion](https://jub0bs.com/posts/2021-01-29-great-samesite-confusion/) for more information.
