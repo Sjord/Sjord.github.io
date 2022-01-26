@@ -9,7 +9,7 @@ Webapps occasionally need to create tokens that are hard to guess. For example f
 
 ## How rand works
 
-In PHP, the function [`rand()`](https://secure.php.net/rand) creates pseudorandom numbers. The initial state of the random number generator (the seed) is set with [`srand`](https://secure.php.net/srand). If you don't call `srand` yourself, PHP seeds the random number generator with some hard to guess number when you call `rand`. The seed passed to `srand` totally determines the string of numbers that `rand` will generate.
+In PHP, the function [`rand()`](https://www.php.net/rand) creates pseudorandom numbers. The initial state of the random number generator (the seed) is set with [`srand`](https://www.php.net/srand). If you don't call `srand` yourself, PHP seeds the random number generator with some hard to guess number when you call `rand`. The seed passed to `srand` totally determines the string of numbers that `rand` will generate.
 
 The random number generator keeps a state that is initially set by `srand` and then changed every time you call `rand`. This state is specific to the process, so two processes typically return different numbers for `rand`. On Windows this state has a size of 32 bits and can be directly set using `srand`. On Linux the state is 1024 bits.
 
@@ -38,7 +38,7 @@ Every time we request the index.php page we get a new CSRF token, so we can requ
 
 ## Seed cracking
 
-As we said the random number series is totally defined by the seed, so we can simply try every possible number as argument for `srand` to get the random number generator in the right state. Note that on Linux this will only work if the server process is fresh. If the server process has already seen a lot of `rand` calls, we need to do the same amount in our cracking program to get the same state. On Windows, the state of the random number generator is the same as the argument to `srand`, so you don't need a fresh process.
+As we said the random number series is totally defined by the seed, so we can simply try every possible number as argument for `srand` to get the random number generator in the right state. On Linux this will only work if the server process is fresh. If the server process has already seen a lot of `rand` calls, we need to do the same amount in our cracking program to get the same state. On Windows, the state of the random number generator is the same as the argument to `srand`, so you don't need a fresh process.
 
 If we got a token from a fresh process, the following PHP script can be used to crack it:
 
@@ -75,3 +75,7 @@ As you can see we can not accurately predict the next token using this method, b
 ## Conclusion
 
 Tokens should be created using a cryptographically secure random number generator. If they are made with `rand`, the state of the random number generator can be cracked trivially in many cases, and tokens can be predicted. On Linux it is a little bit harder to predict tokens, but this does still not give secure tokens. The random number generator on Windows is particularly easy to exploit, since any state of the random number generator can be cracked within minutes.
+
+## Addendum
+
+The implementation of rand [was changed in PHP 7.1](https://github.com/php/php-src/commit/6d6ef7aacc7f9b17709d2f93b70b359c75011f89), which was released after this article was written, so the methods in this article may no longer apply.
