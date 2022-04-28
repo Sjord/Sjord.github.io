@@ -140,7 +140,7 @@ Although numbers vary on how much they cost exactly, we can conclude that hacks 
 1. [Cybersecurity risks: are they inflated?](http://www.salusjournal.com/wp-content/uploads/sites/29/2016/05/Salus_Journal_Volume_4_Number_2_2016.pdf)
 1. [Classified report on Bureau of Meteorology cyber attack recommends computer system overhaul](http://www.abc.net.au/news/2015-12-03/report-on-bom-cyber-attack-recommends-it-overhaul/6997832)
 1. [The impact of cybercrime on businesses](https://www.researchgate.net/profile/Letizia_Paoli/publication/325120529_The_impact_of_cybercrime_on_businesses_A_novel_conceptual_framework_and_its_application_to_Belgium/links/5af96b1e0f7e9b026bf73418/The-impact-of-cybercrime-on-businesses-A-novel-conceptual-framework-and-its-application-to-Belgium.pdf)
-1. [2018 Cost of a Data Breach Study](https://databreachcalculator.mybluemix.net/assets/2018_Global_Cost_of_a_Data_Breach_Report.pdf)
+1. [2018 Cost of a Data Breach Study](https://www.intlxsolutions.com/hubfs/2018_Global_Cost_of_a_Data_Breach_Report.pdf)
 1. [Measuring the Economic Effects of Data Breaches on Firm
 Outcomes: Challenges and Opportunities](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3044726)
 1. [Cyber security breaches survey 2017](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/609186/Cyber_Security_Breaches_Survey_2017_main_report_PUBLIC.pdf)
