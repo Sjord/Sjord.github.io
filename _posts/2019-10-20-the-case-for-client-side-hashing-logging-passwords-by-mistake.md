@@ -43,6 +43,7 @@ Accidentally logging plaintext passwords is surprisingly common. Some big player
 * [Plaintext passwords in error.log in Gitea](https://github.com/go-gitea/gitea/issues/3055)
 * [User credentials are logged on error in Netbox](https://github.com/netbox-community/netbox/issues/2880)
 * [Plain password in owncloud.log](https://github.com/owncloud/core/issues/25895)
+* [GitHub logged npm passwords, npm access tokens, and GitHub access tokens](https://github.blog/2022-05-26-npm-security-update-oauth-tokens/)
 
 ## Conclusion
 
