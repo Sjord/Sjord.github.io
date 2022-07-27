@@ -7,21 +7,21 @@ date: 2022-07-29
 
 I went to the MCH hacker camp. This post describes my non-technical, personal experiences while on MCH.
 
-I also have a [technical post about the talks and workshops](/2022/07/29/mch-hacker-camp-technical-talks-workshops/), which may be more interesting for you.
+I also have a [technical post about the talks and workshops](/2022/07/29/mch-hacker-camp-technical-talks-workshops/), which may also be interesting to you.
 
 <!-- photo source: https://pixabay.com/photos/adult-diary-journal-notebook-book-1850177/ -->
 
 ## Introduction
 
-In July 2022 I went to MCH, which is an outdoor hacker camp. On a large terrain in a Dutch polder thousands of people assembled to have a good time and share knowledge.
+In July 2022 I went to [MCH](https://mch2022.org/#/), which is an outdoor hacker camp. On a large terrain in a Dutch polder thousands of people assembled to have a good time and share knowledge.
 
 ## Preparation
 
 I did not prepare properly. I had my own vacation just before MCH, during which I didn't bother reading the MCH wiki or schedule. Then I had a busy week. We decided to go earlier to MCH to avoid traffic, which gave me even less time to pack my bags.
 
-I signed up for MCH months ago, but I didn't really know what is was exactly. So I dove in. This worked out great, but I still wished I had planned a little bit better. My company paid for the ticket.
+I signed up for MCH months ago, but I didn't really know what is was exactly. So I dove in. This worked out great, but I still wished I had planned a little bit better.
 
-I guess they also sponsor the time off on the days I am at MCH instead of working. I heard from another company that they get two free days and have to take time off if they want to stay longer.
+My company paid for the ticket. I guess they also sponsor the time off on the days I am at MCH instead of working. I heard from another company that they get two free days and have to take time off if they want to stay longer.
 
 I didn't bring a laptop. The laptop from work contains important sensitive information, and bringing that to a hackers camp comes with certain risks. I have a couple of laptops at home, but these are pretty crappy and in varying state of maintenance. I could pick up a clean laptop from work, but then I would have to find time to travel to the office. Also, the laptop and peripherals would add weight to my already heavy luggage, which I had to carry through public transport and over the terrain. Combined with the little time I had to pack my bags, I decided to not bring a laptop. This turned out pretty OK. A laptop was needed for many workshops, and to do the CTFs or any hacking on the badge. But I still had a great time without a laptop.
 
@@ -29,11 +29,13 @@ When looking at the [schedule](https://program.mch2022.org/), it is pretty hard 
 
 ## Travelling there
 
-The terrain is hard to reach by public transport. I drove there with a collegue, who picked me up at the station. We had to make a stop at his house because he forgot the beer, but then we went to the terrain. We waited around 10 minutes to be assigned a spot on the parking place, so it went pretty fast. Already there were helpful people standing around and pointing us in the right place.
+The terrain is hard to reach by public transport. I drove there with a colleague, who picked me up at the station. We had to make a stop at his house because he forgot the beer, but then we went to the terrain. We waited around 10 minutes to be assigned a spot on the parking place, so it went pretty fast. Already there were helpful people standing around and pointing us in the right place.
 
 For parking, you have to buy a parking ticket of €42. There's also a shuttle bus from a train station to the terrain. More on that later.
 
 On arrival, we received a wrist band and [a badge](https://wiki.mch2022.org/Badge). The badge is more like a small computer that you could also hand around your neck, and not really a suitable way to show your name to strangers. It is a great target for hacking, with two microcontrollers and an FPGA. Also, there's an [app store](https://hatchery.badge.team/) where you can download programs to run on the badge.
+
+<a href="https://twitter.com/mattsijansky/status/1551287332485169152/photo/1"><img src="/images/mch-badge-mattsi-jansky.jpeg" style="width: 100%"></a>
 
 ## Setting up
 
@@ -43,17 +45,19 @@ I am not sure about the social economics around Milliways. Some guy was trying t
 
 I brought a tent, some clothes, a hammock, and a chair. My back and I were happy I brought the chair.
 
+<a href="https://twitter.com/mm2342/status/1551152313049415680/photo/1"><img src="/images/mch-milliways-isdoc-hegal.jpeg" style="width: 100%"></a>
+
 ## Meeting people
 
 I am generally a little bit afraid to start conversions with strangers, but at MCH I did my best to do just that. This went well, and it was a relaxed setting to practice this.
 
 ### Diverse and inclusive
 
-There were many different kinds of people at MCH. People with illuminated collanders on their head, crossdressers, stoners, transgender people, nerds, people with a disability, children. Most of the participants are white men, but there seems to be an unusually high amount of queer people. As far as I can tell, these people are treated with respect and feel accepted.
+There were many different kinds of people at MCH. People with illuminated colanders on their head, crossdressers, stoners, transgender people, nerds, people with a disability, children. Most of the participants are white men, but there seems to be an unusually high amount of queer people. As far as I can tell, these people are treated with respect and feel accepted.
 
 ### Ex-colleagues
 
-I met many people I knew from my previous employment. It was like a reunion, it was uncanny. I haven't seen these people for almost two years, but everyone was happy to see each other again. We went to talks together (or baked waffles together), and it was really nice.
+I met many people I knew from my previous employment. It was like a reunion. I haven't seen these people for almost two years, but everyone was happy to see each other again. We went to talks together (or baked waffles together), and it was really nice.
 
 One of my ex-colleagues, Jamie, had a [Flipper](https://flipperzero.one/), and one of his colleagues had a car with a keyfob. So one day we went to the parking lot to try to hack the keyfob. It didn't really work, but when we left all charging ports of all Teslas were open.
 
@@ -63,7 +67,7 @@ Evan was also on the Milliways field. He had his tent in the shade of the trees,
 
 There was one card addressed to Gaelle in Milliways (silent part). Evan asked around in our part (which was not silent), but nobody knew Gaelle. I pointed out that he should ask around in the silent part, but Evan said that anytime he asked around there, people told him to shut up and be silent.
 
-Evan also delivered mail to places where they had a cheese tasting event, or where they made waffles and pancackes. With his mail he could skip the line and get free cheese, waffles and pancakes.
+Evan also delivered mail to places where they had a cheese tasting event, or where they made waffles and pancakes. With his mail he could skip the line and get free cheese, waffles and pancakes.
 
 ### Julia
 
@@ -73,7 +77,7 @@ One time I met her at night, while I was walking pretty bad because of a big bli
 
 ### Brianna
 
-Brianna came from the US, and worked at Atlassian. We talked for a little. Then I got distracted and went somewhere else, but she shouted "Hey, don't go away, come back!" I went back and she introduced me to her collegue (of whom I immediately forgot the name) and we talked some more. I liked the feedback I got from this, that she signalled that she would like to talk to me some more. I opened the conversation, and apparently it was well received.
+Brianna came from the US, and worked at Atlassian. We talked for a little. Then I got distracted and went somewhere else, but she shouted "Hey, don't go away, come back!" I went back and she introduced me to her colleague (of whom I immediately forgot the name) and we talked some more. I liked the feedback I got from this, that she signalled that she would like to talk to me some more. I opened the conversation, and apparently it was well received.
 
 ### Sipke
 
@@ -85,11 +89,11 @@ I forgot his name, and later asked someone. I remembered it by the mnemonic *[li
 
 In the Milliways tent, I talked to a couple of people, of which I didn't get the name. The girl was supposed to write a dissertation on the inconsistency of the [Hubble constant](https://en.wikipedia.org/wiki/Hubble%27s_law) between the early and late universe, but was actually playing [FreeCell](https://en.wikipedia.org/wiki/FreeCell). The guy was first trying to do some Verilog on the FPGA on the badge, but quickly stopped to focus on the conversation. I think I started the conversion just by asking them what they were doing.
 
-At one point I cautiosly asked what his opinion was about blockchain. I said I was a little afraid to ask that, because some people won't shut up again when you ask them about block chain. As soon as I said that, some guy behind me who was apparently listening in said "Yeah, that's so annoying!" and joined the conversation to rant about block chain. Of course this continued for quite some time. Even though everyone agreed that people talking continuously about block chain are annoying, these people wouldn't stop complaining about block chain. At some I abruptly asked if they had any other hobbies, at which the conversation went away from block chain and onto photography, scouting, microwave background radiation and the expansion of the universe, and more such light conversation.
+At one point I cautiously asked what his opinion was about blockchain. I said I was a little afraid to ask that, because some people won't shut up again when you ask them about block chain. As soon as I said that, some guy behind me who was apparently listening in said "Yeah, that's so annoying!" and joined the conversation to rant about block chain. Of course this continued for quite some time. Even though everyone agreed that people talking continuously about block chain are annoying, these people wouldn't stop complaining about block chain. At some I abruptly asked if they had any other hobbies, at which the conversation went away from block chain and onto photography, scouting, microwave background radiation and the expansion of the universe, and more such light conversation topics.
 
 ### Current colleagues
 
-We went to MCH with several collegues. I still learned new things from them while talking to them at MCH, some of them relevant for work. On a hacker camp you can learn from people from all over the world, but also from your co-worker. Besides, it is nice to get to know people outside of work, in a relaxed setting.
+We went to MCH with several colleagues. I still learned new things from them while talking to them at MCH, some of them relevant for work. On a hacker camp you can learn from people from all over the world, but also from your co-worker. Besides, it is nice to get to know people outside of work, in a relaxed setting.
 
 ### Dutch people
 
@@ -97,7 +101,7 @@ There are people from all over the world, and when talking to strangers you ofte
 
 ## Becoming the waffle people
 
-There was a [waffle tent](https://wiki.mch2022.org/Projects:Waffles), where people baked and gave out waffles. It was suggested that you gave a €2 donation per waffle, but that was not obligatory. When we went there, the tent was empty. The guy normally baking the waffles in the tent was now baking waffles somewhere else (on the ferry?). We went ahead and just baked our own waffles. While we were busy making waffles, people lined up before the tent, waiting until they could buy a waffle. They thought we were running the place, while we were just hungry people figuring out how to make waffles.
+There was a [waffle tent](https://wiki.mch2022.org/Projects:Waffles), where people baked and gave out waffles. It was suggested that you gave a €2 donation per waffle, but that was not obligatory. When we went there, the tent was empty. The guy normally baking the waffles in the tent was now baking waffles somewhere else ([on the ferry](https://twitter.com/C3WOC/status/1551535094518661122)). We went ahead and just baked our own waffles. While we were busy making waffles, people lined up before the tent, waiting until they could buy a waffle. They thought we were running the place, while we were just hungry people figuring out how to make waffles.
 
 Anyway, we spent more than an hour baking waffles for many people. We figured everything out ourselves and quickly became waffle experts, and sold waffles to like a hundred people. We recruited some new volunteers from the line to take over. After that we really smelled like waffles and were a little bit sick of the smell.
 
@@ -109,7 +113,7 @@ MCH is for the most part organized by [volunteers](https://wiki.mch2022.org/Volu
 
 ## Marketing
 
-There was very little marketing on MCH. There were strict rules about marketing, in such an extent that you couldn't even see which company a tent belonged to. There were no marketing stands, so typical of other conferences. Speakers would mention which company they were from, but generally not hold an selling speech, with one or two exceptions.
+There was very little marketing on MCH. There were no company logo's shown, no flags or banners, and no sales stands. There were strict rules about marketing, in such an extent that you couldn't even see which company a tent belonged to. There were no marketing stands, so typical of other conferences. Speakers would mention which company they were from, but generally not hold an selling speech, with one or two exceptions.
 
 ## Health
 
@@ -125,7 +129,7 @@ Several people self-tested positive for COVID and had to go home. People were en
 
 ## Terrain
 
-The terrain spands hundreds of meters in either direction. It is mostly grass fields, with concrete and gravel roads in between.
+The terrain spans hundreds of meters in either direction. It is mostly grass fields, with concrete and gravel roads in between.
 
 Most people walk around, and you can easily walk about ten kilometers in a day. Some people have a bicycle, which works well. Transport of goods is done with utility vehicles (Gators).
 
@@ -140,6 +144,8 @@ The terrain is owned by [Scouting](https://scoutinglandgoed.nl/). There were als
 Someone asked me if we scared away the scouts, because many left on Saturday. But I figured that is just a typical day to start or end the summer camp for scouts.
 
 Everything was in tents. There is a building on the terrain, but that was not available to us. You could request a [cardboard tent](https://shop.kartent.com/en/kartent.html) to sleep in, which worked surprisingly well. Tents get pretty warm in the sun, and the MCH people advise to bring a [space blanket](https://en.wikipedia.org/wiki/Space_blanket) to protect your tent from the sun. This works well against the sun, but when it is windy this makes a lot of noise.
+
+<a href="https://twitter.com/milliways2342/status/1551462195334086656/photo/1"><img src="/images/mch-terrain-overview-milliways.jpeg" style="width: 100%"></a>
 
 ## Facilities
 
@@ -159,7 +165,7 @@ The food court also had a little supermarket, where you could get food that you 
 
 There were talks, workshops, parties, stands where you could just drop by and do something, and CTFs and badge hacking which you could do on your own laptop.
 
-The [schedule](https://program.mch2022.org/) shows which events are when and where. Occasionally the schedule changes. I wasn't always aware of this, and two times I was at the wrong tent or at the wrong time to attend the event, because the schedule was changed.
+The [schedule](https://program.mch2022.org/) shows which events are when and where. Occasionally the schedule changed. I wasn't always aware of this, and two times I was at the wrong tent or at the wrong time to attend the event, because the schedule was changed.
 
 Many of these events were technical, about hacking, infosec and computers. But there were also many non-technical talks, or on the intersection of infosec and another subject. There were talks on climate change, maps, and mental health. Workshops covered public speaking, balloon folding or making dough figurines.
 
@@ -167,9 +173,11 @@ The talks and workshops were held in large tents. Sometimes it got uncomfortably
 
 The party on the main stage was always heavy on lasers and flame throwers. One night there was also a performance with tesla coils and flame throwers, which was spectacular.
 
-<a href="https://twitter.com/jakeblau/status/1551632097709883397/photo/2"><img src="/images/mch-flamethrowers-lasers-by-Sebastian-Humbek-jakeblau.webp" style="width: 100%"></a>
+<a href="https://twitter.com/jakeblau/status/1551632097709883397/photo/2"><img src="/images/mch-flamethrowers-lasers-by-Sebastian-Humbek-jakeblau.webp" style="width: 100%" alt="Main stage with lasers and flame throwers"></a>
 
-One group of flamethrowers had buttons that you could press yourself to trigger the flamethrowers. That was exciting. If you hit them just right they would make a noise like a fog horn. Perhaps that inspired someone, because next day there was an actual horn, that you could trigger by calling an interal phone number.
+<img src="/images/mch-sjoerd-triggering-flamethrowers.jpeg" style="width: 66.7%" alt="Me triggering flamethrowers, photo by Evan">
+
+One group of flamethrowers had buttons that you could press yourself to trigger the flamethrowers. That was exciting. If you hit them just right they would make a noise like a fog horn. Perhaps that inspired someone, because next day there was an actual horn, that you could trigger by calling an internal phone number.
 
 Besides the official events, villages would also organize events such as talks, workshops and parties. I attended a talk in the Deloitte tent, and danced wildly at a [Geraffel](https://wiki.geraffel-village.de/doku.php) party. Another village had an 80s party, and a charity auction which brought up at least €1500 for Ukraine. The Italian neighbours would have a [grappa](https://en.wikipedia.org/wiki/Grappa)-tasting party every night. I tasted grappa infused with hot peppers there, which was a strange sensation.
 
@@ -195,8 +203,11 @@ I was on MCH from Thursday till Tuesday. This is kind-of the full period of the 
 
 * Before the event, look up speakers on the internet, so you know before the event which talks are interesting and which speakers are good.
 * Subscribe to a village and contribute to that village. Bring food, buy a coin, volunteer to do the dishes.
-* Bring a hammock to chill out in the shade.
 * Volunteer as an angel to or on a team to help organize the event.
+* Generally, help more people.
+* Talk to more people.
+* Bring a hammock to chill out in the shade.
 * Bring better shoes.
-* Bring a normal badge with your name on it, that's confortable to wear.
+* Bring a normal badge with your name on it, that's comfortable to wear.
 * Also indicate on your badge or otherwise that you speak Dutch.
+* Take more pictures.
