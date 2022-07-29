@@ -204,7 +204,7 @@ The workshop would have been about using automated tools to scan thousands of we
 * &#9733; &#9733; &#9733; &#9733; &#9734;
 * [talk description](https://program.mch2022.org/mch2022/talk/DCTJDE/)
 * [video recording](https://media.ccc.de/v/mch2022-235-project-tempa-demystifying-tesla-s-bluetooth-passive-entry-system)
-* [Tesla Radar | Bluetooth Tesla Tracker App](https://www.teslaradar.com/#body)
+* [Tesla Radar](https://www.teslaradar.com/#body)
 
 Hacking Teslas. Tesla has several ways to open and drive the car, such as NFC card and phone presence. Technical talks with some cool hacks.
 
