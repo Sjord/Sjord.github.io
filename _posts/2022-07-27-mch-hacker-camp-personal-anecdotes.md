@@ -19,11 +19,11 @@ In July 2022 I went to [MCH](https://mch2022.org/#/), which is an outdoor hacker
 
 I did not prepare properly. I had my own vacation just before MCH, during which I didn't bother reading the MCH wiki or schedule. Then I had a busy week. We decided to go earlier to MCH to avoid traffic, which gave me even less time to pack my bags.
 
-I signed up for MCH months ago, but I didn't really know what is was exactly. So I dove in. This worked out great, but I still wished I had planned a little bit better.
+I signed up for MCH months ago, but I didn't really know what is was. So I dove in. This worked out great, but I still wished I had planned a little bit better.
 
 My company paid for the ticket. I guess they also sponsor the time off on the days I am at MCH instead of working. I heard from another company that they get two free days and have to take time off if they want to stay longer.
 
-I didn't bring a laptop. The laptop from work contains important sensitive information, and bringing that to a hackers camp comes with certain risks. I have a couple of laptops at home, but these are pretty crappy and in varying state of maintenance. I could pick up a clean laptop from work, but then I would have to find time to travel to the office. Also, the laptop and peripherals would add weight to my already heavy luggage, which I had to carry through public transport and over the terrain. Combined with the little time I had to pack my bags, I decided to not bring a laptop. This turned out pretty OK. A laptop was needed for many workshops, and to do the CTFs or any hacking on the badge. But I still had a great time without a laptop.
+I didn't bring a laptop. The laptop from work contains important sensitive information, and bringing that to a hackers camp comes with certain risks. I have a couple of laptops at home, but these are pretty crappy and in varying state of maintenance. I could pick up a clean laptop from work, but then I would have to find time to travel to the office. Also, the laptop and peripherals would add weight to my already heavy luggage, which I had to carry through public transport and over the terrain. Combined with the little time I had to pack my bags, I decided to not bring a laptop. This turned out pretty OK. A laptop was needed for some workshops, and to do the CTFs or any hacking on the badge. But I still had a great time without a laptop.
 
 When looking at the [schedule](https://program.mch2022.org/), it is pretty hard to judge which talks are good and which are mediocre. It helps to look up speakers before the event. By looking at their publications about what they have hacked, and perhaps on YouTube to hear whether they speak well, it is a bit easier to pick out the nice talks.
 
@@ -33,7 +33,7 @@ The terrain is hard to reach by public transport. I drove there with a colleague
 
 For parking, you have to buy a parking ticket of €42. There's also a shuttle bus from a train station to the terrain. More on that later.
 
-On arrival, we received a wrist band and [a badge](https://wiki.mch2022.org/Badge). The badge is more like a small computer that you could also hand around your neck, and not really a suitable way to show your name to strangers. It is a great target for hacking, with two microcontrollers and an FPGA. Also, there's an [app store](https://hatchery.badge.team/) where you can download programs to run on the badge.
+On arrival, we received a wrist band and [a badge](https://wiki.mch2022.org/Badge). The badge is more like a small computer that you could also hang around your neck, and not really a suitable way to show your name to strangers. It is a great target for hacking, with two microcontrollers and an FPGA. Also, there's an [app store](https://hatchery.badge.team/) where you can download programs to run on the badge.
 
 <a href="https://twitter.com/mattsijansky/status/1551287332485169152/photo/1"><img src="/images/mch-badge-mattsi-jansky.jpeg" style="width: 100%"></a>
 
@@ -41,7 +41,7 @@ On arrival, we received a wrist band and [a badge](https://wiki.mch2022.org/Badg
 
 There are several "villages" on the camp site, and we joined [Milliways](https://wiki.milliways.info/index.php?title=Main_Page). The village provides a community tent, food and drinks. Villages are assigned to an area, and I set up my tent in this area.
 
-I am not sure about the social economics around Milliways. Some guy was trying to get me to buy a coin for €25, more or less in exchange for the food and drinks. My company paid for a grocery run, so that we also contributed something to the village. I checked with a colleague of mine that we weren't freeloading, and apparently we weren't. But I am still not quite sure how it works.
+I am not sure about the social economics around Milliways. Some guy was trying to get me to buy a coin for €25, more or less in exchange for the food and drinks. My company paid for a grocery run, so that we also contributed something to the village. I checked with a colleague that we weren't freeloading, and apparently we weren't. But I am still not quite sure how it works.
 
 I brought a tent, some clothes, a hammock, and a chair. My back and I were happy I brought the chair.
 
@@ -63,11 +63,11 @@ One of my ex-colleagues, Jamie, had a [Flipper](https://flipperzero.one/), and o
 
 ### Evan
 
-Evan was also on the Milliways field. He had his tent in the shade of the trees, and I guess we met him because we went there to sit in the shade when it was very hot. Evan is originally from the US, which is most apparent when he asks "How are you doing?" without waiting for a reply. He did many hours of volunteering for the [Chaos Post](https://wiki.mch2022.org/Village:Chaos_Post), as a mailman. He cycled around the terrain to deliver postcards. Due to lack of addresses this was pretty hard sometimes.
+Evan was also on the Milliways field. He had his tent in the shade of the trees, and I guess we met him when we went to sit in the shade when it was very hot. Evan is originally from the US, which is most apparent when he asks "How are you doing?" without waiting for a reply. He did many hours of volunteering for the [Chaos Post](https://wiki.mch2022.org/Village:Chaos_Post), as a mailman. He cycled around the terrain to deliver postcards. Due to lack of addresses this was pretty hard sometimes.
 
 There was one card addressed to Gaelle in Milliways (silent part). Evan asked around in our part (which was not silent), but nobody knew Gaelle. I pointed out that he should ask around in the silent part, but Evan said that anytime he asked around there, people told him to shut up and be silent.
 
-Evan also delivered mail to places where they had a cheese tasting event, or where they made waffles and pancakes. With his mail he could skip the line and get free cheese, waffles and pancakes.
+Evan also delivered mail to places where they had a cheese tasting event, or where they made waffles and pancakes. With his mail he could skip the line and get free cheese, waffles and pancakes. This seemed to be a big motivating factor to him to keep delivering mail.
 
 ### Julia
 
@@ -87,7 +87,7 @@ I forgot his name, and later asked someone. I remembered it by the mnemonic *[li
 
 ### Jeffrey & Heather
 
-In the Milliways tent, I talked to a couple of people, of which I didn't get the name. The girl was supposed to write a dissertation on the inconsistency of the [Hubble constant](https://en.wikipedia.org/wiki/Hubble%27s_law) between the early and late universe, but was actually playing [FreeCell](https://en.wikipedia.org/wiki/FreeCell). The guy was first trying to do some Verilog on the FPGA on the badge, but quickly stopped to focus on the conversation. I think I started the conversion just by asking them what they were doing.
+In the Milliways tent, I talked to a couple of people, of which I didn't get the name. The girl was supposed to write a dissertation on the inconsistency of the [Hubble constant](https://en.wikipedia.org/wiki/Hubble%27s_law) between the early and late universe, but was actually playing [FreeCell](https://en.wikipedia.org/wiki/FreeCell). The guy was first trying to do some Verilog on the FPGA on the badge, but quickly stopped to focus on the conversation. I think I started the conversation just by asking them what they were doing.
 
 At one point I cautiously asked what his opinion was about blockchain. I said I was a little afraid to ask that, because some people won't shut up again when you ask them about block chain. As soon as I said that, some guy behind me who was apparently listening in said "Yeah, that's so annoying!" and joined the conversation to rant about block chain. Of course this continued for quite some time. Even though everyone agreed that people talking continuously about block chain are annoying, these people wouldn't stop complaining about block chain. At some I abruptly asked if they had any other hobbies, at which the conversation went away from block chain and onto photography, scouting, microwave background radiation and the expansion of the universe, and more such light conversation topics.
 
@@ -105,7 +105,7 @@ There was a [waffle tent](https://wiki.mch2022.org/Projects:Waffles), where peop
 
 Anyway, we spent more than an hour baking waffles for many people. We figured everything out ourselves and quickly became waffle experts, and sold waffles to like a hundred people. We recruited some new volunteers from the line to take over. After that we really smelled like waffles and were a little bit sick of the smell.
 
-We also made new batter according to the recipe on the [C3 Waffel Operation Center](https://c3woc.de/), which clearly says to add a bottle of Club-Mate.
+We also made new batter according to the recipe on the [C3 Waffel Operation Center](https://c3woc.de/), which clearly says to add a bottle of [Club-Mate](https://en.wikipedia.org/wiki/Club-Mate).
 
 ## Organization
 
@@ -113,7 +113,7 @@ MCH is for the most part organized by [volunteers](https://wiki.mch2022.org/Volu
 
 ## Marketing
 
-There was very little marketing on MCH. There were no company logo's shown, no flags or banners, and no sales stands. There were strict rules about marketing, in such an extent that you couldn't even see which company a tent belonged to. There were no marketing stands, so typical of other conferences. Speakers would mention which company they were from, but generally not hold an selling speech, with one or two exceptions.
+There was very little marketing on MCH. There were no company logo's shown, no flags or banners. There were strict rules about marketing, in such an extent that you couldn't even see which company a tent belonged to. There were no marketing stands, so typical of other conferences. Speakers would mention which company they were from, but generally not hold an selling speech, with one or two exceptions.
 
 ## Health
 
@@ -131,7 +131,7 @@ Several people self-tested positive for COVID and had to go home. People were en
 
 The terrain spans hundreds of meters in either direction. It is mostly grass fields, with concrete and gravel roads in between.
 
-Most people walk around, and you can easily walk about ten kilometers in a day. Some people have a bicycle, which works well. Transport of goods is done with utility vehicles (Gators).
+Most people get around by walking, and you can easily walk about ten kilometers in a day. Some people have a bicycle, which works well. Transport of goods is done with utility vehicles (Gators).
 
 I walked around with a backpack containing essentials such as a water bottle, sun screen, hat, phone charger, map, and snacks. It was a little bit of a hassle to keep carrying this around, but it also meant that you wouldn't have to walk a kilometer to your tent and back just to get your sunscreen.
 
@@ -159,13 +159,13 @@ You could get food at your own village, or on the food court. In the villages, p
 
 The food court consisted of food trucks and stands, but these were not really designed to feed everyone on MCH. They opened during the afternoon, just a little bit too late for lunch. During the warmest days, they had to close in the afternoon because it was too warm in the stand to cook food. Sometimes they were open, but were still busy preparing the food and had nothing to serve. So this was a little bit unreliable.
 
-The food court also had a little supermarket, where you could get food that you needed to prepare yourself.
+The food court also had a little supermarket, where you could get food that you could prepare yourself.
 
 ## Events
 
 There were talks, workshops, parties, stands where you could just drop by and do something, and CTFs and badge hacking which you could do on your own laptop.
 
-The [schedule](https://program.mch2022.org/) shows which events are when and where. Occasionally the schedule changed. I wasn't always aware of this, and two times I was at the wrong tent or at the wrong time to attend the event, because the schedule was changed.
+The [schedule](https://program.mch2022.org/) showed which events are when and where. Occasionally the schedule changed. I wasn't always aware of this, and two times I was at the wrong tent or at the wrong time to attend the event, because the schedule had changed.
 
 Many of these events were technical, about hacking, infosec and computers. But there were also many non-technical talks, or on the intersection of infosec and another subject. There were talks on climate change, maps, and mental health. Workshops covered public speaking, balloon folding or making dough figurines.
 
@@ -181,9 +181,9 @@ One group of flamethrowers had buttons that you could press yourself to trigger 
 
 Besides the official events, villages would also organize events such as talks, workshops and parties. I attended a talk in the Deloitte tent, and danced wildly at a [Geraffel](https://wiki.geraffel-village.de/doku.php) party. Another village had an 80s party, and a charity auction which brought up at least €1500 for Ukraine. The Italian neighbours would have a [grappa](https://en.wikipedia.org/wiki/Grappa)-tasting party every night. I tasted grappa infused with hot peppers there, which was a strange sensation.
 
-The hardware hacking spot had a bus with a workshop in it. In the harbour was [a barge](https://www.serendiep.nl/en/ship) with a theater a a maker space in it.
+The hardware hacking spot had a bus with a workshop in it. In the harbour was [a barge](https://www.serendiep.nl/en/ship) with a theater and a maker space in it.
 
-In the tents in the back of the terrain it was possible to play video games. I played Bomberman (won), Quake II (ended up with score -9), and a Japanese game where you had to hit drums at the right time (quit).
+In the tents in the back of the terrain it was possible to play video games. I played Bomberman (won), Quake II (lost), and a Japanese game where you had to hit drums at the right time (quit).
 
 There were all kinds of crazy devices all over the terrain. Someone combines his cardboard tent with a go-cart, and could now drive his cardboard tent over the terrain.
 
@@ -210,4 +210,4 @@ I was on MCH from Thursday till Tuesday. This is kind-of the full period of the 
 * Bring better shoes.
 * Bring a normal badge with your name on it, that's comfortable to wear.
 * Also indicate on your badge or otherwise that you speak Dutch.
-* Take more pictures.
+* Take more pictures. All of the pictures shown above are from Twitter or from other people.

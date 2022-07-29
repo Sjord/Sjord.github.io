@@ -7,6 +7,8 @@ date: 2022-07-29
 
 I followed about 15 talks and workshops on the MCH 2022 hacker camp. This post briefly describes each talk, my opinion on it, and key points.
 
+There's also [a post about my personal experiences on MCH](/2022/07/29/mch-hacker-camp-personal-anecdotes/).
+
 <!-- Photo source: https://pixabay.com/photos/speaker-talk-woman-microphone-6377629/ -->
 
 ## ⚠️ May Contain Hackers 2022 Opening
@@ -94,7 +96,7 @@ One attack method was to just replace the phone app by a malicious app that look
 
 I was walking around on the terrain, and a talk was going on about locks inside a tent. I stepped in and attended this talk for a while, but I missed the first 20 minutes or so.
 
-The speaker has many electronic locks, where the weak spot is often in the physical field. By hitting locks, placing a magnet on them, or by using a hammer drill, they open multiple electronic locks in a manner that looks way too easy.
+The speaker had many electronic locks, where the weak spot is often in the physical field. By hitting locks with a hammer, placing a magnet on them, or by using a hammer drill, they open multiple electronic locks in a manner that looks way too easy.
 
 This was particularly a lesson to keep the end goal in sight. If you see an electronic lock, your first thought may be to hack the electronics. But the end goal is to get the door open, and that is achieved much easier with physical means.
 
@@ -202,6 +204,7 @@ The workshop would have been about using automated tools to scan thousands of we
 * &#9733; &#9733; &#9733; &#9733; &#9734;
 * [talk description](https://program.mch2022.org/mch2022/talk/DCTJDE/)
 * [video recording](https://media.ccc.de/v/mch2022-235-project-tempa-demystifying-tesla-s-bluetooth-passive-entry-system)
+* [Tesla Radar | Bluetooth Tesla Tracker App](https://www.teslaradar.com/#body)
 
 Hacking Teslas. Tesla has several ways to open and drive the car, such as NFC card and phone presence. Technical talks with some cool hacks.
 
@@ -217,7 +220,9 @@ Another example is that Teslas emit a Bluetooth signal that identifies the card,
 
 A talk about SAML, OAuth and OpenID. Some interesting attack scenarios, like login CSRF and malicious service providers.
 
-SSO works with three systems that communicate, and OpenID and SAML use conflicting and confusing terms for these systems. This makes the protocol and the talk confusing.
+SSO works with three systems that communicate, and OpenID and SAML use conflicting and confusing terms for these systems. Specifically, OAuth uses the term "client" for the web app, instead of for the end user. This makes the protocol and the talk a little confusing.
+
+This talk also mentions PKCE, which helps to protect the authorization flow in mobile apps. This was new to me.
 
 I had hoped to gain more information about how to check the actual tokens. JWTs contain fields like `exp`, `aud`, `iat`, etc. Should the application check these? This was given no attention.
 
