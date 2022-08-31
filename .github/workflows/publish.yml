@@ -1,4 +1,7 @@
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: 37 11 * * 3
 jobs:
   build:
     runs-on: ubuntu-latest
