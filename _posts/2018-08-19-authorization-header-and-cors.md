@@ -49,7 +49,7 @@ You need three things:
 
 ## Test it out
 
-On the [demo page](http://demo.sjoerdlangkemper.nl/auth/fetch.html) you can perform cross-origin requests using different request and response headers.
+On the [demo page](https://demo.sjoerdlangkemper.nl/auth/fetch.html) you can perform cross-origin requests using different request and response headers.
 
 ## Conclusion
 
