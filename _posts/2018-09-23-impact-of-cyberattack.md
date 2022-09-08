@@ -132,13 +132,13 @@ Although numbers vary on how much they cost exactly, we can conclude that hacks 
 
 ## Read more
 
-1. [The Economic Impact of Cyber-Attacks](http://www.au.af.mil/au/awc/awcgate/crs/rl32331.pdf)
+1. [The Economic Impact of Cyber-Attacks](https://sgp.fas.org/crs/misc/RL32331.pdf)
 1. [What is the Impact of Successful Cyberattacks on Target Firms?](https://www.nber.org/papers/w24409)
 1. [The Inside Story of Mt. Gox, Bitcoin's $460 Million Disaster](https://www.wired.com/2014/03/bitcoin-exchange/)
 1. [The Untold Story of NotPetya, the Most Devastating Cyberattack in History](https://www.wired.com/story/notpetya-cyberattack-ukraine-russia-code-crashed-the-world/)
 1. [Foreign spies stealing US economic secrets in cyberspace](https://www.dni.gov/files/documents/Newsroom/Reports%20and%20Pubs/20111103_report_fecie.pdf)
-1. [Cybersecurity risks: are they inflated?](http://www.salusjournal.com/wp-content/uploads/sites/29/2016/05/Salus_Journal_Volume_4_Number_2_2016.pdf)
-1. [Classified report on Bureau of Meteorology cyber attack recommends computer system overhaul](http://www.abc.net.au/news/2015-12-03/report-on-bom-cyber-attack-recommends-it-overhaul/6997832)
+1. [Cybersecurity risks: are they inflated?](https://salusjournal.com/wp-content/uploads/2016/05/Chrapavy_Salus_Journal_Volume_4_Number_2_2016_pp_19-31.pdf)
+1. [Classified report on Bureau of Meteorology cyber attack recommends computer system overhaul](https://www.abc.net.au/news/2015-12-03/report-on-bom-cyber-attack-recommends-it-overhaul/6997832)
 1. [The impact of cybercrime on businesses](https://www.researchgate.net/profile/Letizia_Paoli/publication/325120529_The_impact_of_cybercrime_on_businesses_A_novel_conceptual_framework_and_its_application_to_Belgium/links/5af96b1e0f7e9b026bf73418/The-impact-of-cybercrime-on-businesses-A-novel-conceptual-framework-and-its-application-to-Belgium.pdf)
 1. [2018 Cost of a Data Breach Study](https://www.intlxsolutions.com/hubfs/2018_Global_Cost_of_a_Data_Breach_Report.pdf)
 1. [Measuring the Economic Effects of Data Breaches on Firm
@@ -149,7 +149,7 @@ Outcomes: Challenges and Opportunities](https://papers.ssrn.com/sol3/papers.cfm?
 1. [Cyber security breaches survey 2018](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/702074/Cyber_Security_Breaches_Survey_2018_-_Main_Report.pdf)
 1. [The Hiscox Cyber Readiness Report 2017](https://www.hiscox.co.uk/cyber-readiness-report/docs/cyber-readiness-report-2017.pdf)
 1. [Uber will pay $148 million for 2016 data breach coverup](https://www.engadget.com/2018/09/26/uber-pay-148-million-2016-data-breach-coverup/)
-1. [How much do data breaches cost big companies? Shockingly little](http://fortune.com/2015/03/27/how-much-do-data-breaches-actually-cost-big-companies-shockingly-little/)
+1. [How much do data breaches cost big companies? Shockingly little](https://fortune.com/2015/03/27/how-much-do-data-breaches-actually-cost-big-companies-shockingly-little/)
 1. [Target 2013 Annual Report](https://corporate.target.com/_media/TargetCorp/annualreports/content/download/pdf/Target-2013-Annual-Report.pdf?ext=.pdf)
 1. [Equifax breach could be most costly in corporate history](https://www.reuters.com/article/us-equifax-cyber/equifax-breach-could-be-most-costly-in-corporate-history-idUSKCN1GE257)
 1. [Massive data breach has cost Equifax nearly $90 million](https://phys.org/news/2017-11-massive-breach-equifax-million.html)

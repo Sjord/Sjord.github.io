@@ -25,11 +25,11 @@ In order to exploit this we need to trigger a AJAX request to a JavaScript file 
 
 However, with the introduction of [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) it is possible to selectively disable the same-origin policy. This opt-in policy only allows whitelisted domains to do cross-origin requests. However, the attacker's site with his malicious script can opt-in and allow a cross-site request from the site doing the AJAX request. This means that the same-origin policy no longer protects against cross-site script execution.
 
-**Try it:** Open [a site with an old version of jQuery](http://jquery.com/), and type the following in the browser console:
+**Try it:** Open [a site with an old version of jQuery](https://jquery.com/), and type the following in the browser console:
 
-    jQuery.get('http://demo.sjoerdlangkemper.nl/cors.php')
+    jQuery.get('https://demo.sjoerdlangkemper.nl/cors.php')
 
-[That URL](http://demo.sjoerdlangkemper.nl/cors.php) will return JavaScript using the correct content type and CORS headers. jQuery will immediately evaluate the JavaScript and show an alert.
+[That URL](https://demo.sjoerdlangkemper.nl/cors.php) will return JavaScript using the correct content type and CORS headers. jQuery will immediately evaluate the JavaScript and show an alert.
 
 ## Same-origin mitigation
 
@@ -56,8 +56,8 @@ When using a library to do AJAX requests, explicitly disable evaluation of JavaS
 ## Read more
 
 * [Should you update jQuery over a hypothetical vulnerability?](/2018/10/24/should-you-update-jquery/)
-* [CVE-2008-7220: Unspecified vulnerability in Prototype JavaScript framework](http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2008-7220)
-* [Prototype 1.6.0.2: Bug fixes, performance improvements, and security](http://web.archive.org/web/20080128133717/http://prototypejs.org/2008/1/25/prototype-1-6-0-2-bug-fixes-performance-improvements-and-security)
+* [CVE-2008-7220: Unspecified vulnerability in Prototype JavaScript framework](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-7220)
+* [Prototype 1.6.0.2: Bug fixes, performance improvements, and security](https://web.archive.org/web/20080128133717/http://prototypejs.org/2008/1/25/prototype-1-6-0-2-bug-fixes-performance-improvements-and-security)
 * [prototype: Prevent a potential security issue for cross-site ajax requests](https://github.com/sstephenson/prototype/commit/02cc9992e915c024650ddc77a91064f7a4252914)
 * [#2432: Inadequate/dangerous jQuery behavior for 3rd party text/javascript responses](https://github.com/jquery/jquery/issues/2432)
 * [mootools class Request.HTML](https://mootools.net/core/docs/1.6.0/Request/Request.HTML)

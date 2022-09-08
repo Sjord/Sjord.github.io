@@ -13,7 +13,7 @@ Clickjacking occurs due to a lack of display integrity: there is an element on t
 
 This is typically done using iframes, because iframes make it possible for input actions to perform something that the attacker's site can not: do cross-origin requests with the user's cookies. Although iframes are not the cause of clickjacking, they are a useful tool and a typical solution to protect against clickjacking is to refuse the page to load in an iframe.
 
-This is a bit of a hack, because iframes are actually useful sometimes and they are not the cause of the problem. A better solution would to establish display integrity, for example by requiring elements to be fully visible to receive input. Dan Kaminsky [presented a solution](http://www.slideshare.net/dakami/i-want-these-bugs-off-my-internet-51423044) on Defcon 23, and the W3C is [working on a standard](https://dvcs.w3.org/hg/user-interface-safety/raw-file/tip/user-interface-safety.html) to ensure display integrity.
+This is a bit of a hack, because iframes are actually useful sometimes and they are not the cause of the problem. A better solution would to establish display integrity, for example by requiring elements to be fully visible to receive input. Dan Kaminsky [presented a solution](https://www.slideshare.net/dakami/i-want-these-bugs-off-my-internet-51423044) on Defcon 23, and the W3C is [working on a standard](https://dvcs.w3.org/hg/user-interface-safety/raw-file/tip/user-interface-safety.html) to ensure display integrity.
 
 Refusing to load in an iframe is still an effective way to avoid clickjacking, because many sites have no legitimate use to be loaded in an iframe. Therefore we will look further into the headers that control this behavior.
 
@@ -26,7 +26,7 @@ There are two headers that control iframe loading:
 
 Both headers have parameters that makes it possible to block framing altogether, allow it only from within the same site, or allow it from another site.
 
-The `X-Frame-Options` header was never standardized, but it is currently supported in more browsers than the `frame-ancestors` directive. `X-Frame-Options` is supported from Internet Explorer 8 on, whereas `frame-ancestors` is [currently not supported](http://caniuse.com/#feat=contentsecuritypolicy2) in any Microsoft browser.
+The `X-Frame-Options` header was never standardized, but it is currently supported in more browsers than the `frame-ancestors` directive. `X-Frame-Options` is supported from Internet Explorer 8 on, whereas `frame-ancestors` is [currently not supported](https://caniuse.com/contentsecuritypolicy2) in any Microsoft browser.
 
 These headers kindly request the browser to not display the page in an iframe. The HTTP request is still done, but the resulting web page is not displayed in the iframe, and the browser typically gives an error message in the console:
 

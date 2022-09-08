@@ -55,7 +55,7 @@ This data is base64 encoded and is the part before the first dot of any JWT. The
 
 #### Try it
 
-Go to [this HS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/hs256.php) that provides a HS256 signed token. [Decode](https://jwt.io/) the header and change the algorithm to `none`. Remove the signature, but leave the last dot. Send it to the demo page and check whether the token is accepted.
+Go to [this HS256 demo page](https://demo.sjoerdlangkemper.nl/jwtdemo/hs256.php) that provides a HS256 signed token. [Decode](https://jwt.io/) the header and change the algorithm to `none`. Remove the signature, but leave the last dot. Send it to the demo page and check whether the token is accepted.
 
 #### Changing the algorithm from RS256 to HS256
 
@@ -69,7 +69,7 @@ If the JWT uses asymmetric RS256, this correctly verifies the signature on the t
 
 #### Try it
 
-Go to [this RS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/rs256.php). You get a RS256 signed token. Create a new token, set the algorithm to HS256 and sign it with the [public key](http://demo.sjoerdlangkemper.nl/jwtdemo/public.pem). Verify that the key is accepted.
+Go to [this RS256 demo page](https://demo.sjoerdlangkemper.nl/jwtdemo/rs256.php). You get a RS256 signed token. Create a new token, set the algorithm to HS256 and sign it with the [public key](https://demo.sjoerdlangkemper.nl/jwtdemo/public.pem). Verify that the key is accepted.
 
 #### Read more
 
@@ -103,7 +103,7 @@ John has a size limit on the data it will take. If you run into this limit, cons
 
 #### Try it
 
-Obtain a JWT from the [HS256 demo page](http://demo.sjoerdlangkemper.nl/jwtdemo/hs256.php). Use one of the above tools to crack the secret. Then, create your own token and sign it with the discovered secret key.
+Obtain a JWT from the [HS256 demo page](https://demo.sjoerdlangkemper.nl/jwtdemo/hs256.php). Use one of the above tools to crack the secret. Then, create your own token and sign it with the discovered secret key.
 
 ## Conclusion
 

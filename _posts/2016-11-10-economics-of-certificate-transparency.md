@@ -37,7 +37,7 @@ Unlike other features, not all browsers have to implement certificate transparen
 
 Implementing this all of a sudden would cause major problems with hundreds of certificate authorities and millions of existing certificates, which is why Google wants to implement this incrementally. Currently, certificate transparency is mandatory for EV certificates. There are a limited number of companies that issue EV certificates, making it somewhat easy to make them cooperate on certificate transparency.
 
-In reaction to the [Symantec problem](http://arstechnica.com/security/2015/10/still-fuming-over-https-mishap-google-gives-symantec-an-offer-it-cant-refuse/) in 2015, Google also required all Symantec certificates to be submitted to the public log book. Because they screwed up, Symantec was put under close scrutiny. All certificates Symantec issues can be viewed in a public log. Again, Google could pressure Symantec into implementing this because Google has control over which certificates Chrome trusts.
+In reaction to the [Symantec problem](https://arstechnica.com/information-technology/2015/10/still-fuming-over-https-mishap-google-gives-symantec-an-offer-it-cant-refuse/) in 2015, Google also required all Symantec certificates to be submitted to the public log book. Because they screwed up, Symantec was put under close scrutiny. All certificates Symantec issues can be viewed in a public log. Again, Google could pressure Symantec into implementing this because Google has control over which certificates Chrome trusts.
 
 The next step is to have certificate transparency for all certificates. This is not easy, because there are so many companies that issue certificates, and there are many existing certificates used for all kinds of things.
 

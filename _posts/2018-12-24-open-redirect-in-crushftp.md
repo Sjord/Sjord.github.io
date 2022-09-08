@@ -26,7 +26,7 @@ This does not redirect to another domain, so no redirect vulnerability here.
 
 ## Looking at the source
 
-CrushFTP is written in Java, which is easy to [decompile](http://jd.benow.ca/). If we decompile the crushftp.jar file we find a sendRedirect method in the ServerSessionHTTP class. This redirects the browser to a page specified by a parameter. We want to find a place where sendRedirect is called where we can determine the parameter. I found the following code:
+CrushFTP is written in Java, which is easy to [decompile](https://java-decompiler.github.io/). If we decompile the crushftp.jar file we find a sendRedirect method in the ServerSessionHTTP class. This redirects the browser to a page specified by a parameter. We want to find a place where sendRedirect is called where we can determine the parameter. I found the following code:
 
     if (request.getProperty("skip_login", "").equals("true"))
     {

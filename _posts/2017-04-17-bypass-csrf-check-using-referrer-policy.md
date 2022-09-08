@@ -23,7 +23,7 @@ All that is needed is the following HTML on the page:
 
     <meta name="referrer" content="no-referrer">
 
-This will remove the referer header from any outgoing request. This is [supported](http://caniuse.com/#feat=referrer-policy) in all modern browsers.
+This will remove the referer header from any outgoing request. This is [supported](https://caniuse.com/referrer-policy) in all modern browsers.
 
 Referrer policy has no impact on the [`Origin` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin), which is similar to the referer header.
 

@@ -5,7 +5,7 @@ thumbnail: bingo-wood-240.jpg
 date: 2017-03-29
 ---
 
-VBulletin is a message board web application written in PHP. Before PHP 7 came with [`random_int`](http://php.net/manual/en/function.random-int.php) and [`random_bytes`](http://php.net/manual/en/function.random-bytes.php) it was pretty hard to create a secure random number, and vBulletin uses a pretty bad way to solve that problem. In this post we look at the code and how it can fail to create a random number that is hard to guess.
+VBulletin is a message board web application written in PHP. Before PHP 7 came with [`random_int`](https://www.php.net/manual/en/function.random-int.php) and [`random_bytes`](https://www.php.net/manual/en/function.random-bytes.php) it was pretty hard to create a secure random number, and vBulletin uses a pretty bad way to solve that problem. In this post we look at the code and how it can fail to create a random number that is hard to guess.
 
 ## vBulletin's vbrand function
 
@@ -38,10 +38,10 @@ Here is one of the functions that create a "random" number, used in the creation
 
 There are a couple of function calls here:
 
-* [`mt_rand`](http://php.net/manual/en/function.mt-rand.php) returns a pseudo-random number.
-* [`mt_srand`](http://php.net/manual/en/function.mt-srand.php) "seeds" the random number generator. This determines which sequence comes out of `mt_rand`. If you know the parameter to `mt_srand`, the output of `mt_rand` is predictable.
-* [`microtime`](http://php.net/manual/en/function.microtime.php) returns the current time. The returned value has microsecond precision, but not microsecond accuracy. More on that later.
-* [`crc32`](http://php.net/manual/en/function.crc32.php) returns a 32-bit numeric hash of a string.
+* [`mt_rand`](https://www.php.net/manual/en/function.mt-rand.php) returns a pseudo-random number.
+* [`mt_srand`](https://www.php.net/manual/en/function.mt-srand.php) "seeds" the random number generator. This determines which sequence comes out of `mt_rand`. If you know the parameter to `mt_srand`, the output of `mt_rand` is predictable.
+* [`microtime`](https://www.php.net/manual/en/function.microtime.php) returns the current time. The returned value has microsecond precision, but not microsecond accuracy. More on that later.
+* [`crc32`](https://www.php.net/manual/en/function.crc32.php) returns a 32-bit numeric hash of a string.
 
 ## Using time as entropy is insecure
 
@@ -78,4 +78,4 @@ This doesn't look random at all. What happens is that `microtime` returns the sa
 
 ## Conclusion
 
-Don't base your "randomness" on the output of microtime. Use [`random_int`](http://php.net/manual/en/function.random-int.php) and [`random_bytes`](http://php.net/manual/en/function.random-bytes.php), or [random_compat](https://github.com/paragonie/random_compat) if still on PHP 5.
+Don't base your "randomness" on the output of microtime. Use [`random_int`](https://www.php.net/manual/en/function.random-int.php) and [`random_bytes`](https://www.php.net/manual/en/function.random-bytes.php), or [random_compat](https://github.com/paragonie/random_compat) if still on PHP 5.

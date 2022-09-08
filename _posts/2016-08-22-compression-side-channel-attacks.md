@@ -48,7 +48,7 @@ This only works if the secret and the data controlled by the attacker are compre
 
 ## Demonstration page
 
-Try your hacking skills on the [compression side-channel attack demonstration page](http://demo.sjoerdlangkemper.nl/compression.php). This page satisfies the conditions needed for a side-channel attack:
+Try your hacking skills on the [compression side-channel attack demonstration page](https://demo.sjoerdlangkemper.nl/compression.php). This page satisfies the conditions needed for a side-channel attack:
 
 * It compresses the whole page using gzip HTTP compression.
 * It reflects part of the input, which gives an attacker control over the compressed data.
@@ -85,7 +85,7 @@ You can disable compression. This obviously makes compression attacks impossible
 
 Another possibility is to randomize secrets for each request. If the CSRF token is random each time, the attacker cannot use multiple requests to guess it.
 
-A promising solution is the [same-site cookie flag](http://172.16.122.131:4000/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/). This makes it possible to mark cookies so they are withheld on cross-origin requests. This means that if an attacker forges requests from his website, these requests do not contain session cookies and are handled as if they come from an anonymous user. This solves many types of CSRF-related attacks, but is unfortunately [not yet supported](https://www.chromestatus.com/feature/4672634709082112) in all browsers.
+A promising solution is the [same-site cookie flag](/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/). This makes it possible to mark cookies so they are withheld on cross-origin requests. This means that if an attacker forges requests from his website, these requests do not contain session cookies and are handled as if they come from an anonymous user. This solves many types of CSRF-related attacks, but is unfortunately [not yet supported](https://www.chromestatus.com/feature/4672634709082112) in all browsers.
 
 ## Conclusion
 
@@ -98,5 +98,5 @@ Where CRIME needed a specific situation of a man-in-the-middle attacker on a com
 * [Compression and information leakage of plaintext](/papers/2002/compression-and-information-leakage-of-plaintext-john-kelsey.pdf) - John Kelsey
 * [CRIME slides](https://docs.google.com/presentation/d/11eBmGiHbYcHR9gL5nDyZChu_-lCa2GizeuOfaLU2HOU) - Rizzo & Duong
 * [TIME paper](https://media.blackhat.com/eu-13/briefings/Beery/bh-eu-13-a-perfect-crime-beery-wp.pdf) - Be'ery & Shulman
-* [BREACH web site](http://breachattack.com/) - Prado, Harris & Gluck
+* [BREACH web site](https://www.breachattack.com/) - Prado, Harris & Gluck
 * [HEIST presentation](https://www.blackhat.com/docs/us-16/materials/us-16-VanGoethem-HEIST-HTTP-Encrypted-Information-Can-Be-Stolen-Through-TCP-Windows.pdf) - Vanhoef & Van Goethem

@@ -2,6 +2,7 @@
 _site/
 .sass-cache/
 .jekyll-metadata
+.jekyll-cache
 
 
 ### Vim ###
@@ -12,3 +13,5 @@ Session.vim
 .netrwhist
 *~
 .DS_Store
+
+_test/.venv/

@@ -67,6 +67,6 @@ Using Internet Sharing and some PF rules it is possible to forward all traffic t
 
 Some more information:
 
-* [OSx PF Manual](http://murusfirewall.com/Documentation/OS%20X%20PF%20Manual.pdf)
+* [OSx PF Manual](https://murusfirewall.com/Documentation/OS%20X%20PF%20Manual.pdf)
 * [Parsia Hakimian's Thick Client Proxying blog posts](https://parsiya.net/categories/thick-client-proxying/)
 * Kuba Gretzky [used a VPN](https://breakdev.org/how-i-hacked-an-android-app-to-get-free-beer/) to intercept mobile traffic.

@@ -52,7 +52,7 @@ Various modes combine the blocks in various ways. This means that the behavior o
 
 ## Try it
 
-The form on [bitflip.php](http://demo.sjoerdlangkemper.nl/bitflip.php) makes use of unauthenticated encryption. If you fill out the form it redirects you to the page with encrypted data in the URL. See if you can modify the encrypted data in such as way that you become administrator.
+The form on [bitflip.php](https://demo.sjoerdlangkemper.nl/bitflip.php) makes use of unauthenticated encryption. If you fill out the form it redirects you to the page with encrypted data in the URL. See if you can modify the encrypted data in such as way that you become administrator.
 
 Some hints:
 

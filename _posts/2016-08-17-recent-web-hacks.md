@@ -19,7 +19,7 @@ The bank does not seems to have a bug bounty or responsible disclosure program. 
 
 ## Uber Hacking: How we found out who you are, where you are and where you went!
 
-23 June 2016, [article](https://labs.integrity.pt/articles/uber-hacking-how-we-found-out-who-you-are-where-you-are-and-where-you-went/), [Portuguese article](http://futurebehind.com/a-boleia-dos-bugs-da-uber/)
+23 June 2016, [article](https://labs.integrity.pt/articles/uber-hacking-how-we-found-out-who-you-are-where-you-are-and-where-you-went/), [Portuguese article](https://www.futurebehind.com/uncategorized/a-boleia-dos-bugs-da-uber/)
 
 Three pentesters from [Integrity](https://www.integrity.pt/) tested Uber as part of their bug bounty program, and found several vulnerabilities:
 
@@ -36,7 +36,7 @@ Each vulnerability is clearly described in the post, with screenshots of the req
 
 23 July 2016, [article](https://www.evonide.com/how-we-broke-php-hacked-pornhub-and-earned-20000-dollar/)
 
-Ruslan Habalov found a vulnerability in Pornhub: the use of unserialize on user-supplied data. This is known to be unsafe and the [PHP manual](http://php.net/unserialize) even warns against it.
+Ruslan Habalov found a vulnerability in Pornhub: the use of unserialize on user-supplied data. This is known to be unsafe and the [PHP manual](https://www.php.net/unserialize) even warns against it.
 
 Ruslan probably could have reported this to Pornhub and get several hundred dollars. He put in some more effort and successfully exploited this vulnerability, gaining remote code execution on the server.
 
@@ -52,7 +52,7 @@ This vulnerability is extra painful because LastPass is a product that is suppos
 
 ## How to steal $2,999.99 in less than 2 minutes with Venmo and Siri
 
-1 August 2016, [article](http://www.martinvigo.com/steal-2999-99-minute-venmo-siri/)
+1 August 2016, [article](https://www.martinvigo.com/steal-2999-99-minute-venmo-siri/)
 
 Venmo is a payment provider that makes it possible to pay people by SMS. It is also possible to read and send SMS messages from a locked iPhone, using Siri. Martin Vigo pointed out that this combination can be used to steal money from people if you have physical access to their locked phone.
 

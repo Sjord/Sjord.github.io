@@ -39,7 +39,7 @@ Fortunately, the chance for hash collisions is very small with modern hash funct
 
 ## Secret number of iterations
 
-If we use an [iterative hash function](/2016/05/25/iterative-password-hashing/), we can also store our extra entropy in the number of iterations instead of in the password. Boyen suggests a specifically [interesting mechanism](http://crypto.stanford.edu/~xb//security07/hkdf.pdf) in where the number of iterations is unbound and determined by the user. Imagine that when verifying a password, you never really know whether you have the incorrect password or that it was hashed with an iteration count you haven't tried yet.
+If we use an [iterative hash function](/2016/05/25/iterative-password-hashing/), we can also store our extra entropy in the number of iterations instead of in the password. Boyen suggests a specifically [interesting mechanism](https://crypto.stanford.edu/~xb//security07/hkdf.pdf) in where the number of iterations is unbound and determined by the user. Imagine that when verifying a password, you never really know whether you have the incorrect password or that it was hashed with an iteration count you haven't tried yet.
 
 ## Conclusion
 
@@ -48,11 +48,11 @@ Adding random unstored data to passwords is an interesting way to slow down crac
 ## Read more
 
 * [Authentication using random challenges](https://www.google.com/patents/US5872917), patent US5872917, Hellman, 1995
-* [A Simple Scheme to Make Passwords Based on One-Way Functions Much Harder to Crack](http://webglimpse.net/trial/bins/TR94-34.pdf), Udi Manber, 1996
+* [A Simple Scheme to Make Passwords Based on One-Way Functions Much Harder to Crack](https://www.cs.arizona.edu/sites/default/files/TR94-34.pdf), Udi Manber, 1996
 * [Strengthening Passwords](https://pdfs.semanticscholar.org/b855/6c4b4276bbf5451cc0875731b0b0574f0162.pdf), Abadi, 1997
 * [Method and apparatus for strengthening passwords for protection of computer systems](https://www.google.com/patents/US6079021), patent US6079021, Abadi, 1997
 * [Secure Applications of Low-Entropy Keys](https://www.schneier.com/academic/paperfiles/paper-low-entropy.pdf), Kelsey, 1997
 * [Brute Force Attack on UNIX Passwords with SIMD Computer](https://www.usenix.org/legacy/events/sec99/full_papers/kedem/kedem.pdf), 1999
 * [Password-protection module](https://www.google.com/patents/US7886345), patent US7886345, Kaliski, 2004
-* [Halting Password Puzzles](http://crypto.stanford.edu/~xb//security07/hkdf.pdf), Boyen, 2007
+* [Halting Password Puzzles](https://crypto.stanford.edu/~xb/security07/hkdf.pdf), Boyen, 2007
 * [CASH: A Cost Asymmetric Secure Hash Algorithm for Optimal Password Protection](https://arxiv.org/pdf/1509.00239.pdf), Blocki, 2016

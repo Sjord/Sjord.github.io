@@ -5,7 +5,7 @@ thumbnail: brick-wall-240.jpg
 date: 2017-04-26
 ---
 
-PHP's [`open_basedir`](http://php.net/manual/en/ini.core.php#ini.open-basedir) setting limits the files that can be accessed by PHP to the specified directory. It should not be possible to access files outside of the directory set as `open_basedir`. However, it is still possible to check whether files exist because the file used as client certificate in an SSL connection is not checked against `open_basedir`.
+PHP's [`open_basedir`](https://www.php.net/manual/en/ini.core.php#ini.open-basedir) setting limits the files that can be accessed by PHP to the specified directory. It should not be possible to access files outside of the directory set as `open_basedir`. However, it is still possible to check whether files exist because the file used as client certificate in an SSL connection is not checked against `open_basedir`.
 
 ## How open_basedir works
 

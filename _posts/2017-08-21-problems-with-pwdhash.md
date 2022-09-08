@@ -31,8 +31,8 @@ Using a deterministic password manager may seem like a good idea at first, but h
 
 ## Read more
 
-* [Secure Hashed Passwords Using Dwb and Pwdhash](http://userbound.com/blog/Secure-Hashed-Passwords-Using-Dwb-and-Pwdhash/)
+* [Secure Hashed Passwords Using Dwb and Pwdhash](https://milesalan.com/notes/secure-hashed-passwords-using-dwb-and-pwdhash/s)
 * [4 fatal flaws in deterministic password managers](https://tonyarcieri.com/4-fatal-flaws-in-deterministic-password-managers), [HN thread](https://news.ycombinator.com/item?id=13016132)
-* [In defense of deterministic password managers](http://www.mahdix.com/blog/2016/11/23/in-defense-of-deterministic-password-managers/)
+* [In defense of deterministic password managers](https://medium.com/@mahdix/in-defense-of-deterministic-password-managers-67b5a549681e)
 * [Security considerations for password generators](https://palant.de/2016/04/20/security-considerations-for-password-generators)
 

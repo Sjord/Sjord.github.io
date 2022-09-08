@@ -20,7 +20,7 @@ There are two problems with this. First, `decrypt` does not return a string, mak
 
 As you can see the string to encrypt is still 16 characters in length, but when UTF-8 encoded it is now 17 bytes.
 
-This especially becomes a problem if you want to use pycrypto to [break crypto](http://cryptopals.com/sets/2/challenges/12/) and manipulate the ciphertext or plaintext by trying out all possible combinations:
+This especially becomes a problem if you want to use pycrypto to [break crypto](https://cryptopals.com/sets/2/challenges/12) and manipulate the ciphertext or plaintext by trying out all possible combinations:
 
     for i in range(256):
         cipher = aes.encrypt(text + chr(i))  # Breaks when i == 128

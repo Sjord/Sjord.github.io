@@ -102,4 +102,4 @@ BBN was a pioneer at start of the computing era, and successfully implemented an
 
 1. [TENEX and TOPS-20](http://tenex.opost.com/ahc_20150101_jan_2015.pdf), [Dan Murphy](http://www.opost.com/dlm/) 
 1. ["Tenex hackery" in alt.folklore.computers](https://groups.google.com/d/msg/alt.folklore.computers/v9KnB8BIXGY/aZ-qDLtD0gAJ)
-1. [TENEX, a paged time sharing system for the PDP-10](http://www.dtic.mil/cgi-bin/GetTRDoc?AD=AD0729261), Daniel Bobrow, Jerry Burchfiel, Dan Murphy, Ray Tomlinson
+1. [TENEX, a paged time sharing system for the PDP-10](https://dl.acm.org/doi/pdf/10.1145/361268.361271), Daniel Bobrow, Jerry Burchfiel, Dan Murphy, Ray Tomlinson

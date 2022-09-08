@@ -29,7 +29,7 @@ The user agent can be set in nikto.conf from Nikto version 2.1.5, and on the com
 
 ## Pass requests through a proxy
 
-Nikto can pass all its requests through a proxy. If you have a proxy that supports adding headers to outgoing requests, you can let your proxy do the work for you. Brian Cardinale describes a way to [add headers to Nikto using Burp](http://www.cardinaleconcepts.com/add-custom-header-to-nikto-scan/).
+Nikto can pass all its requests through a proxy. If you have a proxy that supports adding headers to outgoing requests, you can let your proxy do the work for you. Brian Cardinale describes a way to [add headers to Nikto using Burp](https://www.cardinaleconcepts.com/add-custom-header-to-nikto-scan/).
 
 ## Modify the code
 

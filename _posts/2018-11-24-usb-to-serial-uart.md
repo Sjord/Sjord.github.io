@@ -82,7 +82,7 @@ These have different versions with different specs:
 | CH341     | €0.75 | 3.3 / 5V                 | 2 Mbps        | 32 + 32 B   |    0 | [CH341](http://www.anok.ceti.pl/download/ch341ds1.pdf) |
 | CP2102    | €0.75 | 3.3V<sup>1</sup>         | 1 Mbps        | 576 + 640 B |    0 | [CP2102/9](https://www.silabs.com/documents/public/data-sheets/CP2102-9.pdf)      |
 | CP2102N   | €1.50 | 3.3V                     | 3 Mbps        | 512 + 512 B |    7 | [CP2102N](https://www.silabs.com/documents/public/data-sheets/cp2102n-datasheet.pdf)      |
-| PL2303HXD | €0.90 | 1.8 - 3.3V<sup>1</sup>   | 12 Mbps       | 512 B       |    4 | [PL2303HXD](http://www.prolific.com.tw/UserFiles/files/ds_pl2303HXD_v1_4_4.pdf)    |
+| PL2303HXD | €0.90 | 1.8 - 3.3V<sup>1</sup>   | 12 Mbps       | 512 B       |    4 | [PL2303HXD](https://www.prolific.com.tw/UserFiles/files/ds_pl2303HXD_v1_4_4.pdf)    |
 | PL2303TA  | €0.70 | 1.8 - 3.3V               | 6 Mbps        | 512 B       |    2 | [PL2303TA](https://cdn-shop.adafruit.com/datasheets/DS_PL2303TA_d20120504.pdf)    |
 | FT232R    | €3.50 | 1.8 - 5V                 | 3 Mbps        | 128 + 256 B |    4 | [FT232R](https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf) |
 | FT231X    | €1.80 | 1.8 - 4V                 | 3 Mbps        | 512 + 512 B |    4 | [FT231X](https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT231X.pdf) |
@@ -273,12 +273,12 @@ Using a USB to UART bridge can be pretty simple if it works, or it can be painfu
 
 * [ASIX MCS7810](https://www.asix.com.tw/products.php?op=pItemdetail&PItemID=262;74;109&PLine=74)
 * Atmel ATMEGA8U2 or 16U2 with [Arduino USBSerial Firmware](https://github.com/arduino/ArduinoCore-avr/tree/master/firmwares/atmegaxxu2/arduino-usbserial)
-* Cypress [CY7C65211](http://www.cypress.com/?mpn=CY7C65211-24LTXI) or [CY7C65213](http://www.cypress.com/?mpn=CY7C65213-28PVXI)
+* Cypress [CY7C65211](https://www.cypress.com/?mpn=CY7C65211-24LTXI) or [CY7C65213](https://www.cypress.com/?mpn=CY7C65213-28PVXI)
 * [Microchip MCP2200](https://www.microchip.com/MCP2200)
-* [Prolific PL2303HX](http://www.prolific.com.tw/us/ShowProduct.aspx?p_id=156&pcid=41)
-* [Silicon Labs CP210x](http://www.silabs.com/products/interface/usbtouart/Pages/usb-to-uart-bridge.aspx)
-* [Texas Instruments TUSB3410](http://www.ti.com/product/TUSB3410)
-* [WCH-IC CH340](http://wch-ic.com/product/usb/ch340.asp)
+* [Prolific PL2303HX](https://www.prolific.com.tw/us/ShowProduct.aspx?p_id=156&pcid=41)
+* [Silicon Labs CP210x](https://www.silabs.com/interface/usb-bridges/classic)
+* [Texas Instruments TUSB3410](https://www.ti.com/product/TUSB3410)
+* [WCH-IC CH340](https://special.wch.cn/en/produce/)
 
 ### Isolated adapters
 
@@ -293,7 +293,7 @@ Using a USB to UART bridge can be pretty simple if it works, or it can be painfu
 
 ### Articles
 
-* [Reverse Engineering Serial Ports](http://www.devttys0.com/2012/11/reverse-engineering-serial-ports/)
+* [Reverse Engineering Serial Ports](https://archive.ph/http://www.devttys0.com/2012/11/reverse-engineering-serial-ports/)
 * [Buggy CP2102N Replaced](https://www.crowdsupply.com/pylo/muart/updates/buggy-cp2102n-replaced)
 * [Using the Hardware Serial Ports](https://www.pjrc.com/teensy/td_uart.html)
 * [How high of a baud rate can I go (without errors)?](https://arduino.stackexchange.com/questions/296/how-high-of-a-baud-rate-can-i-go-without-errors)
