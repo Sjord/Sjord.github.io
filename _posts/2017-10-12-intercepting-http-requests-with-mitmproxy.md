@@ -11,7 +11,7 @@ Mitmproxy is a command-line intercepting proxy. Just like with Burp, you can vie
 
 ## Use over SSH
 
-Because it runs on the command line, mitmproxy can be run on a remote server over SSH. If you ever want to intercept HTTP traffic in a remote network, mitmproxy can help out. Since mitmproxy has [binaries](https://github.com/mitmproxy/mitmproxy/releases) with Python 3 and OpenSSL included, [installing](http://docs.mitmproxy.org/en/stable/install.html) is as easy as extracting the package.
+Because it runs on the command line, mitmproxy can be run on a remote server over SSH. If you ever want to intercept HTTP traffic in a remote network, mitmproxy can help out. Since mitmproxy has [binaries](https://github.com/mitmproxy/mitmproxy/releases) with Python 3 and OpenSSL included, [installing](https://docs.mitmproxy.org/stable/overview-installation/) is as easy as extracting the package.
 
 ## Replaying traffic
 
@@ -36,7 +36,7 @@ This saves the intercepted requests to `traffic.mitm`. The file format is specif
 
 ### Modifying traffic files
 
-You can edit request and responses in mitmproxy, and save the result back to a file. It is also possible to automate modification of traffic files using [filters](http://docs.mitmproxy.org/en/stable/features/filters.html):
+You can edit request and responses in mitmproxy, and save the result back to a file. It is also possible to automate modification of traffic files using [filters](https://docs.mitmproxy.org/stable/concepts-filters/):
 
     $ mitmdump --no-server -r traffic.mitm -w out.mitm '! ~u jpg$'
     172.16.122.1:51049: GET https://www.sjoerdlangkemper.nl/

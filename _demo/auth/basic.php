@@ -3,7 +3,7 @@ header("Content-Type: text/plain");
 header("X-Content-Type-Options: nosniff");
 
 if (isset($_GET['host'])) {
-    header("Access-Control-Allow-Origin: http://demo.sjoerdlangkemper.nl");
+    header("Access-Control-Allow-Origin: https://demo.sjoerdlangkemper.nl");
 }
 if (isset($_GET['wildcard'])) {
     header("Access-Control-Allow-Origin: *");

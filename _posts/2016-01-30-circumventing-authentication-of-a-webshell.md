@@ -24,7 +24,7 @@ The `preg_replace` has three arguments, the regex, the replacement and the subje
 
     preg_replace("/.*/", eval("\x65\x76\x61…\x29\x3B"), ".");
 
-Now we know that the second parameter is evaluated, but it still does not look like PHP code. That is because it is hex encoded. A string in double quotes can contain [some escape sequences](https://secure.php.net/manual/en/language.types.string.php#language.types.string.syntax.double) that are interpreted by PHP, and one of them is `\x` to put a character in the string using hexadecimal notation. For example, `\x65` would be an `e` because it says so in the [ASCII table](http://man7.org/linux/man-pages/man7/ascii.7.html). Manually converting this string would be a little bit of work, so we let PHP do it:
+Now we know that the second parameter is evaluated, but it still does not look like PHP code. That is because it is hex encoded. A string in double quotes can contain [some escape sequences](https://secure.php.net/manual/en/language.types.string.php#language.types.string.syntax.double) that are interpreted by PHP, and one of them is `\x` to put a character in the string using hexadecimal notation. For example, `\x65` would be an `e` because it says so in the [ASCII table](https://man7.org/linux/man-pages/man7/ascii.7.html). Manually converting this string would be a little bit of work, so we let PHP do it:
 
     echo "\x65\x76\x61…\x29\x3B";
 

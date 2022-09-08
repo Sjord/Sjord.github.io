@@ -19,7 +19,7 @@ Early in a pentest it may be helpful to enumerate all the subdomains of a domain
 * [censys-subdomain-finder](https://github.com/christophetd/censys-subdomain-finder)
 * [Cleveridge Subdomain Scanner](https://github.com/Cleveridge/cleveridge-subdomain-scanner)
 * [ct-exposer](https://github.com/chris408/ct-exposer)
-* [DMitry](http://mor-pah.net/software/dmitry-deepmagic-information-gathering-tool/)
+* [DMitry](https://mor-pah.net/software/dmitry-deepmagic-information-gathering-tool/)
 * [dnscan](https://github.com/rbsec/dnscan)
 * [dnsenum.pl](https://github.com/fwaeytens/dnsenum)
 * [dnsrecon](https://github.com/darkoperator/dnsrecon)

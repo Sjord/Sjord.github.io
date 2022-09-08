@@ -39,7 +39,7 @@ Unfortunately, `base_convert` does not perform its job correctly. Note what happ
 
 Converting back and forth replaced a large part of our hash with zeroes. This is because of how `base_convert` works. It first converts the hexadecimal number to a 64-bits float number, and then convert that number to base 36. Because the float can contain just 64 bits, the resulting base 36 token contains at most 64 bits or 8 bytes of data.
 
-The [PHP manual warns against this](http://php.net/base_convert):
+The [PHP manual warns against this](https://www.php.net/base_convert):
 
 > Warning: base\_convert() may lose precision on large numbers due to properties related to the internal "double" or "float" type used. Please see the Floating point numbers section in the manual for more specific information and limitations.
 

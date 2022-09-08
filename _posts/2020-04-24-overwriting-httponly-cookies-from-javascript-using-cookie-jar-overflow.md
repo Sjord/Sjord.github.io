@@ -21,7 +21,7 @@ This even works from JavaScript, and it also removes HttpOnly cookies. So by set
 
 ## Demo
 
-This [demo page](http://demo.sjoerdlangkemper.nl/cookie.php) ([source](https://github.com/Sjord/Sjord.github.io/blob/master/_demo/cookie.php)) shows that cookies can be overwritten. 
+This [demo page](https://demo.sjoerdlangkemper.nl/cookie.php) ([source](https://github.com/Sjord/Sjord.github.io/blob/master/_demo/cookie.php)) shows that cookies can be overwritten. 
 
 First, this page sets a HttpOnly cookie if it doesn't yet exist:
 
@@ -43,6 +43,6 @@ Even though HttpOnly provide some protection from JavaScript, it does not protec
 
 ## Read more
 
-* [Browser Cookie Limits](http://browsercookielimits.squawky.net/)
+* [Browser Cookie Limits](https://archive.ph/http://browsercookielimits.squawky.net/)
 * [Racing to downgrade users to cookie-less authentication](https://kuza55.blogspot.com/2008/02/racing-to-downgrade-users-to-cookie.html)
 * [Cookie forcing](https://scarybeastsecurity.blogspot.com/2008/11/cookie-forcing.html)

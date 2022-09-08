@@ -38,7 +38,7 @@ Time to look at the code to see what escaping is exactly performed:
     $_documentTitle = addslashes(StripScriptTags($this->_documentTitle));
     echo 'SetHeaderTitle("' . $_documentTitle . '");';
 
-The call to [`addslashes`](http://php.net/manual/en/function.addslashes.php) is the reason why our quotes are escaped, and the function `StripScriptTags` removes our `</script>` tag:
+The call to [`addslashes`](https://www.php.net/manual/en/function.addslashes.php) is the reason why our quotes are escaped, and the function `StripScriptTags` removes our `</script>` tag:
 
     function StripScriptTags($_htmlCode)
     {

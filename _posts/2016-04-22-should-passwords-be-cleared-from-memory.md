@@ -11,7 +11,7 @@ When handling a secret such as an encryption key or a password, it is important 
 
 In the Java world it is pretty common to clear memory with secret contents after use. Because the Java String type is immutable and can't be cleared, a `char[]` should be used for secrets. The [JPasswordField](https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html), for example, returns a `char[]` instead of a `String` for the `getPassword` method. The [example code](https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html) also shows how the `char[]` can be cleared, "for security".
 
-The [Java Cryptography Architecture Guide](http://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html) formalizes this practice in a guideline:
+The [Java Cryptography Architecture Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html) formalizes this practice in a guideline:
 
 > It would seem logical to collect and store the password in an object of type java.lang.String. However, here's the caveat: Objects of type String are immutable, i.e., there are no methods defined that allow you to change (overwrite) or zero out the contents of a String after usage. This feature makes String objects unsuitable for storing security sensitive information such as user passwords. You should always collect and store security sensitive information in a char array instead.
 
@@ -21,7 +21,7 @@ This implies that if you have a secret, you should clear it from memory when you
 
 There are some ways an attacker can read memory:
 
-* [Heartbleed](http://heartbleed.com/), the buffer over-read bug in OpenSSL, allows for reading memory remotely.
+* [Heartbleed](https://heartbleed.com/), the buffer over-read bug in OpenSSL, allows for reading memory remotely.
 * [Cold boot attack](https://en.wikipedia.org/wiki/Cold_boot_attack), where the attacker reboots a computer with his own software to read the memory.
 * [DMA attack](https://en.wikipedia.org/wiki/DMA_attack), where an attacker reads memory from the Firewire or Thunderbolt port, for example.
 * An attacker with read access within the program can use /proc/self/mem to read memory. This is not as simple as it sounds, because you need to read at a specific position in this file.
@@ -46,7 +46,7 @@ If an attacker can read your memory you are definitely screwed, but clearing sec
 
 Now that we have identified attacks and argued that it limits attack impact, it may seem like it is always a good idea to clear secrets from memory. That is not the case. Clearing memory is very difficult in some environments, and is often more of a hassle than it is worth.
 
-Consider C for example. It is a fairly low-level language that allows direct control over memory in many ways. Even so, an optimizing compiler can change your program in any way that keeps the behavior the same. Since the memory contents are not part of the behavior of your program, an optimizing compiler can remove any statements that just set memory. Your `memset` call will be [optimized away](http://www.daemonology.net/blog/2014-09-04-how-to-zero-a-buffer.html).
+Consider C for example. It is a fairly low-level language that allows direct control over memory in many ways. Even so, an optimizing compiler can change your program in any way that keeps the behavior the same. Since the memory contents are not part of the behavior of your program, an optimizing compiler can remove any statements that just set memory. Your `memset` call will be [optimized away](https://www.daemonology.net/blog/2014-09-04-how-to-zero-a-buffer.html).
 
 In many other environments, the way memory is handled depends on the implementation of the runtime environment. This is even the case for Java, where the guideline advices to use a `char[]`. The guideline assumes that a `char[]` is directly mapped to memory, that there is only one instance in memory and that clearing the array also clears the memory. This is all not strictly specified in the Java specification, so another JVM may implement it in a entirely different way and leave the contents in memory.
 

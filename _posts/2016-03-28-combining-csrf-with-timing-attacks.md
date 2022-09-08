@@ -52,10 +52,10 @@ Suppose the victim works for Monsters, Inc. At Monsters they use JSPWiki interna
 The attacker can create a page that measures the time of some URLs on the wiki:
 
     var urls = [
-        'http://wiki.monsters.inc/Search.jsp?query=%22merger+with+Acme%22',
-        'http://wiki.monsters.inc/Search.jsp?query=%22merger+with+Blaze%22',
-        'http://wiki.monsters.inc/Search.jsp?query=%22merger+with+Contoso%22',
-        'http://wiki.monsters.inc/Search.jsp?query=%22merger+with+Duff%22',
+        'https://wiki.monsters.inc/Search.jsp?query=%22merger+with+Acme%22',
+        'https://wiki.monsters.inc/Search.jsp?query=%22merger+with+Blaze%22',
+        'https://wiki.monsters.inc/Search.jsp?query=%22merger+with+Contoso%22',
+        'https://wiki.monsters.inc/Search.jsp?query=%22merger+with+Duff%22',
     ];
 
     for (var i = 0; i < urls.length; i++) {

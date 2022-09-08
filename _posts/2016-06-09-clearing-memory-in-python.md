@@ -71,11 +71,11 @@ Java suggests using a `byte[]`, because it is mutable and can be cleared after u
     for i in range(len(secret)):
         secret[i] = 0
 
-The problem is that when using secret, it should never be converted to a string. Presumably you want to use the secret for something. You can't use it with pycrypto, and the [pull request](https://github.com/dlitz/pycrypto/pull/81) to change that simply converts the bytearray to a string. The [requests](http://docs.python-requests.org/en/master/) library sends numbers instead of text when given a bytearray. If we want to sent text we have to convert the bytearray to a string, which again puts it in memory without the possibility to remove it.
+The problem is that when using secret, it should never be converted to a string. Presumably you want to use the secret for something. You can't use it with pycrypto, and the [pull request](https://github.com/dlitz/pycrypto/pull/81) to change that simply converts the bytearray to a string. The [requests](https://requests.readthedocs.io/en/latest/) library sends numbers instead of text when given a bytearray. If we want to sent text we have to convert the bytearray to a string, which again puts it in memory without the possibility to remove it.
 
 ### Memset
 
-We can use [ctypes](https://docs.python.org/2/library/ctypes.html) to call memset, a function to write memory. One [StackOverflow answer](http://stackoverflow.com/questions/982682/mark-data-as-sensitive-in-python/983525#983525) has an example:
+We can use [ctypes](https://docs.python.org/2/library/ctypes.html) to call memset, a function to write memory. One [StackOverflow answer](https://stackoverflow.com/questions/982682/mark-data-as-sensitive-in-python/983525#983525) has an example:
 
     import sys
     import ctypes

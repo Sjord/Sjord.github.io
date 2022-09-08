@@ -4,7 +4,7 @@ import unittest
 import requests
 
 class TestDemo(unittest.TestCase):
-    host = "http://demo.sjoerdlangkemper.nl/"
+    host = "https://demo.sjoerdlangkemper.nl/"
 
     def get_url(self, page):
         return self.host + page
@@ -44,6 +44,7 @@ class TestDemo(unittest.TestCase):
         url = self.get_url("auth/basic.php")
         self.assertIn("Authorization header missing", requests.get(url).text)
         self.assertIn("Authorization header received", requests.get(url, auth=requests.auth.HTTPBasicAuth("a", "a")).text)
+        self.assertEqual(requests.get(url, params={"host": True}).headers["Access-Control-Allow-Origin"], "https://demo.sjoerdlangkemper.nl")
 
     def test_time(self):
         url = self.get_url("time.php")

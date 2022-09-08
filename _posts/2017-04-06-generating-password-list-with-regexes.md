@@ -9,7 +9,7 @@ When cracking passwords, it is sometimes useful to try specifically formatted pa
 
 ## Cracking passwords with lists
 
-Password cracking tools such as [hashcat](https://hashcat.net/hashcat/), [John the Ripper](http://www.openwall.com/john/) or [Hydra](http://sectools.org/tool/hydra/) try a large number of passwords to find the correct one. As input, they typically take a text file containing a large list of possible passwords. Lists of passwords that were [leaked](https://wiki.skullsecurity.org/Passwords) are typically used. However, sometimes you have some clue as to the format of the passwords. For example, they start with an uppercase character and end with a number. In this case, you can use a tool that creates a list of words conforming to a specific pattern. Below are some tools that can do that.
+Password cracking tools such as [hashcat](https://hashcat.net/hashcat/), [John the Ripper](https://www.openwall.com/john/) or [Hydra](https://sectools.org/tool/hydra/) try a large number of passwords to find the correct one. As input, they typically take a text file containing a large list of possible passwords. Lists of passwords that were [leaked](https://wiki.skullsecurity.org/Passwords) are typically used. However, sometimes you have some clue as to the format of the passwords. For example, they start with an uppercase character and end with a number. In this case, you can use a tool that creates a list of words conforming to a specific pattern. Below are some tools that can do that.
 
 ## Hashcat maskprocessor
 

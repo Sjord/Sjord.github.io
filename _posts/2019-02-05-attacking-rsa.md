@@ -27,7 +27,7 @@ If the RSA key is too short, the modulus can be factored by just using brute for
 
 ### Low private exponent
 
-Decrypting a message consists of calculating _c<sup>d</sup>_ mod _N_. The smaller _d_ is, the faster this operation goes. However, [Wiener](http://www.reverse-engineering.info/Cryptography/ShortSecretExponents.pdf) found a way to recover _d_ (and thus the private key) when _d_ is relatively small. [Boneh and Durfee](http://antoanthongtin.vn/Portals/0/UploadImages/kiennt2/KyYeu/DuLieuNuocNgoai/8.Advances%20in%20cryptology-Eurocrypt%201999-LNCS%201592/15920001.pdf) improved this attack to recover private exponents that are less than _N_<sup>0.292</sup>.
+Decrypting a message consists of calculating _c<sup>d</sup>_ mod _N_. The smaller _d_ is, the faster this operation goes. However, [Wiener](https://www.cits.ruhr-uni-bochum.de/imperia/md/content/may/krypto2ss08/shortsecretexponents.pdf) found a way to recover _d_ (and thus the private key) when _d_ is relatively small. [Boneh and Durfee](https://staff.emu.edu.tr/alexanderchefranov/Documents/CMSE491/Fall2019/BonehIEEETIT2000%20Cryptanalysis%20of%20RSA.pdf) improved this attack to recover private exponents that are less than _N_<sup>0.292</sup>.
 
 If the private exponent is small, the public exponent is [necessarily large](https://crypto.stackexchange.com/questions/67426/can-you-recognize-a-low-private-exponent-from-a-public-key/67432#67432). If you encounter a public key with a large public exponent, it may be worth it to run the Boneh-Durfee attack against it.
 
@@ -136,11 +136,10 @@ There is a lot that can go wrong when creating RSA keys, especially when using a
 #### Overview
 
 * [FactHacks](https://facthacks.cr.yp.to/)
-* [Twenty Years of Attacks on the RSA Cryptosystem](http://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf)
-* [Possible Attacks on RSA](http://www.members.tripod.com/irish_ronan/rsa/attacks.html)
+* [Twenty Years of Attacks on the RSA Cryptosystem](https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf)
+* [Possible Attacks on RSA](https://www.members.tripod.com/irish_ronan/rsa/attacks.html)
 * [Exploring 3 insecure usage of RSA](https://www.quaxio.com/exploring_three_weaknesses_in_rsa/)
 * [Ron was wrong, Whit is right](https://eprint.iacr.org/2012/064.pdf)
-* [How to compute RSA keys?](http://igm.univ-mlv.fr/~jyt/Crypto/4/slides_iAWACS09_Erra-Grenier_How-to-compute-RSA-keys.pdf)
 * [The properties of RSA key generation process in software libraries](https://is.muni.cz/th/oba30/thesis-nemec.pdf)
 * [Survey: Lattice Reduction Attacks on RSA](https://www.davidwong.fr/papers/david_wong_rsa_lll_boneh_durfee__2015.pdf)
 * [15 ways to break RSA security](https://github.com/comaeio/OPCDE/blob/master/2017/15%20ways%20to%20break%20RSA%20security%20-%20Renaud%20Lifchitz/opcde2017-ds-lifchitz-break_rsa.pdf)
@@ -148,7 +147,7 @@ There is a lot that can go wrong when creating RSA keys, especially when using a
 #### Small prime differences
 
 * [Mathematical attack on RSA](https://www.nku.edu/~christensen/Mathematical%20attack%20on%20RSA.pdf)
-* [Cryptanalysis of RSA with Small Prime Difference](http://www.enseignement.polytechnique.fr/profs/informatique/Francois.Morain/Master1/Crypto/projects/Weger02.pdf)
+* [Cryptanalysis of RSA with Small Prime Difference](https://www.enseignement.polytechnique.fr/profs/informatique/Francois.Morain/Master1/Crypto/projects/Weger02.pdf)
 * [The Fermat factorization method revisited](https://hsbp.org/tiki-download_wiki_attachment.php?attId=174)
 * [Finding close-prime factorizations](https://grocid.net/2017/09/16/finding-close-prime-factorizations/)
 
@@ -157,7 +156,7 @@ There is a lot that can go wrong when creating RSA keys, especially when using a
 * [Understanding Common Factor Attacks: An RSA-Cracking Puzzle](http://www.loyalty.org/~schoen/rsa/)
 * [Finding Duplicate RSA Moduli in the Wild](http://sbudella.altervista.org/blog/20181211-duplicate-moduli.html)
 * [Mining Your Ps and Qs: Detection of Widespread Weak Keys in Network Devices](https://www.usenix.org/system/files/conference/usenixsecurity12/sec12-final228.pdf)
-* [Implicit factorization of unbalanced RSA moduli](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.638.2268&rep=rep1&type=pdf)
+* [Implicit factorization of unbalanced RSA moduli](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.638.2268&rep=rep1&type=pdf)
 
 #### Unsafe primes
 
@@ -172,7 +171,7 @@ There is a lot that can go wrong when creating RSA keys, especially when using a
 
 * [RSA and a higher degree diophantine equation](https://eprint.iacr.org/2006/093)
 * [Cryptanalysis of RSA with constrained keys](https://eprint.iacr.org/2006/092)
-* [A New Vulnerable Class of Exponents in RSA](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.182.1949&rep=rep1&type=pdf)
+* [A New Vulnerable Class of Exponents in RSA](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.182.1949&rep=rep1&type=pdf)
 
 #### Partial key exposure
 

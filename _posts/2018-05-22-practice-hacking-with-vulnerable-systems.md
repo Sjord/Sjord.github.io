@@ -29,7 +29,7 @@ The best way to learn how to hack is to do it. There are several practice sites 
 * [IO](http://io.netgarage.org/)
 * [Juice shop](https://github.com/bkimminich/juice-shop) - Vulnerable web app
 * [Microcorruption](https://microcorruption.com/) - ARM disassembling
-* [Over The Wire wargames](http://overthewire.org/wargames/)
+* [Over The Wire wargames](https://overthewire.org/wargames/)
 * [OWASP WebGoat 1.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project)
 * [picoCTF](https://picoctf.com/)
 * [Portswigger's Web Security Academy](https://portswigger.net/web-security)

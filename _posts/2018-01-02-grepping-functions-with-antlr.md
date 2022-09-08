@@ -29,7 +29,7 @@ To check whether the application is consistently protected against CSRF, we want
 
 ## Parsing the code
 
-To solve this problem, we will parse the C# code. This way, we can reliably identify methods with their attributes and find our matching methods. We'll use the [ANTLR](http://www.antlr.org/) parser toolkit and its existing [grammars](https://github.com/antlr/grammars-v4). This takes much of the parsing process out of our hands. ANTLR creates code that can parse C# code, creates a *parse tree* and walks through this tree. What we have to do is implement a *listener* that performs some actions on specific nodes, with the goal to find the code we are interested in.
+To solve this problem, we will parse the C# code. This way, we can reliably identify methods with their attributes and find our matching methods. We'll use the [ANTLR](https://www.antlr.org/) parser toolkit and its existing [grammars](https://github.com/antlr/grammars-v4). This takes much of the parsing process out of our hands. ANTLR creates code that can parse C# code, creates a *parse tree* and walks through this tree. What we have to do is implement a *listener* that performs some actions on specific nodes, with the goal to find the code we are interested in.
 
 ### Getting started with ANTLR
 

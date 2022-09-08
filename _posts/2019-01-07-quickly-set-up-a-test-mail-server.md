@@ -42,7 +42,7 @@ The modern aiosmtpd is prefered over the deprecated smtpd. The only disadvantage
 
 ### Using MailSlurper
 
-[MailSlurper](http://mailslurper.com/) is a tool programmed in Go that opens a mail server and shows all mails through a web interface. The ports it uses are specified in a configuration file, `config.json`. It is pretty straightforward and easy to use, and it handles HTML emails better than the Python solution described above.
+[MailSlurper](https://www.mailslurper.com/) is a tool programmed in Go that opens a mail server and shows all mails through a web interface. The ports it uses are specified in a configuration file, `config.json`. It is pretty straightforward and easy to use, and it handles HTML emails better than the Python solution described above.
 
 <img src="/images/mailslurper.png" width="100%" alt="MailSlurper screenshot">
 
