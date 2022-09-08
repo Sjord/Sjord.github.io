@@ -30,7 +30,7 @@ const allowCredentials = document.getElementById("allowCredentials");
 const allowOrigin = document.getElementById("allowOrigin");
 
 function createUrl(allowHeaders, allowCredentials) {
-    let url = "http://test.sjoerdlangkemper.nl/auth/basic.php";
+    let url = "https://test.sjoerdlangkemper.nl/auth/basic.php";
     url += "?" + allowOrigin.value;
     if (allowHeaders) {
         url += "&allowHeaders";
