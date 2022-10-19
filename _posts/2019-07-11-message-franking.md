@@ -40,7 +40,7 @@ Message franking is a fairly new cryptographic construct, brought about by the n
 ## Read more
 
 * [Fast Message Franking: From Invisible Salamanders to Encryptment](https://eprint.iacr.org/2019/016.pdf), [video](https://www.youtube.com/watch?v=9xePC0Tyeuc&t=2952s)
-* [Messenger Secret Conversations](https://fbnewsroomus.files.wordpress.com/2016/07/secret_conversations_whitepaper-1.pdf)
+* [Messenger Secret Conversations](https://about.fb.com/wp-content/uploads/2016/07/messenger-secret-conversations-technical-whitepaper.pdf)
 * [Message Franking via Committing Authenticated Encryption](https://eprint.iacr.org/2017/664.pdf), [video](https://www.youtube.com/watch?v=ky9nRIl_TqY)
 * [Private Message Franking with After Opening Privacy](https://eprint.iacr.org/2018/938.pdf)
 * [Invisible Salamanders in AES-GCM-SIV](https://keymaterial.net/2020/09/07/invisible-salamanders-in-aes-gcm-siv/)
