@@ -14,7 +14,7 @@ When I write an article on my blog about a particular vulnerability, it is often
 
 GitHub is the de-facto standard for hosting open source projects, so this is a good place to start searching for our projects. However. GitHub search is inadequate for our purpose. Because it searches on keywords it is hard to construct a query that matches a specific piece of code syntax.  Furthermore, GitHub has a big number of discontinued, personal or example projects. We are interested in vulnerabilities in commonly used, well-known web application projects.
 
-For example, in [an earlier blog post](https://www.sjoerdlangkemper.nl/2017/03/15/dont-use-base-convert-on-random-tokens/) I described that using the PHP function `base_convert` on secret tokens reduces their security. Let's search for `base_convert` in PHP projects to find those vulnerabilities:
+For example, in [an earlier blog post](/2017/03/15/dont-use-base-convert-on-random-tokens/) I described that using the PHP function `base_convert` on secret tokens reduces their security. Let's search for `base_convert` in PHP projects to find those vulnerabilities:
 
 ![GitHub search results for base_convert](/images/github-search-results.png "GitHub search results for base_convert")
 

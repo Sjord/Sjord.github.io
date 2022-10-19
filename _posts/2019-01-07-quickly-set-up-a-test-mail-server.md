@@ -61,7 +61,6 @@ These tools set up a temporary email server on your own computer:
 * [smtp4dev](https://github.com/rnwood/smtp4dev)
 * [Dummy SMTP Server](https://github.com/enbiso/dummy-smtp-server)
 * [Papercut](https://github.com/ChangemakerStudios/Papercut)
-* [MockSMTP.app](http://mocksmtpapp.com/)
 * [DevNull SMTP](http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp)
 * [MailDev](https://danfarrelly.nyc/MailDev/)
 

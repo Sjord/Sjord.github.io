@@ -161,7 +161,7 @@ One optimization we can do is to move the initialization of the HMAC with the sa
  
     printf("HMAC digest: %s\n", mdString);
 
-It turns out that our way to convert binary to hexadecimal is pretty slow, so we get a [faster implementation from StackOverflow](http://stackoverflow.com/a/17147874/182971) and use that.
+It turns out that our way to convert binary to hexadecimal is pretty slow, so we get a [faster implementation from StackOverflow](https://stackoverflow.com/a/17147874/182971) and use that.
 
 The OpenSSL HMAC context has three SHA1 objects internally, and we only modify one when we call `HMAC_Update` and `HMAC_Final`. This means that instead of copying the whole HMAC context, we can copy only the one SHA1 context:
 
