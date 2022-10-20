@@ -67,4 +67,4 @@ Securing against cyber-attacks consists of finding and fixing vulnerabilities, b
 1. [Game of information security investment: Impact of attack types and network vulnerability](https://www.sciencedirect.com/science/article/pii/S0957417415002274)
 1. [Get the basics right: risk management principles for cyber security](https://www.ncsc.gov.uk/guidance/get-basics-right-risk-management-principles-cyber-security)
 1. [Sony Pictures hack](https://en.wikipedia.org/wiki/Sony_Pictures_hack)
-1. [Zero Days, Thousands of Nights, The Life and Times of Zero-Day Vulnerabilities and Their Exploits](https://paper.seebug.org/papers/Security%20Conf/Blackhat/2017_us/us-17-Ablon-Bug-Collisions-Meet-Government-Vulnerability-Disclosure-Zero-Days-Thousands-Of-Nights-RAND.pdf)
+1. [Zero Days, Thousands of Nights, The Life and Times of Zero-Day Vulnerabilities and Their Exploits](https://www.blackhat.com/docs/us-17/thursday/us-17-Ablon-Bug-Collisions-Meet-Government-Vulnerability-Disclosure-Zero-Days-Thousands-Of-Nights-RAND.pdf)

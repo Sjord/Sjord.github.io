@@ -51,7 +51,7 @@ These points are adapted from the more complete [ETSI 303 635](https://www.etsi.
 
 ### Dutch Telecommunication Agency's minimum requirements
 
-I participated in a research project for [Qbit](https://www.qbit.nl/blog/publication-iot-devices-blog-2/) and the [Dutch Telecommunication Agency](https://www.agentschaptelecom.nl/actueel/nieuws/2020/08/26/acht-simpele-eisen-kunnen-de-cyberveiligheid-van-%E2%80%98slimme-apparatuur%E2%80%99-sterk-verbeteren), in which we determined that the following requirements make sense:
+I participated in a research project for [Qbit](https://www.eurofins-cybersecurity.com/news/requirements-secured-iot-consumer-devices/) and the [Dutch Telecommunication Agency](https://www.agentschaptelecom.nl/actueel/nieuws/2020/08/26/acht-simpele-eisen-kunnen-de-cyberveiligheid-van-%E2%80%98slimme-apparatuur%E2%80%99-sterk-verbeteren), in which we determined that the following requirements make sense:
 
 * Use strong passwords
 * Use unique passwords
