@@ -90,7 +90,7 @@ Susceptibility and Effectiveness of Interventions](https://lorrie.cranor.org/pub
 1. [Before We Knew It, An Empirical Study of Zero-Day Attacks In The Real World](https://users.ece.cmu.edu/~tdumitra/public_documents/bilge12_zero_day.pdf)
 1. [Detecting and Preventing Cyber
 Insider Threats: A Survey](http://nsclab.org/nsclab/esi/comst_liu2018.pdf)
-1. [Zero Days, Thousands of Nights, The Life and Times of Zero-Day Vulnerabilities and Their Exploits](https://paper.seebug.org/papers/Security%20Conf/Blackhat/2017_us/us-17-Ablon-Bug-Collisions-Meet-Government-Vulnerability-Disclosure-Zero-Days-Thousands-Of-Nights-RAND.pdf)
+1. [Zero Days, Thousands of Nights, The Life and Times of Zero-Day Vulnerabilities and Their Exploits](https://www.blackhat.com/docs/us-17/thursday/us-17-Ablon-Bug-Collisions-Meet-Government-Vulnerability-Disclosure-Zero-Days-Thousands-Of-Nights-RAND.pdf)
 1. [Hack Back, A DIY Guide](https://www.exploit-db.com/papers/41915)
 1. [Broken Browser](https://www.brokenbrowser.com/)
 1. [Sony Pictures hack](https://en.wikipedia.org/wiki/Sony_Pictures_hack)
