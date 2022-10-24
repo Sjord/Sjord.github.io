@@ -6,17 +6,17 @@ date: 2022-10-26
 tags: programming
 ---
 
-In object-oriented programming, objects be in a particular state in which it is not valid to call certain methods. This article explores a solution for when methods need to be called in a particular order.
+In object-oriented programming, objects can be in a particular state in which it is not valid to call certain methods. This article explores a solution for when methods need to be called in a particular order.
 
 <!-- photo source: https://pixabay.com/photos/child-tower-building-blocks-blocks-1864718/ -->
 
 ## Enforcing the order of method calls
 
-For some classes, methods can only be called in a specific order. For example, when using TCP sockets, you first have to call `connect()` before you can call `send()`. This order is usually enforced at run-time, by throwing an exception when the methods are called out of order.
+For some classes, methods can only be called in a specific order. For example, when using TCP sockets, you first have to call `Connect()` before you can call `Send()`. This order is usually enforced at run-time, by throwing an exception when the methods are called out of order.
 
 Consider this C# example:
 
-```
+```c#
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -41,7 +41,7 @@ This is enforced at run-time, but wouldn't it be cool if we could enforce it at 
 
 When we create a new socket, it should not have a `Send()` method on it, since we can't call it anyway. Only after we have called `Connect()` we should obtain an object that has a `Send()` method. Creating a new socket will give us a `IDisconnectedSocket`, which specifies a `Connect()` method that returns an `IConnectedSocket`. 
 
-```
+```c#
 public interface IDisconnectedSocket
 {
     public IConnectedSocket Connect(EndPoint remoteEP);
@@ -49,7 +49,7 @@ public interface IDisconnectedSocket
 
 ```
 
-```
+```c#
 public interface IConnectedSocket
 {
     public int Send(byte[] buffer);
@@ -60,7 +60,7 @@ We can only obtain a `IConnectedSocket` after calling `Connect()`, so it's no lo
 
 These two interfaces can even be implemented on the same type. The `Socket` class could implement all methods, but methods are still protected against out-of-order execution because the caller does not have the interface to these methods. For example, the following class converts the normal `Socket` to one that conforms to our interfaces:
 
-```
+```c#
 public class SocketAdapter : IConnectedSocket, IDisconnectedSocket
 {
     private Socket socket;
