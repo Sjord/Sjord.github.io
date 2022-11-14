@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "Running Etherkey on a Arduino Leonardo clone to emulate a keyboard"
+title: "Running Etherkey on an ATmega32u4 to emulate a keyboard"
 thumbnail: leonardo-keyboard-480.jpg
 date: 2022-11-16
 ---
 
+This article describes a cheap solution to emulate a keyboard on another computer. This is a rudimentary method of transferring data from one computer to another, with the advantage that it works on any computer and does not need installation of any software on the target device. 
 
 ## Computer to keyboard interface
 
@@ -14,7 +15,7 @@ My work laptop sends instructions over UART to a microcontroller that pretends t
 
 ## Current setup with Teensy
 
-At my last job I got a [Teensy 3.2](https://www.pjrc.com/store/teensy32.html) as a gift. This is a pretty powerful microcontroller that can also pretend to be a USB keyboard. As software I use [Etherkey](https://github.com/Flowm/etherkey), which is made for this job. It converts input on the serial port to key presses on the virtual keyboard. To connect my laptop to the Teensy I use a [cheap USB to UART serial converter](/2019/03/20/usb-to-serial-uart/).
+At my last job I got a [Teensy 3.2](https://www.pjrc.com/store/teensy32.html) as a gift. This is a pretty powerful microcontroller that can also pretend to be a USB keyboard. The Teensy runs [Etherkey](https://github.com/Flowm/etherkey), which is made for this job. It converts input on the serial port to key presses on the virtual keyboard. To connect my laptop to the Teensy I use a [cheap USB to UART serial converter](/2019/03/20/usb-to-serial-uart/).
 
 <img src="/images/etherkeysetup.png" width="100%">
 
@@ -26,21 +27,21 @@ Later I discovered the problem with my Teensy was its USB connector. I soldered 
 
 ## Arduino Leonardo clone
 
-I bought two cheap [development boards on AliExpress](https://www.aliexpress.com/item/32617886318.html?spm=a2g0o.order_list.0.0.5d0b1802NLLDnr). I paid about €11 per piece. These have a ATmega32u4 microcontroller on board, which has the functionality to emulate a USB keyboard.
+I bought two cheap [development boards on AliExpress](https://www.aliexpress.com/item/32617886318.html?spm=a2g0o.order_list.0.0.5d0b1802NLLDnr). I paid about €11 per piece, but similar boards are available a little cheaper. These have a ATmega32u4 microcontroller on board, which has the functionality to emulate a USB keyboard.
 
 Arduino also provides a board with a ATmega32u4, the [Arduino Leonardo](https://docs.arduino.cc/hardware/leonardo). So these ATmega32u4 development boards are pretty well supported by the Arduino software. The pinout is different from the official board though.
 
 ## Getting Etherkey to work
 
-I already used Etherkey on the Teensy. It's job is to read commands on the serial UART interface, and press the corresponding keys on the virutal keyboard. Etherkey thus far only supported Teensy 3.2. I had no idea how hard it would be to make it work on my Leonardo clone, but it turned out to be pretty easy. There were three steps:
+I already used Etherkey on the Teensy. It's job is to read commands on the serial UART interface, and press the corresponding keys on the virtual keyboard. Etherkey thus far only supported Teensy 3.2. I had no idea how hard it would be to make it work on my Leonardo clone, but it turned out to be pretty easy. There were three steps:
 
-1. Inlude the `Keyboard.h` header file.
+1. Include the `Keyboard.h` header file.
 2. Map Leonardo key names to Teensy key names. For example, Teensy uses `KEY_ENTER` and Leonardo uses `KEY_RETURN`.
 3. Disable the detection of keyboard LEDs. The Teensy has support to detect whether num-lock is on or off, but unfortunately Arduino [doesn't](https://github.com/arduino-libraries/Keyboard/issues/43) [have](https://github.com/arduino-libraries/Keyboard/issues/40) [this](https://github.com/arduino/ArduinoCore-avr/pull/446) [yet](https://github.com/arduino-libraries/Keyboard/pull/61).
 
 All in all, the following shows the changes:
 
-```c
+```
 #ifdef ARDUINO_AVR_LEONARDO
 #include "Keyboard.h"
 
@@ -63,3 +64,20 @@ All in all, the following shows the changes:
 #define keyboard_leds 0
 #endif
 ```
+
+I connected the GND, RX and TX from the UART bridge to the pins marked GND, TX and RX on the ATmega32U4, and it worked!
+
+<img src="/images/atmega-virtual-keyboard.jpg" width="100%">
+
+## Conclusion
+
+With Etherkey running on an ATmega32u4, it is now possible to have a keyboard emulator for under €10. It's really useful, especially if you want to automate things on devices that cannot run automation software themselves. In my case this was because the target laptop was locked down by the client company.
+
+As a bonus, it also works with smart phones, which can be easy when you have to transfer a complicated password to a smart phone.
+
+## Read more
+
+* [Simulate USB keyboard from machine - Super User](https://superuser.com/questions/1128365/simulate-usb-keyboard-from-machine)
+* [Flowm/etherkey: Emulate a conventional USB keyboard with a scriptable, network capable microcontroller.](https://github.com/Flowm/etherkey)
+* [Microchip ATmega32U4](https://www.microchip.com/en-us/product/ATmega32U4)
+* [Arduino Leonardo Documentation](https://docs.arduino.cc/hardware/leonardo)
