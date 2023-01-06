@@ -5,7 +5,11 @@ thumbnail: double-key-480.jpg
 date: 2023-02-01
 ---
 
+When setting up two-factor authtentication using time-based OTP, the client and secret agree on a symmetric secret key. The application has to save this key somewhere in order to verify 2FA tokens. How can this key be stored securely?
+
 <!-- Photo source: https://pixabay.com/nl/photos/berlijn-toets-sleutel-sluiten-zeker-96225/ -->
+
+## Introduction
 
 Time based OTP is commonly used for two-factor authentication. It works with a symmetric key. The server generates a key and stores it. It shows a QR code containing the key to the user, who then scans it and stores the key in their phone. The phone uses this key to generate a OTP, which the server can verify.
 
