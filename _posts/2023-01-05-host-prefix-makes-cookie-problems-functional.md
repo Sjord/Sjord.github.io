@@ -46,4 +46,4 @@ The better solution is that it's not accessible at all. I think deny-by-default 
 
 ## Disable MIME type sniffing
 
-The `X-Content-Type-Options: nosniff` header makes the browser takes `Content-Type` headers more serious. This also functionally breaks pages that have an incorrect content type, or are missing a content type. Such bugs are pretty rare, but enabling this header is basically free and makes sure that these bugs are noticed early.
+The [`X-Content-Type-Options: nosniff` header](/2023/03/29/mime-type-sniffing-x-content-type-options-nosniff/) makes the browser takes `Content-Type` headers more serious. This also functionally breaks pages that have an incorrect content type, or are missing a content type. Such bugs are pretty rare, but enabling this header is basically free and makes sure that these bugs are noticed early.
