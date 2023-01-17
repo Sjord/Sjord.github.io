@@ -83,4 +83,4 @@ Handling sensitive information can be improved if frameworks by providing a stan
 * [Logging objects with properties which hold sensitive data (to be hashed) - Stack Overflow](https://stackoverflow.com/questions/58670397/logging-objects-with-properties-which-hold-sensitive-data-to-be-hashed)
 * [C# .net core, Log request without sensitive information - Stack Overflow](https://stackoverflow.com/questions/55104151/c-sharp-net-core-log-request-without-sensitive-information)
 * [Using attributes to control destructuring in Serilog](https://nblumhardt.com/2014/07/using-attributes-to-control-destructuring-in-serilog/)
-
+* [PHP: SensitiveParameter - Manual](https://www.php.net/SensitiveParameter)
