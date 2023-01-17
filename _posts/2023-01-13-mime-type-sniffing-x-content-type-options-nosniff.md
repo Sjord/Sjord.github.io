@@ -17,9 +17,13 @@ This kind of insecure behavior is no longer present in modern browsers. First, t
 
 When there is no Content-Type response header, however, sniffing determines how the response is rendered. A response without a Content-Type header that looks like HTML gets rendered as HTML. This can be a security risk, and here X-Content-Type-Options: nosniff can help. With nosniff, a page that looks like HTML gets rendered as plain text. Of course, setting a Content-Type header would also help.
 
-Content sniffing is also performed when loading scripts and styles. Normally, when a page contains `<script src="script.js"></script>`, the file script.js is loaded, even if it does not have the correct Content-Type response header. With nosniff, the script is not loaded. This behavior is actually [specified in the Fetch Standard](https://fetch.spec.whatwg.org/#should-response-to-request-be-blocked-due-to-nosniff?).
+## Cross origin read blocking
 
-This in turn makes it possible for [Cross Origin Read Blocking](https://www.chromium.org/Home/chromium-security/corb-for-developers/) (CORB) to be stricter in blocking cross-origin JavaScript requests. CORB is meant to block certain cross-origin responses. When specifying nosniff, more responses can be reliably blocked.
+Cross origin read blocking (CORB) prevents sensitive responses from being read by the current process, where they can potentially be read by side-channel vulnerabilities such as Spectre. In this scenario, the attacker's page would have something like `<img src="https://bank.com/secret-pincode.html">`. The browser will load this page. Even though it doesn't display as an image, and JavaScript can't directly access the response, it would have loaded the response in the current process memory. Using Spectre or other side-channel attacks, this memory can be read by the attacker's site. To prevent this CORB only allows image content types to be loaded in img tags.
+
+It should also only load script content types in script tags, but it doesn't by default. When a page contains `<script src="script.js"></script>`, the file script.js is loaded, even if it does not have the correct Content-Type response header. Many pages on the internet load scripts that are incorrectly marked as HTML instead of JavaScript, and CORB does not block these responses, to prevent breaking existing pages.
+
+With nosniff, however, the script is not loaded. This behavior is actually [specified in the Fetch Standard](https://fetch.spec.whatwg.org/#should-response-to-request-be-blocked-due-to-nosniff?). For stylesheets it works in much the same way. When specifying nosniff, more responses can be reliably blocked.
 
 Finally, some modern web specifications such as [Signed Exchanges](https://web.dev/signed-exchanges/) only work when nosniff is included in the response headers.
 
