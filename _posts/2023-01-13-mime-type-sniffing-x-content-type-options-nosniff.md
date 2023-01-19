@@ -49,7 +49,7 @@ The specification for `X-Content-Type-Options` allows for a list of comma-separa
 
 It doesn't. Both [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=1811029) and [Chrome](https://bugs.chromium.org/p/chromium/issues/detail?id=1408458) break on quoted strings. Firefox supports multiple unquoted strings, and Chrome supports it for loading scripts and styles, but not for toplevel navigation. This is inconsistent behavior even within one browser. Even though the Fetch spec allows for multiple values, sniffing is only disabled if `nosniff` is the first value.
 
-### It doesn't enable sniffing
+### It doesn't disable sniffing
 
 You would think that setting "nosniff" disables sniffing. [It doesn't totally disable sniffing in Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=1810123). For MP3 files, it still shows a music player, even if there is no Content-Type header. In that case, the only way Firefox can know that a response contains a MP3 file is by looking at the content. So apparently it still does sniffing, even with nosniff. Also, it will render text content and download binary content, again a result of looking at the content of the response.
 
