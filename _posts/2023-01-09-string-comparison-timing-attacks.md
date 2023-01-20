@@ -1,9 +1,15 @@
 ---
 layout: post
 title: "String comparison timing attacks"
-thumbnail: todo-480.jpg
-date: 2023-01-18
+thumbnail: clocktower-480.jpg
+date: 2023-03-15
 ---
+
+<!-- Photo source: https://commons.wikimedia.org/wiki/File:Lier_Zimmertoren_klok.JPG -->
+
+When an application compares two strings, this can take longer if the strings are more similar. The theory is that the strings are compared character by character. If the first character is different, the application can stop comparing immediately. If the first character is the same, subsequent characters are compared, and this takes longer. When comparing against a secret value, the time the comparison takes may give information on the content of the secret value.
+
+
 
 ## C
 
@@ -81,3 +87,8 @@ print(res, end_time - start_time)
 ```
 
 Difference is about 1 ns per comparison, per character.
+
+## Read more
+
+* [Preventing Timing Attacks on String Comparison with a Double HMAC Strategy - Paragon Initiative Enterprises Blog](https://paragonie.com/blog/2015/11/preventing-timing-attacks-on-string-comparison-with-double-hmac-strategy)
+* [It's All About Time | ircmaxell's Blog](https://blog.ircmaxell.com/2014/11/its-all-about-time.html)
