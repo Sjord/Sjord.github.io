@@ -7,15 +7,19 @@ date: 2023-05-17
 
 My girlfriend and I organized a giving game, where participants had to donate to a charity of their choice. I explained how to rationally choose a charity, but in the end most people chose a charity to which they were emotionally attached.
 
-There are many problems in the world, and many people have worse living conditions than me. Various charities try to do something about this, and I donated to some in the past. Choosing a charity can be a challenging task. Every charity claims to need your money the most, but you can spend money only once. In my research I came across various resources that try to pick the best charities, such as [Give Well](https://www.givewell.org/). There are orders of magnitude differences between the effect charities have for a fixed amount of money, and saving people can be surprisingly cheap and effective.
+## Choosing charities
+
+There are many problems in the world, and many people have worse living conditions than me. Various charities try to do something about this, and I donated to some in the past. Choosing a charity can be a challenging task. Every charity claims to need your money the most, but you can spend money only once. While researching which charity to donate to I came across various resources that try to pick the best charities, such as [Give Well](https://www.givewell.org/). There are orders of magnitude differences between the effect charities have for a fixed amount of money, and saving people can be surprisingly cheap and effective.
+
+## Giving game
 
 I thought this would be interesting for other people as well. I am a member at the local Scouting, and when it was my turn to think of an activity for the young adult group, I decided to organize a giving game. In a giving game, participants discuss on which charity they want to donate to. So, my girlfriend and I organized a giving game for young adults at Scouting. There were approximately 14 participants. At the start everyone received €10, to donate later that evening.
 
-I started with a presentation, mostly copied from [Giving What We Can](https://www.givingwhatwecan.org/events/guides/giving-games). I explained how charities differ greatly in the effect that they have, for each unit of money spent. Giving people in developing countries access to clean drinking water or malaria medication makes the lives of many people much better, and is pretty cheap. Developing a new cancer medicine helps only a fraction of the people, and is very expensive.
+I started with a presentation, mostly copied from [Giving What We Can](https://www.givingwhatwecan.org/events/guides/giving-games). I explained how charities differ greatly in the effect that they have, for each unit of money spent. Giving people in developing countries access to clean drinking water or malaria medication makes the lives of many people much better, and is pretty cheap. Developing a new cancer medicine helps only a fraction of the people, and is very expensive[^1].
 
-I also explained that some causes, such as breast cancer, get funded in a volume that is not in relation with the harm they cause, while common diseases are all but ignored.
+I also explained that some causes, such as breast cancer, get funded [in a volume that is not in relation](https://www.vox.com/2014/8/20/6040435/als-ice-bucket-challenge-and-why-we-give-to-charity-donate) with the harm they cause, while common diseases are all but ignored.
 
-We had a quiz with ten questions, in which I tried to indicate the enormity of some problems, and how cheap it is to do something about it. The Open Wing Alliance, an action group that wants to eliminate battery cages for chickens, [recently got a commitment](https://thehumaneleague.org/article/victory-toridoll-releases-a-global-cage-free-commitment) from a large restaurant chain to switch to eggs from cage-free chickens. Some of these restaurants use 1000 eggs per day, and the restaurant chain consists of over 1000 restaurants. This concerns up to a million animals. This is much more effective at improving animal wellfare than animal shelters, who can only care for a handful of animals at a time.
+We had a quiz with ten questions, in which I tried to indicate the enormity of some problems, and how cheap it is to do something about it. The Open Wing Alliance, an action group that wants to eliminate battery cages for chickens, [recently got a commitment](https://thehumaneleague.org/article/victory-toridoll-releases-a-global-cage-free-commitment) from a large restaurant chain to switch to eggs from cage-free chickens. Some of these restaurants use 1000 eggs per day, and the restaurant chain consists of over 1000 restaurants. This concerns up to a million animals. This is much more effective at improving animal welfare than animal shelters, who can only care for a handful of animals at a time.
 
 We had some discussion on some statements. Then the group split up and each group chose its own goal to promote in a presentation.
 
@@ -30,6 +34,14 @@ While doing my presentation I had the feeling that people mostly understood what
 
 Participants seriously thought about which charities to support, and what would be important in a charity. Many were overwhelmed when starting the search for the right charity. One group started with a [list of 733 charities](https://www.cbf.nl/register-goede-doelen), which is of course too much to reason about. I pointed them to the [Give Well top charity list](https://www.givewell.org/charities/top-charities). They discussed what was important to them in a charity, and searched for statistics or evidence on charities.
 
+## Conclusion
+
+Follow This and the local toy bank each got about half of the money. Only one or two people donated to Save the Children.
+
 Normally with a giving game, participants can only choose from a set of three or four charities, that are already considered cost-effective and evidence-backed by the organizers. In our format, participants could choose any charity. It showed that participants don't necessarily choose cost-effective charities, even though I explained why this is important. I think this remains a challenge, to convince people to choose a charity rationally instead of emotionally.
 
 In the end, I was a little disappointed that people still chose local charities. Even so, people put serious thought into donating to charities, and I feel we eliminated some barriers in the way do improving the world through donations.
+
+## Footnote
+
+[^1]: After the giving game and writing this article, [a study](https://ascopubs.org/doi/10.1200/JCO.22.01826) showed that cancer research was actually surprisingly effective, and not all that expensive. This has adjusted my view on cancer research funding only slightly, but confirmed that it is even harder to know which charities are effective than I thought.
