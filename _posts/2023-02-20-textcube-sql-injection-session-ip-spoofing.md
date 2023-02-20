@@ -11,7 +11,7 @@ Textcube is a open source blogging application. It contains a SQL injection vuln
 
 ## Introduction
 
-Textcube is written in plain PHP, without an underlying framework such as Laravel. This is a good recipe for security vulnerabilities, since it is hard to do everything right unless there's a secure framework to build on.
+Textcube is a blogging application written in plain PHP, without an underlying framework such as Laravel. This is a good recipe for security vulnerabilities, since it is hard to do everything right unless there's a secure framework to build on. I found several vulnerabilities; one where the possibility to spoof the IP address leads to SQL injection.
 
 ## IP spoofing
 
@@ -26,9 +26,9 @@ if(isset($_SERVER['HTTP_CLIENT_IP'])) {
 }
 ```
 
-The `$_SERVER['HTTP_CLIENT_IP']` contains the value from the `Client-IP` request header, and that's copied to `$_SERVER['REMOTE_ADDR']`, which normally contains the IP address of the client. This is meant to support proxy servers. Without a proxy server, the client connects directly to the web server, and their IP address will be set as `REMOTE_ADDR`. However, when you have a proxy server or a CDN such as CloudFlare in between, the client connects to the proxy server and not to your webserver. The webserver only receives connections from the proxy server, so `REMOTE_ADDR` will always contain the same IP address. To solve this, most proxy servers relay the IP of the client in a request header. The proxy sets `Client-IP`, and the webserver can use that to determine the IP address the request originated from. The problem is that anyone can set the `Client-IP` header, not just the proxy. If someone includes a `Client-IP` header in a request to the server, they can spoof their IP address. Textcube now thinks that the value from `X-Forwarded-For` or `Client-IP` header where the request came from.
+The `$_SERVER['HTTP_CLIENT_IP']` contains the value from the `Client-IP` request header, and that's copied to `$_SERVER['REMOTE_ADDR']`, which normally contains the IP address of the client. This is meant to support proxy servers. Without a proxy server, the client connects directly to the web server, and the server puts their IP address in `REMOTE_ADDR`. However, when you have a proxy server or a CDN such as CloudFlare in between, the client connects to the proxy server and not to your webserver. The webserver only receives connections from the proxy server, so `REMOTE_ADDR` will always contain the same IP address. To solve this, most proxy servers relay the IP of the client in a request header. The proxy sets `Client-IP`, and the webserver can use that to determine the IP address the request originated from. The problem is that anyone can set the `Client-IP` header, not just the proxy. If someone includes a `Client-IP` header in a request to the server, they can spoof their IP address. Textcube now thinks that the value from `X-Forwarded-For` or `Client-IP` header where the request came from.
 
-In this case, Burp's active scanner detected that this was possible. I also often test this manually, or look in the code for use of the `X-Forwarded-For` header. There are also * [Burp](https://portswigger.net/bappstore/3a656c1be14148c6bf95642af42eb854) [plugins](https://portswigger.net/bappstore/ae2611da3bbc4687953a1f4ba6a4e04c) that automatically set these headers.
+In this case, Burp's active scanner detected that IP spoofing was possible. I also often test this manually, or look in the code for use of the `X-Forwarded-For` header. There are also [Burp](https://portswigger.net/bappstore/3a656c1be14148c6bf95642af42eb854) [plugins](https://portswigger.net/bappstore/ae2611da3bbc4687953a1f4ba6a4e04c) that automatically set these headers.
 
 Impact depends on how to application uses the IP address. Sometimes it's possible to bypass a IP allow list or evade brute-force protection. Often it's just possible to change the IP address in the logs.
 
@@ -49,7 +49,7 @@ private static function getAnonymousSession() {
 }
 ```
 
-It used to be pretty common to bind sessions to a IP address. The thought was that a session would only be valid on a single computer, thus on a single IP address. If the session identifier was used from another IP address, it was likely a result of a compromised session identifier. This does provide some security, but it also causes users to be logged out as soon as they change IP address, which can be quite often, especially for mobile devices. I think binding sessions to IP addresses is no longer widely recommended. [Token binding](/2017/07/05/prevent-session-hijacking-with-token-binding/) and [WebAuthn](https://en.wikipedia.org/wiki/WebAuthn) provide other solutions to bind the session to the computer, without depending on the IP address.
+It used to be pretty common to bind sessions to a IP address. The thought was that a session would only be valid on a single computer, thus on a single IP address. If the session identifier was used from another IP address, it was likely a result of a compromised session identifier. This does provide some security, but it also causes users to be logged out as soon as they change IP address. With the rise of Wi-Fi and mobile devices, IP changes became a lot more frequent. I think binding sessions to IP addresses is no longer widely recommended. [Token binding](/2017/07/05/prevent-session-hijacking-with-token-binding/) and [WebAuthn](https://en.wikipedia.org/wiki/WebAuthn) provide other solutions to bind the session to the computer, without depending on the IP address.
 
 However, the code above does not necessarily bind the session to the IP address, it retrieves the session based on the IP address. That means that multiple people who share the same IP address also get the same session. This apparently only works this way for anonymous sessions, but this seems really strange (and insecure) to me nonetheless.
 
@@ -62,7 +62,7 @@ $result = self::query('cell',"SELECT id FROM Sessions WHERE
     address = '{$_SERVER['REMOTE_ADDR']}' AND userid IS NULL AND preexistence IS NULL");
 ```
 
-Normally, `$_SERVER['REMOTE_ADDR']` only contains an IP address. But as we described above, it is overwritten with the value from HTTP request headers. This means that we can put a SQL injection payload in the `Client-IP` header and get access to the database.
+Normally, `$_SERVER['REMOTE_ADDR']` only contains an IP address. But as described above, it is overwritten with the value from HTTP request header. This means that we can put a SQL injection payload in the `Client-IP` header and get access to the database.
 
 Since we are already querying the sessions table, we can easily change the query to retrieve a session identifier for another user:
 
@@ -72,13 +72,13 @@ This returns the session identifier for user 1, which is often the admin, if the
 
     Client-IP: ' UNION SELECT loginid from tc_Users where userid=1; -- x
 
-The ` -- ` here starts a SQL comment. The `x` is needed so that the space at the end does not get trimmed off. This returns the email address of the admin as the session identifier. So the response would contain:
+The ```--``` here starts a SQL comment. The `x` is needed so that the space at the end does not get trimmed off. The two dashes only start a comment when they are followed by a space. This query returns the email address of the admin as the session identifier. So the response would contain:
 
     Set-Cookie: TSSESSIONtextcubelocal=admin%40sjoerdlangkemper.nl; path=/; 
 
 ## Changing built-in variables
 
-Textcube changed the value of `$_SERVER['REMOTE_ADDR']`. This does not only change the value, but also the assumptions on the content. Normally, `$_SERVER['REMOTE_ADDR']` can be trusted to contain an IP address, set by the webserver. By overwriting this value, this assumption is no longer true. Using `REMOTE_ADDR` unescaped in a query would normally not lead to SQL injection, and it's quite possible a code review or scan of isolated files would have missed this vulnerability.
+Textcube changes the value of `$_SERVER['REMOTE_ADDR']`. This does not only change the value, but also the assumptions about the content. Normally, `$_SERVER['REMOTE_ADDR']` can be trusted to contain an IP address, set by the webserver. By overwriting this value, this assumption is no longer true. Using `REMOTE_ADDR` unescaped in a query would normally not lead to SQL injection, and it's quite possible a code review or scan of isolated files would have missed this vulnerability.
 
 ## Testing locally
 
