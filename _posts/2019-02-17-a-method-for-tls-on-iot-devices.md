@@ -49,3 +49,4 @@ With this setup it is possible to provide HTTPS that works in a browser and is p
 
 * [Using Let’s Encrypt for internal servers](https://blog.heckel.xyz/2018/08/05/issuing-lets-encrypt-certificates-for-65000-internal-servers/)
 * [How Plex is doing HTTPS for all its users](https://blog.filippo.io/how-plex-is-doing-https-for-all-its-users/)
+* [When a web PKI certificate won’t cut it](https://emilymstark.com/2021/12/24/when-a-web-pki-certificate-wont-cut-it.html)
