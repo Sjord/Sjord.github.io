@@ -64,6 +64,8 @@ These tools set up a temporary email server on your own computer:
 * [DevNull SMTP](http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp)
 * [MailDev](https://maildev.github.io/maildev/)
 * [MailCrab](https://tweedegolf.nl/en/blog/86/introducing-mailcrab)
+* [Mailpit](https://github.com/axllent/mailpit)
+* [Inbucket](https://github.com/inbucket/inbucket)
 
 ### Cloud services
 
