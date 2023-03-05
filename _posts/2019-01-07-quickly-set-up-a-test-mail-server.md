@@ -60,9 +60,10 @@ These tools set up a temporary email server on your own computer:
 
 * [smtp4dev](https://github.com/rnwood/smtp4dev)
 * [Dummy SMTP Server](https://github.com/enbiso/dummy-smtp-server)
-* [Papercut](https://github.com/ChangemakerStudios/Papercut)
+* [Papercut](https://github.com/ChangemakerStudios/Papercut-SMTP)
 * [DevNull SMTP](http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp)
-* [MailDev](https://danfarrelly.nyc/MailDev/)
+* [MailDev](https://maildev.github.io/maildev/)
+* [MailCrab](https://tweedegolf.nl/en/blog/86/introducing-mailcrab)
 
 ### Cloud services
 
