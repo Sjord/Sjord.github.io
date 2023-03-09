@@ -31,7 +31,6 @@ a:visited { color: #205caa; }
   max-width: 1000px;
   padding: 0 30px;
   margin: 0 auto;
-  zoom: 1;
 }
 
 @media screen {
@@ -82,7 +81,7 @@ a:visited { color: #205caa; }
   color: #333;
   font-size: 52px;
   letter-spacing: -1px;
-  line-height: 112px;
+  margin: 17px 0;
   position: relative;
   z-index: 1;
   text-decoration: none;
@@ -116,10 +115,11 @@ a:visited { color: #205caa; }
   font-size: 15px;
   letter-spacing: -.3px;
   color: #757575;
+  clear: both;
 }
 
 .site-footer nav {
-  width: 681px;
+  max-width: 681px;
   margin-bottom: 1em;
 }
 .site-footer nav a[rel=next] {
@@ -379,7 +379,9 @@ a:visited { color: #205caa; }
   }
 
   .left-col, .sidebar {
-    padding: 10px;
+    display: block;
+    padding: 10px 0 0 0;
+    border-right: none;
   }
 }
 
