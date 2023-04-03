@@ -2,7 +2,7 @@
 layout: post
 title: "My experience with organizing a giving game"
 thumbnail: donation-480.jpg
-date: 2023-05-17
+date: 2023-04-12
 ---
 
 My girlfriend and I organized a giving game, where participants had to donate to a charity of their choice. I explained how to rationally choose a charity, but in the end most people chose a charity to which they were emotionally attached.
