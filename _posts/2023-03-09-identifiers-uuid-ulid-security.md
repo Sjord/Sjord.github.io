@@ -15,7 +15,7 @@ If you've been on the internet before, you've probably seen identifiers in URLs.
 https://example.org/user/123/profile
 ```
 
-Or random UUIDs:
+Or random [UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier):
 
 ```
 https://example.org/user/f054b533-0828-4c4b-9a69-3f5e48101b96/profile
@@ -34,11 +34,11 @@ There are two risks when using identifiers:
 
 ### Guessability
 
-Sequantial numeric identifiers are easy to guess. If the user with id `123` exists, it makes sense users with id `122` and `124` may also exist. This can make it easy to exploit a vulnerability. By changing the identifier in the URL, you may gain access to resources that you weren't supposed to. This vulnerability is called *insecure direct object reference* (IDOR). The identifier in the URL references an object in the database, and by changing that identifier in the URL you can request other objects.
+Sequential numeric identifiers are easy to guess. If the user with id `123` exists, it makes sense users with id `122` and `124` may also exist. This can make it easy to exploit a vulnerability. By changing the identifier in the URL, you may gain access to resources that you weren't supposed to. This vulnerability is called *insecure direct object reference* (IDOR). The identifier in the URL references an object in the database, and by changing that identifier in the URL you can request other objects.
 
 The underlying problem with IDOR is that no access control is performed. If you are not authorized to view user `122`, the application is supposed to give an error when you request it. Whether the identifiers are easy to guess or not has no influence on the base of problem, which is missing authorization checks.
 
-However, in practice IDOR is much easier to exploit when the identifiers can be guessed. With sequential numeric identifiers, it is easy not only to retrieve one user, but all users in the database. When random UUIDs are used, this is practically impossible. Using an identifier that is hard to guess is thus a good defence in depth measure against insecure direct object references.
+However, in practice IDOR is much easier to exploit when the identifiers can be guessed. With sequential numeric identifiers, it is easy not only to retrieve one user, but all users in the database. When random UUIDs are used, this is practically impossible. Using an identifier that is hard to guess is thus a good defense in depth measure against insecure direct object references.
 
 ### Information disclosure
 
@@ -46,7 +46,7 @@ Unless an identifier is totally random, it exposes information. UUIDv1 contains 
 
 #### German tank problem
 
-In the Second World War, the allies made a statistical estimate of the number of tanks the Germans produced. Some sources claim that tanks were simply numbered sequentially, but this was not the case. Tank parts came from different manufacturers, and these manufacturers had different numbering schemes. However, many parts of the tanks were numbered. The allies had captured two Panther tanks. Each tank had 48 bogie wheels, supporting the tank treads. These bogie wheels were numbered with the mold number from the factory. This way, the number of available molds could be estimated, which in turn could be used to estimate the rate of tank production.
+Here's an anekdote about how identifiers expose sensitive information. In the Second World War, the allies [made a statistical estimate](https://en.wikipedia.org/wiki/German_tank_problem#Historical_example_of_the_problem) of the number of tanks the Germans produced. Some sources claim that tanks were simply numbered sequentially, but this was not the case. Tank parts came from different manufacturers, and these manufacturers had different numbering schemes. However, many parts of the tanks were numbered. The allies had captured two Panther tanks. Each tank had 48 bogie wheels, supporting the tank treads. These bogie wheels were numbered with the mold number from the factory. This way, the number of available molds could be estimated, which in turn could be used to estimate the rate of tank production.
 
 ## Other considerations
 
@@ -57,15 +57,15 @@ Besides security, there are two important differences between sequential and ran
 
 ### Asynchronous generation
 
-When two users create a new object simultaneously, the objects should still get a unique identifier. The handling and increment of a sequential numeric identifiers should therefore be done atomically. Typically, it is handled by the database when a record is created. This is a bit of a strange pattern, where data is created and returned to the application when a record is inserted. Also, it is not possible to create a identifier ahead of time, for example to facilitate a multi-step workflow to create the record.
+When two users create a new object simultaneously, the objects should still get a unique identifier. The handling and increment of a sequential numeric identifiers should therefore be done atomically. Typically, it is handled by the database when a record is created. This is a bit of a strange pattern, where data is created and returned to the application when a record is inserted. Also, it is not easy to create a identifier ahead of time, for example to facilitate a multi-step workflow to create the record.
 
 When using a random identifier, it can be created by the application without communicating with the database. Multiple clients can create identifiers simultaneously, before inserting the record.
 
 ### Database indices
 
-A database index is a table with keys in the first column, and locations of database records in the second column. The table is ordered by the keys in the first column. With such an index, lookup up a key can be quite fast. The database does a binary search on the first column, looks in the second column to determine the location of the corresponding row, and retrieves the row from this location.
+A [database index](https://en.wikipedia.org/wiki/Database_index) is a table with keys in the first column, and locations of database records in the second column. The table is ordered by the keys in the first column. With such an index, lookup up a key can be quite fast. The database does a [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm) on the first column, looks in the second column to determine the location of the corresponding row, and retrieves the row from this location.
 
-As I said, the index is sorted on the key. When a new record is inserted, it's key is added to the index in such a way that the keys in the index remain sorted. When using sequential identifiers, this is pretty easy. The key can just be appended to the end. When using random identifiers, the key has to be inserted in the middle somewhere, for every inserted row. This can lead to index fragmentation.
+As I said, the index is sorted on the key. When a new record is inserted, its key is added to the index in such a way that the keys in the index remain sorted. When using sequential identifiers, this is pretty easy. The key can just be appended to the end. When using random identifiers, the key has to be inserted in the middle somewhere, for every inserted row. This can lead to index fragmentation.
 
 This is especially a problem when using a clustered index. In a clustered index, there is not a separate table. Instead, the rows of the actual database table are sorted on the key. When inserting a random key, the rows in the table have to be rearranged to be ordered on this key again.
 
@@ -82,8 +82,7 @@ This way, object references become meaningless to a user or attacker. Insecure d
 
 ## Conclusion
 
-
-
+Random identifiers can be a good way to mitigate insecure direct object reference vulnerabilities, even though authorization checks remain important. However, getting a sequential numeric identifier from the database remains the standard to this day. I feel frameworks could have a role in proposing a more secure and user friendly identifier. Using hexadecimal UUID identifiers create pretty long URLs. Encrypting or mapping identifiers is also a good security feature that is sadly missing from many frameworks.
 
 ## Read more
 
