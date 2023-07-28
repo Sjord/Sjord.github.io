@@ -1,21 +1,21 @@
 ---
 layout: post
-title: "Encrypting small things"
-thumbnail: tree-tag-480.jpg
-date: 2023-05-10
+title: "Encrypting identifiers"
+thumbnail: tree-tag-encrypted-480.jpg
+date: 2023-08-02
 ---
 
-In the previous post, I suggested encrypting identifiers in URLs. However, it turns out there is no straightforward way to do this. The best practice is to don't do it at all. So in this post we explore the problems and what it would take to do it anyway.
+In the previous post, I suggested encrypting identifiers in URLs. However, it turns out there is no straightforward way to do this. The current best practice is to don't do it at all, and use a database mapping instead. So in this post we explore the problems and what it would take to encrypt identifiers anyway.
 
 ## Introduction
 
-URLs can contain identifiers. In the following example, it identifies user 123:
+URLs can contain identifiers. In the following example, the `123` in the URL identifies user 123:
 
 ```
 https://example.org/user/123/profile
 ```
 
-Usually, the identifier is simply the primary key of the database table. However, if you want to defend against insecure direct object references, it may be useful to use a different identifier. This can be done by encrypting the identifier when constructing the URL, and decrypting the identifier from the URL to obtain the database key.
+Usually, the identifier is simply the primary key of the database table. However, if you want to make insecure direct object references harder to exploit, it may be useful to use a different identifier. This can be done by encrypting the identifier when constructing the URL, and decrypting the identifier from the URL to obtain the database key.
 
 It turns out we don't really know how to do this, or at least there is no canonical way to securely encrypt identifiers into something short.
 
@@ -84,8 +84,40 @@ In [AEAD ciphers](https://en.wikipedia.org/wiki/Authenticated_encryption), this 
 
 What happens when we change the encryption key? All identifiers necessarily change. This can result in a bad user experience. All links to your website that contain an old identifier are now broken.
 
-## OWASP's solution
+## Performance
 
-## Paragon's solution
+The encryption and decryption needs to be reasonably fast. Often, the performance of ciphers is measured in MB/s. But since we are just encrypting one 64-bit number, this is not relevant to us.
 
-## Hashids
+Most ciphers have a key setup step, which takes some time before they can start to encrypt or decrypt things. The time it takes to output the first block is called the latency, which is what we are interested in. After the encryption algorithm is initialized, we want to keep it around. For web applications that keep running this is easy. However, with PHP web applications the process starts again on each page load, and we would need to take time for the key setup on every page load.
+
+## Alternatives
+
+We want attackers to stop messing with our identifiers, but encrypting them is not the only solution.
+
+### Paragon's solution
+
+[Paragon recommends to not encrypt identifiers](https://paragonie.com/blog/2015/09/comprehensive-guide-url-parameter-encryption-in-php), and to use a database mapping instead. I agree that this is currently best practice, since there is no recommended manner to encrypt identifiers.
+
+> There isn't enough room to both encrypt the desired information and then authenticate the encrypted output.
+
+This is accurate. By limiting ourselves to a short identifier, we make it pretty hard on ourselves, and can't use best practice encryption algorithms.
+
+> Encryption without message authentication is totally broken.
+
+This is generally true, but often a result of the [block cipher mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation). If the cipher itself offers a pseudorandom permutation and we only encrypt exactly one block, [bit flip attacks](/2018/04/25/bitflip-effect-on-encryption-operation-modes/) and [padding oracles](/2022/03/20/padding-oracle-attacks-lucky13/) do not apply.
+
+Cryptographic best practice advice is to use authenticated encryption, and that conflicts with our requirement of short identifiers. For this reason, it's possible that there will never be a best practice recommended way to encrypt identifiers, since nobody wants to recommend skipping authentication.
+
+### Sign the whole URL
+
+Instead of protecting the integrity of a single number, we could also protect the integrity of the whole URL, including query string parameters. By adding a HMAC to the URL, the whole URL is protected. This makes the URL longer, but now only one HMAC is ever needed.
+
+### Use GUIDs
+
+If you use long, random identifiers to begin with, they are already hard to guess. I wrote about this before in [Security of identifiers](http://www.sjoerdlangkemper.nl/2023/04/26/identifiers-uuid-ulid-security/).
+
+Even if you use GUIDs, you may still want to encrypt them. For example, if you are using UUIDv7 for database locality but don't want to expose the timestamp the object was created. Since UUIDs are 128 bits, it's possible to use AES-128 to encrypt them.
+
+## Conclusion
+
+Encrypting identifiers could be a great defense-in-depth. It's not widely used, not supported by any framework I know, and no library available that offers this. It's technically possible, and I think it could be a good idea in some circumstances, so I think this problem is worth exploring some more.
