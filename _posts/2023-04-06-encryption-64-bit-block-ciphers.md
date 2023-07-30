@@ -33,7 +33,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [Hierocrypt-L1](https://en.wikipedia.org/wiki/Hierocrypt) | | Toshiba | 2000 | [CRYPTREC](https://en.wikipedia.org/wiki/CRYPTREC) candidate |
 | [HIGHT](https://www.iacr.org/archive/ches2006/04/04.pdf) | | Hong et al. | 2006 | |
 | [ICE](https://en.wikipedia.org/wiki/ICE_(cipher)) | | Kwan | 1997 | |
-| [ICEBERG](https://iacr.org/archive/fse2004/30170280/30170280.pdf) | | | | |
+| [ICEBERG](https://iacr.org/archive/fse2004/30170280/30170280.pdf) | | Standaert et al. | 2004 | |
 | [IDEA NXT](https://en.wikipedia.org/wiki/IDEA_NXT) | | Junod & Vaudenay | 2003 | |
 | [IDEA](https://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm) | ★ | Lai and Massey | 1991 | International Data Encryption Algorithm |
 | [KASUMI](https://en.wikipedia.org/wiki/KASUMI) | † | Mitsubishi | 1998 | A variation of MISTY1 modified for mobile phone networks. |
@@ -44,7 +44,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [KN-Cipher](https://en.wikipedia.org/wiki/KN-Cipher) | † | Nyberg & Knudsen | 1995 | |
 | [LBlock](https://eprint.iacr.org/2011/345.pdf) | | Wu & Zhang | 2011 | |
 | [LED](https://eprint.iacr.org/2012/600.pdf) | | Guo, Peyrin, Poschmann, Robshaw | 2011 | |
-| [Lilliput](/papers/2015/extended-generalized-feistel-networks-using-matrix-representation-to-propose-a-new-lightweight-block-cipher-lilliput.pdf) | | | 2015 | |
+| [Lilliput](/papers/2015/extended-generalized-feistel-networks-using-matrix-representation-to-propose-a-new-lightweight-block-cipher-lilliput.pdf) | | Berger et al. | 2015 | |
 | [LOKI89/91](https://en.wikipedia.org/wiki/LOKI) | ‡ | Brown, Pieprzyk & Seberry | 1990 |
 | [M6](https://en.wikipedia.org/wiki/M6_(cipher)) | † | Hitachi | 1997 | |
 | [M8](https://en.wikipedia.org/wiki/M8_(cipher)) | | Hitachi | 1999 | |
@@ -91,6 +91,10 @@ Marks:
 * †: seriously broken, practical attack
 * ‡: somewhat broken, impractical attack
 * T: tweakable
+
+## Honorouble mention
+
+[Ascon](https://en.wikipedia.org/wiki/Ascon_(cipher)) is a lightweight authenticated block cipher with a block size of 64 bits. However, it is more similar to a stream cipher than a pseudorandom permutation. It's only secure when used with an IV, and its output contains an authentication tag. A great cipher, but not suitable for creating 64-bit ciphertexts.
 
 ## Recommendation
 
