@@ -11,7 +11,7 @@ There are many 64 bit block ciphers, but few have a good security reputation. Us
 
 ## Introduction
 
-Generally, you should use AES when encrypting things. It has a minimum block size of 128 bits. This is fine if you want to encrypt 16 bytes or more. However, if you want your ciphertext to be smaller, you need another solution, such as a block cipher with a 64 bit block size. Encrypting a single block gives you a ciphertext of 8 bytes, which is feasible for use in a URL, for example.
+Generally, you should use AES when encrypting things. It has a minimum block size of 128 bits. This is fine if you want to encrypt 16 bytes or more. However, if you want your ciphertext to be smaller, you need another solution, such as a block cipher with a 64 bit block size. Encrypting a single block gives you a ciphertext of 8 bytes, which is feasible for [use in a URL](/2023/08/02/encrypting-identifiers/), for example.
 
 ## Alphabetical list
 

@@ -47,7 +47,7 @@ To protect integrity, we would normally add a HMAC to the identifier. However, I
 
 Suppose we have an output identifier of 32 bits. We need all those bits to store the input identifier, as it's also 32 bits. There's no room anymore for the HMAC.
 
-Even with a slightly bigger output identifier, encryption has advantages above a HMAC. Suppose we use 32 bits for the identifier, and 32 bits for the HMAC. Our final identifier would look something like `123-MGVlNz`. If an attacker wants to access record 124, they only need to brute-force 32 bits. Whereas if we encrypted the identifier using a 64-bit block cipher, they would need to brute-force all 64 bits.
+Even with a slightly bigger output identifier, encryption has advantages above a HMAC. Suppose we use 32 bits for the identifier, and 32 bits for the HMAC. Our final identifier would look something like `123-MGVlNz`. If an attacker wants to access record 124, they only need to brute-force 32 bits. Whereas if we encrypted the identifier using a [64-bit block cipher](/2023/08/30/encryption-64-bit-block-ciphers/), they would need to brute-force all 64 bits.
 
 To use the full 64 bits and avoid creating a decryption oracle, it's important that the decrypted value is not checked and just used in the database query. Any encrypted 64-bit value is a valid identifier, and whether it is a valid database identifier depends on whether the record is found in the database.
 
