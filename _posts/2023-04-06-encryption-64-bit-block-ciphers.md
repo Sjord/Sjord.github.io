@@ -19,6 +19,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 
 | Cipher |   | Author | Year | Notes |
 |--------|---|--------|------|-------|
+| [BEST-1](https://iosrjournals.org/iosr-jce/papers/Vol16-issue2/Version-12/N0162129195.pdf) | L | Jacob John | 2014 | |
 | [Blowfish](https://en.wikipedia.org/wiki/Blowfish_(cipher)) | ★ | Bruce Schneier | 1993 | Considered secure, wide software support |
 | [CAST-128 / CAST5](https://en.wikipedia.org/wiki/CAST-128)| ★ | Adams & Tavares | 1996 | Used in GPG |
 | [CIKS-1](https://en.wikipedia.org/wiki/CIKS-1) | | Moldovyan et al. | 2002 | Data-dependent permutations, fast in hardware |
@@ -33,26 +34,26 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [GOST (Magma)](https://en.wikipedia.org/wiki/GOST_(block_cipher)) | ‡ | USSR | ~1970 | Declassified in 1994. |
 | [Halka](https://eprint.iacr.org/2014/110.pdf) | | Das | 2014 | |
 | [Hierocrypt-L1](https://en.wikipedia.org/wiki/Hierocrypt) | | Toshiba | 2000 | [CRYPTREC](https://en.wikipedia.org/wiki/CRYPTREC) candidate |
-| [HIGHT](https://www.iacr.org/archive/ches2006/04/04.pdf) | L | Hong et al. | 2006 | Has received some analysis and improvements |
+| [HIGHT](https://www.iacr.org/archive/ches2006/04/04.pdf) | ‡L | Hong et al. | 2006 | Has received some analysis and improvements |
 | [Hisec](papers/2014/hisec-a-new-lightweight-block-cipher-algorithm.pdf) | | AlDabbagh et al. | 2014 | |
 | [ICE](https://en.wikipedia.org/wiki/ICE_(cipher)) | | Kwan | 1997 | Similar to DES |
 | [ICEBERG](https://iacr.org/archive/fse2004/30170280/30170280.pdf) | H | Standaert et al. | 2004 | Designed for FPGAs. Involutional; encryption and decryption use the same algorithm, but a different internal key |
 | [IDEA](https://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm) | ★ | Lai and Massey | 1991 | International Data Encryption Algorithm |
 | [IDEA NXT](https://en.wikipedia.org/wiki/IDEA_NXT) | | Junod & Vaudenay | 2003 | Successor to IDEA |
 | [KASUMI](https://en.wikipedia.org/wiki/KASUMI) | † | Mitsubishi | 1998 | A variation of MISTY1 modified for mobile phone networks. |
-| [KATAN64](https://www.iacr.org/archive/ches2009/57470273/57470273.pdf) / [KTANTAN64](https://www.iacr.org/archive/ches2009/57470273/57470273.pdf) | H | De Cannière, Dunkelman & Knežević | 2009 | Efficient hardware oriented cipher.
+| [KATAN64](https://www.iacr.org/archive/ches2009/57470273/57470273.pdf) / [KTANTAN64](https://www.iacr.org/archive/ches2009/57470273/57470273.pdf) | ‡H | De Cannière, Dunkelman & Knežević | 2009 | Efficient hardware oriented cipher.
 | [KHAZAD](https://en.wikipedia.org/wiki/KHAZAD) | | Rijmen & Barreto | 2000 | NESSIE finalist. Involutional subcomponents |
 | [Khufu / Khafre](https://en.wikipedia.org/wiki/Khufu_and_Khafre) | † | Merkle | 1989 | Leaked by a reviewer after the NSA asked Xerox not to publish it |
 | [KLEIN](https://ris.utwente.nl/ws/portalfiles/portal/5095833/The_KLEIN_Block_Cipher.pdf) | L | Gong et al. | 2010 | Key length at most 96 bits |
 | [KN-Cipher](https://en.wikipedia.org/wiki/KN-Cipher) | † | Nyberg & Knudsen | 1995 | Prototype, provably secure against differential cryptanalysis, but evenso broken by differential cryptanalysis |
-| [LBlock](https://eprint.iacr.org/2011/345.pdf) | L | Wu & Zhang | 2011 | Key size of 80 bits |
+| [LBlock](https://eprint.iacr.org/2011/345.pdf) | ‡L | Wu & Zhang | 2011 | Key size of 80 bits |
 | [LED](https://eprint.iacr.org/2012/600.pdf) | HL | Guo, Peyrin, Poschmann, Robshaw | 2011 | No key schedule, protects against related-key attacks |
 | [Lilliput](/papers/2015/extended-generalized-feistel-networks-using-matrix-representation-to-propose-a-new-lightweight-block-cipher-lilliput.pdf) | L | Berger et al. | 2015 | Explores matrix representation of Feistel networks |
 | [LOKI89/91](https://en.wikipedia.org/wiki/LOKI) | ‡ | Brown, Pieprzyk & Seberry | 1990 | Similar to DES, not recommended for production use |
 | [M6](https://en.wikipedia.org/wiki/M6_(cipher)) | † | Hitachi | 1997 | Designed for FireWire. Key of up to 64 bits. Algorithm not fully published. |
 | [M8](https://en.wikipedia.org/wiki/M8_(cipher)) | | Hitachi | 1999 | Similar to M6, but more complicated and with longer keys |
 | [MacGuffin](https://en.wikipedia.org/wiki/MacGuffin_(cipher)) | † | Schneier & Blaze | 1994 | Broken during the same workshop in which it was designed |
-| [mCrypton](/papers/2006/mcrypton-a-lightweight-block-cipher-for-security-of-low-cost-rfid-tags-and-sensors.pdf) | LH | | 2006 | Designed for RFID chips |
+| [mCrypton](/papers/2006/mcrypton-a-lightweight-block-cipher-for-security-of-low-cost-rfid-tags-and-sensors.pdf) | ‡LH | | 2006 | Designed for RFID chips |
 | [MIBS](papers/2009/mibs-a-new-lightweight-block-cipher.pdf) | ‡ | Izadi, Sadeghiyan et al. | 2009 | |
 | [MESH](https://en.wikipedia.org/wiki/MESH_(cipher)) | | Nakahara, Rijmen, Preneel, Vandewalle | 2002 | Similar to IDEA |
 | [Midori](https://eprint.iacr.org/2015/1142.pdf) | L | Banik et al. | 2015 | Designed for low energy use |
@@ -63,10 +64,11 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [Nimbus](https://en.wikipedia.org/wiki/Nimbus_(cipher)) | † | Alexis Machado | 2000 | Simple round function. |
 | [NUSH](https://en.wikipedia.org/wiki/NUSH) | ‡ | Lebedev & Volchkov | 2000 | Designed for the Russian company LAN Crypto |
 | [Piccolo](https://iacr.org/workshops/ches/ches2011/presentations/Session%207/CHES2011_Session7_3.pdf) | HL | Shibutani et al. | 2011 | From Sony, protects against related-key attacks |
-| [PRESENT](https://en.wikipedia.org/wiki/PRESENT) | HL | Bogdanov, Knudsen, Leander, Paar, Poschmann, Robshaw, Seurin, Vikkelsoe | 2007 | Designed by cooperation of European universities and companies, ISO-standardized |
-| [PRIDE](https://eprint.iacr.org/2014/453.pdf) | L | Albrecht et al. | 2014 | Focusses on the linear layer of the cipher |
+| [PRESENT](https://en.wikipedia.org/wiki/PRESENT) | HL | Bogdanov, Knudsen, Leander, Paar, Poschmann, Robshaw, Seurin, Vikkelsoe | 2007 | Designed by cooperation of European universities and companies, ISO-standardized. Well-studied, and often used as benchmark in cipher research |
+| [PRESENT-GRP](https://www.emerald.com/insight/content/doi/10.1016/j.aci.2018.05.001/full/pdf) | HL | Thorat & Inamdar | 2018 | Variant of PRESENT, with grouping permutations |
+| [PRIDE](https://eprint.iacr.org/2014/453.pdf) | L | Albrecht et al. | 2014 | Focusses on the linear layer of the cipher. Fast in software |
 | [Prince](https://en.wikipedia.org/wiki/Prince_(cipher)) | HL | Borghoff et al. | 2012 | Involation, which they call alpha reflection |
-| [PUFFIN](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=6c1edca0a9800edfb76aca96915ab6f8fcb80cdd) | HL | Cheng, Heys, Wang| 2008 | Involutional subcomponents |
+| [PUFFIN](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=6c1edca0a9800edfb76aca96915ab6f8fcb80cdd) | ‡HL | Cheng, Heys, Wang| 2008 | Involutional subcomponents |
 | [QARMA](https://en.wikipedia.org/wiki/QARMA), [V2](https://eprint.iacr.org/2023/929) | HT | Avanzi | 2017 | Used in ARMv8 CPUs |
 | [RC2 / ARC2](https://en.wikipedia.org/wiki/RC2) | ★‡ | Rivest | 1987 | Developed for use in Lotus Notes. |
 | [RC5](https://en.wikipedia.org/wiki/RC5) | | Rivest | 1994 | Complex key schedule, simple encryption/decryption algorithm |
@@ -120,6 +122,7 @@ Alternatively:
 ## More information
 
 * [A review of lightweight block ciphers](https://www.fysarakis.com/uploads/2/0/6/3/20637656/BC_survey.pdf)
+* [Lightweight Cryptography Algorithms for Resource-Constrained IoT Devices: A Review, Comparison and Research Opportunities](https://ieeexplore.ieee.org/document/9328432)
 * [Format-preserving encryption](https://en.wikipedia.org/wiki/Format-preserving_encryption#The_FPE_constructions_of_Black_and_Rogaway)
 * [Format-transforming encryption](https://en.wikipedia.org/wiki/Format-transforming_encryption)
 * [CTR mode](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_.28CTR.29)
