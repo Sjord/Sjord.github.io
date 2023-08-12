@@ -76,7 +76,7 @@ Even though index fragmentation is real, it is not quite as simple to say that U
 So far, we have assumed that the identifier in the URL equals the identifier in the database. Requesting `/user/123/profile` retrieves the record with primary key `123` from the database. However, this doesn't have to be the case. There are two ways around this:
 
 * Map database identifiers to temporary identifiers. Keep a mapping in the user's current session, and perform a translation when creating or serving a URL.
-* Encrypt and authenticate database identifiers. The identifiers are opaque to the user, but can be decrypted to actual database identifiers.
+* [Encrypt](/2023/08/02/encrypting-identifiers/) and authenticate database identifiers. The identifiers are opaque to the user, but can be decrypted to actual database identifiers.
 
 This way, object references become meaningless to a user or attacker. Insecure direct object references are no longer exploitable. Only the references that the application generates can be used, and the user can no longer simply modify the URL.
 
