@@ -36,17 +36,17 @@ If an attacker sees an old session token in the logs, or on your hard drive afte
 
 Perhaps you used the shared computer in the library to access your web application, and forgot to log out. The next user of that computer could reopen the web application and take over your session.
 
-Is this a thing? Are shared computers without user separation a thing? If so, these shouldn't be used to access web applications with sensitive information at all, no matter how short the session expiry time is.
+Is this a thing? Are shared computers without user separation a thing? If so, these shouldn't be used to access web applications with sensitive information at all, no matter how short the session expiry time is. The device may already be compromised, or the [browser may remember your password](https://textslashplain.com/2023/05/16/how-do-random-credentials-mysteriously-appear/), or sensitive information remains in the browser cache.
 
-Even if internet cafes still exist, some applications are used strictly within an company from company devices.
+Even if internet cafes still exist, some applications are used strictly within an company from company devices. Or people use their own mobile device to access the application. For most web applications, the threat of shared public computers is not realistic.
 
 ### The attacker has access to your device
 
 You forgot to lock your computer when you went to lunch, and the attacker sat down at your desk and gained access to your machine.
 
-In this case, session expiration may prevent them from gaining access to your session, if they weren't fast enough. However, they now have access to your email, Slack, password vault, SSH agent, and files. They don't need your active session, they can just create a new one. Either by using the password vault or using the "forgot password" to mail a password reset mail.
+In this case, session expiration may prevent them from gaining access to your session, if they weren't fast enough. However, they now have access to your email, Slack, password vault, SSH agent, browser, and files. They don't need your active session, they can just create a new one. Either by using the password vault or using the "forgot password" to mail a password reset mail.
 
-One situation in which access to the web application could still be prevented, if when 2FA is enabled and you took your phone or yubikey with you to lunch.
+One situation in which immediate access to the web application could still be prevented, if when 2FA is enabled and you took your phone or yubikey with you to lunch. But even then, the attacker could install a browser extension that sends your credentials to them the next time you log in.
 
 ## Reauthentication is risky
 
@@ -65,3 +65,4 @@ Facebook, Google, Amazon and GitHub have sessions that never expire. They think 
 ## Read more
 
 * [Balance User Experience and Security to Retain Customers](https://auth0.com/blog/balance-user-experience-and-security-to-retain-customers/)
+* [Why aren‘t physically-local attacks in Chrome’s threat model?](https://chromium.googlesource.com/chromium/src/+/master/docs/security/faq.md#why-arent-physically_local-attacks-in-chromes-threat-model)
