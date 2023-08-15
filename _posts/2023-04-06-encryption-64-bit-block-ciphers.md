@@ -19,7 +19,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 
 | Cipher |   | Author | Year | Notes |
 |--------|---|--------|------|-------|
-| [BEST-1](https://iosrjournals.org/iosr-jce/papers/Vol16-issue2/Version-12/N0162129195.pdf) | L | Jacob John | 2014 | |
+| [BEST-1](https://iosrjournals.org/iosr-jce/papers/Vol16-issue2/Version-12/N0162129195.pdf) | L | Jacob John | 2014 | Better Encryption Security Technique, so maybe only better and not best? |
 | [Blowfish](https://en.wikipedia.org/wiki/Blowfish_(cipher)) | ★ | Bruce Schneier | 1993 | Considered secure, wide software support |
 | [CAST-128 / CAST5](https://en.wikipedia.org/wiki/CAST-128)| ★ | Adams & Tavares | 1996 | Used in GPG |
 | [CIKS-1](https://en.wikipedia.org/wiki/CIKS-1) | | Moldovyan et al. | 2002 | Data-dependent permutations, fast in hardware |
@@ -30,9 +30,9 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [CS-Cipher](https://en.wikipedia.org/wiki/CS-Cipher) | | Stern & Vaudenay | 1998 | Uses FFT in the round function. |
 | [DES](https://en.wikipedia.org/wiki/Data_Encryption_Standard), [3DES](https://en.wikipedia.org/wiki/Triple_DES), [DES-X](https://en.wikipedia.org/wiki/DES-X) | ★ | IBM | 1975 | Outdated but still reasonably secure, as long as used with a sufficiently long key. Wide software support and often used for NIST compliance. |
 | [FEAL](https://en.wikipedia.org/wiki/FEAL) | † | Shimizu & Miyaguchi | 1987 | Practical attacks were quickly found, even after the authors increased the number of rounds. |
-| [FeW](https://dergipark.org.tr/en/download/article-file/914382) | | Kumar, Pal, Panigrahi | 2018 | |
+| [FeW](https://dergipark.org.tr/en/download/article-file/914382) | | Kumar, Pal, Panigrahi | 2018 | Feistel-M structure, elaborate security analysis in original paper |
 | [GOST (Magma)](https://en.wikipedia.org/wiki/GOST_(block_cipher)) | ‡ | USSR | ~1970 | Declassified in 1994. |
-| [Halka](https://eprint.iacr.org/2014/110.pdf) | | Das | 2014 | |
+| [Halka](https://eprint.iacr.org/2014/110.pdf) | L | Das | 2014 | 80-bit keys. Claims to be small in hardware, fast in software. Multiplicative inverse for 8-bit S-boxes. |
 | [Hierocrypt-L1](https://en.wikipedia.org/wiki/Hierocrypt) | | Toshiba | 2000 | [CRYPTREC](https://en.wikipedia.org/wiki/CRYPTREC) candidate |
 | [HIGHT](https://www.iacr.org/archive/ches2006/04/04.pdf) | ‡L | Hong et al. | 2006 | Has received some analysis and improvements |
 | [Hisec](papers/2014/hisec-a-new-lightweight-block-cipher-algorithm.pdf) | | AlDabbagh et al. | 2014 | |
@@ -54,7 +54,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [M8](https://en.wikipedia.org/wiki/M8_(cipher)) | | Hitachi | 1999 | Similar to M6, but more complicated and with longer keys |
 | [MacGuffin](https://en.wikipedia.org/wiki/MacGuffin_(cipher)) | † | Schneier & Blaze | 1994 | Broken during the same workshop in which it was designed |
 | [mCrypton](/papers/2006/mcrypton-a-lightweight-block-cipher-for-security-of-low-cost-rfid-tags-and-sensors.pdf) | ‡LH | | 2006 | Designed for RFID chips |
-| [MIBS](papers/2009/mibs-a-new-lightweight-block-cipher.pdf) | ‡ | Izadi, Sadeghiyan et al. | 2009 | |
+| [MIBS](papers/2009/mibs-a-new-lightweight-block-cipher.pdf) | ‡ | Izadi, Sadeghiyan et al. | 2009 | 80 bit keys |
 | [MESH](https://en.wikipedia.org/wiki/MESH_(cipher)) | | Nakahara, Rijmen, Preneel, Vandewalle | 2002 | Similar to IDEA |
 | [Midori](https://eprint.iacr.org/2015/1142.pdf) | L | Banik et al. | 2015 | Designed for low energy use |
 | [MISTY1](https://en.wikipedia.org/wiki/MISTY1) | ‡ | Matsui | 1997 | [NESSIE](https://en.wikipedia.org/wiki/NESSIE) selected, [CRYPTREC](https://en.wikipedia.org/wiki/CRYPTREC) candidate |
@@ -108,7 +108,7 @@ Marks:
 
 Judging from the list, there are sufficient ciphers to choose from. However, few to none have the same universally acclaimed security reputation as AES. AES's rigorous evaluation and selection process have positioned it as the gold standard for 128-bit block ciphers, but there is no 64-bit block cipher with a similar prestige. MISTY1 was the NESSIE winner, but didn't hold up to further cryptanalysis since then. CRYPTREC recognized that none of these ciphers have similar security and popularity as AES, and stopped recommending 64-bit block ciphers altogether. 
 
-Interestingly, some ciphers within the above list were initially hailed as "provably" secure solutions, yet fell victim to the relentless evolution of cryptanalysis techniques. It shows how difficult it is to show that a certain cipher is actually secure. However, increasingly this burden is placed on the designers of the cipher. Ciphers that shuffled enough bits around would be considered secure, as long as someone analyzed them and didn't find a practical attack. Now the burden of proof is on the designer, and when a cipher is proposed it is expected that it comes with a security analysis.
+Interestingly, some ciphers within the above list were initially hailed as "provably" secure solutions, yet fell victim to the evolution of cryptanalysis techniques. It shows how difficult it is to show that a certain cipher is actually secure. However, increasingly this burden is placed on the designers of the cipher. Ciphers that shuffled enough bits around would be considered secure, as long as someone analyzed them and didn't find a practical attack. Now the burden of proof is on the designer, and when a cipher is proposed it is expected that it comes with a security analysis.
 
 ## Recommendation
 
