@@ -2,8 +2,10 @@
 layout: post
 title: "Tweakable block ciphers"
 thumbnail: adjusting-480.jpg
-date: 2023-09-30
+date: 2023-09-27
 ---
+
+With block ciphers, using a different key results in a different encryption. Sometimes it is also useful to have different encryption without changing the key. That's were tweakable block ciphers come in.
 
 <!-- Photo source: https://pixabay.com/photos/adjusting-berlin-club-disco-dj-1836839/ -->
 
