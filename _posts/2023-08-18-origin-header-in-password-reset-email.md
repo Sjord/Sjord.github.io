@@ -5,13 +5,31 @@ thumbnail: hanging-umbrella-480.jpg
 date: 2023-09-13
 ---
 
+Some applications use the `Origin` header to determine their own domain. This can result in account takeover when used in password reset emails.
+
 <!-- Photo source: https://pixabay.com/photos/architecture-modern-sculpture-art-3148080/ -->
 
+Typically, when you forgot your password, you can enter your username in a form and the application sends you a password reset mail. That mail contains a URL with a token that authenticates you to the application, and you can change your password.
 
+The email needs to contain an absolute URL to the application, with scheme and domain. This is typically not hardcoded, to support running the application on different domains or environments. So the application has to figure out the domain it is currently running on to use in the password reset email.
 
-The link in the password reset mail uses the domain specified in the `Origin` HTTP request header. Normally this contains the current domain of the website, but this is not a trustworthy source for this. An attacker can send password reset request and change the `Origin` header to a domain they control. This will send a mail to the victim, linking to the domain of the attacker. If they click that link, the attacker now can reset their password.
+One way to do this is to look at the `Origin` header. It contains both the scheme and the domain, and seems ideal to create a URL from. However, being a request header it can be changed by the client.
 
+The attack thus works as follows: an attacker requests a password reset on behalf of the victim, and modifies the `Origin` header in that request to a domain they control. The victim now receives a password reset email that looks legitimate, but links to the attackers domain. If the victim clicks on the link, the attacker learns the password reset token and can take over the victim's account.
 
+Of course, the victim needs to click the link for this to work. Since they didn't request the password reset themselves, the probability is quite low that they do.
+
+## Which variable can be trusted?
+
+Of course, you shouldn't use data that is under control of the user for security-relevant URLs such as password resets. However, for developers it is often not obvious which values are headers and which values can be trusted.
+
+When an application needs its own domain, developers often just print all variables and pick the one that best suits their needs. So they run `var_dump($_SERVER)` or `print(request.META)` and look in the output for a variable that suits their needs. `HTTP_ORIGIN` looks promising. It's a request header, but you would have to know what the `HTTP_` prefix means to know that.
+
+Furthermore, these mappings mix trusted and untrusted variables. `REMOTE_ADDR` is set by the server, and can be trusted. `HTTP_HOST` is often secure, but not always. `HTTP_REFERER` is definitely not to be trusted. This makes it harder on the developer to be aware of the security implications of the variables they use.
+
+## Examples
+
+I thought this would be quite a rare bug, but even so I found several examples on GitHub:
 
 [JammerCore](https://github.com/JammerCore/JammerCore/blob/0d6a9459480b3a1d6355f93421b3e7118a3b3db1/public-api/vx/user.php#L202):
 
