@@ -56,3 +56,7 @@ You would think that setting "nosniff" disables sniffing. [It doesn't totally di
 ## Conclusion
 
 So, even though XSS through MIME type sniffing is pretty rare, the `X-Content-Type-Options` header is alive and well. It is still useful for responses without Content-Type header, and to enable stricter security behavior of the browser. I recommend developers and administrators to include it in all responses.
+
+## Read more
+
+* [April King — X-Content-Type-Options + passive content?](https://grayduck.mn/2016/08/11/x-content-type-options-passive-content/)
