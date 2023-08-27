@@ -11,7 +11,7 @@ With block ciphers, using a different key results in a different encryption. Som
 
 ## Introduction
 
-Block ciphers encrypt data one chunk at a time. Besides the plaintext, a secret key is used as input. The key changes the encryption, so you would have to know the key to decrypt it again. However, it turns out that there are other situations in which it is useful to change the encryption, even when using the same key. Tweakable block ciphers have an additional input, the tweak, that change the encryption in a similar way that using another key would do. Unlike the key, the tweak is not necessarily secret. Encrypting the same message with the same key but another tweak results in a different ciphertext, and this property is useful in some cases.
+Block ciphers encrypt data one chunk at a time. Besides the plaintext, a secret key is used as input. A different key results in a different encryption, so you would have to know the key to decrypt it again. However, it turns out that there are other situations in which it is useful to change the encryption, even when using the same key. Tweakable block ciphers have an additional input, the tweak, that change the encryption in a similar way that using another key would do. Unlike the key, the tweak is not necessarily secret. Encrypting the same message with the same key but another tweak results in a different ciphertext, and this property is useful in some cases.
 
 ## Motivation
 
@@ -19,13 +19,17 @@ Tweakable block ciphers can be used to avoid interoperability between different 
 
 Furthermore, tweakable block ciphers can help with confidentiality when encrypting the same thing multiple times. If we naively encrypt the same data twice with the same key, the ciphertext would look the same. An attacker that has access to the ciphertext could learn something from this. Even if they can't decrypt the data, they can see that the same data was used twice. If we want to avoid this, we have to encrypt the value differently the next time it comes along. A tweak can help with this.
 
+<img src="/images/tweakableblockciphers.svg" style="width: 100%">
+
 ## Comparison with block cipher mode of operation
 
 Block ciphers are almost always used in a [mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation), such as CBC or GCM. Here, a nonce or initialization vector (IV) is used to randomize encryption, so that two identical messages still result in a different plaintext. This is very similar to the tweak used in tweakable block ciphers.
 
-<img src="/images/cbc-encryption.svg" style="width: 100%">
+<img src="/images/cbc-encryption.svg" style="width: 100%" alt="cipher block chaining (CBC)">
 
-In CBC, the IV or the ciphertext of the previous block is XOR-ed with the plaintext of the next block. The entire purpose of this is to change (or "tweak") the encryption. However, it's [imperfect](/2018/04/25/bitflip-effect-on-encryption-operation-modes/) and hard to reason about. By including the tweaking functionality in the cipher, it's easier to create secure modes of operation, and easier to show that these are secure.
+In CBC, the IV or the ciphertext of the previous block is XOR-ed with the plaintext of the next block. The entire purpose of this is to change (or "tweak") the encryption. However, it's [imperfect](/2018/04/25/bitflip-effect-on-encryption-operation-modes/) and hard to reason about. By including the tweaking functionality in the cipher, it's easier to create secure modes of operation, and easier to show that these are secure. Tweak block chaining (TBC) is very similar to cipher block chaining (CBC), but now the tweaking has been moved to the block cipher itself:
+
+<img src="/images/tweakblockchaining.svg" alt="tweak block chaining (TBC)">
 
 ## Disk encryption
 
