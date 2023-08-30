@@ -39,7 +39,9 @@ When [encrypting blocks on the disk](https://en.wikipedia.org/wiki/Disk_encrypti
 
 To vary the encryption algorithm, we could just modify the key. However, for most algorithms the key setup takes quite a lot of computing power. The idea behind the tweak is that it is cheaper, performance wise, to change the tweak than it is to change the key.
 
-Also, because of [related-key attacks](https://en.wikipedia.org/wiki/Related-key_attack) it would be risky to combine the key and tweak in a simple manner.
+In practice the key setup is not always done independently from the encrypting. PHP's [`openssl_encrypt`](https://www.php.net/openssl_encrypt) function encrypts something with a key, and there is no notion of an encryptor object that can retain the state after key setup. Also, it would be difficult to retain such an object between PHP script invocations in an efficient manner. If the key setup is done every time anyway, we can just vary the key of a normal block cipher, instead of using a tweakable block cipher.
+
+Because of [related-key attacks](https://en.wikipedia.org/wiki/Related-key_attack) it would be risky to combine the key and tweak in a simple manner. A tweaked key would have to be computed using a HMAC or something like that, not simply XOR-ing the tweak with the key.
 
 ## Converting a block cipher to tweakable
 
