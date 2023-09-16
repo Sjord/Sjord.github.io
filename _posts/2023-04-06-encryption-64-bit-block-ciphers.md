@@ -25,7 +25,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [CIKS-1](https://en.wikipedia.org/wiki/CIKS-1) | | Moldovyan et al. | 2002 | Data-dependent permutations, fast in hardware |
 | [CIPHERUNICORN-E](https://en.wikipedia.org/wiki/CIPHERUNICORN-E) | | NEC | 1998 | [CRYPTREC](https://en.wikipedia.org/wiki/CRYPTREC) candidate |
 | [COCONUT98](https://en.wikipedia.org/wiki/COCONUT98) | ‡ | Vaudenay | 1998 | Uses Vaudenay's decorrelation theory. Proven secure, but broken nevertheless |
-| [CRAFT](https://eprint.iacr.org/2019/210) | HT | Beierle et al. | 2019 | Protects against physical attacks, such as differential fault injection |
+| [CRAFT](https://eprint.iacr.org/2019/210) | H[‡](https://eprint.iacr.org/2019/932.pdf) | Beierle et al. | 2019 | Protects against physical attacks, such as differential fault injection |
 | [Cryptomeria / C2](https://en.wikipedia.org/wiki/Cryptomeria_cipher) | ‡ | 4C Entity | 2003 | Successor to CSS for DRM on DVDs |
 | [CS-Cipher](https://en.wikipedia.org/wiki/CS-Cipher) | | Stern & Vaudenay | 1998 | Uses FFT in the round function. |
 | [DES](https://en.wikipedia.org/wiki/Data_Encryption_Standard), [3DES](https://en.wikipedia.org/wiki/Triple_DES), [DES-X](https://en.wikipedia.org/wiki/DES-X) | ★ | IBM | 1975 | Outdated but still reasonably secure, as long as used with a sufficiently long key. Wide software support and often used for NIST compliance. |
