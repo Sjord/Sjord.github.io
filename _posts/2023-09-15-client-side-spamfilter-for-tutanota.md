@@ -21,7 +21,7 @@ The filtering logic doesn't have to be very complex. I can often determine wheth
 
 ## Reverse engineering the API
 
-I tried some things in the browser console, and looked at the source code of the Tutanota web app, and after some time I figured out how to retrieve emails.
+My JavaScript spam filter needs access to emails, so I wanted to hook in to the Tutanota web app. I tried some things in the browser console, and looked at the source code of the Tutanota web app, and after some time I figured out how to retrieve emails.
  There's a global `tutao` variable that offers an entry into the Tutanota internals.
 
 Most web applications have such a global variable, but this is not necessarily the case. It is entirely possible to implement an application without using global variables.
