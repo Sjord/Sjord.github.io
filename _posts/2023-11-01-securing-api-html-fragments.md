@@ -5,49 +5,29 @@ thumbnail: html-fragment-480.jpg
 date: 2023-11-08
 ---
 
-API endpoints are not supposed to be accessed directly with a browser, but attackers can still use this to exploit vulnerabilities. By checking request headers and setting response headers, we can change the behavior of an API endpoint when it is accessed with top-level navigation.
+A web application frontend often performs requests to a backend API. Even though this API is only supposed to be used by the frontend, it is usually also accessible with a browser. An attacker can use this to exploit vulnerabilities.
 
 <!-- Photo source: https://pixabay.com/photos/smartphone-paper-letter-write-pen-4905176/ -->
 
 ## Accessing API endpoints with a browser
 
-Many web applications request information from the backend using JavaScript. For example, a profile page performs a request to `/user/profile.php`, which responds with the user properties in a JSON document, which the profile page then shows to the user. This backend endpoint, `/user/profile.php`, is only meant to be accessed through the profile page. But of course it can also be accessed directly with the browser. This has security implications: this page can be vulnerable to cross-site scripting or content injection.
-
-With JSON APIs, this is easy to mitigate by setting the content type correctly to `application/json`. This disables execution of JavaScript, and changes the layout of the page in browsers so that content injection is no longer a risk. However, with APIs that return HTML, this is not a suitable solution.
+Many web applications request information from the backend using JavaScript. For example, a profile page performs a request to `/user/profile`, which responds with the user properties, which the profile page then shows to the user. This backend endpoint, `/user/profile`, is only meant to be accessed by the profile page. But of course it can also be accessed directly with the browser, by browsing to the correct URL. This has security implications: this page can be vulnerable to cross-site scripting or content injection. Even when the application as a whole is not vulnerable, `/user/profile` may still be vulnerable in itself if requested out of context of the rest of the application.
 
 ## Replacing parts of the page with HTML
 
-Some web applications use JavaScript to replace part of the page with dynamic HTML. JavaScript performs a call to the backend, which returns a little piece of HTML. That HTML is then inserted in the correct place on the page, possibly replacing something else.
+The risk increases if the backend returns HTML fragments. Some web applications use JavaScript to replace part of the page with dynamic HTML. JavaScript performs a call to the backend, which returns a little piece of HTML. That HTML is then placed in the correct place on the page.
 
 This pattern was all the rage around 2006, when it was possible to dynamically update parts of the page using [XMLHttpRequest](https://en.wikipedia.org/wiki/XMLHttpRequest). This was made easier by jQuery, with [jQuery.load](https://api.jquery.com/load/). It lost popularity for a while, but is now back as the backbone of [htmx](https://htmx.org/) and [Unpoly](https://unpoly.com/).
 
 <img src="/images/html-fragment-pattern.svg" style="width: 100%">
 
-The main page contains something like this:
-
-```
-<h1>Welcome <span hx-get="username.php" hx-trigger="load"></span></h1>
-```
-
-This triggers a request to `username.php`, which returns HTML:
-
-```
-<?php
-$username = $_COOKIE['username'] ?? "Anonymous";
-echo "<i>".htmlentities($username)."</i>";
-```
-
-[See it in action](https://demo.sjoerdlangkemper.nl/fragments/), [view the code](https://github.com/Sjord/Sjord.github.io/tree/master/_demo/fragments/)
-
 ## Risk of accessing the HTML API with a browser
 
-The `username.php` endpoint is supposed to be accessed only through JavaScript requests, but of course it is also directly accessible with the browser. Even though it is never meant to be used this way, someone can browse directly to `https://demo.sjoerdlangkemper.nl/fragments/username.php` which then serves a HTML snippet with the current user's username.
+The `username.php` endpoint is supposed to be accessed only through JavaScript requests. Nobody is supposed to browse to it directly, but this is still possible and can help attackers exploit vulnerabilities.
 
-If there is an cross-site scripting (XSS) vulnerability in `username.php`, this can be exploited by luring a victim to open this page in the browser. This page does not have to be accessible by a browser directly, and having that possibility increases the attack surface.
+If there is an cross-site scripting (XSS) vulnerability in `username.php`, this can be exploited by luring a victim to open this page in the browser.
 
 Besides cross site scripting, there is also the risk of content injection. An attacker may put a convincing message on the page. Even though this message originates from the attacker, it seems trustworthy because it is hosted on `demo.sjoerdlangkemper.nl`.
-
-This article talks about APIs that return HTML, but it also applies partially to APIs that return XML. XML can also contain JavaScript, and may be rendered as documents in some cases.
 
 ## Solutions
 
@@ -57,13 +37,13 @@ What is the correct content type for a HTML fragment? It probably uses `text/htm
 
 The disadvantage of this is that changing the content type from `text/html` to something else disables cross-origin read blocking (CORB). CORB protects certain responses from being read through side-channel attacks. It only protects HTML, XML and JSON responses, so marking our response as something else disables this protection.
 
-Conceptually, the response is not really a binary stream, and `text/html` fits better. There is not really a standard MIME type for HTML fragments. I think there should be!
+Conceptually, the response is not really a binary stream, and `text/html` fits better. There is not really a standard MIME type for HTML fragments. Perhaps there should be!
 
 ### Attachment disposition
 
 Using `Content-Disposition: attachment` instructs the browser to handle the response as a download. The document is not shown and no JavaScript is executed, so this is a suitable solution.
 
-The browser downloads the response as HTML file. Of course, it would be logically for a user to immediately open this downloaded file to inspect what is in it, partially defeating the protection. When opened this way, the file is served from the file system and not from the domain. This means that cross-site scripting is not effective anymore (because the script does not run on the same origin). Content injection may still be trustworthy, because the user just downloaded this file from a trusted domain. Other protecting headers, such as `Content-Security-Policy`, no longer apply if the file is opened from disk.
+The browser downloads the response as HTML file. Of course, it would be logically for a user to immediately open this downloaded file to inspect what is in it, partially defeating the protection. When opened this way, the file is served from the file system and not from the domain. This means that cross-site scripting is not effective anymore (because the script does not run on the same origin). Content injection may still be trustworthy, because the user just downloaded this file from a trusted domain. Other protecting headers, such as `Content-Security-Policy`, no longer apply because the file is opened from disk.
 
 ### Sandbox
 
