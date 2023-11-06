@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "Securing HTML fragments"
+title: "Securing HTML fragments returned by API endpoints"
 thumbnail: html-fragment-480.jpg
 date: 2023-11-08
 ---
+
+API endpoints are not supposed to be accessed directly with a browser, but attackers can still use this to exploit vulnerabilities. By checking request headers and setting response headers, we can change the behavior of an API endpoint when it is accessed with top-level navigation.
 
 <!-- Photo source: https://pixabay.com/photos/smartphone-paper-letter-write-pen-4905176/ -->
 
@@ -11,7 +13,7 @@ date: 2023-11-08
 
 Many web applications request information from the backend using JavaScript. For example, a profile page performs a request to `/user/profile.php`, which responds with the user properties in a JSON document, which the profile page then shows to the user. This backend endpoint, `/user/profile.php`, is only meant to be accessed through the profile page. But of course it can also be accessed directly with the browser. This has security implications: this page can be vulnerable to cross-site scripting or content injection.
 
-With JSON API's, this is easy to mitigate by setting the content type correctly to `application/json`. This disables execution of JavaScript, and changes the layout of the page in browsers so that content injection is no longer a risk. However, with API's that return HTML, this is not a suitable solution.
+With JSON APIs, this is easy to mitigate by setting the content type correctly to `application/json`. This disables execution of JavaScript, and changes the layout of the page in browsers so that content injection is no longer a risk. However, with APIs that return HTML, this is not a suitable solution.
 
 ## Replacing parts of the page with HTML
 
@@ -94,12 +96,16 @@ When the endpoint is not used in the intended way, the application can handle it
 * Show the HTML response, but make it clear in the layout that this is a HTML fragment.
 * Show the source code of the HTML fragment.
 
-## Recommendations
+## Conclusion
 
-In API endpoints:
+I would use the correct content type (i.e. `text/html`) and not force downloading of API responses. Disabling JavaScript with the CSP header is an easy way to get additional security without any downsides.
 
 * Respond with the correct `Content-Type`, and set `Content-Type-Options: nosniff`.
 * Disable JavaScript with `Content-Security-Policy: sandbox; default-src 'none'; frame-ancestors 'none'`.
+* For requests that have `Sec-Fetch-Mode: navigator`, deny the request or prepend a warning that the content is a HTML fragment.
+* If the frontend and API are on the same origin/site, only allow requests where `Sec-Fetch-Site` is `same-origin`/`same-site`.
+
+I am pretty sure about the first two, but have less experience with checking Sec-Fetch headers.
 
 ## Read more
 
