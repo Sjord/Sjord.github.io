@@ -27,9 +27,11 @@ The `username.php` endpoint is supposed to be accessed only through JavaScript r
 
 If there is an cross-site scripting (XSS) vulnerability in `username.php`, this can be exploited by luring a victim to open this page in the browser.
 
-Besides cross site scripting, there is also the risk of content injection. An attacker may put a convincing message on the page. Even though this message originates from the attacker, it seems trustworthy because it is hosted on `demo.sjoerdlangkemper.nl`.
+Besides cross site scripting, there is also the risk of content injection. An attacker may put a convincing message on the page. Even though this message originates from the attacker, a user may think this is a trustworthy message from the domain owner.
 
 ## Solutions
+
+How do we prevent API endpoints from being requested from another context than the web application frontend?
 
 ### Binary content type
 
@@ -49,7 +51,7 @@ The browser downloads the response as HTML file. Of course, it would be logicall
 
 Using `Content-Security-Policy: sandbox` ([MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox)) restricts severely what a HTML page is able to do. One of the main restrictions is that the page cannot run JavaScript. This is an effective solution against XSS. The fragment is still visible in the browser. This is an advantage when it comes to developing and debugging, but a disadvantage in that content injection may still be possible.
 
-Many developers seem to be under the impression that a site should have one `Content-Security-Policy` for the whole domain, but it is actually a good idea to give different parts or the application different policies.
+Many developers seem to be under the impression that a web application should have one `Content-Security-Policy` for the whole domain, but it is actually a good idea to give different parts or the application different policies.
 
 ### Checking request headers
 
