@@ -66,6 +66,57 @@ This makes it possible to determine the salt from observing tokens that the appl
 
 ## Recovering the salt given an oracle
 
+If the application exposes Hashid mappings, we can use that to determine the secret key.
+
+### Overview
+
+The alphabet is shuffled twice.
+
+* When the default settings are used, we know the alphabet it starts with.
+* After the first shuffle, one character is output. We can look at that character to determine the order after the first shuffle.
+* After the second shuffle, the number is encoded. By encoding specific numbers, we can retrieve information on the order after the second shuffle.
+
+After the first shuffle, the alphabet is reduced in size. The alphabet in the second shuffle is smaller than in the first shuffle.
+
+The shuffle uses the characters from the salt to determine which characters to swap. By checking which characters are swapped in both of the shuffles, we get some information about the characters in the salt. Since the alphabets are different in size, these pieces of information are different and can be combined to obtain the value of the salt character.
+
+### Example
+
+We perform 45 queries to the oracle. Only three are shown here:
+
+```
+hashid(15) == "X0"
+hashid(43) == "5e"
+hashid(1891) == "xXq"
+```
+
+Remember, Hashids shuffles the alphabet, outputs one character, shuffles again, and outputs the encoded number. We'll call that first character the *lottery*.
+
+We'll first get some information from the first shuffle, which shuffles the alphabet after the separators are taken out, but before the guards are taken out. This alphabet is 48 characters in length. Shuffling works back to front, so we'll also work back to front.
+
+The lottery character is directly determined from the input number, modulo some other number. In the hashid for 15, "X" is at index 15 of the alphabet. For hashid 43, "5" is at position 43 of the alphabet.
+
+The lottery is based on the input number. If we encode 43, the lottery is the character at index 43 in the alphabet. Before the guards were taken out, this character was at index 47. We get `5` as lottery character. The `5` was in position 42 before the shuffle. So when the shuffle was done, position 47 was swapped with position 42. The shuffle function uses the first character of the salt for this shuffle. We can determine that twice the value of this character modulo 47 equals 42.
+
+Next, the second shuffle. After the second shuffle, `Xq` are the last characters in the alphabet. From `hashid(15)`, we know that `X` used to be in position 15. The second shuffle works on 44 characters, and prepends the lottery character (`x`) to the salt. The first shuffle loop adds 120 (`ord('x')`) to the sum. In the second loop:
+
+```
+salt[0] + 1 + salt[0] + 120 = 15 mod 42
+2 * salt[0] = 20 mod 42
+```
+
+We now know:
+
+```
+2 * salt[0] = 42 mod 47
+2 * salt[0] = 20 mod 42
+```
+
+Run the Chinese Remainder Theorem, and 2 * salt[0] = 230 mod 1974, which means salt[0] = 115, or "s".
+
+## Conclusion
+
+
 ## Read more
 
 * [Carnage's tech talk - Cryptanalysis of hashids](https://carnage.github.io/2015/08/cryptanalysis-of-hashids)
