@@ -22,6 +22,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [BEST-1](https://iosrjournals.org/iosr-jce/papers/Vol16-issue2/Version-12/N0162129195.pdf) | L | Jacob John | 2014 | Better Encryption Security Technique, so maybe only better and not best? |
 | [Blowfish](https://en.wikipedia.org/wiki/Blowfish_(cipher)) | ★ | Bruce Schneier | 1993 | Considered secure, wide software support |
 | [CAST-128 / CAST5](https://en.wikipedia.org/wiki/CAST-128)| ★ | Adams & Tavares | 1996 | Used in GPG |
+| CHAM | L | Roh et al. | 2019 | Revised after weaknesses found by cryptanalysis |
 | [CIKS-1](https://en.wikipedia.org/wiki/CIKS-1) | | Moldovyan et al. | 2002 | Data-dependent permutations, fast in hardware |
 | [CIPHERUNICORN-E](https://en.wikipedia.org/wiki/CIPHERUNICORN-E) | | NEC | 1998 | [CRYPTREC](https://en.wikipedia.org/wiki/CRYPTREC) candidate |
 | [COCONUT98](https://en.wikipedia.org/wiki/COCONUT98) | ‡ | Vaudenay | 1998 | Uses Vaudenay's decorrelation theory. Proven secure, but broken nevertheless |
@@ -53,6 +54,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [M6](https://en.wikipedia.org/wiki/M6_(cipher)) | † | Hitachi | 1997 | Designed for FireWire. Key of up to 64 bits. Algorithm not fully published. |
 | [M8](https://en.wikipedia.org/wiki/M8_(cipher)) | | Hitachi | 1999 | Similar to M6, but more complicated and with longer keys |
 | [MacGuffin](https://en.wikipedia.org/wiki/MacGuffin_(cipher)) | † | Schneier & Blaze | 1994 | Broken during the same workshop in which it was designed |
+| [MANTIS](https://eprint.iacr.org/2016/660.pdf) | T[‡](https://tosc.iacr.org/article/view/573) | Beierle et al. | 2016 | Low latency |
 | [mCrypton](/papers/2006/mcrypton-a-lightweight-block-cipher-for-security-of-low-cost-rfid-tags-and-sensors.pdf) | ‡LH | | 2006 | Designed for RFID chips |
 | [MIBS](papers/2009/mibs-a-new-lightweight-block-cipher.pdf) | ‡ | Izadi, Sadeghiyan et al. | 2009 | 80 bit keys |
 | [MESH](https://en.wikipedia.org/wiki/MESH_(cipher)) | | Nakahara, Rijmen, Preneel, Vandewalle | 2002 | Similar to IDEA |
@@ -70,15 +72,17 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [Prince](https://en.wikipedia.org/wiki/Prince_(cipher)) | HL | Borghoff et al. | 2012 | Involation, which they call alpha reflection |
 | [PUFFIN](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=6c1edca0a9800edfb76aca96915ab6f8fcb80cdd) | ‡HL | Cheng, Heys, Wang| 2008 | Involutional subcomponents |
 | [QARMA](https://en.wikipedia.org/wiki/QARMA), [V2](https://eprint.iacr.org/2023/929) | HT | Avanzi | 2017 | Used in ARMv8 CPUs |
+| [RAMus](https://lirias.kuleuven.be/retrieve/692405) | LT | Posteuca & Rijmen | 2022 | Designed to encrypt RAM |
 | [RC2 / ARC2](https://en.wikipedia.org/wiki/RC2) | ★‡ | Rivest | 1987 | Developed for use in Lotus Notes. |
 | [RC5](https://en.wikipedia.org/wiki/RC5) | | Rivest | 1994 | Complex key schedule, simple encryption/decryption algorithm |
 | [RECTANGLE](https://csrc.nist.gov/csrc/media/events/lightweight-cryptography-workshop-2015/documents/papers/session8-wentao-paper.pdf) | L | Zhang et al. | 2015 | Uses bit slicing |
 | [Red Pike](https://en.wikipedia.org/wiki/Red_Pike_(cipher)) | | GCHQ | ~1990 | Classified UK cipher |
 | [RoadRunneR](https://eprint.iacr.org/2015/906.pdf) | L | Baysal & Şahin | 2016 | Provable 8-bit security, efficient on ATtiny45, introduces unique ST/A metric for fair comparison. |
 | [SAFER](https://en.wikipedia.org/wiki/SAFER) | | Massey et al. | 2000 | From Cylink Corporation. Various variants available. |
+| SAT_Jo | [‡](https://www.hindawi.com/journals/scn/2021/5310545/) | Joshitta & Arockiam | 2018 | 80 bits key. Similar to PRESENT, but less secure |
 | [SHARK](https://en.wikipedia.org/wiki/SHARK) | | Rijmen et al. | 1996 | a predecessor of AES. |
 | [Simeck](https://eprint.iacr.org/2015/612.pdf) | L | Yang et al. | 2015 | Based on Simon/Speck |
-| [SKINNY / MANTIS](https://eprint.iacr.org/2016/660.pdf) | T | Beierle et al. | 2016 | Claims to be better than Simon |
+| [SKINNY](https://eprint.iacr.org/2016/660.pdf) | T | Beierle et al. | 2016 | Claims to be better than Simon |
 | [Skipjack](https://en.wikipedia.org/wiki/Skipjack_(cipher)) | | NSA | 1998 | Small key size of 80 bits. Intended for use in the controversial Clipper chip. |
 | [SPARX](https://www.cryptolux.org/index.php/SPARX) | L | Dinu et al. | 2016 | Design strategy with provable security |
 | [Speck](https://en.wikipedia.org/wiki/Speck_(cipher)) / [Simon](https://en.wikipedia.org/wiki/Simon_(cipher)) | | NSA | 2013 | Promising cipher, well analyzed, but designed by the NSA |
