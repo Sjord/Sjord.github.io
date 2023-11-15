@@ -29,9 +29,12 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [CRAFT](https://eprint.iacr.org/2019/210) | H[‡](https://eprint.iacr.org/2019/932.pdf) | Beierle et al. | 2019 | Protects against physical attacks, such as differential fault injection |
 | [Cryptomeria / C2](https://en.wikipedia.org/wiki/Cryptomeria_cipher) | ‡ | 4C Entity | 2003 | Successor to CSS for DRM on DVDs |
 | [CS-Cipher](https://en.wikipedia.org/wiki/CS-Cipher) | | Stern & Vaudenay | 1998 | Uses FFT in the round function. |
+| [DABC](https://itiis.org/digital-library/manuscript/file/38318/TIIS%20Vol%2017,%20No%201-9.pdf) | L | Chen, Li, Guo | 2023 | |
 | [DES](https://en.wikipedia.org/wiki/Data_Encryption_Standard), [3DES](https://en.wikipedia.org/wiki/Triple_DES), [DES-X](https://en.wikipedia.org/wiki/DES-X) | ★ | IBM | 1975 | Outdated but still reasonably secure, as long as used with a sufficiently long key. Wide software support and often used for NIST compliance. |
+| [DULBC](https://www.sciencedirect.com/science/article/abs/pii/S0167926022000931) | L | Yang, Li, Guo, Huang | 2022 | |
 | [FEAL](https://en.wikipedia.org/wiki/FEAL) | † | Shimizu & Miyaguchi | 1987 | Practical attacks were quickly found, even after the authors increased the number of rounds. |
 | [FeW](https://dergipark.org.tr/en/download/article-file/914382) | | Kumar, Pal, Panigrahi | 2018 | Feistel-M structure, elaborate security analysis in original paper |
+| [FUTURE](https://www.researchgate.net/profile/Susanta-Samanta-4/publication/364204004_FUTURE_A_Lightweight_Block_Cipher_Using_an_Optimal_Diffusion_Matrix/links/64e09fbf177c59041304d95f/FUTURE-A-Lightweight-Block-Cipher-Using-an-Optimal-Diffusion-Matrix.pdf) | L | Gupta, Pandey, Samanta | 2022 | |
 | [GOST (Magma)](https://en.wikipedia.org/wiki/GOST_(block_cipher)) | ‡ | USSR | ~1970 | Declassified in 1994. |
 | [Halka](https://eprint.iacr.org/2014/110.pdf) | L | Das | 2014 | 80-bit keys. Claims to be small in hardware, fast in software. Multiplicative inverse for 8-bit S-boxes. |
 | [Hierocrypt-L1](https://en.wikipedia.org/wiki/Hierocrypt) | | Toshiba | 2000 | [CRYPTREC](https://en.wikipedia.org/wiki/CRYPTREC) candidate |
@@ -88,6 +91,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [Speck](https://en.wikipedia.org/wiki/Speck_(cipher)) / [Simon](https://en.wikipedia.org/wiki/Simon_(cipher)) | | NSA | 2013 | Promising cipher, well analyzed, but designed by the NSA |
 | [Spectr-H64](https://en.wikipedia.org/wiki/Spectr-H64) | † | Moldovyan et al. | 2001 | Predecessor of CIKS-1 |
 | [SPEED](http://target0.be/madchat/crypto/hash-lib-algo/speed/speed-paper.pdf) | ‡ | Yuliang Zheng | 1997 | Inspired by RC5, uses non-lineair Boolean operations |
+| [SPNRX](https://www.researchsquare.com/article/rs-2033728/v1) | L | Wang, Zhao, Chen | 2022 | |
 | [SXAL](https://en.wikipedia.org/wiki/SXAL/MBAL) | ‡ | Laurel Intelligent Systems | 1993 | Part of MBAL, used in Japanese smart cards |
 | [TEA](https://en.wikipedia.org/wiki/Tiny_Encryption_Algorithm) | ‡ | Needham & Wheeler | 1994 | Tiny Encryption Algorithm. Vulnerable to related-key attacks. Improved with XTEA and XXTEA. |
 | [Treyfer](https://en.wikipedia.org/wiki/Treyfer) | ‡ | Gideon Yuval | 1997 | Key size of 64 bits, extremely simple algorithm |
