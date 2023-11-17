@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "HashIDs"
+title: "HashIDs expose their secret key"
 thumbnail: brick-wall-480.jpg
 date: 2023-11-22
 ---
 
-<!-- Photo source: https://pixabay.com/photos/wall-bricks-shadow-home-texture-1358958/ -->
+Hashids is an algorithm that converts numbers to string tokens and back. It's similar to base64 encoding, but with extra steps. For example, it can convert `77305` to `NgDmz`. It's sometimes used for security purposes, but it is not suitable for this.
 
-Hashids is an algorithm that converts numbers to string tokens and back. It's similar to base64 encoding, but with extra steps. For example, it can convert `77305` to `NgDmz`.
+<!-- Photo source: https://pixabay.com/photos/wall-bricks-shadow-home-texture-1358958/ -->
 
 ## A history of security claims
 
-Hashids has never been a secure algorithm, but it started out with security claims:
+The Hashids algorithm encodes numbers into string tokens and back. These tokens are often used in a URL to identify resources. Hashids has never been a secure algorithm, but it started out with security claims:
 
 * 2012 - launches, claims it is suitable for "making pages private"
 * 2013 - claims it is suitable for "forgotten password hashes", and that "There's not a way to guess the correct numbers behind the hash without knowing the salt value first."
@@ -21,9 +21,11 @@ Hashids has never been a secure algorithm, but it started out with security clai
 
 ## Unexplainably popular
 
-In 2012, we already had AES, Blowfish, and [Bruce Schneier](https://www.schneier.com/blog/archives/2011/04/schneiers_law.html). "Don't roll your own crypto" was well-known advice, and back then "crypto" really did mean "cryptography". Against this background, a random developer creates Hashids, and it keeps gaining in popularity, even after the security claims are removed.
+In 2012, we already had AES, Blowfish, and [Bruce Schneier](https://www.schneier.com/blog/archives/2011/04/schneiers_law.html). "Don't roll your own crypto" was well-known advice, and back then "crypto" really did mean "cryptography". Against this background, a random developer creates Hashids, and it keeps gaining in popularity, even after the security claims were removed.
 
 I don't understand it. Why would anyone want to use this base64 with extra steps, if it doesn't provide security? Is `NgDmz` so much better to use in a URL compared with `77305`?
+
+On the other hand, there is not a truly cryptographically secure alternative. If you want to obfuscate numbers to use in URLs, there is no canonically recommended encryption algorithm. Apparently developers have a desire to obfuscate identifiers, which Hashids filled.
 
 ## How Hashids work
 
@@ -39,13 +41,13 @@ The alphabet is shuffled several times when encoding a value. The value of salt 
 More precisely, with the default alphabet, it works like this:
 
 1. separators ("cfhistu") are removed from the alphabet, reducing the size of the alphabet to 48
-2. the alphabet is reordered depending on the salt
+2. the alphabet is shuffled depending on the salt
 3. the first four characters (guards) are removed from the alphabet, reducing the size to 44
 4. a single character, depending on the input number, is added to the output
-5. the alphabet is reordered depending on the character from the previous step, the salt and the alphabet
+5. the alphabet is shuffled depending on the character from the previous step, the salt and the alphabet
 6. the number is base 44 encoded using the alphabet and added to the output
 
-## Hashids may leak your secret key
+## Hashids expose your secret key
 
 Hashids are insecure. The obvious implication is that the mapping between numeric identifiers and string tokens is compromised: an attacker can determine that `NgDmz` corresponds to `77305`, and perhaps can create their own token for another number.
 
@@ -62,7 +64,7 @@ It is tempting to use such as secret as salt in Hashids:
 $hashids = new Hashids(Config::get('app.key'));
 ```
 
-This makes it possible to determine the salt from observing tokens that the application outputs. The salt is set to the secret key of the framework, and this compromises the security of framework functionality, such as authentication, sessions, encryption, etc.
+The salt is set to the secret key of the framework. This makes it possible to determine the secret key from observing tokens that the application outputs, and this compromises the security of framework functionality, such as authentication, sessions, encryption, etc.
 
 ## Recovering the salt given an oracle
 
@@ -72,13 +74,11 @@ If the application exposes Hashid mappings, we can use that to determine the sec
 
 The alphabet is shuffled twice.
 
-* When the default settings are used, we know the alphabet it starts with.
-* After the first shuffle, one character is output. We can look at that character to determine the order after the first shuffle.
+* If the default settings are used, we know the alphabet it starts with.
+* After the first shuffle, one character is output. We can look at that character to determine the order of the alphabet after the first shuffle.
 * After the second shuffle, the number is encoded. By encoding specific numbers, we can retrieve information on the order after the second shuffle.
 
-After the first shuffle, the alphabet is reduced in size. The alphabet in the second shuffle is smaller than in the first shuffle.
-
-The shuffle uses the characters from the salt to determine which characters to swap. By checking which characters are swapped in both of the shuffles, we get some information about the characters in the salt. Since the alphabets are different in size, these pieces of information are different and can be combined to obtain the value of the salt character.
+The shuffle uses the characters from the salt to determine which characters to swap in the alphabet. By checking which characters are swapped in both of the shuffles, we get some information about the characters in the salt. Since the alphabets are different in size, these pieces of information are different and can be combined to obtain the value of the salt character.
 
 ### Example
 
