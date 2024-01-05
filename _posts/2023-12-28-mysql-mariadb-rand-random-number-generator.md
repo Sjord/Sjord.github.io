@@ -2,7 +2,7 @@
 layout: post
 title: "MySQL's random number generator"
 thumbnail: five-dice-480.jpg
-date: 2024-01-03
+date: 2024-01-17
 ---
 
 MySQL and MariaDB have a RAND function that is supposed to return random numbers. However, the numbers it return are not particularly random.
