@@ -62,13 +62,13 @@ There are three operations performed in the random number generator:
 - multiplication by 3,
 - modulo 0x3FFFFFFF.
 
-0x3FFFFFFF is cleanly divisable by 33. If the random number generator is seeded by values that are divisable by 33, they remain that way. None of the above operations are going to change a number that is divisible by 33 to one that is not.
+0x3FFFFFFF is cleanly divisible by 33. If the random number generator is seeded by values that are divisible by 33, they remain that way. None of the above operations are going to change a number that is divisible by 33 to one that is not.
 
 This also holds if the seeds are divisible by 11. None of the operations above are going to change the seed to something not divisible by 11.
 
 If the seeds are not divisible by 33 or 11, the random number generator still gets stuck in a group where it only generates certain numbers modulo 33.
 
-This affects only the least significant bits, so when doing `RAND() * 10` this won't be noticable. However, it does significantly reduce the number of usable bits in the PRNG. With a seed that is divisible by 33, the following query returns only even numbers:
+This affects only the least significant bits, so when doing `RAND() * 10` this won't be noticeable. However, it does significantly reduce the number of usable bits in the PRNG. With a seed that is divisible by 33, the following query returns only even numbers:
 
 ```
 SELECT RAND() * 65075262;
@@ -76,7 +76,7 @@ SELECT RAND() * 65075262;
 
 ### Seeds
 
-The global PRNG is seeded with the current time, and the current time divided by two. These values are not particularly random, and they are also related to each other. Above we said that the PRNG behaves badly if both seeds are divisible by 11. If both seeds were independent, this would happen once every 11&times;11 or 121 times. However, because seed2 is half of seed1, this now happend every 22 times.
+The global PRNG is seeded with the current time, and the current time divided by two. These values are not particularly random, and they are also related to each other. Above we said that the PRNG behaves badly if both seeds are divisible by 11. If both seeds were independent, this would happen once every 11&times;11 or 121 times. However, because seed2 is half of seed1, this now happened every 22 times.
 
 The thread-specific PRNG is also not seeded very well. First of all, a variable common to both seeds is created:
 
@@ -146,7 +146,7 @@ This returns the row for which RAND() returns the lowest value. For some table s
 
 I simulated the above query a million times and plotted the results in a graph. The orange line shows the distribution for an actual random sample. The blue line shows how many times items are selected with simulated `ORDER BY RAND()` queries in a table of 2400 rows.
 
-The x-axis shows the number of times a certain row is picked, and the y-axis shows how many rows are picked this many times. For example, at the first blue peak on the left, we see that there are 2 rows that are picked 28 times. For the orange, truly random series, we see a normal distribution around 420, as expected. For the blue, MySQL RAND series, we see really non-random behaviour. Some rows were picked 460 times, some rows were picked 490 times, but not a single row was picked 475 times.
+The x-axis shows the number of times a certain row is picked, and the y-axis shows how many rows are picked this many times. For example, at the first blue peak on the left, we see that there are 2 rows that are picked 28 times. For the orange, truly random series, we see a normal distribution around 420, as expected. For the blue, MySQL RAND series, we see really non-random behavior. Some rows were picked 460 times, some rows were picked 490 times, but not a single row was picked 475 times.
 
 Also, the distribution is much wider than expected. Some rows were picked only 28 times, which is very unlikely with a random distribution.
 
@@ -180,10 +180,7 @@ MySQL's random number generator:
 - has a skewed distribution when selecting random items from tables.
 - has fixed points in which it returns the same number over and over.
 
-Recommendations:
-
-- seed the PRNG regularly with good random numbers;
-- avoid seeds that are divisible by eleven.
+In short, it isn't very random.
 
 ## Read more
 
