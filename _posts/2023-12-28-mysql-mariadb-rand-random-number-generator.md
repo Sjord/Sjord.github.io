@@ -134,6 +134,10 @@ If we create two lists of *n* random numbers, what are the chances that the top 
 * *n* = 22800, probability of 1/92349, 2<sup>-16</sup>
 * *n* = 91200, probability of 1/2979, 2<sup>-12</sup>
 
+### Low period
+
+The PRNG returns to the same state after at most 83265600 iterations, after which is repeats the same sequence. This is a little bit over 2<sup>26</sup>. For a PRNG that keeps 60 bits of state, we would expect this to be closer to 2<sup>60</sup>.
+
 ### Distribution
 
 A simple way to pick a random row from a relatively small table is as follows:
@@ -177,6 +181,7 @@ MySQL's random number generator:
 - gets stuck in groups modulo 99.
 - returns predictable sequences for unlucky seeds.
 - repeats itself with higher probability after specific number of calls.
+- has a relatively short period, after which it returns the same sequence.
 - has a skewed distribution when selecting random items from tables.
 - has fixed points in which it returns the same number over and over.
 
