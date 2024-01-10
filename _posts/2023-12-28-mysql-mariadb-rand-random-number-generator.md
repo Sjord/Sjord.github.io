@@ -5,7 +5,7 @@ thumbnail: five-dice-480.jpg
 date: 2024-01-17
 ---
 
-MySQL and MariaDB have a RAND function that is supposed to return random numbers. However, the numbers it return are not particularly random.
+MySQL and MariaDB have a RAND function that is supposed to return random numbers. However, the numbers it returns are not particularly random.
 
 ## How it works
 
