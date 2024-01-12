@@ -172,6 +172,12 @@ In a round of PRNG, it does:
 
 Both seeds remain the same, so the PRNG always outputs the same number.
 
+### Points fall in a plane
+
+Below is a three-dimensional plot of 30,000 values generated with MySQL. Each point represents three consecutive pseudorandom values. All points fall in one of eight planes, showing that the PRNG is not very good at generating random numbers.
+
+<div id="graph" style="width: 100%; height: 500px"></div>
+
 ## Conclusion
 
 MySQL's random number generator:
@@ -184,6 +190,7 @@ MySQL's random number generator:
 - has a relatively short period, after which it returns the same sequence.
 - has a skewed distribution when selecting random items from tables.
 - has fixed points in which it returns the same number over and over.
+- creates points that fall on one of several tree-dimensional planes.
 
 In short, it isn't very random.
 
@@ -191,3 +198,29 @@ In short, it isn't very random.
 
 * [ORDER BY RAND() - \~jk](https://jan.kneschke.de/projects/mysql/order-by-rand/)
 * [Sjord/mariadb-rand](https://github.com/Sjord/mariadb-rand)
+* [RANDU - Wikipedia](https://en.wikipedia.org/wiki/RANDU)
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js" integrity="sha384-Hl48Kq2HifOWdXEjMsKo6qxqvRLTYqIGbvlENBmkHAxZKIGCXv43H6W1jA671RzC" crossorigin="anonymous"></script>
+<script>
+    fetch('/data/mysql-rand-graphdata.json').then(response => response.json()).then(function (data) {
+        var trace1 = {
+            x: data.x,
+            y: data.y,
+            z: data.z,
+            mode: 'markers',
+            marker: {
+                size: 1
+            },
+            type: 'scatter3d'
+        };
+
+        var data = [trace1];
+        var layout = {margin: {
+            l: 0,
+            r: 0,
+            b: 0,
+            t: 0
+        }};
+        Plotly.newPlot('graph', data, layout);
+    });
+</script>
