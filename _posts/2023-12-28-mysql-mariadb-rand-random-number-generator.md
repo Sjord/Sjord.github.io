@@ -13,7 +13,7 @@ MySQL and MariaDB both have a RAND function that returns a "random" number. From
 
 > Returns a random DOUBLE precision floating point value v in the range 0 <= v < 1.0.
 
-The PRNG keeps two state variables, and modifies them each time it is called as follows:
+The pseudorandom number generator (PRNG) keeps two state variables, and modifies them each time it is called as follows:
 
 ```
 seed1 = (seed1 * 3 + seed2) % 0x3FFFFFFF
