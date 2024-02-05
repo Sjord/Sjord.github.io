@@ -62,7 +62,7 @@ I participated in a research project for [Qbit](https://www.eurofins-cybersecuri
 * Verify firmware before installing
 * Inform the end user about security
 
-These requirements are a little more elaborate than the UK's mentioned above. But they are still fairly easy to implement, and you can buy devices today that meet all these requirements. The requirements in [the report](https://www.rdi.nl/binaries/agentschap-telecom/documenten/rapporten/2020/08/26/onderzoeksrapport-essential-requirements-for-securing-iot-consumer-devices/Essential+requirements+for+securing+consumer+IoT+devices.pdf) are written more formally, which makes them suitable for legislation. Vendors, authorities, researches and consumers are likely to agree on the exact meaning of the requirements, and it is easy to determine whether a device meets the requirements. If IoT devices conform to these requirements, the security of them would improve greatly.
+These requirements are a little more elaborate than the UK's mentioned above. But they are still fairly easy to implement, and you can buy devices today that meet all these requirements. The requirements in [the report](https://www.rdi.nl/binaries/rdi/documenten/rapporten/2020/08/26/onderzoeksrapport-essential-requirements-for-securing-iot-consumer-devices/Essential+requirements+for+securing+consumer+IoT+devices.pdf) are written more formally, which makes them suitable for legislation. Vendors, authorities, researches and consumers are likely to agree on the exact meaning of the requirements, and it is easy to determine whether a device meets the requirements. If IoT devices conform to these requirements, the security of them would improve greatly.
 
 ## Conclusion
 
@@ -70,4 +70,4 @@ Authorities are looking for security regulations for IoT consumer devices. The r
 
 ## Read more
 
-* [Essential requirements for securing IoT consumer devices](https://www.rdi.nl/binaries/agentschap-telecom/documenten/rapporten/2020/08/26/onderzoeksrapport-essential-requirements-for-securing-iot-consumer-devices/Essential+requirements+for+securing+consumer+IoT+devices.pdf)
+* [Essential requirements for securing IoT consumer devices](https://www.rdi.nl/binaries/rdi/documenten/rapporten/2020/08/26/onderzoeksrapport-essential-requirements-for-securing-iot-consumer-devices/Essential+requirements+for+securing+consumer+IoT+devices.pdf)
