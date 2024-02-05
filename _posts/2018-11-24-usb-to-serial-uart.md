@@ -298,7 +298,6 @@ Using a USB to UART bridge can be pretty simple if it works, or it can be painfu
 * [Using the Hardware Serial Ports](https://www.pjrc.com/teensy/td_uart.html)
 * [How high of a baud rate can I go (without errors)?](https://arduino.stackexchange.com/questions/296/how-high-of-a-baud-rate-can-i-go-without-errors)
 * [Review: CP2102N USB-UART Bridge](https://www.element14.com/community/roadTestReviews/2451/l/SILICON-LABS-USB-TO-UART-Bridge-Controller-EVM)
-* [Getting started with UART: the 60yr old protocol that's still alive and kicking](https://blog.conduitlabs.com/uart-serial-debugging/)
 * [Linux-custom-baud-rate](https://github.com/jbkim/Linux-custom-baud-rate)
 * [Setting Arbitrary Baud Rates On Linux](https://blog.ploetzli.ch/2014/setting-arbitrary-baud-rates-on-linux/)
 * [FTDI FT232RL: real vs fake](https://zeptobars.com/en/read/FTDI-FT232RL-real-vs-fake-supereal)

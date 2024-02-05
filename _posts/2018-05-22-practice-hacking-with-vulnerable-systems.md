@@ -18,7 +18,6 @@ The best way to learn how to hack is to do it. There are several practice sites 
 * [CTFlearn](https://ctflearn.com/) 
 * [CTFTime](https://ctftime.org/)
 * [Enigma Group](https://www.enigmagroup.org/)
-* [Game of Hacks](http://www.gameofhacks.com/)
 * [Google Gruyere](http://google-gruyere.appspot.com/) - Vulnerable web app
 * [Google XSS Game](https://xss-game.appspot.com/) - Cross-site scripting for beginners
 * [Hack This Site](https://www.hackthissite.org/)
