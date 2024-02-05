@@ -10,8 +10,6 @@ by IoT devices. We will review them from the most severe though to the
 least. It is worth noting that the six most severe issues were used in
 an actual attack, or to demonstrate proof-of-concept of a vulnerability.
 
-*This article was published in September 2020 on the site of my employer at the time, Qbit. Since that site no longer exists, I published it again here in 2024.*
-
 The security of IoT devices has been a cause for concern for some time
 and has had the inevitable consequence of allowing both small- and
 large-scale attacks. Most of these attacks originate from simple
@@ -19,6 +17,10 @@ security problems, for example, the retention of default passwords on a
 telnet service. The Dutch Radiocommunications Agency wants to impose
 security requirements on IoT devices and their manufacturers, and asked
 Qbit for advice.
+
+*This article was published in September 2020 on the site of my employer at the time, Qbit. Since that site no longer exists, I published it again here in 2024.*
+
+<!-- Photo source: https://pixabay.com/photos/board-electronics-computer-453758/ -->
 
 ## 1. Incorrect access control
 

@@ -11,7 +11,7 @@ Consumer IoT devices have been riddled with the same vulnerabilities for a long 
 
 ## History of IoT security
 
-The security devices of IoT consumer devices has been bad for a long time. The same basic problems keep appearing. 
+The security devices of IoT consumer devices has been bad for a long time. The same [basic problems](/2020/09/10/the-most-important-security-problems-with-iot-devices/) keep appearing.
 
 One of the reoccurring problems is the use of default passwords. In 2014, [over 73,000 camera's could be accessed using default passwords](https://www.csoonline.com/article/2844283/peeping-into-73-000-unsecured-security-cameras-thanks-to-default-passwords.html). In 2018, the Mirai botnet compromised a large number of devices, using default usernames and passwords. Last year, [Rapid7 reported vulnerabilities in children's smart watches](https://blog.rapid7.com/2019/12/11/iot-vuln-disclosure-childrens-gps-smart-watches-r7-2019-57/). One of the main problems was a default password. As you can see, manufacturers have had the chance for years to become aware of this vulnerability and prevent it, but the vulnerability still occurs in many devices.
 

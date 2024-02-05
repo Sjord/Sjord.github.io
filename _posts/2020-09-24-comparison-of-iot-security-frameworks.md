@@ -9,10 +9,14 @@ Several IoT frameworks have been devised that can help vendors in
 developing secure devices. These frameworks contain security measures to
 follow during development, helping vendors to create a secure device.
 
+<!-- Photo source: https://pixabay.com/photos/construction-site-construction-work-592458/ -->
+
 *This article was published in September 2020 on the site of my employer at the time, Qbit. Since that site no longer exists, I published it again here in 2024.*
 
+## Introduction
+
 The Dutch Radiocommunications Agency is considering making several
-security measures legally required, and asked Qbit
+[security measures legally required](/2020/09/30/iot-security-regulation/), and asked Qbit
 which security measures would be best suited for
 this. Qbit evaluated more than 400 security measures from four security
 frameworks. This article describes the differences between these
@@ -35,7 +39,7 @@ The following security frameworks are covered in this article:
     Critical Information
     Infrastructures](https://www.enisa.europa.eu/publications/baseline-security-recommendations-for-iot).
 
-## 1. ETSI EN 303 645
+## ETSI EN 303 645
 
 The European Telecommunications Standards Institute (ETSI) specifies 65
 security provisions for consumer IoT devices that are connected to a
@@ -56,7 +60,8 @@ EN 303 645 uses the term "authentication value" instead of "password".
 Unfortunately, in certain cases this makes the provisions insufficiently
 specific. For example, in the following provision there is a lot of room
 for interpretation as to what cryptographic algorithm should be used:
-Provision 5.1-3 Authentication mechanisms used to authenticate users
+
+> Provision 5.1-3 Authentication mechanisms used to authenticate users
 against a device shall use best practice cryptography, appropriate to
 the properties of the technology, risk and usage.
 
@@ -89,8 +94,8 @@ Even though these are good recommendations to help vendors secure
 products, these requirements are less useful for black-box testing to
 determine whether a device conforms to these requirements. For example,
 
-*2.4.5.38, "maintenance changes should trigger full security regression
-testing",*
+> 2.4.5.38, "maintenance changes should trigger full security regression
+testing",
 
 applies more to the business process than to the functionality of the
 device.
@@ -99,8 +104,8 @@ Even so, there are also many requirements that are sufficiently specific
 and measurable. For example, one of the simplest and most important
 requirements is
 
-*2.4.8.4: the product does not accept the use of null or blank
-passwords.*
+> 2.4.8.4: the product does not accept the use of null or blank
+passwords.
 
 The framework has a wide scope, and includes security requirements for
 mobile applications, cloud services, the supply chain and the production
@@ -136,22 +141,24 @@ health, financial or critical infrastructures.
 ## ENISA Baseline Security Recommendations for IoT
 
 The ENISA (European Union Agency for Cybersecurity) Baseline Security
-Recommendations for IoT provides measures on three main categories: -
-Policies - Organisational, People and Process measures - Technical
-measures
+Recommendations for IoT provides measures on three main categories:
+
+- Policies
+- Organisational, People and Process measures
+- Technical measures
 
 The measures regarding policies target the development process at the
 vendor. Virtually all of these are insufficiently SMART when applied to
 the end product of the process, the IoT device. The Organisational,
 People and Process measures target the interaction between the vendor
 and the consumer, and cover vulnerability disclosure, for example.
-Finally, the technical measures provide the most concrete measures of
+Finally, the [technical measures](/2019/05/08/enisa-iot-technical-measures/) provide the most concrete measures of
 how the IoT device should behave.
 
 Several of the measures that are included as a single point in the ENISA
 document actually consist of several requirements. For example:
 
-*GP-TM-18: Ensure that the device software/firmware, its configuration
+> GP-TM-18: Ensure that the device software/firmware, its configuration
 and its applications have the ability to update Over-The-Air (OTA), that
 the update server is secure, that the update file is transmitted via a
 secure connection, that it does not contain sensitive data (e.g.
@@ -159,7 +166,7 @@ hardcoded credentials), that it is signed by an authorised trust entity
 and encrypted using accepted encryption methods, and that the update
 package has its digital signature, signing certificate and signing
 certificate chain, verified by the device before the update process
-begins.*
+begins.
 
 This one measure consists of at least eight requirements. This makes it
 difficult to categorize and evaluate.
@@ -168,7 +175,7 @@ The ENISA measures are meant to provide information on how to secure
 devices. Several measures dictate that a specific part of the device
 should be secure. For example:
 
-*GP-TM-35: Cryptographic keys must be securely managed.*
+> GP-TM-35: Cryptographic keys must be securely managed.
 
 It is self-evident that for a device to be secure, all its subcomponents
 need to be secure. However, for vendors that are unaware of how to
