@@ -150,6 +150,6 @@ Outcomes: Challenges and Opportunities](https://papers.ssrn.com/sol3/papers.cfm?
 1. [The Hiscox Cyber Readiness Report 2017](https://www.hiscox.co.uk/cyber-readiness-report/docs/cyber-readiness-report-2017.pdf)
 1. [Uber will pay $148 million for 2016 data breach coverup](https://www.engadget.com/2018/09/26/uber-pay-148-million-2016-data-breach-coverup/)
 1. [How much do data breaches cost big companies? Shockingly little](https://fortune.com/2015/03/27/how-much-do-data-breaches-actually-cost-big-companies-shockingly-little/)
-1. [Target 2013 Annual Report](https://corporate.target.com/_media/TargetCorp/annualreports/content/download/pdf/Target-2013-Annual-Report.pdf?ext=.pdf)
+1. [Target 2013 Annual Report](https://corporate.target.com/getmedia/47488c66-8bc8-41d6-834b-80513bba407a/Target_2013_10-K_Report.pdf)
 1. [Equifax breach could be most costly in corporate history](https://www.reuters.com/article/us-equifax-cyber/equifax-breach-could-be-most-costly-in-corporate-history-idUSKCN1GE257)
 1. [Massive data breach has cost Equifax nearly $90 million](https://phys.org/news/2017-11-massive-breach-equifax-million.html)
