@@ -78,7 +78,7 @@ All TLS libraries have been patched against Lucky 13, multiple times. Patches ha
 
 * [Bleichenbacher, Daniel. "Chosen ciphertext attacks against protocols based on the RSA encryption standard PKCS# 1.", 1998](https://link.springer.com/content/pdf/10.1007%252FBFb0055716.pdf)
 * [Vaudenay, Serge. "Security flaws induced by CBC padding" 2002](https://link.springer.com/content/pdf/10.1007/3-540-46035-7_35.pdf)
-* [Al Fardan, Nadhem J., and Kenneth G. Paterson. "Lucky thirteen: Breaking the TLS and DTLS record protocols." 2013](https://cve.report/CVE-2013-1618/f2cdb3c3.pdf)
+* [Al Fardan, Nadhem J., and Kenneth G. Paterson. "Lucky thirteen: Breaking the TLS and DTLS record protocols." 2013](https://hpc-notes.soton.ac.uk/talks/bullrun/Lucky13.pdf)
 * [Meyer, Christopher, et al. "Revisiting SSL/TLS Implementations: New Bleichenbacher Side Channels and Attacks." 2014](https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-meyer.pdf)
 * [Irazoqui, Gorka, et al. "Lucky 13 strikes back." 2015](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.700.1952&rep=rep1&type=pdf)
 * [Albrecht, Martin R., and Kenneth G. Paterson. "Lucky microseconds: A timing attack on amazon’s s2n implementation of TLS." 2016](https://link.springer.com/chapter/10.1007/978-3-662-49890-3_24)
