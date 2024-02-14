@@ -44,6 +44,12 @@ So if the web server doesn't allow newlines in headers, adding a header with use
 
 If a header contains a newline, curl already splits it into multiple headers before sending. Even when sending a HTTP/2 request, curl first constructs a HTTP/1 request. This is then parsed again and converted into a HTTP/2 request. Because the request is formatted in HTTP/1 first, header injection is possible, even when it is later converted to HTTP/2.
 
+## API abstraction
+
+Libraries and APIs should abstract away implementation details, both to make programming easier and for security. As a programmer, you want to be able to call `Memcache::add($foo, $bar)` no matter what `$foo` and `$bar` contain. You don't want to worry about the protocol that memcache uses internally, and that they key cannot contain a newline but the value can. The API abstracts that away.
+
+I feel like curl fails to abstract the protocol details and even the implementation details of curl in this case. I want to set a header with some content, and I shouldn't have to worry about whether a newline in there interferes with the underlying protocol or intermediate representation.
+
 ## Conclusion
 
 HTTP/2 headers can technically contain newlines, but they shouldn't. Curl cannot send a header with a newline in it. Instead, it will split it into separate headers.
