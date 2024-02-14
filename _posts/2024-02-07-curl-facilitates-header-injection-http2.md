@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "curl facilitates header injection"
+title: "Curl facilitates header injection"
 thumbnail: curl-man-480.jpg
 date: 2024-02-28
 ---
+
+Header injection is possible by adding newlines in a header. This makes sense for HTTP/1, but HTTP/2 headers can technically contain newlines. When using curl, however, header injection is still possible even with HTTP/2.
 
 <!-- Photo source: https://pixabay.com/photos/man-portrait-homeless-poverty-male-1870016/ -->
 
@@ -21,12 +23,13 @@ Besides sending a method, path and version, the request contains several HTTP he
 
 ## Header injection
 
-In HTTP/1, headers are sent just as shown above, each header on a new line. In this protocol, it is not possible for a header to contain a newline character. Instead, a new line would start a new header. This can make an application vulnerable to header injection. Consider the following example, where an application performs a request to another system.
+In HTTP/1, headers are sent just as shown above, each header on a new line, separated by `\r\n` (carriage return and linefeed). In this protocol, it is not possible for a header to contain a newline character. Instead, a new line would start a new header. This can make an application vulnerable to header injection. Consider the following example, where an application performs a request to another system.
 
 ```php
 $ch = curl_init($url);
-curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-curl_setopt($ch, CURLOPT_HTTPHEADER, ["Request-ID: " . $_POST['id']);
+curl_setopt($ch,
+    CURLOPT_HTTPHEADER,
+    ["Request-ID: " . $_POST['id']);
 ```
 
 If `$_POST['id']` contains multiple lines, these will be added as additional request headers. This makes it possible to manipulate the request the application sends.
@@ -39,33 +42,10 @@ So if the web server doesn't allow newlines in headers, adding a header with use
 
 ## Curl splits headers
 
-If a header contains a newline, curl already splits it into multiple headers before sending. This formatting that curl performs facilitates the header injection, even when using newer protocols such as HTTP/2.
+If a header contains a newline, curl already splits it into multiple headers before sending. Even when sending a HTTP/2 request, curl first constructs a HTTP/1 request. This is then parsed again and converted into a HTTP/2 request. Because the request is formatted in HTTP/1 first, header injection is possible, even when it is later converted to HTTP/2.
 
+## Conclusion
 
+HTTP/2 headers can technically contain newlines, but they shouldn't. Curl cannot send a header with a newline in it. Instead, it will split it into separate headers.
 
-## Summary:
-
-Using `\r\n` in a request header causes curl to sent two request headers. This can lead to a security issue if an application uses user input in a request header.
-
-## Steps To Reproduce:
-
-test.php contains `var_dump($_SERVER);`.
-
-```
-$ curl --insecure --header $'Hello: world\r\nAnother: header' https://localhost:8424/test.php
-...
-  ["SERVER_PROTOCOL"]=>
-  string(8) "HTTP/2.0"
-  ["HTTP_ANOTHER"]=>
-  string(6) "header"
-  ["HTTP_HELLO"]=>
-  string(5) "world"
-```
-
-## Supporting Material/References:
-
-With HTTP/1 this type of injection makes sense, but this also works for HTTP/2. I would expect curl to either raise an error, or literally sent `world\r\nAnother: header` as the content of the `Hello` header. Sending newlines in HTTP/2 headers is possible, but not allowed according to RFC 9113.
-
-## Impact
-
-If an application uses user input in a request header, this behavior makes it possible for the user to inject an additional request header.
+So having user input in a request header makes it possible for an attacker to add additional headers to a request, and using HTTP/2 does not offer protection against that.
