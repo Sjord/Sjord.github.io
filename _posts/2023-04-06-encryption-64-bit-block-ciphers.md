@@ -22,7 +22,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [ANU-II](https://www.researchgate.net/profile/Vijay-Dahiphale/publication/324487412_ANU-II_A_fast_and_efficient_lightweight_encryption_design_for_security_in_IoT/links/638acc732c563722f2333071/ANU-II-A-fast-and-efficient-lightweight-encryption-design-for-security-in-IoT.pdf) | L[†](https://journals.sagepub.com/doi/full/10.1177/15501329221119398) | Dahiphale, Bansod, Patil | 2017 | So lightweight is hardly provides any security |
 | [ANU](https://www.researchgate.net/profile/Narayan-Pisharoty/publication/309467610_ANU_an_ultra_lightweight_cipher_design_for_security_in_IoT_ANU_an_ultra_lightweight_cipher_design/links/5c42b706a6fdccd6b5b7ebc8/ANU-an-ultra-lightweight-cipher-design-for-security-in-IoT-ANU-an-ultra-lightweight-cipher-design.pdf) | L | Bansod, Patil, Sutar, Pisharoty | 2016 | Predecessor to ANU-II |
 | [BEST-1](https://iosrjournals.org/iosr-jce/papers/Vol16-issue2/Version-12/N0162129195.pdf) | L | Jacob John | 2014 | Better Encryption Security Technique, so maybe only better and not best? |
-| [Blowfish](https://en.wikipedia.org/wiki/Blowfish_(cipher)) | ★ | Bruce Schneier | 1993 | Considered secure, wide software support |
+| [Blowfish](https://en.wikipedia.org/wiki/Blowfish_(cipher)) | ★ | Bruce Schneier | 1993 | Considered secure, wide software support, not side-channel resistant |
 | [BORON](https://link.springer.com/content/pdf/10.1631/FITEE.1500415.pdf) | L | Bansod, Pisharoty, Patil | 2017 | Has withstood [some](https://www.sciencedirect.com/science/article/abs/pii/S2214212622000205) [cryptanalysis](https://link.springer.com/content/pdf/10.1631/FITEE.1500415.pdf) |
 | [CAST-128 / CAST5](https://en.wikipedia.org/wiki/CAST-128)| ★ | Adams & Tavares | 1996 | Used in GPG |
 | [CHAM](https://link.springer.com/chapter/10.1007/978-3-030-40921-0_1) | L | Roh et al. | 2019 | Revised after weaknesses found by cryptanalysis |
@@ -30,6 +30,7 @@ This is supposed to be an exhaustive list of block ciphers with a 64 bit block s
 | [CIPHERUNICORN-E](https://en.wikipedia.org/wiki/CIPHERUNICORN-E) | | NEC | 1998 | [CRYPTREC](https://en.wikipedia.org/wiki/CRYPTREC) candidate |
 | [COCONUT98](https://en.wikipedia.org/wiki/COCONUT98) | ‡ | Vaudenay | 1998 | Uses Vaudenay's decorrelation theory. Proven secure, but broken nevertheless |
 | [CRAFT](https://eprint.iacr.org/2019/210) | H[‡](https://eprint.iacr.org/2019/932.pdf) | Beierle et al. | 2019 | Protects against physical attacks, such as differential fault injection |
+| [CRAX](https://sparkle-lwc.github.io/crax) | L | Beierle et al. | 2020 | Efficient in software, no key schedule |
 | [Cryptomeria / C2](https://en.wikipedia.org/wiki/Cryptomeria_cipher) | ‡ | 4C Entity | 2003 | Successor to CSS for DRM on DVDs |
 | [CS-Cipher](https://en.wikipedia.org/wiki/CS-Cipher) | | Stern & Vaudenay | 1998 | Uses FFT in the round function. |
 | [DABC](https://itiis.org/digital-library/manuscript/file/38318/TIIS%20Vol%2017,%20No%201-9.pdf) | L | Chen, Li, Guo | 2023 | ARX based with high diffusion |
@@ -128,7 +129,7 @@ Interestingly, some ciphers within the above list were initially hailed as "prov
 
 ## Recommendation
 
-Use Blowfish. It's fast, well-supported, created and analyzed by experienced cryptographers.
+Use Blowfish. It's fast, well-supported, created and analyzed by experienced cryptographers. However, it is not secure against timing attacks or other side-channel attacks.
 
 Alternatively:
 
