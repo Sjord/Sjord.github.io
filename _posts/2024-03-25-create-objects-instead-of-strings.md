@@ -5,6 +5,8 @@ thumbnail: construction-blocks-480.jpg
 date: 2024-03-27
 ---
 
+URLs and HTML can be constructed securely by first creating an object and then serializing that to a string, instead of concatenating strings directly.
+
 ## Introduction
 
 Wherever a string has some structure to it, it can be vulnerable to injection. When creating CSV, JSON, HTML, URL, or some other structured text, just putting a variable in it without encoding or escaping it can break the format, and result in a security issue. The naive way to solve this is to escape the variable. The better way is to create an object, and convert that to text.
@@ -47,7 +49,7 @@ Most template engines are text-based with automatic escaping. The variable is au
 An alternative is to parse the template as a superset of HTML into a DOM, walk the DOM to replace the variables, and serialize it back to HTML. Angular does it this way. This is the most secure against injection. Consider this example:
 
 ```
-<body class={{ variable }}>
+{% raw %}<body class={{ variable }}>{% endraw %}
 ```
 
 If *variable* contains whitespace, this introduces a problem for a text-based template engine. However, a DOM-based template engine just assigns the variable content to the *body.class* property, whitespace and all.
