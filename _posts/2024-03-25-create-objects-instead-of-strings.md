@@ -36,7 +36,21 @@ const url = new URL('https://example.org/')
 url.searchParams.append('error', errorMsg);
 ```
 
-By creating an object using an API, all values are automatically encoded.
+By creating an object using an API, all values are automatically encoded. This way, it is impossible to create an invalid URL, or to forget escaping, or use the incorrect escaping.
+
+## HTML templates
+
+Similarly, HTML is structured text and can be vulnerable to injection. The advice is to use a template engine, but even then there are several levels of escaping.
+
+Most template engines are text-based with automatic escaping. The variable is automatically encoded and then interpolated in the rest of the template, as a string.
+
+An alternative is to parse the template as a superset of HTML into a DOM, walk the DOM to replace the variables, and serialize it back to HTML. Angular does it this way. This is the most secure against injection. Consider this example:
+
+```
+<body class={{ variable }}>
+```
+
+If *variable* contains whitespace, this introduces a problem for a text-based template engine. However, a DOM-based template engine just assigns the variable content to the *body.class* property, whitespace and all.
 
 ## Conclusion
 
