@@ -44,6 +44,7 @@ Accidentally logging plaintext passwords is surprisingly common. Some big player
 * [User credentials are logged on error in Netbox](https://github.com/netbox-community/netbox/issues/2880)
 * [Plain password in owncloud.log](https://github.com/owncloud/core/issues/25895)
 * [GitHub logged npm passwords, npm access tokens, and GitHub access tokens](https://github.blog/2022-05-26-npm-security-update-oauth-tokens/)
+* [WordPress plugin All-In-One Security (AIOS) 5.1.9 logged plaintext passwords](https://aiosplugin.com/all-in-one-security-aios-wordpress-security-plugin-release-5-2-0/), Jully 2023
 
 ## Conclusion
 
