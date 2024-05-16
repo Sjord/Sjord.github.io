@@ -2,8 +2,10 @@
 layout: post
 title: "String comparison timing attacks"
 thumbnail: clocktower-480.jpg
-date: 2023-03-15
+date: 2024-05-29
 ---
+
+Strings that have more characters in common take longer to compare. This can result in a timing attack. However, in practice strings are often not compared one byte at a time, and time differences are very small. Therefore, timing attacks are not necessarily possible, even when using *strcmp* or *==* to compare strings.
 
 <!-- Photo source: https://commons.wikimedia.org/wiki/File:Lier_Zimmertoren_klok.JPG -->
 
@@ -24,13 +26,15 @@ In the below graph, you can see the time it takes strncmp and memcmp to compare 
 * The time varies in blocks of 8 bytes, so you would have to guess 8 bytes at a time.
 * The time varies by less that a nanosecond, so you would have to detect less of a nanosecond in difference to exploit this.
 
+The graph below also shows memcmp. The difference is that strcmp searches for a null-byte that indicates the end of the string while comparing, while memcmp just compares a number of bytes. With memcmp, comparing more bytes does take more time, but as we see in the graph this is negligable for the 40 bytes I tested. If systems use memcmp instead of strcmp, e.g. because they store the length of the string instead of relying on a terminating null-byte, they are unlikely to be vulnerable to a timing attack.
+
 <img src="/images/glibc-strncmp.svg" style="width: 100%">
 
 ## C#
 
 The string comparison in C# can be smarter than in C, because it can take the current culture into account when comparing Unicode. To do a proper Unicode comparison, it has to do UTF8 parsing and Unicode normalization, which is much more expensive than just comparing bytes.
 
-It is also possible to disable the "smart" comparison by specifying `StringComparison.Ordinal` as the comparison method. Then, the timing differences disappear.
+The "smart" comparison can be disabled by specifying `StringComparison.Ordinal` as the comparison method. Then, the timing differences disappear.
 
 So, a timing attack is possible, but:
 
@@ -50,7 +54,7 @@ Timing attacks on string comparison are sometimes possible. However, it is not a
 ## Read more
 
 * [Preventing Timing Attacks on String Comparison with a Double HMAC Strategy - Paragon Initiative Enterprises Blog](https://paragonie.com/blog/2015/11/preventing-timing-attacks-on-string-comparison-with-double-hmac-strategy)
-* [It's All About Time | ircmaxell's Blog](https://blog.ircmaxell.com/2014/11/its-all-about-time.html)
+* [It's All About Time - ircmaxell's Blog](https://blog.ircmaxell.com/2014/11/its-all-about-time.html)
 * [Defeating memory comparison timing oracles - Red Hat Customer Portal](https://access.redhat.com/blogs/766093/posts/878863)
 * [Timing Attack on SQL Queries Through Lobste.rs Password Reset - Dhole Moments](https://soatok.blog/2021/08/20/lobste-rs-password-reset-vulnerability/)
 * [Should I use == for string comparison? (in Python)](https://stackoverflow.com/questions/67489572/should-i-use-for-string-comparison)
