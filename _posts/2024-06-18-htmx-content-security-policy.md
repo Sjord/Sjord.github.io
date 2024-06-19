@@ -23,6 +23,8 @@ For example, the following tag loads and executes JavaScript that shows an alert
 <div hx-get="https://test.sjoerdlangkemper.nl/cors.php" hx-trigger="load"></div>
 ```
 
+That `cors.php` file contains the JavaScript payload, and also sets CORS headers so that the browser has access to it.
+
 <a href="https://demo.sjoerdlangkemper.nl/htmx/connect.php?name=hacker">Try it</a>
 
 ## Unsafe eval
@@ -33,7 +35,7 @@ HTMX dynamically creates and executes code. There are several HTMX [features](ht
 - [*hx-on* attributes](https://htmx.org/docs/#hx-on)
 - *hx-vals* or *hx-headers* with the `js:` or `javascript:` prefix
 
-For these to work, you have to allow evaluating dynamic code, using the CSP option `unsafe-eval`. However, allowing `unsafe-eval` immediately makes it possible to inject JavaScript using HTMX functionality.
+For these to work, the application has to allow evaluating dynamic code, using the CSP option `unsafe-eval`. However, allowing `unsafe-eval` immediately makes it possible to inject JavaScript using HTMX functionality.
 
 For example, injecting the following tag shows an alert popup:
 
@@ -76,10 +78,12 @@ HTMX has several configuration options, which can be configured using a `<meta>`
 For example, above we mentioned that the `hx-disable` attribute disabled HTMX processing. However, it is possible to rename that attribute in the configuration. By setting it from `hx-disable` to something else, the `hx-disable` functionality can be disabled. This can be achieved by injecting the following tag:
 
 ```
-<meta name="htmx-config" content='{"disableSelector":"outerHTML"}'>
+<meta name="htmx-config" content='{"disableSelector":"something"}'>
 ```
 
 This even works within a tag with *hx-disable*, but only if there is no similar meta tag above it.
+
+<a href="https://demo.sjoerdlangkemper.nl/htmx/disable.php?name=hacker">Try it</a>
 
 ## Conclusion
 
