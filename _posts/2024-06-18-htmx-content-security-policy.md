@@ -80,3 +80,7 @@ For example, above we mentioned that the `hx-disable` attribute disabled HTMX pr
 ```
 
 This even works within a tag with *hx-disable*, but only if there is no similar meta tag above it.
+
+## Conclusion
+
+When a site uses HTMX, the attack surface of HTML injection greatly increases. It is possible to limit the risk of XSS by using a content security policy, but it not possible to have all HTMX features and provide security against injection.
