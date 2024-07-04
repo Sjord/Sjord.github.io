@@ -27,7 +27,7 @@ However, as soon as the replacement screen came in and I fixed my phone, I got b
 
 A competitor actress, Celia, is telling Evelyn what she likes about her. Many of the things Celia likes about Evelyn could be considered objectively bad things. I like the paradox of this, and it makes it more honest. Celia does not have a rose-tinted view of Evelyn. She knows both the good sides and bad sides of Evelyn. She likes her not just because of her good qualities but also because of her bad qualities.
 
-I like impertinent people. I like how bold and daring they are, and the social tension they create. I know it is impolite to be rude and I would not often do it myself, but if someone else does it inadvertently look up to them.
+I like impertinent people. I like how bold and daring they are, and the social tension they create. I know it is impolite to be rude and I would not often do it myself, but if someone else does it I inadvertently look up to them.
 
 ## Complicated feelings
 
@@ -55,7 +55,7 @@ For me, it also points out that it does not matter what the story is, as long as
 
 Monique, the author of Evelyn's biography, asserts that she is gay. Evelyn is offended that this ignores half of her sexuality.
 
-My understanding is that "gay" does not mean "exclusively lesbian", but if Evelyn interpreted is as such it makes sense that she feels offended that half of her sexuality is ignored. The "so you fit me into a box" part does not really make sense to me. "Bisexual" could be just as much of a box as "gay".
+When I first read this I thought this was smart, but now it seems artificial. My understanding is that "gay" does not mean "exclusively lesbian", but if Evelyn interpreted is as such it makes sense that she feels offended that half of her sexuality is ignored. The "so you fit me into a box" part does not really make sense to me. "Bisexual" could be just as much of a box as "gay".
 
 The book then relates this incident to Monique often being seen as black even though she is biracial. This whole part feels like a bit of a stretch, to hide some wise lesson in the story.
 
