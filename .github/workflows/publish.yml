@@ -21,7 +21,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Download built site
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: site
       - name: Configure AWS credentials from Test account
