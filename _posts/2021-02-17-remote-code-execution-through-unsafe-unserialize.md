@@ -206,5 +206,6 @@ I reported this issue to the owner of the ebook shop. They took the site offline
 
 ## Read more
 
+* [Removing and encoding null bytes to exploit unserialize over SOAP](/2024/10/16/php-unserialize-null-bytes-name-mangling/)
 * [Remote code execution via PHP Unserialize](https://notsosecure.com/remote-code-execution-via-php-unserialize/)
 * [Insecure Deserialization - How to Trace Down a Gadget Chain](https://blog.redteam-pentesting.de/2021/deserialization-gadget-chain/)
