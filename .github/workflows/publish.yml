@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     container: jekyll/jekyll
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: mkdir .jekyll-cache _site
       - run: jekyll build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: site
           path: _site
@@ -21,11 +21,11 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Download built site
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
           name: site
       - name: Configure AWS credentials from Test account
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
