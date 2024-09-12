@@ -5,7 +5,7 @@ thumbnail: nixie-zero-480.jpg
 date: 2024-10-16
 ---
 
-Serialized objects in PHP often contain null bytes, which present a challenge when transmitted over SOAP, as SOAP strings cannot contain null bytes. This blog post explores two effective methods for overcoming this limitation, enabling the transmission of serialized objects over SOAP and exploiting an unserialize remote code execution (RCE) vulnerability.
+Serialized objects in PHP often contain null bytes. This present a challenge when transmitted as strings over SOAP, as these cannot contain null bytes. This blog post explores two effective methods for overcoming this limitation, enabling the transmission of serialized objects over SOAP to exploit an unserialize remote code execution (RCE) vulnerability.
 
 ## Introduction
 
