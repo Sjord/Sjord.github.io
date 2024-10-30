@@ -1,4 +1,5 @@
 <?php
+    header('Content-Security-Policy: sandbox allow-forms');
     ob_start();
 ?>
 <html>
@@ -11,21 +12,21 @@
             <h1>Compression side-channel attack demonstration page</h1>
         </p>
         <form method="GET">
-            Search for: <input type="text" name="search">
+            Search for: <input type="text" name="search" size="60">
             <input type="submit">
         </form>
         <p>
+            Your secret code is: <?php
+                echo substr(hash_hmac("SHA256", $_SERVER['REMOTE_ADDR'], "mysecretkey"), 0, 8);
+            ?>.
+            See if you can determine it from the size of this page alone!
+        </p>
+        <p>
             <?php
-                if ($_GET['search']) {
+                if (!empty($_GET['search'])) {
                     echo 'No results found for search "'.htmlentities($_GET['search']).'".';
                 }
             ?>
-        </p>
-        <p>
-            Your secret code is: <?php
-                echo substr(hash_hmac("SHA256", $_SERVER['REMOTE_ADDR'], "mysecretkey"), 0, 8); 
-            ?>.
-            See if you can determine it from the size of this page alone!
         </p>
         <p>
             This page is approximately nnnnn bytes compressed and mmmmm bytes uncompressed.
