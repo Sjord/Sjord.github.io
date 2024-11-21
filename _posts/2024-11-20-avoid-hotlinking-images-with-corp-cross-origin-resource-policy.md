@@ -5,45 +5,32 @@ thumbnail: photo-480.jpg
 date: 2024-11-27
 ---
 
-An image on your site can be directly included in other sites. You end up with the costs of hosting and serving the image, while the other sites gains the benifits of showing your nice image on their page. With the response header *Cross-Origin-Resource-Policy* it is possible to notify the browser that images should only be usable by the same site or origin as the image, thus making hotlinking impossible.
+An image on your site can be directly included in other sites. You end up with the costs of hosting and serving the image, while the other sites gain the benefits of showing your nice image on their page. With the response header *Cross-Origin-Resource-Policy* it is possible to inform the browser that images should only be usable by the same site or origin as the image, thus making hotlinking impossible.
 
 <!-- Photo source: https://pixabay.com/photos/camera-phone-girl-hands-1869430/ -->
 
 ## Cross-Origin-Resource-Policy
 
-Cross-Origin-Resource-Policy (CORP) is an HTTP response header that specifies whether the resource can be loaded from cross-origin domains. It is originally meant to protect against attacks such as [Spectre](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability))
-
- that allows you to specify a policy for handling requests from other origins. By instructing browsers to block resource sharing in specific scenarios, CORP mitigates not only unauthorized hotlinking but also speculative side-channel attacks like Spectre and Cross-Site Script Inclusion (XSSI) attacks.
-
-CORP is particularly effective for no-cors requests, which are typically issued for images, scripts, and other static assets by default. Rather than preventing the request entirely, CORP prevents the response body from being exposed to the requesting site if the origin doesn’t comply with the defined policy.
-
-CORP Values
+Cross-Origin-Resource-Policy (CORP) is an HTTP response header that specifies whether the resource can be loaded from cross-origin domains. A CORP header of a response specifies whether the response body may be used by another site or domain. The header may have the following values:
 
 - same-origin: Only requests from the same origin as the resource are allowed.
 - same-site: Requests from any origin within the same site (e.g., example.com and sub.example.com) are allowed.
 - cross-origin: Resources can be requested and used by any origin.
 
-To prevent hotlinking, the same-origin or same-site values are most relevant.
+## Spectre
 
-## Why Move Away From Referer-Based Hotlink Protection?
+CORP is originally meant to protect against attacks such as [Spectre](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)). Spectre is an attack that makes it possible to read memory in the same process with a side-channel attack. To load sensitive information into the browser, the attacker can add an image tag that performs a request to a sensitive resource. They add `<img src="https://bank.example/secret.php">` to their page and lure a victim to it. This loads the sensitive information into the browser process, which they can read with the Spectre vulnerability. To prevent such an attack, the bank can add a CORP header to its secret.php resource. This prevents it from being loaded cross-origin. The request will still be performed, but the response is discarded by the browser after it sees the CORP header.
 
-Historically, hotlink protection relied on the Referer header, which indicates the source of the request. For example, when an image is requested from https://yourbusiness.example/infographic.png, the Referer might show either:
+## Blocking hotlinking
 
-- https://yourbusiness.example (if the request is from your site).
-- https://anotherbusiness.test (if the request is from an external site).
+Since this header specifies whether a resource can be used by other sites, it can be effective in preventing hotlinking images. By adding a CORP response header with `same-origin` or `same-site` to each image, the images won't be shown in other sites that directly link to the image on your site. You can do this by adding the following response header to images to prevent other domains from including your images directly:
 
-This approach allowed servers to block requests with invalid or absent Referer headers. However, there are significant drawbacks:
+```
+Cross-Origin-Resource-Policy: same-origin
+```
 
-1. Breaks Direct Linking: Legitimate direct links can be blocked.
-1. Referer Omission: Referer headers may be stripped due to browser configurations, HTTPS-to-HTTP mismatches, or intentional suppression by embedding sites using referrerpolicy="no-referrer".
-1. Dynamic Processing: Referer-based checks require server-side logic for each request, increasing complexity and latency.
-
-CORP, on the other hand, offloads enforcement to the browser, bypassing these issues.
+This prevents hotlinking, but it can also introduce problems. If you host your images on a content delivery network (CDN) that is on another domain that your site, you also cannot load your images on your own site anymore. Also, in some cases hotlinking images may be desired, for example if you want your image to show up in social media previews.
 
 ## Conclusion
 
-Cross-Origin-Resource-Policy offers a modern, browser-enforced method to prevent hotlinking and protect your server resources. By moving away from outdated methods like Referer-based protection, you can achieve a more robust, scalable solution with minimal server-side complexity.
-
-Whether you run a small blog or a large site using CDNs, implementing CORP is a step toward better resource management, security, and user experience.
-
-Ready to protect your assets? Add CORP headers today and say goodbye to unwanted hotlinking!
+Cross-Origin-Resource-Policy (CORP) is a security header to prevent advanced cyberattacks, but it is also the easiest solution to prevent hotlinking images.
