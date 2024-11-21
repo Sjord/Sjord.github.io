@@ -13,9 +13,9 @@ An image on your site can be directly included in other sites. You end up with t
 
 Cross-Origin-Resource-Policy (CORP) is an HTTP response header that specifies whether the resource can be loaded from cross-origin domains. A CORP header of a response specifies whether the response body may be used by another site or domain. The header may have the following values:
 
-- same-origin: Only requests from the same origin as the resource are allowed.
-- same-site: Requests from any origin within the same site (e.g., example.com and sub.example.com) are allowed.
-- cross-origin: Resources can be requested and used by any origin.
+- same-origin: the resource can be used in pages on the same origin (i.e. domain).
+- same-site: the resource can be used in pages on the same site (i.e. other subdomains).
+- cross-origin: the resource can be used on any domain.
 
 ## Spectre
 
