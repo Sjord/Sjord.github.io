@@ -11,6 +11,7 @@ The best way to learn how to hack is to do it. There are several practice sites 
 
 ## List of practice sites
 
+* [alert(1) to win](https://alf.nu/alert1)
 * [bWAPP](http://www.itsecgames.com/)
 * [Cryptopals](https://cryptopals.com/) - Cryptographic programming challenges
 * [CTF Challenge](https://ctfchallenge.co.uk/)
