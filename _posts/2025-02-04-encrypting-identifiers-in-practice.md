@@ -2,17 +2,28 @@
 layout: post
 title: "Encrypting identifiers in practice"
 thumbnail: numbers-480.jpg
-date: 2025-04-02
+date: 2025-04-16
 ---
 
-- Does not work on collections.
-- Possible to make a different mapping for every page.
-- Fast.
-- [previous post](/2023/08/02/encrypting-identifiers/)
+Previously, I wrote about [encrypting identifiers](/2023/08/02/encrypting-identifiers/). The idea is that the database uses incrementing numbers as primary key to identify objects, but the application only exposes encrypted keys to the user. Since theorizing about it in that post I implemented it in a web application, which gave me some new insights in how this can be used in practice.
+
+## Cipher selection
+
+Which underlying cipher can we use to encrypt the identifiers?
+
+AES is widely supported and considered secure. It has a block size of 128 bits, which means the encrypted identifiers will be pretty long. Since we start with a 64 bit integer, we would need some way to wrap or pad our integer into a block. More on that later.
+
+I started on a custom [Feistel cipher](https://github.com/Sjord/feistel-cipher). The advantage is that the block size can be set to any value. My cipher encrypts a 64-bit integer into a block of 82 bits, and then base-58 encodes it. This gives a good trade-off between identifier size and security. Creating your own cipher definitely falls in the *don't roll your own crypto* category. It is not widely supported (since I just made it up), which indirectly also means that it has bad performance. More on that later.
+
+Using a [64-bit block cipher](/2023/08/30/encryption-64-bit-block-ciphers/) results in identifiers that are slightly shorter than I would like, but some 64-bit ciphers are well-supported, simple to use, and fast. I went with this option, and chose 3DES because it is supported by the OpenSSL library in PHP.
+
+## Mechanism
+
+A 64-bit integer is interpreted as a single 64-bit block of data and encrypted using a 3DES permutation. The resulting ciphertext is converted to hexadecimal.
 
 ```php
 trait EncryptedHandle {
-    private static string $key = 'P13hwAfDvR+qLb+3EBD5ro3X';
+    private static string $key = '...';
 
     public static function findByHandle(string $handle) {
         return static::findOrFail(static::decrypt($handle));
@@ -25,37 +36,23 @@ trait EncryptedHandle {
     private static function encrypt($id) {
         $key = hash_hmac('sha512', __CLASS__, static::$key, true);
         $plaintext = pack('q', $id);
-        $ciphertext = openssl_encrypt($plaintext, 'des-ede3', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
+        $ciphertext = openssl_encrypt($plaintext, 'des-ede3-ecb', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
         return bin2hex($ciphertext);
     }
 
     private static function decrypt($handle) {
         $key = hash_hmac('sha512', __CLASS__, static::$key, true);
         $ciphertext = hex2bin($handle);
-        $plaintext = openssl_decrypt($ciphertext, 'des-ede3', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
+        $plaintext = openssl_decrypt($ciphertext, 'des-ede3-ecb', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
         $parts = unpack('qid', $plaintext);
         return $parts['id'];
     }
 }
 ```
 
-## Mechanism
+## Tweak
 
-I interpret the identifier as a 64-bit integer and encrypt it as a single block with 3DES, and then convert it to hexadecimal.
-
-## Security
-
-
-
-## Using AES
-
-## Against conventional advice
-
-In general, you should not use:
-
-- 3DES cipher, or any other 64-bit block cipher
-- ECB mode of operation
-- encryption without authentication
+If is useful if the encryption is [tweakable](/2023/09/27/tweakable-block-ciphers/): the identifier for customer 123 should be different than the identifier for invoice 123. When we encrypt "123", we also want to pass in what type of object is being encrypted. In the PHP example I HMAC the key with the magic `__CLASS__` variable, which contains the name of the current model.
 
 ## Performance
 
@@ -65,7 +62,29 @@ Second, we are implementing this in PHP and not in C. The only things that are f
 
 My [first attempt](https://github.com/Sjord/feistel-cipher) at creating an identifier encryption scheme was a Feistel cipher on top of SHA256. This was 10 times slower than doing 3DES encryption. AES encryption is even faster. 3DES is normally considered a fairly slow cipher, but the performance difference between native functions and PHP functions is so large, that it is hard to do anything in the time it takes 3DES to encrypt a single block.
 
-## Tweak
+## Security
 
-If is useful if the encryption is [tweakable](/2023/09/27/tweakable-block-ciphers/): the identifier for customer 123 should be different than the identifier for invoice 123. When we encrypt "123", we also want to pass in what type of object is being encrypted. In the PHP example I HMAC the key with the magic `__CLASS__` variable, which contains the name of the current model.
 
+## Against conventional advice
+
+In general, you should not use:
+
+- 3DES cipher, or any other 64-bit block cipher
+- ECB mode of operation
+- encryption without authentication
+
+
+
+## OpenSSL cipher support
+
+Is 3DES available on every PHP install?
+
+## Using AES
+
+
+
+## More
+
+- Does not work on collections.
+- Possible to make a different mapping for every page.
+- Fast.
