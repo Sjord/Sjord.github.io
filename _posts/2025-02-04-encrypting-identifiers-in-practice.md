@@ -64,6 +64,7 @@ My [first attempt](https://github.com/Sjord/feistel-cipher) at creating an ident
 
 ## Security
 
+We rely on the pseudo-random permutation of 3DES to hide information. It is not integrity-protected, which means that the attacker can create their own ciphertext and feed it to the application. The application decrypts it into a numeric identifier and looks it up in the database, where it probably doesn't exist. Since we use a 64-bit cipher, this becomes problematic if we have close to 2<sup>64</sup> in the database, or show close to 2<sup>64</sup> ciphertexts to the attacker.
 
 ## Against conventional advice
 
@@ -73,15 +74,13 @@ In general, you should not use:
 - ECB mode of operation
 - encryption without authentication
 
-
-
 ## OpenSSL cipher support
 
-Is 3DES available on every PHP install?
+The PHP installations I have access to support 3DES, but this is not guaranteed. 3DES is disabled in OpenSSL by default, and can be enabled with a compile-time option. PHP does not make guarantees about which ciphers are available. It can be checked at runtime with [openssl\_get\_cipher\_methods](https://www.php.net/manual/en/function.openssl-get-cipher-methods.php), but if 3DES is not available it is unlikely that there is another 64-bit cipher that is supported.
 
 ## Using AES
 
-
+AES is better supported, faster, more secure, but results in longer identifiers. Perhaps this is not such a big problem as I thought, because users rarely type in identifiers by hand. To use AES, we would need a method to convert our 64-bit integer into a 128-bit block. A straightforward way to do this is to pad with zeroes and then check on decryption whether one half of the block consists of zeroes. This does expose more information to the attacker: whether the padding is correct or not. Even though we have created a padding oracle, I don't believe it is possible to exploit this in an attack.
 
 ## More
 
