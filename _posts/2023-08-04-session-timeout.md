@@ -66,3 +66,4 @@ Facebook, Google, Amazon and GitHub have sessions that never expire. They think 
 
 * [Balance User Experience and Security to Retain Customers](https://auth0.com/blog/balance-user-experience-and-security-to-retain-customers/)
 * [Why aren‘t physically-local attacks in Chrome’s threat model?](https://chromium.googlesource.com/chromium/src/+/master/docs/security/faq.md#why-arent-physically_local-attacks-in-chromes-threat-model)
+* [Frequent reauth doesn't make you more secure](https://tailscale.com/blog/frequent-reath-security)
