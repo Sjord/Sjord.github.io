@@ -81,7 +81,3 @@ The password reset mechanism works through these classes/methods:
 - If it matches, it creates a `base.set_password` event to reset the user's password.
 - The event triggers `owa_usersSetPasswordController` (through `owa_userHandlers`).
 - This calls `owa_userManager::updateUserPassword`, which actually updates the password row in the database.
-
-## Timeline
-
-- 2025-06-11 Mailed security@openwebanalytics.com.
