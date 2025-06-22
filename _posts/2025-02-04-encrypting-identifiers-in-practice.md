@@ -2,7 +2,7 @@
 layout: post
 title: "Encrypting identifiers in practice"
 thumbnail: numbers-480.jpg
-date: 2025-07-09
+date: 2025-06-25
 ---
 
 Previously, I wrote about [encrypting identifiers](/2023/08/02/encrypting-identifiers/). The idea is that the database uses incrementing numbers as primary key to identify objects, but the application only exposes encrypted keys to the user. Since theorizing about it in that post I implemented it in a web application, which gave me some new insights in how this can be used in practice.
