@@ -62,10 +62,12 @@ public function updateUserPassword($user_params)
 }
 ```
 
-The normal flow first checks the password reset token and then dispatches the event. However, we can also dispatch such an event ourselves, through queue.php. This bypasses step 1 and 2 in the flow, and thus bypasses the first check on the password reset token. By including a user ID instead of a password reset token in the event, we also bypass the second check on the password reset token. So by dispatching an event and including a user ID and omitting the password reset token, we can reset any user's password. Here is the URL to request to set the password of user `admin` to `abc`:
+The normal flow first checks the password reset token and then dispatches the event. However, we can also dispatch such an event ourselves, through queue.php. This bypasses step 1 and 2 in the flow, and thus bypasses the first check on the password reset token. By including a user ID instead of a password reset token in the event, we also bypass the second check on the password reset token. So by dispatching an event and including a user ID and omitting the password reset token, we can reset any user's password. Requesting one of the URLs below set the password of user `admin` to `abc`:
 
 ```
 queue.php?owa_event[eventType]=base.set_password&owa_event[properties][user_id]=admin&owa_event[properties][password]=abc&owa_event[properties][key]=
+
+log.php?owa_event_type=base.set_password&owa_user_id=admin&owa_password=abc&owa_key=
 ```
 
 ## Read more
