@@ -2,7 +2,7 @@
 layout: post
 title: "Resetting any user's password in Open Web Analytics with a single request"
 thumbnail: sheep-480.jpg
-date: 2025-06-25
+date: 2025-07-09
 ---
 
 Open Web Analytics (OWA) is a web app that tracks website visitors. I discovered a simple way to reset any user's password, by simply requesting a URL.
