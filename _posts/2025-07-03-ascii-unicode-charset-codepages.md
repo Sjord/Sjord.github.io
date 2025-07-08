@@ -5,6 +5,7 @@ thumbnail: lookup-list-480.jpg
 date: 2025-08-06
 ---
 
+Computers can only store bits and bytes. If you want to store numbers or characters, you have to know how to convert these to bits.
 
 ## Character encoding
 
