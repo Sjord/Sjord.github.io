@@ -7,6 +7,8 @@ date: 2025-08-20
 
 PHP has several superglobal variables which contain values from the request or the environment. These differ in whether they contain trustworthy data or not:
 
+<!-- Photo source: https://pixabay.com/photos/boy-old-phone-apparatus-speak-7701574/ -->
+
 * $_GET, $_POST, $_COOKIE, $_REQUEST only contain user input.
 * $_SERVER, $_FILES contain both user input and trusted data set by the webserver or PHP.
 * $_SESSION only contains data put there by the application.
