@@ -43,3 +43,4 @@ If you don't want to use the example code, you can use the module laminas-mvc-pl
 * [laminas-mvc-plugin-fileprg/src/FilePostRedirectGet.php at 2006988b16b001d0e113afa95a17f64a6e5a1f11 · laminas/laminas-mvc-plugin-fileprg](https://github.com/laminas/laminas-mvc-plugin-fileprg/blob/2006988b16b001d0e113afa95a17f64a6e5a1f11/src/FilePostRedirectGet.php#L63-L65)
 * [ZendTo NDay Vulnerability Hunting - Unauthenticated RCE in v5.24-3 <= v6.10-4](https://projectblack.io/blog/zendto-nday-vulnerabilities/)
 * [Session poisoning Zen Cart for a free discount](https://www.securify.nl/en/blog/session-poisoning-zen-cart-for-a-free-discount/)
+* [api-tools-content-validation/src/ContentValidationListener.php at 1.13.x · laminas-api-tools/api-tools-content-validation](https://github.com/laminas-api-tools/api-tools-content-validation/blob/1.13.x/src/ContentValidationListener.php#L219)
