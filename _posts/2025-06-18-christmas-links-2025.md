@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Links for Christmas 2025"
+title: "Links for 2025"
 thumbnail: chain-480.jpg
-date: 2025-12-25
+date: 2025-12-31
 ---
 
 Here are some links I thought were interesting from the past year.
