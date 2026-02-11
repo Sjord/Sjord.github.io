@@ -27,7 +27,7 @@ if (W.Ftype == "file") return ` <a class = "name-link" href="${ie}${pe}">${ue}</
 
 ## XSS in markdown preview
 
-Zdir supports rendering markdown, but it is not correctly sanitized against XSS. Including `<img src=a onerror=alert(1)>` in a markdown file will show the alert when the file is previewed. Including the payload in a `README.md` will even execute JavaScript when the directory is viewed.
+Zdir supports rendering markdown, but it is not correctly sanitized against XSS. Including `<img src=a onerror=alert(1)>` in a markdown file shows the alert when the file is previewed. Including the payload in a `README.md` will even execute JavaScript when the directory is viewed.
 
 ## IP address spoofing through header
 
@@ -59,23 +59,9 @@ func GetClientIp(c *gin.Context) string {
 
 ## Path traversal in rename functionality
 
-The RenameFile function in zdir does not fully validate the `old_name` parameter. While `new_name` is checked to ensure it does not contain `../` or similar, `old_name` is used directly in the source file path. This allows path traversal.
+The RenameFile function in zdir does not fully validate the `old_name` parameter. While `new_name` is checked for `../` or similar, `old_name` is used directly in the source file path. This allows path traversal.
 
-The function requires authentication, and the renaming only works if the process has permission to rename or move the targeted file. This cannot be used to read /etc/passwd, for example, because zdir does not have permissions to read this file.
-
-## Insecure CORS headers
-
-Zdir has these CORS headers:
-
-```
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Headers: Content-Type, AccessToken, X-CSRF-Token, Authorization, Token,X-Token,X-Cid
-Access-Control-Allow-Methods: POST, GET, OPTIONS, HEAD
-Access-Control-Expose-Headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
-Access-Control-Allow-Credentials: true
-```
-
-That doesn't even work, because `Allow-Credentials` does not work with an `Allow-Origin` of `*`. It also does not allow CSRF requests; even though Zdir does set cookies with crendentials in them, these are not used by the backend. Only the `X-Cid` and `X-Token` headers are read by the backend for authentication.
+The function requires authentication, and the renaming only works if the process has permission to rename or move the targeted file. This cannot be used to read /etc/passwd, for example, because zdir does not have permissions to move this file.
 
 ## Authentication
 
@@ -115,6 +101,20 @@ get_username = strings.ToLower(username)
 if username == get_username && password == get_password {
 ```
 
+## Insecure CORS headers
+
+Zdir has these CORS headers:
+
+```
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Content-Type, AccessToken, X-CSRF-Token, Authorization, Token,X-Token,X-Cid
+Access-Control-Allow-Methods: POST, GET, OPTIONS, HEAD
+Access-Control-Expose-Headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
+Access-Control-Allow-Credentials: true
+```
+
+That doesn't even work, because `Allow-Credentials` does not work with an `Allow-Origin` of `*`. It also does not allow CSRF requests; even though Zdir does set cookies with crendentials in them, these are not used by the backend. Only the `X-Cid` and `X-Token` headers are read by the backend for authentication.
+
 ## Conclusion
 
-Zdir is full of vulnerabilities. However, I didn't succeed in getting into the admin portal without credentials, so not all is lost.
+Zdir has quite some vulnerabilities. However, I didn't succeed in getting into the admin portal without credentials, so not all is lost.
