@@ -144,3 +144,4 @@ Alternatively:
 * [Format-transforming encryption](https://en.wikipedia.org/wiki/Format-transforming_encryption)
 * [CTR mode](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_.28CTR.29)
 * [security - Is it possible to implement AES with a 64-bit I/O block size? - Stack Overflow](https://stackoverflow.com/questions/30485373/is-it-possible-to-implement-aes-with-a-64-bit-i-o-block-size)
+* [Don't pass on small block ciphers](https://00f.net/2026/02/10/small-block-ciphers/)
