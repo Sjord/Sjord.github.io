@@ -1,3 +1,32 @@
+---
+layout: post
+title: "My experience at university"
+thumbnail: vu-480.avif
+date: 2026-02-11
+---
+
+From 2001 until 2006 I studied computer science at the Vrije Universiteit in Amsterdam.
+
+## Choosing a study
+
+I was fond of computers and what you could to with them from a young age, so computer science seemed the logical choice. I considered some related fields, such as business informatics and artificial intelligence, but these did not seem like a right fit. At the time, artificial intelligence was mostly statistics and not the exciting field it is today. I bought a textbook on artificial intelligence, and I was severely underwhelmed by its contents. Instead of making computers think for themselves, it was mostly graphs with red and blue dots and methods to separate the two groups using statistics. So I started computer science.
+
+## First year: boring
+
+The first year they explained what a computer was and how it worked. It was all very basic and slow, and I became bored.
+
+One teacher said during lectures that anyone who was bored should contact him, so I send him an email and he suggested some self-study material. He suggested reading [*The Mythical Man-Month* by Fred Brooks](https://en.wikipedia.org/wiki/The_Mythical_Man-Month), and it was pretty insightful.
+
+I also started some side projects, such as building my own still (to distill liquer) and building a flamethrower.
+
+I picked up an extra math course on topology. It was interesting, but I lacked basic math fundamentals to pass the test, such as how to write a formal proof. Also, this extra course overlapped with some of my regular courses, making it difficult to do both.
+
+## Second year: technically difficuly
+
+In the second year, it suddenly became challenging. Especially the theoretical computer science courses were really in-depth and needed serious study to pass. I was used to passing everything with little effort, and I was wound up in my side projects and my overlapping math course. When the study suddenly became difficult, I adapted too slow and I failed some courses.
+
+
+
 2001-2006
 
 Handtekening afgekort tot stlangke
