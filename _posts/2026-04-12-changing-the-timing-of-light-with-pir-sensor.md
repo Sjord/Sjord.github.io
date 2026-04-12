@@ -5,12 +5,16 @@ thumbnail: pir-light-480.jpg
 date: 2026-04-22
 ---
 
-The "Brain" of the Operation: Identify the BISS0001 (or variant) as the standard PIR controller IC. Almost all cheap motion-sensor lights use this chip, making this a very "universal" hack. The LJ3405 IC is a dedicated PIR signal processor. 
+At our scouting clubhouse we have lights in the toilet that turn on automatically when you enter. However, they only stay on for 30 seconds, which means that you have to wave around your arms while you are peeing to turn on the lights. I couldn't find affordable small lights with either better sensors or longer timeouts, so I tried to modify the lights we did have, to increase the time.
 
-The Timing Logic: Explain the RC (Resistor-Capacitor) network concept. Specifically, that the "ON" time is governed by the discharge rate of components connected to Pins 3 and 4. The 100k Cycle Rule: The chip counts 100,000 clock cycles before turning the light off. To stay on longer, you simply have to make the clock "tick" slower.
+I modified two lights. In both the approach was roughly the same:
 
-Component Identification: Describe how you traced the circuit from the IC pins to find R2 and C1. This encourages readers to look at traces rather than just following a "paint-by-numbers" guide. Explain how to read capacitor codes (e.g., how a "103" green Mylar cap equals 10nF).
+1. Identify the IC. Most PIR lights have a dedicated PIR IC that reads the sensor and controls the timing. In one of the lights this was even on a separate PCB, with one output pin to turn the light on or off.
+2. In the datasheet of the IC, determine how the timing is set. This is usually made up of a resistor and a capacitor. This RC circuit is charged and discharged a certain number of times, which determines the time the light stays on.
+3. Add a capacitor. The timing can be changed either by increasing the resistor or increasing the capacitor. Putting two resistors in parallel decreases the resistance, but putting two capacitors in parallel increases the capacitance. By adding a capacitor, I didn't have to remove any components from the board.
 
-The "Add-on" Method vs. Replacement: Highlight why adding a capacitor in parallel is easier than replacing an SMD component. It requires less precision and is much harder to "break" the original board.
+One light had a LJ3405 IC, and the other had a BISS0001. Both are ICs specifically for PIR lights. The datasheet specifies which components determine the timing, and to which IC pins these should be connected. By following the traces and measuring continuity from these pins, I could determine which components on the PCB I should change. I added 10nF capacitors to the lights, extending the time from 30 seconds to 5 minutes.
 
-Tools Used: Mention that for this level of work, a fine-tip soldering iron and some basic tweezers are essential for working with the tiny SMD pads.
+<img src="/images/pir-lamp-unmodified.jpg" alt="unmodified PIR light, with the PIR IC on the top PCB">
+
+<img src="/images/pir-lamp-modified.jpg" alt="modified light, with additional 10nF capacitor">
