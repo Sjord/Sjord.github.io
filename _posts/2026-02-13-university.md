@@ -68,28 +68,95 @@ Betronix had lelijk betonnen gebouw
 
 ## Courses
 
+### Introduction programming
+
+- dev/prac/ip
+
+### Computer networks
+
+- dev/prac/np
+
 ### Assembler programming
 
 Snachts assemler programmeren
 
+https://github.com/Sjord/vu-prac-assembler
+
+- Calculator that processes mathematical expressions in both reverse polish notation and standard infix notation.
+- Virtual terminal emulator that renders ASCII text into a graphical bitmap using external font files and configuration headers.
+- Paging virtual memory simulator that manages a 4KB physical memory cache for a larger page file by tracking page states (dirty/loaded) and implementing a page-replacement algorithm.
+
 ### Databases
 
-Databases pinnen truc, maar niet wat op het tentamen kwam
+- Databases pinnen truc, maar niet wat op het tentamen kwam
+- Normalisation
 
-Ziekenhuisbed formeel verificatie (pv = protocol validation)
-Formele verificatie op ziekenhuisbed
+### Parallel programming
+
+I found this course very interesting. At the start of this course, I had seen
+some trivial parallel programs (distributed.net, SETI@home) but I thought
+that writing a non-trivial parallel program was near to impossible. It
+turned out to be very hard, but in no way impossible.
+
+However, it is still hard to find a goal for a parallel program. I guess
+you need to be a scientist with a lot of data to really make good use of any
+parallel program.
+
+I started too late with this course. The most frustrating was waiting for
+the benchmarks to complete and the searching for bugs. Bug-squashing
+with parallel programs and big datasets is hard. Sometimes I would start
+over, because that was faster than finding the bug.
+
+- ppp
+- MPI cluster
+
+### Protocol validation
+
+- pv
+- Movable Patient Support Platform for an MRI scanner
+- Ziekenhuisbed formeel verificatie (pv = protocol validation)
+- Formele verificatie op ziekenhuisbed
+
+### Computer graphics
+
+- graphics
 
 Grote wand met acht beamers er achter
 Computer graphics? Opengl?
 
+### Operating systems
+
+- Tanenbaum?
+- Write ext2 defrag?
+- bs
+- Andy Tanenbaum had een intel emulator gebouwd, dat was niet zo moeilijk maar dat loste zijn probleem niet op.
+
+### Literature study
+
+- litstud
+- Code Propagation in Wireless Sensor Networksopen 
+
+### Software architecture
+
+### Introduction multimedia
+
+Ballenbakken van McDonaldss
+Flash filmpje over mcdonalds ballenbakken
+Flash-film maken over ballenbakken
+
+### Computer Networks Practical? Operating Systems Practical?
+
 TCP laag bovenop minix schrijven. Eerste jaar niet eens begonnen. Rare beoordeling van uni.
+
+### Principles of Progr. Languages / Programmeren in Prolog
+
 
 Bij één practicum vertelden ze niet wat er mis was met je programma.
 
 Microsoft man doet alsof word de originele word processor is
 Microsoft man liet zien hoe gaaf asp.net was.
 
-Andy Tanenbaum had een intel emulator gebouwd, dat was niet zo moeilijk maar dat loste zijn probleem niet op.
+### Filosofie & Ethiek van de Techniek
 
 Presentatie voor ethiek in de techniek jacques ellul, nerveuze meltdown
 
@@ -103,9 +170,6 @@ Geleerd over ringen, phi, modulo. Abelse groepen.
 
 Advies geven over fusie van twee bedrijven
 
-Flash filmpje over mcdonalds ballenbakken
-Flash-film maken over ballenbakken
-
 Taal en Redeneermeth
 Inleiding Programmeren
 Datastructuren
@@ -113,7 +177,6 @@ Inl. Logica
 Human-Computer Interaction
 Parallel Programmeren
 Assemblerprogrammeren
-Filosofie & Ethiek van de Techniek
 Metrische Topologie
 Grafentheorie
 Principes van  Programmeertalen
