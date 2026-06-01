@@ -11,9 +11,7 @@ From 2001 until 2006 I studied computer science at the Vrije Universiteit in Ams
 
 I was fond of computers and what you could to with them from a young age, so computer science seemed the logical choice. I considered some related fields, such as business informatics and artificial intelligence, but these did not seem like a right fit. At the time, artificial intelligence was mostly statistics and not the exciting field it is today. I bought a textbook on artificial intelligence, and I was severely underwhelmed by its contents. Instead of making computers think for themselves, it was mostly graphs with red and blue dots and methods to separate the two groups using statistics. So I started computer science.
 
-? Why I pick the VU?
-? Overwogen om naar Brabant te gaan.
-? Overwogen om te verhuizen naar Brabant om bij Myrthe te wonen.
+I went to open days of several universities. At least Delft, UvA, VU. Delft was nice but a little bit far away. VU seemed better than UvA, but that was based mostly on vibes, not on actual information. Later on I also considered going to Tilburg University to live closer with my girlfriend, but instead I broke up with her.
 
 ## Starting computer science
 
@@ -51,7 +49,7 @@ In the fourth year I started my masters in internet and webtechnology. This was 
 
 ## People
 
-[Wan Fokkink](https://www.cs.vu.nl/~wanf/)
+[Wan Fokkink](https://www.cs.vu.nl/~wanf/) was a knowledgable and inspired postdoc. He was good at teaching and you could really see he had his heart into the subject.
 
 The head of the department, [Maarten van Steen](https://www.distributed-systems.net/index.php/me/), was an inspirational man that saw possibilities yet to come on the internet. For example, applications would dynamically interface with third-party webservices. This only recently became a reality, with LLMs. Global discovery and interfacing for software didn't came to realization, but I thought it was visionary of Maarten nonetheless.
 
@@ -59,22 +57,25 @@ There was also a postdoc, [Guillaume Pierre](http://www.globule.org/), who was w
 
 ## Thesis
 
-Geen problemen met thesis motivatie, anderen wel.
-Sensor nodes
-Chess
-Naar Eindhoven/Weert
-Betronix, Chess
-Betronix had lelijk betonnen gebouw
+The last six months of the study were for writing a master thesis. The university was in contact with an R&D group that worked on sensor nodes: little computers that could communicate with each other over radio. The idea was that these could be deployed in large numbers, and ran distributed algorithms to accomplish things. In the end it didn't really go anywhere, but it was an interesting study subject. The R&D group had an idea for a research subject: to connect two of such sensor node networks over the internet.
+
+I wrote something, and then had a talk with Maarten van Steen, my supervisor. He pointed out that I should write research paper instead of a story. It should be rigirous and logical. This caused me to rewrite the whole thing, but it ended up better.
+
+I didn't really have a problem with motivating myself. From my friends I heard that they had great difficulty keeping motivated for their master thesis, as it requires self-sufficient research for six months. I didn't really have that problem, perhaps because I was genuinely curious about the subject.
 
 ## Courses
 
 ### Introduction programming
 
-- dev/prac/ip
+In the first year, they taught us programming. This was in Java. Java has a lot of boilerplate, which does not make it a particularly good language to write small programs and learn programming. For each assignment, we had to create a class with `public static void Main(String[] args)`. Knowing that signature is just not what makes someone good at programming.
+
+The assignments were really basic. For example, calculate the discounted price for bottles of wine. It was pretty easy.
 
 ### Computer networks
 
-- dev/prac/np
+In another course, we learned network programming in C, Java and PHP. This was pretty advanced and interesting. You had to program a client and a server, sometimes in different programming languages.
+
+There was no mention at all of computer security, which would have been applicable here.
 
 ### Assembler programming
 
