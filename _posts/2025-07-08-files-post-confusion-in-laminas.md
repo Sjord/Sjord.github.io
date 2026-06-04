@@ -2,7 +2,7 @@
 layout: post
 title: "File and post data confusion in PHP"
 thumbnail: phone-boy-480.jpg
-date: 2026-08-19
+date: 2026-06-10
 ---
 
 PHP has several superglobal variables which contain values from the request or the environment. These differ in whether they contain trustworthy data or not:
@@ -48,7 +48,7 @@ $post      = ArrayUtils::merge($postOther, $postFiles, true);
 
 Given that this vulnerability is common in Laminas, I thought it would be easy to find a web application that is vulnerable to this. Unfortunately, it turned out harder than expected. I found one that is somewhat vulnerable: Omeka S, a web application that manages exhibit items.
 
-Omeka S has functionality to import RFC vocabularies. The code merges the post and files input and passes the `tmp_name` as the file to import:
+Omeka S has functionality to import RDF vocabularies. The code merges the post and files input and passes the `tmp_name` as the file to import:
 
 ```php
 $post = array_merge_recursive(
