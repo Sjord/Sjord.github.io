@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "File and post data confusion in Laminas"
+title: "File and post data confusion in PHP"
 thumbnail: phone-boy-480.jpg
-date: 2025-08-20
+date: 2026-08-19
 ---
 
 PHP has several superglobal variables which contain values from the request or the environment. These differ in whether they contain trustworthy data or not:
@@ -15,7 +15,7 @@ PHP has several superglobal variables which contain values from the request or t
 
 If the application mixes user input with trusted data, it is going to have a hard time to determine whether a variable can be trusted or not.
 
-One example is when user input (from $_GET, $_POST, etc) is written directly to the session ($_SESSION). Since the application typically trusts all data in the session, being able to write directly the session can often bypass security controls. I wrote earlier about an example in [ZenCart](https://www.securify.nl/en/blog/session-poisoning-zen-cart-for-a-free-discount/).
+One example is when user input (from $_GET, $_POST, etc) is written directly to the session ($_SESSION). Since the application typically trusts all data in the session, being able to write directly the session can often bypass security controls. I wrote earlier session poisoning in [ZenCart](https://www.securify.nl/en/blog/session-poisoning-zen-cart-for-a-free-discount/) and [ZoneMinder](/2019/09/25/second-order-sql-injection-in-zoneminder/).
 
 Another example is when user input is mixed up with $_FILES. The $_FILES array contains mostly untrusted user input, but it contains one value set by PHP; `tmp_name` contains the path to the file that was just uploaded. Presumably, the application is going to read this or save it somewhere. Making it possible to write to `$_FILES` makes it possible to set `tmp_name`, and thus make the application read any file on the file system.
 
