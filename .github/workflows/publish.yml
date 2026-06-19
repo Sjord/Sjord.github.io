@@ -2,14 +2,22 @@ on:
   push:
   schedule:
     - cron: 37 11 * * 3
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: jekyll/jekyll
     steps:
       - uses: actions/checkout@v4
-      - run: mkdir .jekyll-cache _site
-      - run: jekyll build
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Build Jekyll Site
+        run: bundle exec jekyll build
+
       - uses: actions/upload-artifact@v4
         with:
           name: site
