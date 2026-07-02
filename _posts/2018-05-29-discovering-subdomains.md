@@ -45,9 +45,9 @@ Early in a pentest it may be helpful to enumerate all the subdomains of a domain
 
 ## Websites
 
+* [CertObserver](https://certobserver.com/ct-search)
 * [crt.sh](https://crt.sh/)
 * [DNSDumpster](https://dnsdumpster.com/)
-* [Entrust Certificate Transparency Search Tool](https://www.entrust.com/ct-search/)
 * [FindSubDomains](https://findsubdomains.com/)
 * [Robtex](https://www.robtex.com/)
 * [SecurityTrails](https://securitytrails.com/)
