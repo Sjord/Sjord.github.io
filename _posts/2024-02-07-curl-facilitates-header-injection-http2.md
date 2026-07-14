@@ -55,3 +55,8 @@ I feel like curl fails to abstract the protocol details and even the implementat
 HTTP/2 headers can technically contain newlines, but they shouldn't. Curl cannot send a header with a newline in it. Instead, it will split it into separate headers.
 
 So having user input in a request header makes it possible for an attacker to add additional headers to a request, and using HTTP/2 does not offer protection against that.
+
+## Read more
+
+- [Curl pull request: setopt: reject CR and LF octets in curl\_slists given to options](https://github.com/curl/curl/pull/22309)
+- [PHP pull request: Disallow newlines in CURLOPT\_HTTPHEADER](https://github.com/php/php-src/pull/22651)
