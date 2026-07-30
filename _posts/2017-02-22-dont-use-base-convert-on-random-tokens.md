@@ -44,3 +44,8 @@ The [PHP manual warns against this](https://www.php.net/base_convert):
 > Warning: base\_convert() may lose precision on large numbers due to properties related to the internal "double" or "float" type used. Please see the Floating point numbers section in the manual for more specific information and limitations.
 
 Don't use `base_convert` on your secure tokens.
+
+## Read more
+
+- [PHP pull request: warn when number base conversion loses precision](https://github.com/php/php-src/pull/22371)
+- [PHP manual: base\_convert](https://www.php.net/base_convert)
